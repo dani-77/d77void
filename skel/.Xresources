@@ -1,0 +1,41 @@
+! Dracula Xresources palette
+*.foreground: #F8F8F2
+*.background: #282A36
+*.color0:     #000000
+*.color8:     #4D4D4D
+*.color1:     #FF5555
+*.color9:     #FF6E67
+*.color2:     #50FA7B
+*.color10:    #5AF78E
+*.color3:     #F1FA8C
+*.color11:    #F4F99D
+*.color4:     #BD93F9
+*.color12:    #CAA9FA
+*.color5:     #FF79C6
+*.color13:    #FF92D0
+*.color6:     #8BE9FD
+*.color14:    #9AEDFE
+*.color7:     #BFBFBF
+*.color15:    #E6E6E6
+XTerm.vt100.backarrowKey: true
+XTerm.ttyModes: erase ^?
+XTerm.vt100.faceName: hack:size=10:antialias=false
+XTerm.vt100.font: 7x13
+XTerm.vt100.locale: false
+XTerm.vt100.utf8: true
+XTerm.vt100.metaSendEscape: true
+XTerm*vt100.selectToClipboard: true
+XTerm*vt100.Translations:       #override\n\
+ Shift Ctrl <KeyPress> v: insert-selection(CLIPBOARD)\n\
+ Shift Ctrl <KeyPress> c: copy-selection(CLIPBOARD)\n
+UXTerm.vt100.backarrowKey: true
+UXTerm.ttyModes: erase ^?
+UXTerm.vt100.faceName: hack:size=10:antialias=false
+UXTerm.vt100.font: 7x13
+UXTerm.vt100.locale: false
+UXTerm.vt100.utf8: true
+UXTerm.vt100.metaSendEscape: true
+UXTerm*vt100.selectToClipboard: true
+UXTerm*vt100.Translations:       #override\n\
+ Shift Ctrl <KeyPress> v: insert-selection(CLIPBOARD)\n\
+ Shift Ctrl <KeyPress> c: copy-selection(CLIPBOARD)\n

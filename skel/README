@@ -1,0 +1,22 @@
+Hello
+Thank you for trying d77Void.
+
+To run the installer just open a terminal and type:
+
+```
+# sudo void-installer
+```
+
+During install, please choose local install instead of network install.
+
+To be able to use udiskie to automount disks, add your user to the storage group.
+After install, to make powermenu work properly run:
+
+```
+# sudo chmod u+s /usr/bin/poweroff
+# sudo chmod u+s /usr/bin/reboot
+```
+
+That way, even the non privileged user can use the powermenu.
+
+Hope you enjoy!
