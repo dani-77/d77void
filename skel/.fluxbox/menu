@@ -16,7 +16,7 @@
 #     session.menuFile: ~/.fluxbox/my-menu
 [begin] (Fluxbox)
 [encoding] {UTF-8}
-      [exec] (st) {st}
+      [exec] (terminal) {xterm}
       [exec] (firefox) {firefox}
       [exec]   (Run) {fbrun}
 [submenu] (Terminals)
