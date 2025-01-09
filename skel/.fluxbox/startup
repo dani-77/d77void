@@ -30,7 +30,7 @@ xrdb merge ~/.Xresources &
 #setxkbmap de deadtilde &
 /usr/bin/octoxbps-notifier &
 xautolock -time 5 -locker slock &
-xterm -e vi README &
+xterm -e vi README.md &
 exec fluxbox
 # or if you want to keep a log:
 # exec fluxbox -log "/home/dani77/.fluxbox/log"
