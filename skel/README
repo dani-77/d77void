@@ -3,27 +3,44 @@ Thank you for trying d77Void.
 
 To run the installer just open a terminal and type:
 
+```
 sudo void-installer
+```
 
 Note: 
 To mantain the configuration of the live iso, during install, choose local instead of network install.
 During install, add your user to the storage group. That way udiskie will automount disks.
 
 
-1st run:
+# 1st run:
 
 After install, to make powermenu work properly run:
 
+```
 sudo chmod u+s /usr/bin/poweroff
 sudo chmod u+s /usr/bin/reboot
+```
 
 That way, even non privileged users can use powermenu.
 
 To tweak conky, edit .conkyrc; you will need to change local to be able to have weather running on it with your city instead of mine.
-Probably you will need to change the wifi card device to display properly the info.
+Probably you will need to change the wifi card device name to display properly the info.
+Check wich device name this way:
+
+```
+ip a
+```
+The one with w??? is the correct name. Change it this way:
+
+```
+# sed -i 's|wlp21s0|w???|' .conkyrc
+```
+
 In case battery is not working properly, swap BAT0 to BAT1 this way; open a terminal and type:
 
+```
 sed -i 's|BAT0|BAT1|' .conkyrc
+```
 
 To edit and customize your fluxbox variables, like menu, wallpaper and startup applications, go to ~/.fluxbox/ and edit the files in there to fit your needs.
 
