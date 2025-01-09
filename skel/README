@@ -14,6 +14,8 @@ During install, add your user to the storage group. That way udiskie will automo
 
 # 1st run:
 
+## Powermenu
+
 After install, to make powermenu work properly run:
 
 ```
@@ -22,6 +24,8 @@ sudo chmod u+s /usr/bin/reboot
 ```
 
 That way, even non privileged users can use powermenu.
+
+## Conky
 
 To tweak conky, edit .conkyrc; you will need to change local to be able to have weather running on it with your city instead of mine.
 Probably you will need to change the wifi card device name to display properly the info.
