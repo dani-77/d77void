@@ -7,7 +7,7 @@ sudo void-installer
 
 Note: 
 To mantain the configuration of the live iso, during install, choose local instead of network install.
-During install, add your user to the storage group to be able to use udiskie to automount disks.
+During install, add your user to the storage group. That way udiskie will automount disks.
 
 
 1st run:
@@ -17,7 +17,7 @@ After install, to make powermenu work properly run:
 sudo chmod u+s /usr/bin/poweroff
 sudo chmod u+s /usr/bin/reboot
 
-That way, even the non privileged user can use the powermenu.
+That way, even non privileged users can use powermenu.
 
 To tweak conky, edit .conkyrc; you will need to change local to be able to have weather running on it with your city instead of mine.
 Probably you will need to change the wifi card device to display properly the info.
