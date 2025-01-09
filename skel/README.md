@@ -37,7 +37,7 @@ ip a
 The one with w??? is the correct name. Change it this way:
 
 ```
-# sed -i 's|wlp21s0|w???|' .conkyrc
+sed -i 's|wlp21s0|w???|' .conkyrc
 ```
 
 In case battery is not working properly, swap BAT0 to BAT1 this way; open a terminal and type:
