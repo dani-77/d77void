@@ -9,6 +9,7 @@ sudo void-installer
 
 Note: 
 To mantain the configuration of the live iso, during install, choose local instead of network install.
+
 During install, add your user to the storage group. That way udiskie will automount disks.
 
 
@@ -45,6 +46,8 @@ In case battery is not working properly, swap BAT0 to BAT1 this way; open a term
 ```
 sed -i 's|BAT0|BAT1|' .conkyrc
 ```
+
+## Fluxbox Variables
 
 To edit and customize your fluxbox variables, like menu, wallpaper and startup applications, go to ~/.fluxbox/ and edit the files in there to fit your needs.
 
