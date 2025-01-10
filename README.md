@@ -12,6 +12,6 @@ Then, immediatly after rootfs generation is complete, run as root:
 # ./skel.sh
 ```
 
-This will create the iso with a ready to use Void based system with Fluxbox as windoww manager.
+This will create the iso with a ready to use Void based system with Fluxbox as window manager.
 
 As in Void Linux, user is **anon** with password **voidlinux**.
