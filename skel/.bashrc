@@ -5,9 +5,6 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-export PATH=/home/dani77/.local/share/gem/ruby/3.3/bin:/home/dani77/.cargo/bin/:$PATH
-export BW_SESSION="/0QznHKQoPH66uLvVVky9EBI4psdvFu6aaGAZnq1xrTc/evmeI0unw47ow1nXJaOb5N36NdWKt68X/WaNFOn0g=="
-
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias btop='btop --utf-force'
