@@ -3,12 +3,14 @@ cbatticon &
 volumeicon &
 nm-applet &
 redshift-gtk -l 41.6:-8.62 &
+sxhkd -c ~/.config/sxhkd/sxhkdrc &
 udiskie -at &
 conky -c .conkyrc &
 conky -c .conkyrc1 &
-fbsetbg -f Wallpaper/macos-monterey-wwdc-21-stock-dark-mode-5k-3840x2160-5585.jpg &
+feh --bg-fill ~/Wallpaper/macos-monterey-wwdc-21-stock-dark-mode-5k-3840x2160-5585.jpg &
 xrdb merge ~/.Xresources &
 #setxkbmap de deadtilde &
 /usr/bin/octoxbps-notifier &
 xautolock -time 5 -locker slock &
+tint2 &
 xterm -e vi README.md &
