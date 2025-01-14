@@ -1,17 +1,15 @@
 alt + shift + Return
 	xterm
-super + w
+alt + w
 	firefox
-super + m
+alt + m
 	geary
-super + f
+alt + f
 	pcmanfm
-super + d
+alt + d
 	rofi -show drun
-alt + space
+alt + j
 	jgmenu_run
-alt + x
-	power_menu
 alt + p
 	scrot
 alt + x
