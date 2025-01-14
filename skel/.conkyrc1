@@ -69,4 +69,5 @@ ${color grey}alt + j -> ${color}jgmenu
 ${color grey}alt + x -> ${color}powermenu
 ${color grey}alt + F2 -> ${color}run
 ${color grey}alt + p -> ${color}scrot
+${color grey}alt + l -> ${color}lock
 ]]
