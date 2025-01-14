@@ -1,0 +1,20 @@
+alt + shift + Return
+	xterm
+super + w
+	firefox
+super + m
+	geary
+super + f
+	pcmanfm
+super + d
+	rofi -show drun
+alt + space
+	jgmenu_run
+alt + x
+	power_menu
+alt + p
+	scrot
+alt + x
+	rofi -show power-menu -modi power-menu:rofi-power-menu
+alt + l
+	slock
