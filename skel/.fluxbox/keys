@@ -145,3 +145,4 @@ Mod1 j :Exec jgmenu_run
 Mod1 x :Exec rofi -show power-menu -modi power-menu:rofi-power-menu
 Mod1 l :exec slock
 Mod1 p :exec scrot
+Mod1 r :exec gmrun

@@ -65,7 +65,7 @@ ${color grey}alt + w -> ${color}firefox
 ${color grey}alt + m -> ${color}mail
 ${color grey}alt + f -> ${color}pcmanfm
 ${color grey}alt + d -> ${color}rofi
-${color grey}alt + space -> ${color}jgmenu 
+${color grey}alt + j -> ${color}jgmenu 
 ${color grey}alt + x -> ${color}powermenu
 ${color grey}alt + F2 -> ${color}run
 ${color grey}alt + p -> ${color}scrot

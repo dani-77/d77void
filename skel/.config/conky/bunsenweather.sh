@@ -29,7 +29,6 @@
 
 # Get API KEY by registering for one at http://openweathermap.org/api
 #api="your very long api number"
-api="3fabcd0b49b9a12c5eb8eb8905e89592"
 
 # Either set the location manually here, or by passing it as a script parameter in the Conky.
 # "yourlocation" must be a name (which doesn't have spaces), or a numeric id.

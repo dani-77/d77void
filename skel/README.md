@@ -28,7 +28,10 @@ That way, even non privileged users can use powermenu.
 
 ## Conky
 
-To tweak conky, edit .conkyrc; you will need to change local to be able to have weather running on it with your city instead of mine.
+To tweak conky, edit .conkyrc; 
+
+To get weather running on it, you will need to register for an API at openweathermap and link it in ~/.config/conky/bunsenweather.sh and change local to be able to have weather running on it with your city instead of mine.
+
 Probably you will need to change the wifi card device name to display properly the info.
 Check wich device name this way:
 
