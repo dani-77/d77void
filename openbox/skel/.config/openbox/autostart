@@ -9,8 +9,8 @@ conky -c .conkyrc &
 conky -c .conkyrc1 &
 feh --bg-fill ~/Wallpaper/macos-monterey-wwdc-21-stock-dark-mode-5k-3840x2160-5585.jpg &
 xrdb merge ~/.Xresources &
-#setxkbmap de deadtilde &
+setxkbmap de deadtilde &
 /usr/bin/octoxbps-notifier &
 xautolock -time 5 -locker slock &
 tint2 &
-xterm -e vi README.md &
+#xterm -e vi README.md &
