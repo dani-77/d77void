@@ -1,4 +1,5 @@
 exec dunst &
+exec xcompmgr -c -f -n &
 exec redshift -l 41.6:-8.62 &
 exec sxhkd -c ~/.config/sxhkd/sxhkdrc &
 exec udiskie -a &
