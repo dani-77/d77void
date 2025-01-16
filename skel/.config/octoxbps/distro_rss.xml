@@ -1,0 +1,2048 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+	<title>Void news</title>
+	<subtitle>Follow Void Linux news</subtitle>
+	<link href="https://voidlinux.org/"/>
+	<link type="application/atom+xml" rel="self" href="https://voidlinux.org/atom.xml"/>
+	<updated>2024-09-30T03:36:45+00:00</updated>
+	<author>
+		<name>Void Linux Team</name>
+	</author>
+	<id>https://voidlinux.org/</id>
+
+
+	<entry>
+		<title>Goodbye, Python 2! Hello, New Buildbot!</title>
+		<link href="https://voidlinux.org/news/2024/09/python-buildbot.html"/>
+		<id>https://voidlinux.org/news/2024/09/python-buildbot</id>
+		<published>2024-09-29T00:00:00+00:00</published>
+		<updated>2024-09-29T00:00:00+00:00</updated>
+		<content type="xhtml">
+			<div xmlns="http://www.w3.org/1999/xhtml">
+				<p><p>At long last, Void is saying goodbye to Python 2. Python ended support for
+Python 2 in 2020, but Void still had over 200 packages that depended on it.
+Since then, Void contributors have
+<a href="https://github.com/void-linux/void-packages/issues/38229">updated, patched, or removed</a>
+these packages. For the moment, Python 2 will remain in the repositories as
+<code class="language-plaintext highlighter-rouge">python2</code> (along with <code class="language-plaintext highlighter-rouge">python2-setuptools</code> and <code class="language-plaintext highlighter-rouge">python2-pip</code>). <code class="language-plaintext highlighter-rouge">python</code> is
+now a metapackage that will soon point to <code class="language-plaintext highlighter-rouge">python3</code>.</p>
+
+<p>One of the biggest blockers for this project was some of Void’s own infrastructure:
+our buildbot, which builds all packages for delivery to users. For a long time,
+we were stuck on buildbot 0.8.12 (released on 21 April <strong>2015</strong> and using Python 2),
+because it was complex to get working, had many moving parts, and was fairly fragile.
+To update it to a modern version would require significant time and effort.</p>
+
+<p>Now, we move into the future: we’ve upgraded our buildbot to version 4.0, and
+it is now being managed via our orchestration system, Nomad, to improve
+reliability, observability, and reproducibility in deployment. Check out the 2023
+<em>Infrastructure Week</em> <a href="/news/2023/07/infra-week-day-1.html">series of blog posts</a>
+for more info about how and why Void uses Nomad.</p>
+
+<p>Visit the new buildbot dashboard at <a href="https://build.voidlinux.org">build.voidlinux.org</a>
+and watch your packages build!</p>
+</p>
+			</div>
+		</content>
+	</entry>
+
+	<entry>
+		<title>Welcome a New Contributor!</title>
+		<link href="https://voidlinux.org/news/2024/07/welcome-tranzystorek.html"/>
+		<id>https://voidlinux.org/news/2024/07/welcome-tranzystorek</id>
+		<published>2024-07-12T00:00:00+00:00</published>
+		<updated>2024-07-12T00:00:00+00:00</updated>
+		<content type="xhtml">
+			<div xmlns="http://www.w3.org/1999/xhtml">
+				<p><p>The Void project is pleased to welcome aboard another new member, <code class="language-plaintext highlighter-rouge">@tranzystorekk</code>.</p>
+
+<p>Interested in seeing your name in a future update here? Read our
+<a href="https://docs.voidlinux.org/contributing/index.html">Contributing Page</a>
+and find a place to help out! New members are invited from the community
+of contributors.</p>
+</p>
+			</div>
+		</content>
+	</entry>
+
+	<entry>
+		<title>March 2024 Image Release (and Raspberry Pi 5 support)</title>
+		<link href="https://voidlinux.org/news/2024/03/new-images.html"/>
+		<id>https://voidlinux.org/news/2024/03/new-images</id>
+		<published>2024-03-14T00:00:00+00:00</published>
+		<updated>2024-03-14T00:00:00+00:00</updated>
+		<content type="xhtml">
+			<div xmlns="http://www.w3.org/1999/xhtml">
+				<p><p>We’re pleased to announce that the 20240314 image set has been promoted to
+current and is now generally available.</p>
+
+<p>You can find the new images on our <a href="/download/">downloads page</a> and on our many
+<a href="https://xmirror.voidlinux.org">mirrors</a>.</p>
+
+<p>Some highlights of this release:</p>
+
+<ul>
+  <li>A keymap selector is now shown in LightDM on XFCE images
+ (<a href="https://github.com/classabbyamp">@classabbyamp</a> in
+ <a href="https://github.com/void-linux/void-mklive/pull/354">#354</a>)</li>
+  <li>The chrony NTP daemon is now enabled by default in live images
+ (<a href="https://github.com/classabbyamp">@classabbyamp</a> in
+ <a href="https://github.com/void-linux/void-mklive/commit/abbd6365b421234df6d55e7eb94d6c3c4195078d"><code class="language-plaintext highlighter-rouge">abbd636</code></a>)</li>
+  <li>Raspberry Pi images can now be installed on non-SD card storage without manual
+ configuration on models that support booting from USB or NVMe
+ (<a href="https://github.com/classabbyamp">@classabbyamp</a> in
+ <a href="https://github.com/void-linux/void-mklive/pull/361">#361</a>)</li>
+  <li>Raspberry Pi images now default to a <code class="language-plaintext highlighter-rouge">/boot</code> partition of 256MiB instead of 64MiB
+ (<a href="https://github.com/classabbyamp">@classabbyamp</a> in
+ <a href="https://github.com/void-linux/void-mklive/pull/368">#368</a>)</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">rpi-aarch64*</code> PLATFORMFSes and images now support the Raspberry Pi 5.
+After installation, the kernel can be
+<a href="https://docs.voidlinux.org/installation/guides/arm-devices/platforms.html#raspberry-pi-5-kernel">switched</a>
+to the Raspberry Pi 5-specific <code class="language-plaintext highlighter-rouge">rpi5-kernel</code>.</p>
+
+<p>You may verify the authenticity of the images by following the instructions on
+the <a href="/download/">downloads page</a>, and using the following minisign key information:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>untrusted comment: minisign public key A3FCFCCA9D356F86
+RWSGbzWdyvz8o4nrhY1nbmHLF6QiFH/AQXs1mS/0X+t1x3WwUA16hdc/
+</code></pre></div></div>
+</p>
+			</div>
+		</content>
+	</entry>
+
+	<entry>
+		<title>Changes to xbps-src Masterdir Creation and Use</title>
+		<link href="https://voidlinux.org/news/2024/01/xbps-src-host-arch.html"/>
+		<id>https://voidlinux.org/news/2024/01/xbps-src-host-arch</id>
+		<published>2024-01-22T00:00:00+00:00</published>
+		<updated>2024-01-22T00:00:00+00:00</updated>
+		<content type="xhtml">
+			<div xmlns="http://www.w3.org/1999/xhtml">
+				<p><p>In an effort to simplify the usage of <a href="https://github.com/void-linux/void-packages"><code class="language-plaintext highlighter-rouge">xbps-src</code></a>,
+there has been a small change to how masterdirs (the containers xbps-src uses
+to build packages) are created and used.</p>
+
+<p>The default masterdir is now called <code class="language-plaintext highlighter-rouge">masterdir-&lt;arch&gt;</code>, except when <code class="language-plaintext highlighter-rouge">masterdir</code>
+already exists or when using xbps-src in a container (where it’s still <code class="language-plaintext highlighter-rouge">masterdir</code>).</p>
+
+<h3 id="creation">Creation</h3>
+
+<p>When creating a masterdir for an alternate architecture or libc, the previous
+syntax was:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./xbps-src -m &lt;name&gt; binary-bootstrap &lt;arch&gt;
+</code></pre></div></div>
+
+<p>Now, the <code class="language-plaintext highlighter-rouge">&lt;arch&gt;</code> should be specified using the new <code class="language-plaintext highlighter-rouge">-A</code> (host architecture)
+flag:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./xbps-src -A &lt;arch&gt; binary-bootstrap
+</code></pre></div></div>
+
+<p>This will create a new masterdir called <code class="language-plaintext highlighter-rouge">masterdir-&lt;arch&gt;</code> in the root of your
+void-packages repository checkout.</p>
+
+<p>Arbitrarily-named masterdirs can still be created with <code class="language-plaintext highlighter-rouge">-m &lt;name&gt;</code>.</p>
+
+<h3 id="usage">Usage</h3>
+
+<p>Instead of specifying the alternative masterdir directly, you can now use the
+<code class="language-plaintext highlighter-rouge">-A</code> (host architecture) flag to use the <code class="language-plaintext highlighter-rouge">masterdir-&lt;arch&gt;</code> masterdir:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./xbps-src -A &lt;arch&gt; pkg &lt;pkgname&gt;
+</code></pre></div></div>
+
+<p>Arbitrarily-named masterdirs can still be used with <code class="language-plaintext highlighter-rouge">-m &lt;name&gt;</code>.</p>
+</p>
+			</div>
+		</content>
+	</entry>
+
+	<entry>
+		<title>Welcome New Contributors!</title>
+		<link href="https://voidlinux.org/news/2024/01/welcome-contributors.html"/>
+		<id>https://voidlinux.org/news/2024/01/welcome-contributors</id>
+		<published>2024-01-22T00:00:00+00:00</published>
+		<updated>2024-01-22T00:00:00+00:00</updated>
+		<content type="xhtml">
+			<div xmlns="http://www.w3.org/1999/xhtml">
+				<p><p>The Void project is pleased to welcome aboard 2 new members.</p>
+
+<p>Joining us to work on packages are <code class="language-plaintext highlighter-rouge">@oreo639</code> and <code class="language-plaintext highlighter-rouge">@cinerea0</code>.</p>
+
+<p>Interested in seeing your name in a future update here? Read our
+<a href="https://docs.voidlinux.org/contributing/index.html">Contributing Page</a>
+and find a place to help out! New members are invited from the community
+of contributors.</p>
+</p>
+			</div>
+		</content>
+	</entry>
+
+	<entry>
+		<title>glibc 2.38 Update Issues and Solutions</title>
+		<link href="https://voidlinux.org/news/2024/01/glibc-xcrypt.html"/>
+		<id>https://voidlinux.org/news/2024/01/glibc-xcrypt</id>
+		<published>2024-01-04T00:00:00+00:00</published>
+		<updated>2024-01-04T00:00:00+00:00</updated>
+		<content type="xhtml">
+			<div xmlns="http://www.w3.org/1999/xhtml">
+				<p><p>With the update to glibc 2.38, <code class="language-plaintext highlighter-rouge">libcrypt.so.1</code> is <a href="https://sourceware.org/glibc/wiki/Release/2.38#Building_libcrypt_is_disabled_by_default">no longer provided by
+glibc</a>.
+Libcrypt is an important library for several core system packages that use
+cryptographic functions, including <code class="language-plaintext highlighter-rouge">pam</code>. The library has changed versions, and
+the legacy version is still available for precompiled or proprietary
+applications. The new version is available on Void as <code class="language-plaintext highlighter-rouge">libxcrypt</code> and the legacy
+version is <code class="language-plaintext highlighter-rouge">libxcrypt-compat</code>.</p>
+
+<p>With this change, some kinds of partial upgrades can leave PAM unable to
+function. This breaks tools like <code class="language-plaintext highlighter-rouge">sudo</code>, <code class="language-plaintext highlighter-rouge">doas</code>, and <code class="language-plaintext highlighter-rouge">su</code>, as well as breaking
+authentication to your system. Symptoms include messages like “PAM
+authentication error: Module is unknown”. If this has happened to you, you can
+either:</p>
+
+<ul>
+  <li>add <code class="language-plaintext highlighter-rouge">init=/bin/sh</code> to your kernel command-line in the bootloader and
+ <a href="https://docs.voidlinux.org/xbps/advanced-usage.html#downgrading">downgrade</a>
+ glibc,</li>
+  <li>or mount the system’s root partition in a live environment,
+ <a href="https://docs.voidlinux.org/config/containers-and-vms/chroot.html#chroot-usage">chroot</a>
+ into it, and install <code class="language-plaintext highlighter-rouge">libxcrypt-compat</code></li>
+</ul>
+
+<p>Either of these steps should allow you to access your system as normal and run a
+full update.</p>
+
+<p>To ensure the disastrous partial upgrade (described above) cannot happen,
+<code class="language-plaintext highlighter-rouge">glibc-2.38_3</code> now depends on <code class="language-plaintext highlighter-rouge">libxcrypt-compat</code>. With this change, it is safe
+to perform partial upgrades that include glibc 2.38.</p>
+</p>
+			</div>
+		</content>
+	</entry>
+
+	<entry>
+		<title>Changes to Repository Sync</title>
+		<link href="https://voidlinux.org/news/2023/10/repo-changes.html"/>
+		<id>https://voidlinux.org/news/2023/10/repo-changes</id>
+		<published>2023-10-24T00:00:00+00:00</published>
+		<updated>2023-10-24T00:00:00+00:00</updated>
+		<content type="xhtml">
+			<div xmlns="http://www.w3.org/1999/xhtml">
+				<p><p>Void is a complex system, and over time we make changes to reduce this
+complexity, or shift it to easier to manage components.  Recently
+through the fantastic work of one of our maintainers <code class="language-plaintext highlighter-rouge">classabbyamp</code>
+our repository sync system has been dramatically improved.</p>
+
+<p>Previously our system was based on a series of host managed rsyncs
+running on either snooze or cron based timers.  These syncs would push
+files to a central location to be signed and then distributed.  This
+central location is sometimes referred to as the “shadow repo” since
+its not directly available to end users to synchronize from, and we
+don’t usually allow anyone outside Void to have access to it.</p>
+
+<p>As you might have noticed from the <a href="/news/2023/02/1-new-repo-fastly.html">Fastly
+Overview</a> the packages take a
+long path from builders to repos.  What is not obvious from the graph
+shown is that the shadow repo previously lived on the musl builder,
+meaning that packages would get built there, copied to the glibc
+builder, then copied back to the musl builder and finally copied to a
+mirror.  So many copies!  To streamline this process, the shadow
+mirror is now just the glibc server, since that’s where the packages
+have to wind up for architectural reasons anyway.  This means we were
+able to cut out 2 rsyncs and reclaim a large amount of space on the
+musl builder, making the entire process less fragile and more
+streamlined.</p>
+
+<p>But just removing rsyncs isn’t all that was done.  To improve the time
+it takes for packages to make it to users, we’ve also switched the
+builders from using a time based sync to using lsyncd to take more
+active management of the synchronization process.  In addition to
+moving to a more sustainable sync process, the entire process was
+moved up into our Nomad managed environment.  Nomad allows us to more
+easily update services, monitor them for long term trends, and to make
+it clearer where services are deployed.</p>
+
+<p>In addition to fork-lifting the sync processes, we also forklifted
+void-updates, xlocate, xq-api (package search), and the generation of
+the docs-site into Nomad.  These changes represent some of the very
+last services that were not part of our modernized container
+orchestrated infrastructure.</p>
+
+<p>Visually, this is what the difference looks like.  Here’s before:</p>
+
+<p><img src="/assets/img/sync_before.png" alt="Prior sync architecture" /></p>
+
+<p>And here’s what the sync looks like now, note that there aren’t any
+cycles for syncs now:</p>
+
+<p><img src="/assets/img/sync_after.png" alt="Current sync architecture" /></p>
+
+<p><em>If you run a downstream mirror we need your help!</em>  If your mirror
+has existed for long enough, its possible that you were still
+synchronizing from alpha.de.repo.voidlinux.org, which has been a dead
+servername for several years now.  Since moving around sync traffic is
+key to our ability to keep the lights on, we’ve provisioned a new
+dedicated DNS record for mirrors to talk to.  The new
+<code class="language-plaintext highlighter-rouge">repo-sync.voidlinux.org</code> is the preferred origin point for all sync
+traffic and using it means that we can transparently move the sync
+origin during maintenance rather than causing an rsync hang on your
+sync job.  Please check where you’re mirroring from and update
+accordingly.</p>
+</p>
+			</div>
+		</content>
+	</entry>
+
+	<entry>
+		<title>Changes to Python 3 and pip on Void</title>
+		<link href="https://voidlinux.org/news/2023/10/python3-external.html"/>
+		<id>https://voidlinux.org/news/2023/10/python3-external</id>
+		<published>2023-10-07T00:00:00+00:00</published>
+		<updated>2023-10-07T00:00:00+00:00</updated>
+		<content type="xhtml">
+			<div xmlns="http://www.w3.org/1999/xhtml">
+				<p><p>Happy Pythonmas! It’s October, which means it’s Python 3 update season. This
+year, along with the usual large set of updates for Python packages, a safety
+feature for pip, the Python package manager, has been activated. To ensure that
+Python packages installed via XBPS and those installed via pip don’t interfere
+with one another, the system-wide Python environment has been marked as
+“externally managed”.</p>
+
+<p>If you try to use <code class="language-plaintext highlighter-rouge">pip3</code> or <code class="language-plaintext highlighter-rouge">pip3 --user</code> outside of a Python virtual environment,
+you may see this error that provides guidance on how to deploy a virtual
+environment suitable for use with pip:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>This system-wide Python installation is managed by the Void Linux package
+manager, XBPS. Installation of Python packages from other sources is not
+normally allowed.
+
+To install a Python package not offered by Void Linux, consider using a virtual
+environment, e.g.:
+
+  python3 -m venv /path/to/venv
+  /path/to/venv/pip install &lt;package&gt;
+
+Appending the flag --system-site-packages to the first command will give the
+virtual environment access to any Python package installed via XBPS.
+
+Invoking python, pip, and executables installed by pip in /path/to/venv/bin
+should automatically use the virtual environment. Alternatively, source its
+activation script to add the environment to the command search path for a shell:
+
+  . /path/to/venv/activate
+
+After activation, running
+
+  deactivate
+
+will remove the environment from the search path without destroying it.
+
+The XBPS package python3-pipx provides pipx, a convenient tool to automatically
+manage virtual environments for individual Python applications.
+</code></pre></div></div>
+
+<p>You can read more about this change on Python’s website in <a href="https://peps.python.org/pep-0668/">PEP 668</a>.</p>
+
+<p>To simplify the use of Void-based containers, all <a href="https://voidlinux.org/download/#containers">Void container images</a>
+tagged <code class="language-plaintext highlighter-rouge">20231003R1</code> or later will explicitly ignore the “externally managed”
+marker. Containers based on these images will still be able to use pip to
+install Python packages in the container-wide environment.</p>
+
+<h3 id="here-be-dragons">Here Be Dragons</h3>
+
+<p>If you really want to be able to install packages with pip in the system- or
+user-wide Python environment, there are several options, but beware: this can
+cause hard-to-debug issues with Python applications, or issues when updating with
+XBPS.</p>
+
+<ol>
+  <li>Use pip’s <code class="language-plaintext highlighter-rouge">--break-system-packages</code> flag. This only applies to the current invocation.</li>
+  <li>Set pip’s configuration: <code class="language-plaintext highlighter-rouge">pip3 config set install.break-system-packages True</code>.
+This will apply to all future invocations.</li>
+  <li>Add a <code class="language-plaintext highlighter-rouge">noextract=/usr/lib/python*/EXTERNALLY-MANAGED</code> rule to your
+<a href="https://man.voidlinux.org/xbps.d.5">XBPS configuration</a> and re-install the
+<code class="language-plaintext highlighter-rouge">python3</code> package. This will apply to all future invocations.</li>
+</ol>
+</p>
+			</div>
+		</content>
+	</entry>
+
+	<entry>
+		<title>Changes to Container Images</title>
+		<link href="https://voidlinux.org/news/2023/08/container-updates.html"/>
+		<id>https://voidlinux.org/news/2023/08/container-updates</id>
+		<published>2023-08-30T00:00:00+00:00</published>
+		<updated>2023-08-30T00:00:00+00:00</updated>
+		<content type="xhtml">
+			<div xmlns="http://www.w3.org/1999/xhtml">
+				<p><p>To simplify the container experience, we’ve revamped the way Void’s OCI container images are built and tagged.</p>
+
+<p>In short:</p>
+
+<ul>
+  <li>Architectures are now encoded using the platform in the manifest instead of in tags</li>
+  <li>Different libcs and flavors of images are now separate images instead of tags</li>
+  <li>The <code class="language-plaintext highlighter-rouge">mini</code> flavor is no longer built, as they did not work as intended</li>
+</ul>
+
+<p>You can check out the available images on the <a href="/download/#containers">Download</a> page or on <a href="https://github.com/orgs/void-linux/packages?repo_name=void-containers">Github</a>.</p>
+
+<p>If you’re interested in the technical details, you can take a look at the <a href="https://github.com/void-linux/void-docker/pull/11">pull request</a> for these changes.</p>
+
+<h4 id="to-migrate-your-current-containers"><strong>To migrate your current containers:</strong></h4>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Old Image</th>
+      <th style="text-align: left">New Image</th>
+      <th style="text-align: left">Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">voidlinux/voidlinux</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">ghcr.io/void-linux/void-glibc</code></td>
+      <td style="text-align: left">Wow, you’ve been using two-year-old images!</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">voidlinux/voidlinux-musl</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">ghcr.io/void-linux/void-musl</code></td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">ghcr.io/void-linux/void-linux:*-full-*</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">ghcr.io/void-linux/void-glibc-full</code></td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">ghcr.io/void-linux/void-linux:*-full-*-musl</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">ghcr.io/void-linux/void-musl-full</code></td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">ghcr.io/void-linux/void-linux:*-thin-*</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">ghcr.io/void-linux/void-glibc</code></td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">ghcr.io/void-linux/void-linux:*-thin-*-musl</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">ghcr.io/void-linux/void-musl</code></td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">ghcr.io/void-linux/void-linux:*-mini-*</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">ghcr.io/void-linux/void-glibc</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">mini</code> images are no longer built</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">ghcr.io/void-linux/void-linux:*-mini-*-musl</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">ghcr.io/void-linux/void-musl</code></td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">ghcr.io/void-linux/void-linux:*-thin-bb-*</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">ghcr.io/void-linux/void-glibc-busybox</code></td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">ghcr.io/void-linux/void-linux:*-thin-bb-*-musl</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">ghcr.io/void-linux/void-musl-busybox</code></td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">ghcr.io/void-linux/void-linux:*-mini-bb-*</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">ghcr.io/void-linux/void-glibc-busybox</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">mini</code> images are no longer built</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">ghcr.io/void-linux/void-linux:*-mini-bb-*-musl</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">ghcr.io/void-linux/void-musl-busybox</code></td>
+      <td style="text-align: left"> </td>
+    </tr>
+  </tbody>
+</table>
+</p>
+			</div>
+		</content>
+	</entry>
+
+	<entry>
+		<title>Infrastructure Week - Day 5: Making Distributed Infrastructure Work for Distributed Teams</title>
+		<link href="https://voidlinux.org/news/2023/07/infra-week-day-5.html"/>
+		<id>https://voidlinux.org/news/2023/07/infra-week-day-5</id>
+		<published>2023-07-21T00:00:00+00:00</published>
+		<updated>2023-07-21T00:00:00+00:00</updated>
+		<content type="xhtml">
+			<div xmlns="http://www.w3.org/1999/xhtml">
+				<p><p>Void runs a distributed team of maintainers and contributors.  Making
+infrastructure work for any team is a confluence of goals, user
+experience choices, and hard requirements.  Making infrastructure work
+for a distributed team adds on the complexity of accessing everything
+securely over the open internet, and doing so in a way that is still
+convenient and easy to setup.  After all, a light switch is difficult
+to use is likely to lead to lights being left on.</p>
+
+<p>We take several design criteria into mind when designing new systems
+and services that make Void work.  We also periodically re-evaluate
+systems that have been built to ensure that they still follow good
+design practices in a way that we are able to maintain, and that does
+what we want.  Lets dive in to some of these design practices.</p>
+
+<h2 id="no-maintainer-facing-vpns">No Maintainer Facing VPNs</h2>
+
+<p>VPNs, or Virtual Private Networks are ways of interconnecting systems
+such that the network in between appears to vanish beneath a layer of
+abstraction.  WireGuard, OpenVPN, and IPSec are examples of VPNs.
+OpenVPN and IPSec, a client program handles encryption and decryption
+of traffic on a tunnel or tap device that translates packets into and
+out of the kernel network stack.  If you work in a field that involves
+using a computer for your job, your employer may make use of a VPN to
+grant your device connectivity to their corporate network environment
+without you having to be physically present in a building.  VPN
+technologies can also be used to make multiple physical sites appear
+to all be on the same network.</p>
+
+<p>Void uses WireGuard to provide machine-to-machine connectivity for our
+fleet, but only within our fleet.  Maintainers always access services
+without a VPN.  Why do we do this, and how do we do it?  First the
+why.  We operate in this way because corporate VPNs are often
+cumbersome, require split horizon DNS (where you get different DNS
+answers depending on where you resolve from) and require careful
+planning to make sure no subnet overlap occurs between the VPN, the
+network you are connecting to, and your local network.  If there were
+an overlap, the kernel would be unable to determine where to send the
+packets since it has multiple routes for the same subnets.  There are
+cases where this is a valid network topology (ECMP), but that is not
+what is being discussed here.  We also have no reason to use a VPN.
+Most of the use cases that still require a VPN have to do with
+transporting arbitrary TCP streams across a network, but this is
+unnecessary.  For Void, all our services are either HTTP based or are
+transported over SSH.</p>
+
+<p>For almost all our systems that we interact with daily, either a web
+interface or HTTP-based API is provided.  For the devspace file
+hosting system, maintainers can use SFTP via SSH.  Both HTTP and SSH
+have robust, extremely well tested authentication and encryption
+options.  When designing a system for secure access, defense in depth
+is important, but so is trust that the cryptographic primitives you
+have selected actually work.  We trust that HTTPS works, and so there
+is no need to wrap the connection in an additional layer of
+encryption.  The same goes for SSH, which we use exclusively
+public-key authentication for.  This choice is sometimes challenging
+to maintain, since it means that we need to ensure highly available
+HTTP proxies and secure, easily maintained SSH key implementations, we
+have found it works well for us.  In addition to the static files that
+all our tier 1 mirrors serve, the mirrors are additionally capable of
+acting as proxies.  This allows us to terminate the externally trusted
+TLS session at a webserver running nginx, and then pass the traffic
+over our internal encrypted fabric to the destination service.</p>
+
+<p>For SSH we simply make use of <code class="language-plaintext highlighter-rouge">AuthorizedKeysCommand</code> to summon keys
+from NetAuth allowing authorized maintainers to log onto servers or
+ssh-enabled services wherever their keys are validated.  For the
+devspace service which has a broader ACL than our base hardware, we
+can enhance its separation by running an SFTP server distinct from the
+host sshd.  This allows us to ensure that it is impossible for a key
+validated for devspace to inadvertently authorize a shell login to the
+underlying host.</p>
+
+<p>For all other services, we make use of the service level
+authentication as and when required.  We use combinations of Native
+NetAuth, LDAP proxies, and PAM helpers to make all access seamless for
+maintainers via our single sign on system.  Removing the barrier of a
+VPN also means that during an outage, there’s one less component we
+need to troubleshoot and debug, and one less place for systems to
+break.</p>
+
+<h2 id="use-of-composable-systems">Use of Composable Systems</h2>
+
+<p>Distributed systems are often made up of complex, interdependent
+sub-assemblies.  This level of complexity is fine for dedicated teams
+who are paid to maintain systems day in and day out, but is difficult
+to pull off with an all-volunteer team that works on Void in their
+free time.  Distributed systems are also best understood on a
+whiteboard, and this doesn’t lend itself well to making a change on a
+laptop from a train, or reviewing a delta from a tablet between other
+tasks.  While substantive changes are almost always made from a full
+terminal, the ratio of substantive changes to items requiring only
+quick verification is significant, and its important to maintain a
+level of understand-ability.</p>
+
+<p>In order to maintain the level of understand-ability of the
+infrastructure at a level that permits a reasonable time investment,
+we make use of composable systems.  Composable systems can best be
+thought of as infrastructure built out of common sub-assemblies.  Think
+Lego blocks for servers.  This allows us to have a common base library
+of components, for example webservers, synchronization primitives, and
+timers, and then build these into complex systems through joining
+their functionality together.</p>
+
+<p>We primarily use containers to achieve this composeability.  Each
+container performs a single task or a well defined sub-process in a
+larger workflow.  For example we can look at the workflow required to
+serve <a href="https://man.voidlinux.org/">https://man.voidlinux.org/</a>. In this workflow, a task runs
+periodically to extract all man pages from all packages, then another
+process runs to copy those files to the mirrors, and finally a process
+runs to produce an HTTP response to a given man page request.  Notice
+there that its an HTTP response, but the man site is served securely
+over HTTPS.  This is because across all of our web-based services we
+make use of common infrastructure such as load balancers and our
+internal network.  This allows applications to focus on their
+individual functions without needing to think about the complexity of
+serving an encrypted connection to the outside world.</p>
+
+<p>By designing our systems this way, we also gain another neat feature:
+local testing.  Since applications can be broken down into smaller
+building blocks, we can take just the single building block under
+scrutiny and run it locally.  Likewise, we can upgrade individual
+components of the system to determine if they improve or worsen a
+problem.  With some clever configuration, we can even upgrade half of
+a system that’s highly available and compare the old and new
+implementations side by side to see if we like one over the other.
+This composability enables us to configure complex systems as
+individual, understandable components.</p>
+
+<p>Its worth clarifying though that this is not necessarily a
+microservices architecture.  We don’t really have any services that
+could be defined as microservices in the conventional sense.  Instead
+this architecture should be thought of as the Unix Philosophy as
+applied to infrastructure components.  Each component has a single
+well understood goal and that’s all it does.  Other goals are
+accomplished by other services.</p>
+
+<p>We assemble all our various composed services into the service suite
+that Void provides via our orchestration system (Nomad) and our load
+balancers (nginx) which allow us to present the various disparate
+systems as though they were one to the outside world, while still
+maintaining them as separate service “verticals” side by side each
+other internally.</p>
+
+<h2 id="everything-in-git">Everything in Git</h2>
+
+<p>Void’s packages repo is a large git repo with hundreds of contributors
+and many maintainers.  This package bazaar contains all manner of
+different software that is updated, verified, and accepted by a team
+that spans the globe.  Our infrastructure is no different, but
+involves fewer people.  We make use of two key systems to enable our
+Infrastructure as Code (IaC) approach.</p>
+
+<p>The first of these tools is Ansible.  Ansible is a configuration
+management utility written in python which can programatically SSH
+into machines, template files, install and remove packages and more.
+Ansible takes its instructions as collections of YAML files called
+roles that are assembled into playbooks (composeability!).  These
+roles come from either the main void-infrastructure repo, or as
+individual modules from the void-ansible-roles organization on GitHub.
+Since this is code checked into Git, we can use ansible-lint to ensure
+that the code is consistent and lint-free.  We can then review the
+changes as a diff, and work on various features on branches just like
+changes to void-packages.  The ability to review what changed is also
+a powerful debugging tool to allow us to see if a configuration delta
+led to or resolved a problem, and if we’ve encountered any similar
+kind of change in the past.</p>
+
+<p>The second tool we use regularly is Terraform.  Whereas Ansible
+configures servers, Terraform configures services.  We can apply
+Terraform to almost any service that has an API as most popular
+services that Void consumes have terraform providers.  We use
+Terraform to manage our policy files that are loaded into Nomad,
+Consul and Vault, we use it to provision and deprovision machines on
+DigitalOcean, Google and AWS, and we use it to update our DNS records
+as services change.  Just like Ansible, Terraform has a linter, a
+robust module system for code re-use, and a really convenient system
+for producing a diff between what the files say the service should be
+doing and what it actually is doing.</p>
+
+<p>Perhaps the most important use of Terraform for us is the formalized
+onboarding and offboarding process for maintainers.  When a new
+maintainer is proposed and has been accepted through discussion within
+the Void team, we’ll privately reach out to them to ask if they want
+to join the project.  Given that a candidate accepts the offer to join
+the group of pkg-committers, the action that formally brings them on
+to the team is a patch applied to the Terraform that manages our
+GitHub organization and its members.  We can then log approvals,
+welcome the new contributor to our team with suitable emoji, and grant
+access all in one convenient place.</p>
+
+<p>Infrastructure as Code allows our distributed team to easily maintain
+our complex systems with a written record that we can refer back to.
+The ability to defer changes to an asynchronous review is imperative
+to manage the workflows of a distributed team.</p>
+
+<h2 id="good-lines-of-communication">Good Lines of Communication</h2>
+
+<p>Of course, all the infrastructure in the world doesn’t help if the
+people using it can’t effectively communicate.  To make sure this
+issue doesn’t occur for Void, we have multiple forms of communication
+with different features.  For real-time discussions and even some
+slower ones, we make use of IRC on Libera.chat.  Though many
+communities appear to be moving away from synchronous text, we find
+that it works well for us.  IRC is a great protocol that allows each
+member of the team to connect using the interface that they believe is
+the best for them, as well as to allow our automated systems to
+connect in as well.</p>
+
+<p>For conversations that need more time or are generally going to be
+longer we make use of email or a group-scoped discussion on GitHub.
+This allows for threaded messaging and a topic that can persist for
+days or weeks if needed.  Maintaining a long running thread can help
+us tease apart complicated issues or ensure everyone’s voice is heard.
+Long time users of Void may remember our forum, which has since been
+supplanted by a subreddit and most recently GitHub Discussions.  These
+threaded message boards are also examples of places that we converse
+and exchange status information, but in a more social context.</p>
+
+<p>For discussion that needs to pertain directly to our infrastructure,
+we open tickets against the infrastructure repo.  This provides an
+extremely clear place to report issues, discuss fixes, and collate
+information relating to ongoing work.  It also allows us to leverage
+GitHub’s commit message parsing to automatically resolve a discussion
+thread once a fix has been applied by closing the issue.  For really
+large changes, we can also use GitHub projects, though in recent years
+we have not made use of this particular organization system for
+issues (we use tags).</p>
+
+<p>No matter where we converse though, its always important to make sure
+we converse clearly and concisely.  Void’s team speaks a variety of
+languages, though we mostly converse in English which is not known for
+its intuitive clarity.  When making hazardous changes, we often push
+changes to a central location and ask for explicit review of dangerous
+parts, and call out clearly what the concerns are and what requires
+review.  In this way we ensure that all of Void’s various services
+stay up, and our team members stay informed.</p>
+
+<hr />
+
+<p>This post was authored by <code class="language-plaintext highlighter-rouge">maldridge</code> who runs most of the day to day
+operations of the Void fleet.  On behalf of the entire Void team, I
+hope you have enjoyed this week’s dive into the infrastructure that
+makes Void happen, and have learned some new things.  We’re always
+working to improve systems and make them easier to maintain or provide
+more useful features, so if you want to contribute, join us in IRC.
+Feel free to ask questions about this post or any of our others this
+week on <a href="https://github.com/void-linux/void-packages/discussions/45165">GitHub
+Discussions</a>
+or in <a href="https://web.libera.chat/?nick=Guest?#voidlinux">IRC</a>.</p>
+</p>
+			</div>
+		</content>
+	</entry>
+
+	<entry>
+		<title>Infrastructure Week - Day 4: Downtime Both Planned and Not</title>
+		<link href="https://voidlinux.org/news/2023/07/infra-week-day-4.html"/>
+		<id>https://voidlinux.org/news/2023/07/infra-week-day-4</id>
+		<published>2023-07-20T00:00:00+00:00</published>
+		<updated>2023-07-20T00:00:00+00:00</updated>
+		<content type="xhtml">
+			<div xmlns="http://www.w3.org/1999/xhtml">
+				<p><h1 id="downtime-both-planned-and-not">Downtime Both Planned and Not</h1>
+
+<p>Yesterday we looked at what Void does to monitor the various services
+and systems that provide all our services, and how we can be alerted
+when issues occur.  When we’re alerted, this means that whatever’s
+gone wrong needs to be handled by a human, but not always.  Sometimes
+an alert can trip if we have systems down for planned maintenance
+activities.  During these windows, we intentionally take down services
+in order to repair, replace, or upgrade components so that we don’t
+have unexpected breakage later.</p>
+
+<h2 id="planned-downtime">Planned Downtime</h2>
+
+<p>When possible, we always prefer for services to go down during a
+planned maintenance window.  This allows for services to come down
+cleanly and for people involved to have planned for the time
+investment to effect changes to the system.  We take planned downtime
+when its not possible to make a change to a system with it up, or when
+it would be unsafe to do so.  Examples of planned downtime include
+kernel upgrades, major version changes of container runtimes, and
+major package upgrades.</p>
+
+<p>When we plan for an interruption, the relevant people will agree on a
+date usually at least a week in the future and will talk about what
+the impacts will be.  Based on these conversations the team will then
+decide whether or not to post a blog post or notification to social
+media that an interruption is coming.  Most of the changes we do don’t
+warrant this, but some changes will interrupt services in either an
+unintuitive way or for an extended period of time.  Usually just
+rebooting a mirror server doesn’t warrant a notification, but
+suspending the sync to one for a few days would.</p>
+
+<h2 id="unplanned-downtime">Unplanned Downtime</h2>
+
+<p>Unplanned downtime is usually much more exciting because it is by
+definition unexpected.  These events happen when something breaks.  By
+and large the most common way that things break for Void is running
+out of space on disk.  This happens because while disk drives are
+cheap, getting a drive that can survive years powered on with high
+read/write load is still not a straightforward ask.  Especially not a
+straightforward problem if you want high performance throughput with
+low latency.  The build servers need large volumes of scratch space
+while building certain packages due to the need to maintain large
+caches or lots of object files prior to linking.  These large elastic
+use cases mean that we can have hundreds of gigabytes of free space
+and then over the course of a single build run out of space.</p>
+
+<p>When this happens, we have to log on to a box and look at where we can
+reclaim some space and possibly dispatch builds back through the
+system one architecture at a time to ensure they use low enough space
+requirements to complete.  We also have to make sure that when we
+clean space, we’re not cleaning files that will be immediately
+redownloaded.  One of the easiest places to claim space back from,
+after all, is the cache of downloaded files.  The primary point of
+complication in this workflow can be getting a build to restart.
+Sometimes we have builds that get submitted in specific orders and
+when a crash occurs in the middle we may need to re-queue the builds
+to ensure dependencies get built in the right order.</p>
+
+<p>Sometimes downtime occurs due to network partitions.  Void runs in
+many datacenters around the globe, and incidents ranging from street
+repaving to literal ship anchors can disrupt the fiber optic cables
+connecting our various network sites together.  When this happens, we
+can often arrive upon a state where people can see both sides of the
+split, but our machines can’t see each other anymore.  Sometimes we’re
+able to fix this by manually reloading routes or cycling tunnels
+between machines, but often times its easier for us to just drain
+services from an affected location and wait out the issue using our
+remaining capacity elsewhere.</p>
+
+<h2 id="lessening-the-effects-of-downtime">Lessening the Effects of Downtime</h2>
+
+<p>As was alluded to with network partitions, we take a lot of steps to
+mitigate downtime and the effects of unplanned incidents.  A large
+part of this effort goes into making as much content as possible
+static so that it can be served from minimal infrastructure, usually
+nothing more than an nginx instance.  This is how the docs,
+infrastructure docs, main website, and a number of services like
+xlocate work.  There’s a batch task that runs to refresh the
+information, it gets copied to multiple servers, and then as long as
+at least one of those servers remains up the service remains up.</p>
+
+<p>Mirrors of course are highly available by being byte-for-byte copies
+of each other.  Since the mirrors are static files, they’re easy to
+make available redundantly.  We also configure all mirrors to be able
+to serve under any name, so during an extended outage, the DNS entry
+for a given name can be changed and the traffic serviced by another
+mirror.  This allows us to present the illusion that the mirrors don’t
+go down when we perform longer maintenance at the cost of some
+complexity in the DNS layer.  The mirrors don’t just host static
+content though.  We also serve the <a href="https://man.voidlinux.org">https://man.voidlinux.org</a> site
+from the mirrors which involves a CGI executable and a collection of
+static man pages to be available.  The nginx frontends on each mirror
+are configured to first seek out their local services, but if those
+are unavailable they will reach across Void’s private network to find an
+instance of the service that is up.</p>
+
+<p>This private network is a mesh of wireguard tunnels that span all our
+different machines and different providers.  You can think of it like
+a multi-cloud VPC which enables us to ignore a lot of the complexity
+that would otherwise manifest when operating in a multi-cloud design
+pattern.  The private network also allows us to use distributed service
+instances while still fronting them through relatively few points.
+This improves security because very few people and places need access
+to the certificates for voidlinux.org, as opposed to the certificates
+having to be present on every machine.</p>
+
+<p>For services that are containerized, we have an additional set of
+tricks available that can let us lessen the effects of a downed
+server.  As long as the task in question doesn’t require access to
+specific disks or data that are not available elsewhere, Nomad can
+reschedule the task to some other machine and update its entry in our
+internal service catalog so that other services know where to find it.
+This allows us to move things like our IRC bots and some parts of our
+mirror control infrastructure around when hosts are unavailable,
+rather than those services having to be unavailable for the duration
+of a host level outage.  If we know that the downtime is coming in
+advance, we can actually instruct Nomad to smoothly remove services
+from the specific machine in question and relocate those services
+somewhere else.  When the relocation is handled as a specific event
+rather than as the result of a machine going away, the service
+interruption is measured in seconds.</p>
+
+<h2 id="design-choices-and-trade-offs">Design Choices and Trade-offs</h2>
+
+<p>Of course there is no free lunch, and these choices come with
+trade-offs.  Some of the design choices we’ve made have to do with the
+difference in effort required to test a service locally and debug it
+remotely.  Containers help a lot with this process since its possible
+to run the exact same image with the exact same code in it as what is
+running in the production instance.  This also lets us insulate Void’s
+infrastructure from any possible breakage caused by a bad update,
+since each service is encapsulated and resistant to bad updates.  We
+simply review each service’s behavior as they are updated individually
+and this results in a clean migration path from one version to another
+without any question of if it will work or not.  If we do discover a
+problem, the infrastructure is checked into git and the old versions
+of the containers are retained, so we can easily roll back.</p>
+
+<p>We leverage the containers to make the workflows easier to debug in
+the general case, but of course the complexity doesn’t go away.  Its
+important to understand that container orchestrators don’t remove
+complexity, quite to the contrary they increase it.  What they do is
+shift and concentrate the complexity from one group of people
+(application developers) to another (infrastructure teams).  This
+shift allows for fewer people to need to have to care about the
+specifics of running applications or deploying servers, since they
+truly can say “well it works on my machine” and be reasonably
+confident that the same container will work when deployed on the
+fleet.</p>
+
+<p>The last major trade-off that we make when deciding where to run
+something is thinking about how hard it will be to move later if we
+decide we’re unhappy with the provider.  Void is actually currently in
+the process of migrating our email server from one host to another at
+the time of writing due to IP reputation issues at our previous
+hosting provider.  In order to make it easier to perform the
+migration, we deployed the mail server originally as a container via
+Nomad, which means that standing up the new mail server is as easy as
+moving the DNS entries and telling Nomad that the old mail server
+should be drained of workload.</p>
+
+<p>Our infrastructure only works as well as the software running on it,
+but we do spend a lot of time making sure that the experience of
+developing and deploying that software is as easy as possible.</p>
+
+<hr />
+
+<p>This has been day four of Void’s infrastructure week.  Tomorrow we’ll
+wrap up the series with a look at how we make distributed
+infrastructure work for our distributed team.  This post was authored
+by <code class="language-plaintext highlighter-rouge">maldridge</code> who runs most of the day to day operations of the Void
+fleet.  Feel free to ask questions on <a href="https://github.com/void-linux/void-packages/discussions/45140">GitHub
+Discussions</a>
+or in <a href="https://web.libera.chat/?nick=Guest?#voidlinux">IRC</a>.</p>
+</p>
+			</div>
+		</content>
+	</entry>
+
+	<entry>
+		<title>Infrastructure Week - Day 3: Are We Down?</title>
+		<link href="https://voidlinux.org/news/2023/07/infra-week-day-3.html"/>
+		<id>https://voidlinux.org/news/2023/07/infra-week-day-3</id>
+		<published>2023-07-19T00:00:00+00:00</published>
+		<updated>2023-07-19T00:00:00+00:00</updated>
+		<content type="xhtml">
+			<div xmlns="http://www.w3.org/1999/xhtml">
+				<p><h1 id="are-we-down">Are We Down?</h1>
+
+<p>So far we’ve looked at a relatively sizable fleet of machines
+scattered across a number of different providers, technologies, and
+management styles.  We’ve then looked at the myriad of services that
+were running on top of the fleet and the tools used to deploy and
+maintain those services.  At its heart, Void is a large distributed
+system with many parts working in concert to provide the set of
+features that end users and maintainers engage with.</p>
+
+<p>Like any machine, Void’s infrastructure has wear items, parts that
+require replacement, and components that break unexpectedly.  When
+this happens we need to identify the problem, determine the cause,
+formulate a plan to return to service, and execute a set of workflows
+to either permanently resolve the issue, or temporarily bypass a
+problem to buy time while we work on a more permanent fix.</p>
+
+<p>Lets go through the different systems and services that allow us to
+work out what’s gone wrong, or what’s still going right.  We can
+broadly divide these systems into two kinds of monitoring solutions.
+In the first category we have logs.  Logs are easy to understand
+conceptually because they exist all around us on every system.
+Metrics are a bit more abstract, and usually measure specific
+quantifiable qualities of a system or service.  Void makes use of both
+Logs and Metrics to determine how the fleet is operating.</p>
+
+<h2 id="metrics">Metrics</h2>
+
+<p>Metrics quantify some part of a system.  You can think of metrics as a
+wall of gauges and charts that measure how a system works, similarly
+to the dashboard of a car that provides information about the speed of
+the vehicle, the rotational speed of the engine, and the coolant
+temperature and fuel levels.  In Void’s case, metrics refers to
+quantities like available disk space, number of requests per minute to
+a webserver, time spent processing a mirror sync and other similar
+items.</p>
+
+<p>We collect these metrics to a central point on a dedicated machine
+using Prometheus, which is a widely adopted metrics monitoring system.
+Prometheus “scrapes” all our various sources of metrics by downloading
+data from them over HTTP, parsing it, and adding it to a time-series
+database.  From this database we can then query for how a metric has
+changed over time in addition to whatever its current value is.  This
+is on the surface not that interesting, but it turns out to be
+extremely useful since it allows checking how a value has changed over
+time.  Humans turn out to be really good at pattern recognition, but
+machines are still better and we can have Prometheus predict
+trend lines, compute rates and compare them, and line up a bunch of
+different metrics onto the same graph so we can compare what different
+values were reading at the same time.</p>
+
+<p>The metrics that Prometheus fetches come from programs that are
+collectively referred to as exporters.  These exporters export the
+status information of the system they integrate with.  Lets look at
+the individual exporters that Void uses and some examples of the
+metrics they provide.</p>
+
+<h3 id="node-exporter">Node Exporter</h3>
+
+<p>Perhaps the most widely deployed exporter, the <code class="language-plaintext highlighter-rouge">node_exporter</code>
+provides information about nodes.  In this case a node is a server
+somewhere, and the exporter provides a lot of general information
+about how the server is performing.  Since it is a generic exporter,
+we get many many metrics out of it, not all of which apply to the Void
+fleet.</p>
+
+<p>Some of the metrics that are exported include the status of the disk,
+memory, cpu and network, as well as more specialized information such
+as the number of context switches and various kernel level values from
+<code class="language-plaintext highlighter-rouge">/proc</code>.</p>
+
+<h3 id="ssl-exporter">SSL Exporter</h3>
+
+<p>The SSL Exporter provides information about the various TLS
+certificates in use across the fleet.  It does this by probing the
+remote services to retrieve the certificate and then extract values
+from it.  Having these values allows us to alert on certificates that
+are expiring soon and have failed to renew, as well as to ensure that
+the target sites are reachable at all.</p>
+
+<h3 id="compiler-cache-exporter">Compiler Cache Exporter</h3>
+
+<p>Void’s build farm makes use of <code class="language-plaintext highlighter-rouge">ccache</code> to speed up rebuilds when a
+build needs to be stopped and restarted.  This is rarely useful
+because software has already had a test build by the time it makes it
+to our systems.  However for large packages such as chromium, Firefox,
+and boost where a failure can occur due to an out of space condition
+or memory exhaustion.  Having the compiler cache statistics allows us
+to determine if we’re efficiently using the cache.</p>
+
+<h3 id="repository-exporter">Repository Exporter</h3>
+
+<p>The repository exporter is custom software that runs in two different
+configurations for Void.  In the first configuration it checks our
+internal sync workflows and repository status.  The metrics that are
+reported include the last time a given repository was updated, how
+long it took to copy from its origin builder to the shadow mirror, and
+whether or not the repository is currently staging changes or if the
+data is fully consistent.  This status information allows maintainers
+to quickly and easily check whether a long running build has fully
+flushed through the system and the repositories are in steady state.
+It also provides a convenient way for us to catch problems with stuck
+rsync jobs where the rsync service may have become hung mid-copy.</p>
+
+<p>In the second deployment the repo exporter looks not at Void’s repos,
+but all of the mirrors.  The information gathered in this case is
+whether the remote repo is still synchronizing with the current
+repodata or not, and how far behind the origin the remote repo is.
+The exporter can also work out how long a given mirror takes to sync
+if the remote mirror has configured timer files in their sync
+workflow, which can help us to alert a mirror sponsor to an issue at
+their end.</p>
+
+<h2 id="logs">Logs</h2>
+
+<p>Logs in Void’s infrastructure are conceptually not unlike the files on
+disk in <code class="language-plaintext highlighter-rouge">/var/log</code> on a Void system.  We have two primary systems that
+store and retrieve logs within our fleet.</p>
+
+<h3 id="build-logs">Build Logs</h3>
+
+<p>The build system produces copious amounts of log output that we need
+to retain effectively forever to be able to look back on if a problem
+occurs in a more recent version of a package and we want to know if
+the problem has always been present.  Because of this, we use
+buildbot’s built in log storage to store a large volume of logs on
+disk with locality to the build servers.  These build logs aren’t
+searchable, nor are they structured.  Its just the output of the build
+workflow and xbps-src’s status messages written to disk.</p>
+
+<h3 id="service-logs">Service Logs</h3>
+
+<p>Service logs are a bit more interesting, since these are logs that
+come from the broad collection of tasks that run on Nomad and may be
+themselves entirely ephemeral.  The sync processes are a good example
+of this workflow where the process only exists as long as the copy
+runs, and then the task goes away, but we still need a way to
+determine if any faults occurred.  To achieve this result, we stream
+the logs to Loki.</p>
+
+<p>Loki is a complex distributed log processing system which we run in
+all-in-one mode to reduce its operational overhead.  The practical
+benefit of Loki is that it handles the full text searching and label
+indexing of our structure log data.  Structured logs simply refers to
+the idea that the logs are more than just raw text, but have some
+organizational hierarchy such as tags, JSON data, or a similar kind of
+metadata that enables fast and efficient cataloging of text data.</p>
+
+<h2 id="using-this-data">Using this Data</h2>
+
+<p>Just collecting metrics and logs is one thing, actually using it to
+draw meaningful conclusions about the fleet and what its doing is
+another.  We want to be able to visualize the data, but we also don’t
+want to have to constantly be watching graphs to determine when
+something is wrong.  We use different systems to access the data
+depending on whether a human or a machine is going to watch it.</p>
+
+<p>For human access, we make use of Grafana to display nice graphs and
+dashboards.  You can actually view all our public dashboards at
+<a href="https://grafana.voidlinux.org">https://grafana.voidlinux.org</a> where you can see the mirror status,
+the builder status, and various other at-a-glance views of our
+systems.  We use grafana to quickly explore the data and query logs
+when diagnosing a fault because its extremely optimized for this use
+case.  We also are able to edit dashboards on the fly to produce new
+views of data which can help explain or visualize a fault.</p>
+
+<p>For machines, we need some other way to observe the data.  This kind
+of workflow, where we want the machine to observe the data and raise
+an alarm or alert if something is wrong is actually built in to
+Prometheus.  We just load a collection of alerting rules which tell
+Prometheus what to look for in the pile of data at its disposal.</p>
+
+<p>These rules look for things like predictions that the amount of free
+disk space will reach zero within 4 hours, the system load being too
+high for too long, or a machine thrashing too many context switches.
+Since these rules use the same query language that humans use to
+interactively explore the data, it allows for one-off graphs to
+quickly become alerts if we decide an issue that is intermittent is
+something we should keep an eye on long term.  These alerts then raise
+conditions that a human needs to validate and potentially respond to,
+but that isn’t something Prometheus does.</p>
+
+<p>Fortunately for managing alerts, we can simply deploy the Prometheus
+Alertmanager, and this is what we do.  This dedicated software takes
+care of receiving, deduplicating and grouping, and then forwarding
+alerts to other systems to actually do the summoning of a human to do
+something about the alert.  In larger organizations, an alertmanager
+configuration would also route different alerts to different teams of
+people.  Since Void is a relatively small organization, we just need
+the general pool of people who can do something to be made aware.
+There are lots of ways to do this, but the easiest is to just send the
+alerts to IRC.</p>
+
+<p>This involves an IRC bot, and fortunately Google already had one
+publicly available we could run.  The alertrelay bot connects to IRC
+on one end and alertmanager on the other and passes alerts to an IRC
+channel where all the maintainers are.  We can’t acknowledge the
+alerts from IRC, but most of the time we’re just generally keeping an
+eye on things and making sure no part of the fleet crashes in a way
+that automatic recovery doesn’t work.</p>
+
+<h2 id="monitoring-for-void---altogether">Monitoring for Void - Altogether</h2>
+
+<p>Between metrics and logs we can paint a complete picture of what’s
+going on anywhere in the fleet and the status of key systems.  Whether
+its a performance question or an outage in progress, the tools at our
+disposal allow us to introspect systems without having to log in
+directly to any particular system.</p>
+
+<hr />
+
+<p>This has been day three of Void’s infrastructure week.  Check back
+tomorrow to learn about what we do when things go wrong, and how we
+recover from failure scenarios.  This post was authored by <code class="language-plaintext highlighter-rouge">maldridge</code>
+who runs most of the day to day operations of the Void fleet.  Feel
+free to ask questions on <a href="https://github.com/void-linux/void-packages/discussions/45123">GitHub
+Discussions</a>
+or in <a href="https://web.libera.chat/?nick=Guest?#voidlinux">IRC</a>.</p>
+</p>
+			</div>
+		</content>
+	</entry>
+
+	<entry>
+		<title>Infrastructure Week - Day 2: What Do We Do With Our Infrastructure?</title>
+		<link href="https://voidlinux.org/news/2023/07/infra-week-day-2.html"/>
+		<id>https://voidlinux.org/news/2023/07/infra-week-day-2</id>
+		<published>2023-07-18T00:00:00+00:00</published>
+		<updated>2023-07-18T00:00:00+00:00</updated>
+		<content type="xhtml">
+			<div xmlns="http://www.w3.org/1999/xhtml">
+				<p><h2 id="what-does-void-do-with-the-infrastructure">What Does Void Do With the Infrastructure?</h2>
+
+<p>Yesterday we looked at what kinds of infrastructure Void has, how its
+managed, and what makes each kind unique and differently suited.
+Today we’ll look at what runs on the infrastructure, and what it does.
+We’ll then finally look at how we make sure it keeps running in the
+event of an error or disruption.</p>
+
+<h2 id="two-kinds-of-services">Two Kinds of Services</h2>
+
+<p>Void runs, broadly speaking, two different categories of services.  In
+the first category, we have the tooling that supports maintainers and
+makes it easier or in some cases possible to work on Void.  These are
+services that most users are unaware of, and in general don’t interact
+with.  In the second category of services are systems that general end
+users of Void interact with and are more likely to know about or
+recognize.</p>
+
+<h2 id="public-services">Public Services</h2>
+
+<p>We’ll first talk about public services that are broadly available to
+both maintainers and general consumers of Void Linux.  These are
+almost, but not entirely, web based services that are accessed via a
+browser.  See how many of these services you recognize.</p>
+
+<h3 id="voids-website">Void’s Website</h3>
+
+<p>Void’s website (the one you are reading right now) is a GitHub pages
+Jekyll site.  This content is checked into <code class="language-plaintext highlighter-rouge">git</code> rendered by a worker
+process in the GitHub network, and then published to a CDN where you
+can read it.  Additionally the Jekyll software produces feeds suitable
+for consumption in an RSS reader.  The website is probably our
+simplest service and the easiest to copy on your own since it requires
+no special infrastructure, just a GitHub account to setup.</p>
+
+<h3 id="void-mirrors">Void Mirrors</h3>
+
+<p>Void’s mirrors are simple nginx webservers that host static copies of
+all our software.  This also includes some other sites that include
+content that we host ourselves, such as the <a href="https://docs.voidlinux.org">docs
+site</a> and the dedicated <a href="https://infradocs.voidlinux.org">infrastructure
+docs site</a>.  We host these from our
+own system since they both use mdbook, which is not as straightforward
+to use with a hosting service like GitHub Pages.  We also run these
+sites this way so that they are broadly copied in the event of a
+failure in any of our systems.  Did you know you can go to <code class="language-plaintext highlighter-rouge">/docs</code> on
+any mirror to read the Void handbook?</p>
+
+<h3 id="popcorn">Popcorn</h3>
+
+<p>Popcorn is a package statistics service that provides information
+about the popularity of packages as provided by systems that have
+opted in to have their package information reported.  Though we are
+evaluating ways to replace the data provide by Popcorn, it still
+provides good real-world data on package installs.  You can learn more
+about Popcorn <a href="https://docs.voidlinux.org/contributing/index.html#usage-statistics">in the
+handbook</a>.</p>
+
+<h3 id="source-site">Source Site</h3>
+
+<p>The Sources Site (<a href="https://sources.voidlinux.org">https://sources.voidlinux.org</a>) provides a copy of
+all the sources as our build servers consumed them.  This provides a
+way for us to quickly and easily make sure that we have the same
+source to troubleshoot a bad build with when finding the fault may
+require more than just the build error logs.</p>
+
+<h3 id="xq-api">xq-api</h3>
+
+<p>Some functionality on our website requires the ability to query the
+Void repository data.  This is accomplished by fronting the repository
+data by a service called <code class="language-plaintext highlighter-rouge">xq-api</code> which provides query functionality
+on top of the repodata files.  The data is refreshed frequently, so
+new packages quickly show up in the website search results as well as
+making sure that packages that are no longer available in our repos
+are removed promptly.</p>
+
+<h3 id="old-wiki-snapshot">Old Wiki Snapshot</h3>
+
+<p>At one time prior to the introduction of our docs site, Void
+maintained a MediaWiki instance.  While MediaWiki is extremely
+powerful software and is a great choice for hosting a wiki, Void found
+that our wiki was being slowly filled with hyper-specific guides, lots
+of abandoned pages, and lower quality versions of pages that exist on
+the <a href="https://wiki.archlinux.org/">Arch Linux Wiki</a>.  While we ported
+over a large number of pages to the docs that remained generally
+applicable, we also felt it was important to archive the entire wiki
+as it appeared before releasing the resources powering it.  This was
+accomplished using a wiki crawler which could convert the wiki itself
+into an archive format that we now serve with kiwix server.  You can
+find that old content at <a href="https://wiki.voidlinux.org">https://wiki.voidlinux.org</a> should it
+interest you.</p>
+
+<h3 id="online-man-pages">Online Man Pages</h3>
+
+<p>Void makes available a copy of all the contents of our man page
+database online so users can easily search for commands even when not
+on a Void enabled system, such as during install time when internet
+access may not be available yet from a Void device.  This service
+involves a task which routinely extracts the man pages from all
+packages using a program that is specific to XBPS, and then the files
+are arranged on disk to be served by the <code class="language-plaintext highlighter-rouge">mdocml</code> man page server,
+which is a program we obtain from OpenBSD.  You can browse our online
+manuals at <a href="https://man.voidlinux.org">https://man.voidlinux.org</a>.</p>
+
+<h2 id="services-that-help-maintainers">Services that help Maintainers</h2>
+
+<p>Not all services are meant for public consumption.  A number of Void’s
+services are meant to help maintainers be more productive, produce
+build artifacts, or generally make our workflows easier to accomplish.</p>
+
+<h3 id="build-pipeline">Build Pipeline</h3>
+
+<p>The build pipeline was discussed in detail in <a href="/news/2023/02/1-new-repo-fastly.html">another
+post</a>, but we’ll recap that post
+here.  In general there are a handful of powerful servers that we run
+automated compiler tasks on that run <code class="language-plaintext highlighter-rouge">xbps-src</code> whenever the contents
+of <code class="language-plaintext highlighter-rouge">void-packages</code> is updated.  Once the packages are built, they are
+collected to a central point, signed cryptographically to attest that
+they are in fact packages produced by Void, and then they are copied
+out to mirrors around the world for users to download.</p>
+
+<p>The build pipeline is the single largest collection of moving parts
+within our infrastructure, and is usually the component that breaks
+the most often as it has many exciting failure modes.  Some of the
+author’s favorites include running out of disk, stuck connection poll
+loops, and rsync just wandering off instead of synchronizing packages.</p>
+
+<h3 id="email">Email</h3>
+
+<p>Void maintainers have access to email on the voidlinux.org domain.  To
+provide this service, Void runs an email server.  We make use of
+<a href="https://maddy.email">maddy</a> which provides a convenient all in one
+mail server.  It works well at our scale, and doesn’t require a
+significant amount of maintainer time to make work.  Though most of us
+access the mail using a combination of desktop and CLI clients, we
+also run a copy of the <a href="https://git.sr.ht/~migadu/alps">Alps</a> web
+frontend which allows quick and easy access to mail when away from
+normal console services.</p>
+
+<h3 id="devspace">DevSpace</h3>
+
+<p>Sometimes when preparing a fix or updating a package, a maintainer
+will want to share this new built artifact with others to gather
+feedback or see if the fix works.  To enable this quickly and easily,
+we have a dedicated webserver and SFTP share box for these files.  You
+can see things we’re currently working on or haven’t yet cleaned up at
+<a href="https://devspace.voidlinux.org/">https://devspace.voidlinux.org/</a> where the files are organized by
+maintainer.</p>
+
+<p>Sometimes end users will be asked to fetch a build from devspace when
+filing an issue ticket to verify that a particular fix works, or that
+a given problem continues to exist when rebuilding a package or disk
+image from clean sources.</p>
+
+<h3 id="void-robot-and-void-fleet">void-robot and void-fleet</h3>
+
+<p>Void’s team communicates primarily via IRC.  In order to allow our
+infrastructure to communicate with us, we have a pair of IRC bots that
+inform us of status changes.  The more chatty of the bots,
+<code class="language-plaintext highlighter-rouge">void-robot</code> tells us when PRs change status or when references change
+on Void’s many git repos.  This allows us to know when changes are
+going out, and its not uncommon for a maintainer to just ping someone
+else with a single <code class="language-plaintext highlighter-rouge">^</code> to gesture at a push or reference the bot has
+printed to the channel.</p>
+
+<p>The second bot speaks on behalf of our monitoring infrastructure and
+notifies us when things break or when they’re resolved.  We’ll take a
+deeper look at monitoring in a future post and look more at what this
+bot does then.</p>
+
+<h3 id="nomad-consul--vault">Nomad, Consul &amp; Vault</h3>
+
+<p>Many of Void’s more modern services run on top of containers managed
+by Hashicorp Nomad.  These services retrieve secrets from Hashicorp
+Vault, and can locate each other using Hashicorp Consul.  The use of
+these tools allows us to largely abstract out what provider any given
+software is running on and where it resides in the world.  This also
+makes it much easier when we need to replace a host or take one down
+for maintenance without interrupting access to user facing services.</p>
+
+<p>The use of well understood tools like the Hashistack also makes it
+much easier for us to subdivide systems and check components locally.</p>
+
+<h3 id="netauth">NetAuth</h3>
+
+<p>With all these services, it would be inconvenient for maintainers to
+need to maintain separate usernames and passwords for everything.  In
+order to avoid this, we use Single Sign On concepts where all services
+that support it reach out to a centralized secure authentication
+service.  You can read more about NetAuth at <a href="https://netauth.org">https://netauth.org</a>.</p>
+
+<h2 id="how-does-all-this-get-run">How Does All This Get Run?</h2>
+
+<p>For some of Void’s older services, notably the build farm itself, our
+services are configured, provisioned, and maintained using Ansible
+just like the underlying OS configuration.  This works well, but has
+some drawbacks in being difficult to test, difficult to change in an
+idempotent way, and difficult to explain to others since its firmly
+the realm of infrastructure engineering.  Trying to explain to someone
+how a hundred lines of yaml gets converted into a working webserver
+requires detours through a number of other assorted technologies.</p>
+
+<p>Void’s newer services run uniformly as containers and are managed by
+Nomad.  This enables us to dynamically move workloads around, have
+machines self-heal and update in coordination with the fleet, and to
+provide a lens into our infrastructure for people to see.  You can
+explore all our running containers in a limited read-only context by
+looking at the <a href="https://nomad.voidlinux.org">nomad dashboard</a>.  Before
+you go trying to open a security notice though, we’re aware that
+buttons that shouldn’t be visible look like they’re clickable.  Rest
+assured that the anonymous policy that provides the view access can’t
+actually stop jobs or drain nodes (we’ve reported this UI bug a few
+times already).</p>
+
+<p>What Nomad does under the hood is actually really clever.  It assesses
+what we want to run, and what resources we have available to run it.
+It then applies any constraints we’ve set on the services themselves.
+These constraints encode information like requiring locality to a
+particular disk in the fleet, or requiring that two copies of a
+service reside on different hosts.  This then gets converted into a
+plan of what services will run where, and the workload of applications
+is distributed to all machines in the fleet.  If a server fails to
+check in periodically, the workload on it is considered “lost” and can
+be restarted elsewhere if allowed.  When we need to move between
+providers or update hardware, Nomad provides a way for us to quickly
+and easily work out how much of a machine we’re actually consuming as
+well as actually performing the movement of the services from one
+location to another.</p>
+
+<p>While Nomad is very clever and makes a lot of things much easier, we
+do still have a number of services that run directly on the Void
+system installed to the machines.  For services that run on top of the
+metal directly we almost always use runit to supervise the tasks and
+restart them when they crash.  This works well, but does tightly
+couple the service to the machine on which it is installed, and
+requires coordination with Ansible to make sure that restarts happen
+when they are supposed to during maintenance activities.  For services
+that run in containers, we can simply set the restart policy on the
+container and allow the runtime to supervise the services as well as
+any cascading restarts that need to happen, such as when certificates
+are renewed or rotated.</p>
+
+<p>In general, all our services have at least one layer of service
+supervision in the form of Void’s runit-based init system, and in many
+cases more application specific level supervision occurs, often with
+status checks to validate and check assumptions made about the
+readiness of a service.</p>
+
+<hr />
+
+<p>This has been day two of Void’s infrastructure week.  Check back
+tomorrow to learn about how we know that the services we run are up,
+and how we verify that once they’re up, they’re behaving as expected..
+This post was authored by <code class="language-plaintext highlighter-rouge">maldridge</code> who runs most of the day to day
+operations of the Void fleet.  Feel free to ask questions on <a href="https://github.com/void-linux/void-packages/discussions/45099">GitHub
+Discussions</a>
+or in <a href="https://web.libera.chat/?nick=Guest?#voidlinux">IRC</a>.</p>
+</p>
+			</div>
+		</content>
+	</entry>
+
+	<entry>
+		<title>Infrastructure Week - Day 1: What is Infrastructure?</title>
+		<link href="https://voidlinux.org/news/2023/07/infra-week-day-1.html"/>
+		<id>https://voidlinux.org/news/2023/07/infra-week-day-1</id>
+		<published>2023-07-17T00:00:00+00:00</published>
+		<updated>2023-07-17T00:00:00+00:00</updated>
+		<content type="xhtml">
+			<div xmlns="http://www.w3.org/1999/xhtml">
+				<p><p>This week we’ll be taking a look into the infrastructure that runs and
+operates Void.  We’ll look at what we run, where it runs, and why it
+is setup the way it is.  Overall at the end of the week you should
+have a better understanding of what actually makes Void happen at a
+mechanical level.</p>
+
+<h2 id="so-what-is-infrastructure-like-really">So What Is Infrastructure, Like Really?</h2>
+
+<p>Infrastructure, as the term is used by Void, refers to systems,
+services, or machines that are owned or operated by the Void Linux
+project to provide the services that make Void a reality.  These
+services range from our build farm and mirror infrastructure, to email
+servers for maintainers, to hosted services such as the Fastly CDN
+mirror.  Void runs in many places on many kinds of providers, so lets
+take a deeper look into the kinds of hosts that Void makes use of.</p>
+
+<h3 id="owned-physical-hardware">Owned Physical Hardware</h3>
+
+<p>The easiest to understand infrastructure that Void operates is
+physical hardware.  These are computers in either server form factors,
+small form factor systems, or even just high performance consumer
+devices that are used by the project to provide compute resources for
+the software we need to run.  Our hardware resources are split across
+a number of datacenters, but the point of commonality of owned
+physical hardware is that someone within the Void project actually
+bought and owns the device we’re running on.</p>
+
+<p>Owning the hardware is very different from a Cloud model where you pay
+per unit time that the resources are consumed, instead hardware like
+this is usually installed in a datacenter and co-located with many
+other servers.  If you’ve never had the opportunity to visit a
+datacenter, they are basically large warehouse style buildings with
+rows of cabinets each containing some number of servers with high
+performance network and cooling available.  The economy of scale of
+getting so many servers together in one location makes it more cost
+effective to provide extremely fast networks, high performance air
+conditioning, and reliable power usually sourced from multiple
+different grid connections and on-site redundant supplies.</p>
+
+<p>Void currently maintains owned machines in datacenters in the US and
+Europe.  Since we don’t always have maintainers who live near enough
+to just go to the datacenter, when things go wrong and we need to go
+“hands-on” to the machines, we have to make use of “Remote Hands”.
+Remote Hands, sometimes called “Smart Hands” refers to the process
+wherein we open a ticket with the datacenter facility explaining what
+we want them to do, and which machine we want them to do it to.
+There’s usually a security verification challenge-response that is
+unique to each operator, but after some shuffling, the ticket is
+processed and someone physically goes to our machines and interacts
+with them.  Almost always the ticket will be for one of 2 things: some
+component has failed, and we would like to buy a new one and have it
+installed (hard drives, memory) or the machine has become locked up in
+some way that we just need them to go hold in the power button.  Most
+of our hardware doesn’t have remote management capability, so we need
+someone to go physically push the buttons.</p>
+
+<p>Occasionally, the problems are worse though, and we need to actually
+be able to interact with the machine.  When this happens, we’ll
+request that a KVM/iKVM/Spider/Hydra be attached, which provides a
+kind of remote desktop style of access, wherein an external device
+presents itself as a mouse and keyboard to the machine in question,
+and then streams the video output back to us.  We can use these
+devices to be able to quickly recover from bad kernel updates, failed
+hardware, or even initial provisioning if the provider doesn’t
+natively offer Void as an operating system choice, since most KVM
+devices allow us to remotely mount a disk image to the host as though
+a USB drive were plugged in.</p>
+
+<p>Owned hardware is nice, but its also extremely expensive to initially
+setup, and is a long-term investment where we know we’ll want to use
+those resources for an extended period of time.  We have relatively
+few of these machines, but the ones we do have are very large
+capacity, high performance servers.</p>
+
+<h3 id="donatedleased-hardware">Donated/Leased Hardware</h3>
+
+<p>Owning hardware is great, but a specific set of circumstances have to
+happen for that to be the right choice.  The vast majority of Void’s
+hardware is leased or is leased hardware which is donated for our use.
+This is hardware that operates exactly the same as physical owned
+hardware above, but we usually commit to these machines in increments
+ranging from several months to a year, and can renew or change the
+contract for the hardware more easily.  Most of the build machines
+fall into this category, since it allows us to upgrade them regularly
+and ensure we’re always making good use of the resources that are
+available to us.</p>
+
+<p>Interacting with this hardware is usually a little different from
+hardware we physically own.  Since this hardware comes from facilities
+where many of the same kind of machine is available, usually more
+automation exists to be able to remotely manage the systems.  In
+particular we make use of a lot of hardware from Hetzner in Germany
+and Finland where we make use of the Hetzner Robot to remotely reboot
+and change the boot image of machines.  For hardware that is donated
+to us, we usually have to reach out to the sponsor and ask them to
+file the ticket on our behalf since they are the contract holder with
+the facility.  In some cases they’re able to delegate this access to
+us, but we always keep them in the loop regardless.</p>
+
+<h3 id="cloud-systems">Cloud Systems</h3>
+
+<p>For smaller machines, usually having fewer than 4 CPU cores and less
+than 8GB of memory, the best option available to us will be to get the
+machine from a cloud.  We currently use two cloud hosting providers
+for machines that are on all the time, and have the ability to spin up
+additional capacity in two other clouds.</p>
+
+<p>We run a handful of machines at DigitalOcean to provide our control
+plane services that allow us to coordinate the other machines in the
+fleet, as well as to provide our single-sign-on services that let
+maintainers use one ID to access all Void related services and APIs.
+DigitalOcean has been a project sponsor for several years now, and
+they were the second cloud provider to get dedicated Void Linux
+images.</p>
+
+<p>For cloud machines that need to have a little more involved
+configuration, we run on top of the Hetzner cloud where our existing
+relationships with Hetzner make it easier for us to justify our
+requirements, and our longer account standing shows that we’re not
+going to do dumb things on the platform, like run an open forwarder.
+Running a mail server on a cloud is itself somewhat challenging, and
+will be talked about later this week in more detail, so make sure to
+check back for more in this series.</p>
+
+<p>Though we do not actively run services on AWS or GCP, we do maintain
+cloud images for these platforms.  Sadly in GCP it is not possible for
+us to make our images broadly available, but it is relatively easy for
+you to create your own image if you desire to run Void on GCP.
+Similarly, you can run Void on AWS and make use of their wide service
+portfolio.  We have evaluated in the past providing a ready to run AMI
+for AWS, but ultimately concluded the trade-off wasn’t worth it.  If
+you’re interested in having a Void image on AWS, let us know.</p>
+
+<h2 id="how-we-provision-the-fleet">How We Provision the Fleet</h2>
+
+<p>Void’s fleet spans multiple technologies and architectures, which
+makes provisioning it a somewhat difficult to follow process.  In
+order of increasing complexity, we have manually managed provisioning,
+automatically managed OS provisioning and application provisioning,
+and full environment management in our cloud hosting environments.</p>
+
+<h3 id="manually-managed">Manually Managed</h3>
+
+<p>This is the most familiar to the average Void user, we just perform
+these steps remotely.  We’ll power on a machine, boot from the live
+installer, and install the system to disk (almost always with a RAID
+configuration).  Once the machine is installed and configured, we can
+then manage it remotely like any other machine in the fleet using our
+machine management tools.</p>
+
+<h3 id="imaged-resources">Imaged Resources</h3>
+
+<p>Some systems we run use a Void Linux image to perform the
+installation.  These are usually smaller VMs being hosted by the
+members of the Void project in slack space on our own servers, and so
+the automation of a large hosting company doesn’t make sense.  These
+are systems usually running <code class="language-plaintext highlighter-rouge">qemu</code> and where the system gets unpacked
+from an image that the administrator will have prepared in advance
+containing the qemu guest agent and possibly other software required
+to connect to the network.</p>
+
+<h3 id="cloud-resources">Cloud Resources</h3>
+
+<p>Cloud managed resources are probably the most exciting of the systems
+we operate.  These are generally managed using Hashicorp Terraform as
+fully managed environments.  By this we mean that the very existence
+of the virtual server is codified in a file, checked into git, and
+applied using terraform to grow or shrink the number of resources.</p>
+
+<p>We can only do this in places though that provide the APIs needed to
+manage resources in this way.  We currently have the most resources at
+DigitalOcean managed with terraform, where our entire footprint on the
+platform is managed this way.  This works out extremely conveniently
+when we want to add or remove machines, since its just a matter of
+editing a file and then re-running terraform to make the changes real.
+Beyond machines though, we also host the DNS records for voidlinux.org
+in a DigitalOcean DNS Zone.  This enables us to easily track changes
+to DNS since its all in the console, but managed via a git-tracked
+process.</p>
+
+<p>Having support for terraform is actually a major factor in deciding if
+we’ll use a commercial hosting service or not.  Remember that Void has
+developers all over the world in different time zones speaking
+different languages with different availability to actually work on
+Void.  To make it easier to collaborate, we can apply the exact same
+workflows of distributed review and changes that make void-packages
+work to void-infrastructure and make feature branches for new servers,
+send them out for review, and process changes as required.</p>
+
+<h2 id="making-the-hardware-useful-provisioning-services">Making the Hardware Useful: Provisioning Services</h2>
+
+<p>For services like DigitalOcean’s hosted DNS or Fastly’s CDN, once we
+push terraform configuration we’re done and the service is live.  This
+works because we’re interfacing with a much larger system and just
+configuring our small partition of it.  For most of Void’s resources
+though, Void runs on machines either physical or virtual, and once the
+operating system is installed, we need to apply configuration to it to
+install packages, configure the system, and make the machines do more
+than just idle with SSH listening.</p>
+
+<p>Our tool of choice for this is Ansible, which allows us to express a
+series of steps as yaml documents that when applied in order,
+configure the machine to have a given state.  These files are called
+“playbooks” and we have multiple different playbooks for different
+machine functions, as well as functions common across the fleet.
+Usually upon provisioning a new machine, our first task will be to run
+the <code class="language-plaintext highlighter-rouge">base.yml</code> playbook which configures single sign on, DNS, and
+installs some packages that we expect to have available everywhere.
+After we’ve done this base configuration step, we apply <code class="language-plaintext highlighter-rouge">network.yml</code>
+which joins the machines to our network.  Given that we run in so many
+places where different providers have different network technologies
+that are, for the most part, incompatible and proprietary, we need to
+operate our own network based on WireGuard to provide secure
+connectivity machine to machine.</p>
+
+<p>When we have internal connectivity to Void’s private network
+available, we can finalize provisioning by running any remaining
+playbooks that are required to turn the machine into something useful.
+These playbooks may install services directly, or install a higher
+level orchestrator that dynamically coordinates services.  More on the
+services themselves later in the week.</p>
+
+<h2 id="why-does-void-run-where-it-does">Why Does Void Run Where it Does?</h2>
+
+<p>Alternatively, why doesn’t Void make use of cloud <code class="language-plaintext highlighter-rouge">&lt;x&gt;</code> or hosting
+provider <code class="language-plaintext highlighter-rouge">&lt;y&gt;</code>.  The simple answer is because we have sufficient
+capacity with the providers we’re already in and it takes a
+non-trivial amount of effort to build out support for new providers.</p>
+
+<p>The longer answer has to do with the semi-unique way that Void is
+funded, which is entirely by the maintainers.  We have chosen not to
+accept monetary donations since this involves non-trivial
+understanding of tax law internationally, and for Void, we’ve
+concluded that’s more effort than its worth.  As a result, the
+selection of hosting providers are either hosts that have reached out
+and were willing to provide us with promotional credits on the
+understanding that they were interacting with individuals on behalf of
+the project, or places that Void maintainers already had accounts and
+though the services were good quality and good value to run resources
+for Void.</p>
+
+<p>We regularly do re-evaluate though where we’re running and what
+resources we make use of both from a reliability standpoint as well as
+a cost standpoint.  If you’re with a hosting provider and want to see
+Void running in your fleet, drop us a line.</p>
+
+<hr />
+
+<p>This has been day one of Void’s infrastructure week.  Check back
+tomorrow to learn about what services we run, how we run them, and how
+we make sure they keep running.  This post was authored by <code class="language-plaintext highlighter-rouge">maldridge</code>
+who runs most of the day to day operations of the Void fleet.  Feel
+free to ask questions on <a href="https://github.com/void-linux/void-packages/discussions/45072">GitHub
+Discussions</a>
+or in <a href="https://web.libera.chat/?nick=Guest?#voidlinux">IRC</a>.</p>
+</p>
+			</div>
+		</content>
+	</entry>
+
+	<entry>
+		<title>New Images! (July 2023 Edition)</title>
+		<link href="https://voidlinux.org/news/2023/07/new-images.html"/>
+		<id>https://voidlinux.org/news/2023/07/new-images</id>
+		<published>2023-07-09T00:00:00+00:00</published>
+		<updated>2023-07-09T00:00:00+00:00</updated>
+		<content type="xhtml">
+			<div xmlns="http://www.w3.org/1999/xhtml">
+				<p><p>We’re pleased to announce that the 20230628 image set has been promoted to
+current and is now generally available.</p>
+
+<p>You can find the new images on our <a href="/download/">downloads page</a> and on our many
+<a href="https://docs.voidlinux.org/xbps/repositories/mirrors/index.html">mirrors</a>.</p>
+
+<p>Some highlights of this release:</p>
+
+<ul>
+  <li>Installing using the network source no longer fails to create the non-root
+ user (<a href="https://github.com/classabbyamp">@classabbyamp</a> in
+ <a href="https://github.com/void-linux/void-mklive/pull/319">#319</a>)</li>
+  <li>The xbps mirror can now be selected in the installer using
+ <a href="https://github.com/void-linux/xmirror"><code class="language-plaintext highlighter-rouge">xmirror</code></a>
+ (<a href="https://github.com/classabbyamp">@classabbyamp</a> in
+ <a href="https://github.com/void-linux/void-mklive/pull/318">#318</a>)</li>
+  <li>The xfce live ISO now uses LightDM (<a href="https://github.com/paper42">@paper42</a> in
+ <a href="https://github.com/void-linux/void-mklive/pull/324">#324</a>)</li>
+  <li>GRUB will no longer fail to be installed in some partition layouts/orders
+ (<a href="https://github.com/classabbyamp">@classabbyamp</a> in
+ <a href="https://github.com/void-linux/void-mklive/pull/328">#328</a>)</li>
+  <li>Various improvements to the installer
+ (<a href="https://github.com/dateiexplorer">@dateiexplorer</a> in
+ <a href="https://github.com/void-linux/void-mklive/pull/334">#334</a>)</li>
+  <li>Xfce live ISOs now use pipewire for audio, and base ISOs now include ALSA
+ (<a href="https://github.com/classabbyamp">@classabbyamp</a> in
+ <a href="https://github.com/void-linux/void-mklive/pull/348">#348</a>)</li>
+  <li>Live ISOs now include several new boot options, including
+ screenreader-enabled, memtest86+, reboot, shutdown, and EFI firmware setup
+ (<a href="https://github.com/classabbyamp">@classabbyamp</a> in
+ <a href="https://github.com/void-linux/void-mklive/pull/295">#295</a> and
+ <a href="https://github.com/void-linux/void-mklive/pull/348">#348</a>)</li>
+</ul>
+
+<p>The console screenreader <code class="language-plaintext highlighter-rouge">espeakup</code>, the braille TTY driver <code class="language-plaintext highlighter-rouge">brltty</code>, and the
+GUI screenreader <code class="language-plaintext highlighter-rouge">orca</code> are now included in all live ISOs for x86_64 and i686.
+To learn more about this, read the <a href="https://docs.voidlinux.org/installation/live-images/index.html#accessibility-support">documentation in the Void Linux
+Handbook</a>.</p>
+
+<p>You may verify the authenticity of the images by following the instructions on
+the downloads page, and using the following minisign key information:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>untrusted comment: minisign public key 5D7153E025EC26B6
+RWS2Juwl4FNxXe0NtAdYushNLM3GtJ6poGkZ0Up1P/9YLcCK4xlSWAfs
+</code></pre></div></div>
+</p>
+			</div>
+		</content>
+	</entry>
+
+	<entry>
+		<title>Breaking changes: Pipewire session manager switch, Pipewire and PulseAudio system service removal</title>
+		<link href="https://voidlinux.org/news/2023/05/audio-breakage.html"/>
+		<id>https://voidlinux.org/news/2023/05/audio-breakage</id>
+		<published>2023-05-30T00:00:00+00:00</published>
+		<updated>2023-05-30T00:00:00+00:00</updated>
+		<content type="xhtml">
+			<div xmlns="http://www.w3.org/1999/xhtml">
+				<p><h3 id="pipewire-session-manager-switch">Pipewire session manager switch</h3>
+
+<p>Void has now dropped the long-deprecated <code class="language-plaintext highlighter-rouge">pipewire-media-session</code> session manager
+from its <code class="language-plaintext highlighter-rouge">pipewire</code> package, bringing it inline with the upstream default
+configuration. If you are currently using <code class="language-plaintext highlighter-rouge">pipewire</code>, you must migrate to
+<code class="language-plaintext highlighter-rouge">wireplumber</code> or <code class="language-plaintext highlighter-rouge">pipewire</code> will cease to function properly. Refer to
+<a href="https://docs.voidlinux.org/config/media/pipewire.html#session-management">Void documentation</a>
+if you need guidance when making this change.</p>
+
+<h3 id="pipewire-and-pulseaudio-system-service-removal">Pipewire and PulseAudio system service removal</h3>
+
+<p>The oft-confusing services for <code class="language-plaintext highlighter-rouge">pipewire</code>, <code class="language-plaintext highlighter-rouge">pipewire-pulse</code>,
+<code class="language-plaintext highlighter-rouge">wireplumber</code>, and <code class="language-plaintext highlighter-rouge">pulseaudio</code> have been removed from the <code class="language-plaintext highlighter-rouge">pipewire</code>,
+<code class="language-plaintext highlighter-rouge">wireplumber</code>, and <code class="language-plaintext highlighter-rouge">pulseaudio</code> packages because they were experimental and
+should not have been used for almost all use-cases.</p>
+
+<p>If you are currently using those services and still wish to do so, replacements
+for the <code class="language-plaintext highlighter-rouge">pipewire</code> and <code class="language-plaintext highlighter-rouge">pulseaudio</code> services can be found in
+<code class="language-plaintext highlighter-rouge">/usr/share/examples/$pkgname/sv/</code>. Otherwise, it is recommended to migrate to
+another method of launching <code class="language-plaintext highlighter-rouge">pipewire</code>. Refer to
+<a href="https://docs.voidlinux.org/config/media/pipewire.html">Void documentation</a>
+if you need guidance.</p>
+</p>
+			</div>
+		</content>
+	</entry>
+
+	<entry>
+		<title>New Repo: Fastly CDN</title>
+		<link href="https://voidlinux.org/news/2023/02/1-new-repo-fastly.html"/>
+		<id>https://voidlinux.org/news/2023/02/1-new-repo-fastly</id>
+		<published>2023-02-11T00:00:00+00:00</published>
+		<updated>2023-02-11T00:00:00+00:00</updated>
+		<content type="xhtml">
+			<div xmlns="http://www.w3.org/1999/xhtml">
+				<p><p>In our last post we showed you how to quickly change your mirror using
+<a href="https://man.voidlinux.org/xmirror.1">xmirror</a>.  In this post we’ll
+give you a reason to use it, and talk a little more about how mirrors
+work and how packages get from our servers, to your computer.</p>
+
+<p>Before we can mirror packages, we first need to build some.  Void uses
+a worker-based build architecture where a central controller
+dispatches build tasks to individual servers that own the builds for
+specific architectures.  At the time of writing, Void makes use of
+discrete builders for aarch64 targets, assorted musl targets, and
+assorted glibc targets.  The breakdown is as follows:</p>
+
+<ul>
+  <li>a-fsn-de
+    <ul>
+      <li>x86_64</li>
+      <li>i686</li>
+      <li>armv6l</li>
+      <li>armv7l</li>
+    </ul>
+  </li>
+  <li>b-fsn-de
+    <ul>
+      <li>aarch64</li>
+      <li>aarch64-musl</li>
+    </ul>
+  </li>
+  <li>a-hel-fi
+    <ul>
+      <li>x86_64-musl</li>
+      <li>armv6l-musl</li>
+      <li>armv7l-musl</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Each build server drives, via automation, a standard git checkout of
+the <a href="https://github.com/void-linux/void-packages">void-packages repo</a>.
+This in turn results in built binary packages ready for installation
+in the path <code class="language-plaintext highlighter-rouge">/hostdir/binpkgs</code> on each of the build machines.  To
+actually be useful, however, the packages need to be aggregated and
+then signed, then copied out to servers near to end users such that
+packages are quick to download and install whenever required.</p>
+
+<p>Packages are aggregated via nomad managed rsync tasks to a-fsn-de.
+Since a-fsn-de already hosts several architectures, its packages don’t
+need to be moved.  You might recognize the target directories from the
+repo URL structure.  The packages originating on a-hel-fi are copied
+to <code class="language-plaintext highlighter-rouge">/hostdir/binpkgs/musl</code> and the packages from b-fsn-de are copied
+to <code class="language-plaintext highlighter-rouge">/hostdir/binpkgs/aarch64</code>.  Once the packages are all in one
+place, they can be signed.  This is also handled by a nomad managed
+batch task.</p>
+
+<p>Once signed, a complete, ready to distribute package collection exists
+on a-fsn-de, however this isn’t where any mirror synchronizes from,
+nor is it where end users obtain packages from.  The first real
+“mirror” in the chain with the full contents, including live images,
+docs, and other mirror contents is on a-hel-fi and is sometimes
+referred to by the Void team as the “Shadow Repo”.  When we make large
+builds that we know in advance will cause issues for end users, we
+disconnect all downstream repos from the shadow repo and this allows
+us to run large builds without impacting user’s ability to install or
+update already extant packages.</p>
+
+<p>Tier 1 (Void Operated) mirrors synchronize directly from the Shadow
+Repo, again via nomad managed batch tasks.  All downstream mirrors
+synchronize from one or more tier 1 mirrors, with one notable
+exception which we’ll come back to.  These mirrors are operated by
+universities, companies, and individuals who desire to have a copy of
+the Void repository closer to them.  This allows for faster installs,
+faster updates, and in many cases more efficient bandwidth usage where
+a mirror is able to be co-located with multiple Void users.</p>
+
+<p>By and large, these mirrors synchronize using rsync on cron timers.
+Some synchronize very frequently, as frequently as every 15 minutes.
+Some synchronize more slowly, only once a day.  And some mirrors often
+appear broken and don’t appear to have synced at all.  How can we
+possibly know this?  Well we drop a file into the root of the mirror
+at the Shadow level with a timestamp.  By watching the value in this
+file, we can tell how old the contents of any downstream repo are.
+All this information is exposed in our <a href="https://grafana.s.voidlinux.org/d/cLraC-XMk/mirrors-status">mirror
+dashboard</a>.
+The “Origin” referenced in that dashboard is a slight misnomer, its
+actually showing the time behind <code class="language-plaintext highlighter-rouge">now</code>.</p>
+
+<p>Having multiple mirrors is great, but ensuring that a mirror nearby to
+a user who wants to update, and make sure they’ve configured and are
+using it is a bit harder.  What we really want is a proxy that will
+always find the nearest mirror and fetch packages from that location
+for a user.  Long-time users of Void may remember <code class="language-plaintext highlighter-rouge">auto.voidlinux.org</code>
+which was an early attempt at this.  Due to limitations in XBPS
+itself, and limitations in the way that we are able to introspect
+mirrors, this service was eventually retracted.  What we actually want
+is a network of servers everywhere well connected to networks that
+users are on, and then with a good connection back to at least one of
+the Void operated mirrors.  This, as you might have guessed, is a CDN.</p>
+
+<p>As mentioned in the <a href="/news/2023/01/fastly-fast-forward.html">Fast
+Forward</a> post, Void has
+generously been sponsored by Fastly, which has allowed us to provision
+a new repository URL that leverage’s Fastly’s global network to
+provide what should be the generally optimal mirror regardless of
+where in the world any particular end user exists.  The Fastly mirror
+does not sync, nor does it have a concept of file storage that we
+manage as the project.  It is for all intents and purposes an
+extremely large high-speed cache, and when you request a package from
+Fastly, the package will either be returned from one of Fastly’s
+servers, or it will be streamed to you via the Fastly network while
+being simultaneously fetched from one of Void’s backend servers.  The
+very first download of a package may be slower than if you downloaded
+it from Void directly, but all subsequent fetches will be extremely
+fast.  Since the package distribution follows a sort of curve of
+popularity ranging from the common packages that make up desktop
+environments, the base system, and popular software suites down to
+less commonly installed packages and rarely updated libraries, the
+cache will usually be hot for the most commonly installed packages!</p>
+
+<p>So to recap, packages are built on servers, copied to a central
+server, signed, copied to a shadow mirror, copied to a tier 1 mirror,
+possibly copied to downstream mirrors, and then installed on end
+systems.  Here’s a graphic:</p>
+
+<p><img src="/assets/img/mirrors.svg" alt="diagram of the package flow" style="max-height: 80vh" /></p>
+
+<p>We hope you’ve enjoyed this look into what it takes to get packages
+from us to you, but more importantly, we’re pleased to announce now
+the general availability of <a href="https://repo-fastly.voidlinux.org/">https://repo-fastly.voidlinux.org/</a> which
+should be the generally fastest mirror for most users.  This mirror is
+available now in <code class="language-plaintext highlighter-rouge">xmirror</code> under the <em>World</em> region.</p>
+</p>
+			</div>
+		</content>
+	</entry>
+
+	<entry>
+		<title>New utility for selecting XBPS mirrors</title>
+		<link href="https://voidlinux.org/news/2023/02/0-xmirror.html"/>
+		<id>https://voidlinux.org/news/2023/02/0-xmirror</id>
+		<published>2023-02-11T00:00:00+00:00</published>
+		<updated>2023-02-11T00:00:00+00:00</updated>
+		<content type="xhtml">
+			<div xmlns="http://www.w3.org/1999/xhtml">
+				<p><p>If you’ve ever had trouble <a href="https://docs.voidlinux.org/xbps/repositories/mirrors/changing.html#manual-method">manually updating</a>
+the mirror XBPS uses, fear no more!
+You can now use the <a href="https://man.voidlinux.org/xmirror.1"><code class="language-plaintext highlighter-rouge">xmirror(1)</code></a> utility from the <code class="language-plaintext highlighter-rouge">xmirror</code>
+package to select a mirror, either interactively (by running <code class="language-plaintext highlighter-rouge">xmirror</code> with root privileges) or
+directly using <code class="language-plaintext highlighter-rouge">xmirror --set</code>.</p>
+
+<p><code class="language-plaintext highlighter-rouge">xmirror</code> will make switching to the new <a href="https://voidlinux.org/news/2023/01/fastly-fast-forward.html">Fastly-sponsored mirror</a>
+extremely easy to do.</p>
+
+<p><img src="/assets/img/xmirror.png" alt="screenshot of the main screen of xmirror in a terminal" /></p>
+</p>
+			</div>
+		</content>
+	</entry>
+
+	<entry>
+		<title>Minor breaking change in service logging for several packages</title>
+		<link href="https://voidlinux.org/news/2023/02/log-service-change.html"/>
+		<id>https://voidlinux.org/news/2023/02/log-service-change</id>
+		<published>2023-02-09T00:00:00+00:00</published>
+		<updated>2023-02-09T00:00:00+00:00</updated>
+		<content type="xhtml">
+			<div xmlns="http://www.w3.org/1999/xhtml">
+				<p><p>As of <a href="https://github.com/void-linux/void-packages/pull/42026">this change</a> in void-packages,
+all services provided by packages should start to include <code class="language-plaintext highlighter-rouge">log</code> sub-services that use
+<a href="https://man.voidlinux.org/vlogger.8"><code class="language-plaintext highlighter-rouge">vlogger(8)</code></a> as they are updated, if they did not already.
+This means that service logs for all services should go to syslog now, where they can be captured
+by a <a href="https://docs.voidlinux.org/config/services/logging.html">syslog daemon</a>.</p>
+
+<p>However, there are a few services that manually log to <code class="language-plaintext highlighter-rouge">/var/log/$SERVICE_NAME</code>:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">dnscrypt-proxy</code></li>
+  <li><code class="language-plaintext highlighter-rouge">dqcache</code> (from <code class="language-plaintext highlighter-rouge">dq</code>)</li>
+  <li><code class="language-plaintext highlighter-rouge">preload</code></li>
+  <li><code class="language-plaintext highlighter-rouge">radicale</code></li>
+  <li><code class="language-plaintext highlighter-rouge">discosrv</code> and <code class="language-plaintext highlighter-rouge">relaysrv</code> (from <code class="language-plaintext highlighter-rouge">syncthing</code>)</li>
+</ul>
+
+<p>These services have been updated to use this new system, so they will no longer log to that directory.
+If you wish to retain the previous behavior, you can set up <code class="language-plaintext highlighter-rouge">/etc/vlogger</code> like
+<a href="https://man.voidlinux.org/vlogger.8#EXAMPLES">shown here</a>:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
+<span class="nb">exec </span>svlogd /var/log/<span class="nv">$1</span>
+</code></pre></div></div>
+</p>
+			</div>
+		</content>
+	</entry>
+
+	<entry>
+		<title>Void Accepted to Fastly Fast Forward!</title>
+		<link href="https://voidlinux.org/news/2023/01/fastly-fast-forward.html"/>
+		<id>https://voidlinux.org/news/2023/01/fastly-fast-forward</id>
+		<published>2023-01-19T00:00:00+00:00</published>
+		<updated>2023-01-19T00:00:00+00:00</updated>
+		<content type="xhtml">
+			<div xmlns="http://www.w3.org/1999/xhtml">
+				<p><p>Did you know that Void has over 20 mirrors?  We have mirrors all over
+the world, but just having a bunch of servers isn’t enough to
+effectively deliver package updates to all Void users.  A mirror that
+is nearby can have extremely good performance if you know it’s there
+and switch to it, but for many people what we would like to offer is
+just a URL that works anywhere in the world to provide the best
+download experience available in that location.  When you look at what
+we’re trying to achieve, its pretty clear we’d be trying to build a
+content delivery network (CDN) for Void.</p>
+
+<p>Rather than re-inventing the wheel, we reached out to the team at
+Fastly to see if they’d be interested in working with us to improve
+the default package experience for Void users globally.  We’re excited
+to announce that the answer is yes; Void has been accepted to the
+Fastly <a href="https://www.fastly.com/fast-forward">Fast Forward</a> program.
+As part of this project, we’ll be provisioning a new repo URL that
+will retrieve packages via Fastly’s global CDN.</p>
+
+<p>Stay tuned over the next few weeks for the new mirror to become live,
+and a post about how Void’s mirror infrastructure works!</p>
+</p>
+			</div>
+		</content>
+	</entry>
+
+
+</feed>

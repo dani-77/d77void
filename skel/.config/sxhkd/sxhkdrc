@@ -1,0 +1,16 @@
+alt + shift + Return
+	st
+alt + w
+	firefox
+super + m
+	geary
+super + f
+	pcmanfm
+super + d
+	rofi -show drun
+alt + p
+	scrot
+alt + x
+	power_menu
+alt + l
+	slock
