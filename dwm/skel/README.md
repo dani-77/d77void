@@ -29,12 +29,19 @@ That way, even non privileged users can use powermenu.
 ## Keybinds
 
 alt + shift + return -> terminal
-alt + d -> dmenu
+
 alt + w -> firefox
+
 alt + p -> scrot
+
 alt + l -> slock
+
+alt + x -> powermenu
+
 super + m -> geary
+
 super + f -> pcmanfm
+
 super + d -> rofi
 
 ## Suckless directory

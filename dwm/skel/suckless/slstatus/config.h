@@ -67,7 +67,7 @@ static const struct arg args[] = {
 	{ wifi_perc, " %s%%]" , "wls3"},
 	{ hostname, "[ %s]", NULL },
 	{ cpu_perc, "[ %s%%]", NULL },
-	{ ram_perc, "[ %s%%]", NULL },
+	{ ram_perc, "[ %s%%]", NULL },
 	{ keymap, "[ %s",  NULL },
 	{ keyboard_indicators, " %s]", "(c?/n?)" },
 	{ battery_perc, "[ %s%%", "BAT0" },
