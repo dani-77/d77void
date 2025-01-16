@@ -32,7 +32,9 @@ alt + shift + return -> terminal
 
 alt + w -> firefox
 
-alt + p -> scrot
+alt + p -> dmenu
+
+alt + d -> rofi
 
 alt + l -> slock
 
@@ -42,7 +44,7 @@ super + m -> geary
 
 super + f -> pcmanfm
 
-super + d -> rofi
+super + p -> scrot
 
 ## Suckless directory
 

@@ -1,16 +1,14 @@
-alt + shift + Return
-	st
 alt + w
 	firefox
+alt + d
+	rofi -show drun
+alt + l
+	slock
+alt + x
+	power_menu
 super + m
 	geary
 super + f
 	pcmanfm
-super + d
-	rofi -show drun
-alt + p
+super + p
 	scrot
-alt + x
-	power_menu
-alt + l
-	slock
