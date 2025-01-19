@@ -12,5 +12,8 @@ xrdb merge ~/.Xresources &
 setxkbmap de deadtilde &
 /usr/bin/octoxbps-notifier &
 xautolock -time 5 -locker slock &
+exec synclient TapButton1=1 &
+exec synclient TapButton2=3 &
+exec synclient TapButton3=2 &
 tint2 &
 #xterm -e vi README.md &

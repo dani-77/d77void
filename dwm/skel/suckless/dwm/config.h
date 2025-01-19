@@ -38,8 +38,8 @@ static const Rule rules[] = {
 	{ "minigalaxy",	    	  NULL,       NULL,	  1 << 3,	0,		-1 },
 	{ "mpv",    		  NULL,	      NULL,       1 << 2,	0,		-1 },
 	{ "vlc",    		  NULL,       NULL,	  1 << 2,	0,		-1 },
-	{ "firefox",	 	  NULL,       NULL,            2,       0, 	        -1 },
-	{ "chrome", 		  NULL,	      NULL,            2,	0,		-1 },
+	{ "Firefox",	 	  NULL,       NULL,            2,       0, 	        -1 },
+	{ "Geary", 		  NULL,	      NULL,            2,	0,		-1 },
 	{ "Surf",   		  NULL,	      NULL,    	       2,	0,		-1 },
 };
 

@@ -12,11 +12,11 @@ static const char unknown_str[] = "n/a";
 /*
  * function            description                     argument (example)
  *
- * battery_perc        battery percentage              battery name (BAT0)
+ * battery_perc        battery percentage              battery name (BAT1)
  *                                                     NULL on OpenBSD/FreeBSD
- * battery_state       battery charging state          battery name (BAT0)
+ * battery_state       battery charging state          battery name (BAT1)
  *                                                     NULL on OpenBSD/FreeBSD
- * battery_remaining   battery remaining HH:MM         battery name (BAT0)
+ * battery_remaining   battery remaining HH:MM         battery name (BAT1)
  *                                                     NULL on OpenBSD/FreeBSD
  * cpu_perc            cpu usage in percent            NULL
  * cpu_freq            cpu frequency in MHz            NULL
@@ -63,16 +63,16 @@ static const char unknown_str[] = "n/a";
  */
 static const struct arg args[] = {
 	/* function format          argument */
-	{ wifi_essid, "[  on %s"   , "wls3" },
-	{ wifi_perc, " %s%%]" , "wls3"},
+	{ wifi_essid, "[  on %s"   , "wlp2s0" },
+	{ wifi_perc, " %s%%]" , "wlp2s0"},
 	{ hostname, "[ %s]", NULL },
 	{ cpu_perc, "[ %s%%]", NULL },
 	{ ram_perc, "[ %s%%]", NULL },
 	{ keymap, "[ %s",  NULL },
 	{ keyboard_indicators, " %s]", "(c?/n?)" },
-	{ battery_perc, "[ %s%%", "BAT0" },
-	{ battery_state, " %s",	"BAT0" },
-	{ battery_remaining, " %s]", "BAT0" },
+	{ battery_perc, "[ %s%%", "BAT1" },
+	{ battery_state, " %s",	"BAT1" },
+	{ battery_remaining, " %s]", "BAT1" },
 	//{ datetime, "%s", "%a %b %d %r" },
 	{ datetime, "[ %s]", "%A, %d/%B/%Y -  %T" },
 };

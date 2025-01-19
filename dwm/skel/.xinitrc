@@ -8,4 +8,7 @@ exec xrdb merge ~/.Xresources &
 exec xautolock -time 5 -locker slock &
 exec slstatus &
 #exec setxkbmap de deadtilde &
+exec synclient TapButton1=1 &
+exec synclient TapButton2=3 &
+exec synclient TapButton3=2 &
 exec dwm

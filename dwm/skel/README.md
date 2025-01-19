@@ -30,6 +30,16 @@ That way, even non privileged users can use powermenu.
 
 alt + shift + return -> terminal
 
+alt + shift + q -> logout
+
+alt + shift + c -> close window
+
+alt + shift + t -> tile mode
+
+alt + shift + f -> floating mode
+
+alt + shift + m -> focus mode
+
 alt + w -> firefox
 
 alt + p -> dmenu
