@@ -34,11 +34,11 @@ alt + shift + q -> logout
 
 alt + shift + c -> close window
 
-alt + shift + t -> tile mode
+alt + t -> tile mode
 
-alt + shift + f -> floating mode
+alt + f -> floating mode
 
-alt + shift + m -> focus mode
+alt + m -> focus mode
 
 alt + w -> firefox
 
