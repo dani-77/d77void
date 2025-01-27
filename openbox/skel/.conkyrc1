@@ -64,6 +64,7 @@ ${color grey}alt + shift + return -> ${color}xterm
 ${color grey}alt + w -> ${color}firefox
 ${color grey}alt + m -> ${color}mail
 ${color grey}alt + f -> ${color}pcmanfm
+${color grey}alt + e -> ${color}editor
 ${color grey}alt + d -> ${color}rofi
 ${color grey}alt + j -> ${color}jgmenu 
 ${color grey}alt + x -> ${color}powermenu

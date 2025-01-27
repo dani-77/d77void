@@ -139,6 +139,7 @@ Control Mod4 F12 :TakeToWorkspace 12
 Shift Mod1 Return :Exec xterm
 Mod1 w :Exec firefox
 Mod1 m :Exec geary
+Mod1 e :Exec mousepad
 Mod1 f :Exec pcmanfm
 Mod1 d :Exec rofi -show drun
 Mod1 j :Exec jgmenu_run
