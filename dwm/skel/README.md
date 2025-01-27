@@ -40,19 +40,19 @@ alt + f -> floating mode
 
 alt + m -> focus mode
 
-alt + w -> firefox
+alt + d -> rofi
 
 alt + p -> dmenu
 
-alt + d -> rofi
-
-alt + l -> slock
-
 alt + x -> powermenu
 
-super + m -> geary
+alt + w -> firefox
 
 super + f -> pcmanfm
+
+super + l -> slock
+
+super + m -> geary
 
 super + p -> scrot
 

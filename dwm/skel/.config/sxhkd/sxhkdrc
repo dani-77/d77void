@@ -1,14 +1,14 @@
-alt + w
-	firefox
 alt + d
 	rofi -show drun
-alt + l
-	slock
 alt + x
 	power_menu
-super + m
-	geary
+alt + w
+	firefox
 super + f
 	pcmanfm
+super + l
+	slock
+super + m
+	geary
 super + p
 	scrot
