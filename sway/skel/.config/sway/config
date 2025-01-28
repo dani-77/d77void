@@ -26,8 +26,8 @@ exec waybar
 
 # Keyboard layout
 input type:keyboard {
-    xkb_layout "de"
-    xkb_variant "deadtilde"
+    xkb_layout "us"
+    xkb_variant "intl"
 }
 
 
@@ -83,6 +83,9 @@ output * bg ~/Wallpaper/macos-monterey-wwdc-21-stock-dark-mode-5k-3840x2160-5585
 
     # Start your launcher
     bindsym $mod+d exec $menu
+
+    # Start Gmrun
+    bindsym $mod+o exec gmrun
 
     # Start rofi
     bindsym $mod+p exec rofi -show drun
