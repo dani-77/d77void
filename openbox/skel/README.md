@@ -1,5 +1,5 @@
 Hello
-Thank you for trying d77Void.
+Thank you for trying d77void.
 
 To run the installer just open a terminal and type:
 
