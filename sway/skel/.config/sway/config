@@ -13,21 +13,23 @@ set $left h
 set $down j
 set $up k
 set $right l
+
 # Your preferred terminal emulator
 set $term st
+
 # Your preferred application launcher
 set $menu wmenu-run
 
 # Nighshift
-exec gammastep -l 41.6:-8.62
+exec  wlsunset -l 41.6 -L -8.62
 
 # Set bar
 exec waybar
 
 # Keyboard layout
 input type:keyboard {
-    xkb_layout "us"
-    xkb_variant "intl"
+    xkb_layout "de"
+    xkb_variant "deadtilde"
 }
 
 
@@ -36,6 +38,7 @@ input type:keyboard {
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 output * bg ~/Wallpaper/macos-monterey-wwdc-21-stock-dark-mode-5k-3840x2160-5585.jpg fill
+
 #
 # Example configuration:
 #
@@ -61,7 +64,7 @@ output * bg ~/Wallpaper/macos-monterey-wwdc-21-stock-dark-mode-5k-3840x2160-5585
 # Example configuration:
 #
 
-   input "2:14:SynPS/2_Synaptics_TouchPad" {
+   input "2:7:SynPS/2_Synaptics_TouchPad" {
        dwt enabled
        tap enabled
        natural_scroll enabled
@@ -84,11 +87,14 @@ output * bg ~/Wallpaper/macos-monterey-wwdc-21-stock-dark-mode-5k-3840x2160-5585
     # Start your launcher
     bindsym $mod+d exec $menu
 
+    # Start rofi
+    bindsym $mod+p exec rofi -show drun
+
     # Start Gmrun
     bindsym $mod+o exec gmrun
 
-    # Start rofi
-    bindsym $mod+p exec rofi -show drun
+    # Lock screen
+    bindsym $mod+t exec swaylock
 
     # Powermenu
     bindsym $mod+x exec rofi -show power-menu -modi power-menu:rofi-power-menu
