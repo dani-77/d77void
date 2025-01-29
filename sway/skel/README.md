@@ -36,6 +36,8 @@ super + p -> rofi
 
 super + o -> gmrun
 
+super + x -> powermenu
+
 super + shift + e -> logout
 
 super + shift + c -> reload sway config
