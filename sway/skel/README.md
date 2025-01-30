@@ -44,4 +44,6 @@ super + shift + c -> reload sway config
 
 super + shift + q -> close window
 
+super + r -> resize window
+
 Have fun!
