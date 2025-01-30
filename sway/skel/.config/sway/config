@@ -20,7 +20,7 @@ set $term st
 # Your preferred application launcher
 set $menu wmenu-run
 
-# Nighshift (the location set here is for Oporto, POrtugal; gather your latitude and longitude at openstreetmap)
+# Nighshift (the location set here is for Oporto, Portugal; gather your latitude and longitude at openstreetmap)
 exec  wlsunset -l 41.6 -L -8.62
 
 # Gaps
@@ -29,6 +29,18 @@ gaps outer 5
 
 # Set bar
 exec waybar
+
+# Themes
+exec_always {
+  gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
+  gsettings set org.gnome.desktop.interface icon-theme "Papirus-Dark"
+}
+
+# Start SwayNotificationCenter
+exec swaync
+
+# Start nm
+exec nm-applet --indicator
 
 # Keyboard layout
 input type:keyboard {
