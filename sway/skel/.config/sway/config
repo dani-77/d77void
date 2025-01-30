@@ -20,8 +20,12 @@ set $term st
 # Your preferred application launcher
 set $menu wmenu-run
 
-# Nighshift
+# Nighshift (the location set here is for Oporto, POrtugal; gather your latitude and longitude at openstreetmap)
 exec  wlsunset -l 41.6 -L -8.62
+
+# Gaps
+gaps inner 5
+gaps outer 5
 
 # Set bar
 exec waybar
