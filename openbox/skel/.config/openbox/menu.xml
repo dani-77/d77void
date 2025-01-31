@@ -10,6 +10,9 @@
             </action> </item>
         </menu>
         <menu id="2" label="Editors">
+            <item label="Mousepad"> <action name="Execute">
+                <execute>mousepad</execute>
+            </action> </item>
             <item label="Nano"> <action name="Execute">
                 <execute>xterm -e nano</execute>
             </action> </item>
@@ -29,11 +32,6 @@
                     <execute>xlogo</execute>
                 </action> </item>
             </menu>
-        </menu>
-        <menu id="6" label="Graphics">
-            <item label="Scribus"> <action name="Execute">
-                <execute>scribus</execute>
-            </action> </item>
         </menu>
         <menu id="7" label="Multimedia">
             <item label="ALSA mixer"> <action name="Execute">
@@ -80,9 +78,6 @@
             <item label="Geary"> <action name="Execute">
                 <execute>geary</execute>
             </action> </item>
-            <item label="Steam"> <action name="Execute">
-                <execute>steam</execute>
-            </action> </item>
             <item label="TkVNC"> <action name="Execute">
                 <execute>xterm -e tkvnc</execute>
             </action> </item>
@@ -114,9 +109,6 @@
             <item label="dc"> <action name="Execute">
                 <execute>xterm -e dc</execute>
             </action> </item>
-            <item label="gnumeric"> <action name="Execute">
-                <execute>gnumeric</execute>
-            </action> </item>
             <item label="Xcalc"> <action name="Execute">
                 <execute>xcalc</execute>
             </action> </item>
@@ -134,14 +126,8 @@
             <item label="ranger"> <action name="Execute">
                 <execute>xterm -e ranger</execute>
             </action> </item>
-            <item label="ST"> <action name="Execute">
-                <execute>st</execute>
-            </action> </item>
             <item label="UXTerm"> <action name="Execute">
                 <execute>uxterm</execute>
-            </action> </item>
-            <item label="Vifm"> <action name="Execute">
-                <execute>xterm -e vifm</execute>
             </action> </item>
             <item label="Xterm"> <action name="Execute">
                 <execute>xterm</execute>
@@ -171,6 +157,12 @@
                 </action> </item>
                 <item label="Preferred Applications"> <action name="Execute">
                     <execute>libfm-pref-apps</execute>
+                </action> </item>
+                <item label="Print Settings"> <action name="Execute">
+                    <execute>system-config-printer</execute>
+                </action> </item>
+                <item label="Text Editor Settings"> <action name="Execute">
+                    <execute>mousepad --preferences</execute>
                 </action> </item>
                 <item label="Tint2 Settings"> <action name="Execute">
                     <execute>tint2conf</execute>
@@ -217,6 +209,9 @@
             </action> </item>
         </menu>
         <menu id="38" label="Utilities">
+            <item label="About Xfce"> <action name="Execute">
+                <execute>xfce4-about</execute>
+            </action> </item>
             <item label="Nextcloud Desktop"> <action name="Execute">
                 <execute>nextcloud</execute>
             </action> </item>
