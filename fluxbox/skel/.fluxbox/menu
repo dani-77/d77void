@@ -16,76 +16,66 @@
 #     session.menuFile: ~/.fluxbox/my-menu
 [begin] (Fluxbox)
 [encoding] {UTF-8}
-      [exec] (terminal) {xterm}
-      [exec] (firefox) {firefox}
-      [exec]   (Run) {fbrun}
+      [exec] (xterm) {xterm} 
+      [exec] (firefox) {firefox} 
+      [exec]   (Run) {fbrun} 
 [submenu] (Terminals)
-      [exec]   (xterm) {xterm}
+      [exec]   (xterm) {xterm} 
 [end]
 [submenu] (Net)
 [submenu] (Browsers)
-      [exec]   (firefox) {firefox}
-      [exec]   (links-graphic) {links -driver x fluxbox.org}
-      [exec]   (links) {st -e links fluxbox.org}
-[end]
-[submenu] (Mail)
-      [exec]   (thunderbird) {thunderbird}
+      [exec]   (firefox) {firefox} 
 [end]
 [end]
 [submenu] (Editors)
-      [exec]   (nano) {st -e nano}
-      [exec]   (vim) {st -e vim}
-      [exec]   (vi) {st -e vi}
+      [exec]   (nano) {xterm -e nano} 
+      [exec]   (vim) {xterm -e vim} 
+      [exec]   (vi) {xterm -e vi} 
 [end]
 [submenu] (Multimedia)
-[submenu] (Graphics)
-      [exec]   (gimp) {gimp}
-[end]
 [submenu] (Audio)
-      [exec]   (alsamixer) {st -e alsamixer}
+      [exec]   (alsamixer) {xterm -e alsamixer} 
 [end]
 [submenu] (X-utils)
-      [exec]   (xfontsel) {xfontsel}
-      [exec]   (xload) {xload}
-      [exec]   (xclock) {xclock}
-      [exec] (Reload .Xdefaults) {xrdb -load $HOME/.Xdefaults}
+      [exec]   (xfontsel) {xfontsel} 
+      [exec]   (xload) {xload} 
+      [exec]   (xclock) {xclock} 
+      [exec] (Reload .Xdefaults) {xrdb -load $HOME/.Xdefaults} 
 [end]
 [end]
 [submenu] (Office)
-      [exec]   (xclock) {xclock}
-      [exec]   (xcalc) {xcalc}
-      [exec]   (abiword) {abiword}
-      [exec]   (gnumeric) {gnumeric}
+      [exec]   (xclock) {xclock} 
+      [exec]   (xcalc) {xcalc} 
+      [exec]   (abiword) {abiword} 
+      [exec]   (gnumeric) {gnumeric} 
 [end]
 [submenu] (Games)
-      [exec]   (xeyes) {xeyes}
+      [exec]   (xeyes) {xeyes} 
 [end]
 [submenu] (System Tools)
-      [exec]   (top) {st -e top}
-      [exec]   (htop) {st -e htop}
+      [exec]   (top) {xterm -e top} 
+      [exec]   (htop) {xterm -e htop} 
 [end]
 [submenu] (Fluxbox menu)
-      [config] (Configure)
+      [config] (Configure) 
 [submenu] (System Styles) {Choose a style...}
-      [stylesdir] (/usr/share/fluxbox/styles)
+      [stylesdir] (/usr/share/fluxbox/styles) 
 [end]
 [submenu] (User Styles) {Choose a style...}
-      [stylesdir] (~/.fluxbox/styles)
+      [stylesdir] (~/.fluxbox/styles) 
 [end]
-      [workspaces] (Workspace List)
+      [workspaces] (Workspace List) 
 [submenu] (Tools)
-      [exec] (Window name) {xprop WM_CLASS|cut -d \" -f 2|xmessage -file - -center}
-      [exec] (Screenshot - JPG) {import screenshot.jpg && display -resize 50% screenshot.jpg}
-      [exec] (Screenshot - PNG) {import screenshot.png && display -resize 50% screenshot.png}
-      [exec] (Run) {fbrun}
-      [exec] (Regen Menu) {fluxbox-generate_menu -t st -b firefox -in -su -d /usr/share/applications/}
+      [exec] (Window name) {xprop WM_CLASS|cut -d \" -f 2|xmessage -file - -center} 
+      [exec] (Run) {fbrun} 
+      [exec] (Regen Menu) {fluxbox-generate_menu} 
 [end]
-      [commanddialog] (Fluxbox Command)
-      [reconfig] (Reload config)
-      [restart] (Restart)
-      [exec] (About) {(fluxbox -v; fluxbox -info | sed 1d) | xmessage -file - -center}
-      [separator]
-      [exit] (Exit)
+      [commanddialog] (Fluxbox Command) 
+      [reconfig] (Reload config) 
+      [restart] (Restart) 
+      [exec] (About) {(fluxbox -v; fluxbox -info | sed 1d) | xmessage -file - -center} 
+      [separator] 
+      [exit] (Exit) 
 [end]
 [endencoding]
 [end]

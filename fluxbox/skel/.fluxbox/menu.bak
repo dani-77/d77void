@@ -16,7 +16,7 @@
 #     session.menuFile: ~/.fluxbox/my-menu
 [begin] (Fluxbox)
 [encoding] {UTF-8}
-      [exec] (st) {st}
+      [exec] (terminal) {xterm}
       [exec] (firefox) {firefox}
       [exec]   (Run) {fbrun}
 [submenu] (Terminals)
@@ -78,7 +78,7 @@
       [exec] (Screenshot - JPG) {import screenshot.jpg && display -resize 50% screenshot.jpg}
       [exec] (Screenshot - PNG) {import screenshot.png && display -resize 50% screenshot.png}
       [exec] (Run) {fbrun}
-      [exec] (Regen Menu) {fluxbox-generate_menu -t st -b firefox -in -su}
+      [exec] (Regen Menu) {fluxbox-generate_menu -t st -b firefox -in -su -d /usr/share/applications/}
 [end]
       [commanddialog] (Fluxbox Command)
       [reconfig] (Reload config)
