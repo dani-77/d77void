@@ -1,0 +1,6 @@
+^sep()
+Exit,^checkout(exit),system-shutdown
+^tag(exit)
+LogOut,labwc --exit,system-log-out
+Reboot,reboot,system-reboot
+Poweroff,poweroff,system-shutdown

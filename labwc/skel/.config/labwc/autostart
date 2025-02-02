@@ -12,6 +12,8 @@ wlsunset -l 41.6 -L -8.62 >/dev/null 2>&1 &
 #     output eDP-1 position 0,0
 #   }
 kanshi >/dev/null 2>&1 &
+conky &
+conky -c ~/.conkyrc1 &
 
 # Launch a panel such as yambar or waybar.
 waybar >/dev/null 2>&1 &
