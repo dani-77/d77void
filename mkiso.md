@@ -8,6 +8,11 @@ fluxbox)
             SERVICES="$SERVICES dbus slim NetworkManager polkitd"
         ;;
 
+labwc)
+            PKGS="$PKGS $XORG_PKGS abiword acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc btop ca-certificates cargo cups cups-browsed curl elogind epson-inkjet-printer-escpr ethtool feh firefox flashrom font-awesome6 font-hack-ttf geary gettext git github-cli gmrun gnumeric grim gufw htop inxi labwc mousepad mpv nano ncspot NetworkManager network-manager-applet nerd-fonts-symbols-ttf neofetch nextcloud-client octoxbps papirus-icon-theme pcmanfm polkit pcsc-ccid pcsc-tools pcsclite python3-pip ranger rofi rust sddm smartmontools sway SwayNotificationCenter system-config-printer tlp tlp-rdw transmission-gtk transset udiskie ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree Waybar wget wlsunset wmenu xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc yt-dlp zathura zathura-pdf-poppler"
+            SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
+        ;;
+
 openbox)
             PKGS="$PKGS $XORG_PKGS abiword abook acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc btop ca-certificates calcurse cargo cbatticon cmus conky cups cups-browsed curl dunst dvtm epson-inkjet-printer-escpr ethtool feh firefox flashrom font-hack-ttf geary gettext git github-cli gmrun gnumeric gufw htop inxi isync jgmenu jq lxappearance lxappearance-obconf menumaker mousepad mpv msmtp nano ncspot NetworkManager network-manager-applet neomutt nerd-fonts-symbols-ttf neofetch nextcloud-client obconf octoxbps openbox papirus-icon-theme pass pcmanfm polkit pcsc-ccid pcsc-tools pcsclite python3-pip ranger redshift redshift-gtk rofi rust scrot slim slock smartmontools sxhkd system-config-printer tint2 tint2conf tlp tlp-rdw transmission-gtk transset udiskie ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree volumeicon wget xautolock xcompmgr xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xterm yt-dlp zathura zathura-pdf-poppler"
             SERVICES="$SERVICES dbus slim NetworkManager polkitd"
