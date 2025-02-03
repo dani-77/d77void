@@ -30,8 +30,6 @@ That way, even non privileged users can use powermenu.
 
 super + return -> terminal
 
-super + j -> jgmenu
-
 super + p -> rofi
 
 super + o -> gmrun
