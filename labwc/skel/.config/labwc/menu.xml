@@ -68,9 +68,6 @@
             <item label="Geary"> <action name="Execute">
                 <execute>geary</execute>
             </action> </item>
-            <item label="Steam"> <action name="Execute">
-                <execute>steam</execute>
-            </action> </item>
             <item label="TkVNC"> <action name="Execute">
                 <execute>xterm -e tkvnc</execute>
             </action> </item>
@@ -90,9 +87,6 @@
             </action> </item>
             <item label="Gnumeric"> <action name="Execute">
                 <execute>gnumeric --name org.gnumeric.gnumeric</execute>
-            </action> </item>
-            <item label="OnlyOffice"> <action name="Execute">
-                <execute>/home/dani77/Documentos/./onlyoffice.AppImage</execute>
             </action> </item>
             <item label="Zathura"> <action name="Execute">
                 <execute>zathura</execute>
@@ -131,13 +125,7 @@
             <item label="UXTerm"> <action name="Execute">
                 <execute>uxterm</execute>
             </action> </item>
-            <item label="Vifm"> <action name="Execute">
-                <execute>xterm -e vifm</execute>
-            </action> </item>
-            <item label="Xterm"> <action name="Execute">
-                <execute>xterm</execute>
-            </action> </item>
-        </menu>
+             </menu>
         <menu id="37" label="System">
             <menu id="36" label="Settings">
                 <menu id="21" label="GNOME">
@@ -157,17 +145,8 @@
                 <item label="Manage Printing"> <action name="Execute">
                     <execute>xdg-open http://localhost:631/</execute>
                 </action> </item>
-                <item label="Openbox Configuration Manager"> <action name="Execute">
-                    <execute>obconf</execute>
-                </action> </item>
-                <item label="Preferred Applications"> <action name="Execute">
-                    <execute>libfm-pref-apps</execute>
-                </action> </item>
                 <item label="Text Editor Settings"> <action name="Execute">
                     <execute>mousepad --preferences</execute>
-                </action> </item>
-                <item label="Tint2 Settings"> <action name="Execute">
-                    <execute>tint2conf</execute>
                 </action> </item>
                 <item label="Xfontsel"> <action name="Execute">
                     <execute>xfontsel</execute>
@@ -179,26 +158,14 @@
             <item label="chronyc"> <action name="Execute">
                 <execute>xterm -e chronyc</execute>
             </action> </item>
-            <item label="conky"> <action name="Execute">
-                <execute>conky --daemonize --pause=1</execute>
-            </action> </item>
-            <item label="Conky"> <action name="Execute">
-                <execute>xterm -e conky</execute>
-            </action> </item>
             <item label="Htop"> <action name="Execute">
                 <execute>xterm -e htop</execute>
-            </action> </item>
-            <item label="jgmenu"> <action name="Execute">
-                <execute>jgmenu_run</execute>
             </action> </item>
             <item label="OctoXBPS"> <action name="Execute">
                 <execute>octoxbps</execute>
             </action> </item>
             <item label="OctoXBPS Notifier"> <action name="Execute">
                 <execute>octoxbps-notifier</execute>
-            </action> </item>
-            <item label="Tint2"> <action name="Execute">
-                <execute>tint2</execute>
             </action> </item>
             <item label="Top"> <action name="Execute">
                 <execute>xterm -e top</execute>
@@ -213,9 +180,6 @@
         <menu id="38" label="Utilities">
             <item label="About Xfce"> <action name="Execute">
                 <execute>xfce4-about</execute>
-            </action> </item>
-            <item label="Bitwarden"> <action name="Execute">
-                <execute>/opt/Bitwarden/bitwarden</execute>
             </action> </item>
             <item label="Nextcloud Desktop"> <action name="Execute">
                 <execute>nextcloud</execute>
