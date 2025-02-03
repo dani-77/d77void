@@ -46,4 +46,8 @@ super + shift + q -> close window
 
 super + r -> resize window
 
+# Sway tweaks
+
+To alter the autostart programs, add/swap keybinds and keyboard layout configure ~/.config/sway/config ; the file is self explanatory and with several examples already configured.
+
 Have fun!

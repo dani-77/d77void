@@ -17,7 +17,7 @@
 ## For further details, see xkeyboard-config(7)
 ##
 
- XKB_DEFAULT_LAYOUT=de(deadtilde)
+XKB_DEFAULT_LAYOUT=de(deadtilde)
 # XKB_DEFAULT_LAYOUT=se,us(intl)
 # XKB_DEFAULT_OPTIONS=grp:alt_shift_toggle
 # XKB_DEFAULT_OPTIONS=grp:shift_caps_toggle

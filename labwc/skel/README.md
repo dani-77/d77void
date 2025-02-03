@@ -36,4 +36,8 @@ super + o -> gmrun
 
 super + x -> powermenu
 
+# Labwc tweaks
+
+To alter the autostart programs, add/swap keybinds, change keyboard layout and menu items configure the files inside ~/.config/labwc/ ; the files are self explanatory and with several examples already configured.
+
 Have fun!
