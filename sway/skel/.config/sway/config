@@ -21,7 +21,10 @@ set $term st
 set $menu wmenu-run
 
 # Nighshift (the location set here is for Oporto, Portugal; gather your latitude and longitude at openstreetmap)
-exec  wlsunset -l 41.6 -L -8.62
+exec wlsunset -l 41.6 -L -8.62
+
+# Automount
+exec udiskie -at
 
 # Gaps
 gaps inner 5

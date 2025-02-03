@@ -1,8 +1,11 @@
 # Example autostart file
 
-# Set background color.
+# Set background and nightshift
 swaybg -m fill -i Wallpaper/macos-monterey-wwdc-21-stock-dark-mode-5k-3840x2160-5585.jpg &
 wlsunset -l 41.6 -L -8.62 >/dev/null 2>&1 &
+
+# Automount disks
+udiskie -at &
 
 # Configure output directives such as mode, position, scale and transform.
 # Use wlr-randr to get your output names
