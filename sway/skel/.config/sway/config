@@ -8,6 +8,7 @@
 #
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
+
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -43,7 +44,7 @@ exec_always {
 exec swaync
 
 # Start nm
-exec nm-applet --indicator
+exec nm-applet
 
 # Keyboard layout
 input type:keyboard {
