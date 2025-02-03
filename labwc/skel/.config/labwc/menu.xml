@@ -187,12 +187,6 @@
             <item label="Oclock"> <action name="Execute">
                 <execute>oclock</execute>
             </action> </item>
-            <item label="OnlyKey App"> <action name="Execute">
-                <execute>/opt/OnlyKey/nw</execute>
-            </action> </item>
-            <item label="Redshift"> <action name="Execute">
-                <execute>redshift-gtk</execute>
-            </action> </item>
             <item label="Xarchiver"> <action name="Execute">
                 <execute>xarchiver</execute>
             </action> </item>
