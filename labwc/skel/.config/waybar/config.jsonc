@@ -213,8 +213,8 @@
 		"menu": "on-click",
 		"menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
 		"menu-actions": {
-			"shutdown": "poweroff",
-			"reboot": "reboot",
+			"shutdown": "loginctl poweroff",
+			"reboot": "loginctl reboot",
 			"logout": "loginctl terminate-user $USER",
 			"hibernate": "loginctl suspend"
 		}

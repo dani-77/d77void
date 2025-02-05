@@ -8,8 +8,8 @@ DMENU="dmenu -p   "
 SESSON_ID=$(loginctl session-status | awk 'NR==1{print $1}')
 Lock_command="slock"
 Exit_command="loginctl terminate-user $USER"
-Reboot_command="reboot"
-Shutdown_command="poweroff"
+Reboot_command="loginctl reboot"
+Shutdown_command="loginctl poweroff"
 
 options=$' Lock\n Exit\n Reboot\n Shutdown' 
 eval \$"$(echo "$options" | $DMENU | awk '{print $2}')_command"

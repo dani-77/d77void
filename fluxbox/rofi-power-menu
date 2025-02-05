@@ -34,8 +34,8 @@ icons[cancel]="󱫀"
 declare -A actions
 actions[switchuser]="???"
 actions[logout]="loginctl terminate-user $USER"
-actions[reboot]="reboot"
-actions[shutdown]="poweroff"
+actions[reboot]="loginctl reboot"
+actions[shutdown]="loginctl poweroff"
 
 # By default, ask for confirmation for actions that are irreversible
 confirmations=(reboot shutdown)
