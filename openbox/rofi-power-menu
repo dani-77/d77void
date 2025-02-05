@@ -33,7 +33,7 @@ icons[cancel]="󱫀"
 
 declare -A actions
 actions[switchuser]="???"
-actions[logout]="openbox --exit"
+actions[logout]="loginctl terminate-user $USER"
 actions[reboot]="reboot"
 actions[shutdown]="poweroff"
 

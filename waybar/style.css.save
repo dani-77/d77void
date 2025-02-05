@@ -1,0 +1,146 @@
+/* GENERAL */
+
+* {
+    font-family: "FuraMono Nerd Font";
+    font-size: 18px;
+    font-weight: 500;
+    min-height: 22px;
+}
+
+/* BAR FEATURES */
+
+window#waybar {
+    background: #2D2B55;
+    border-radius: 0px;
+}
+
+button.focused {
+}
+
+#workspaces {
+    border-radius: 0px 0px 0px 0px;
+    margin-left: -9px;
+}
+
+#workspaces button:nth-child(1) .visible {
+    border-radius: 0px 0px 0px 6px;
+}
+
+#workspaces button {
+    padding: 5px 15px 5px 10px;
+    color: #bbc2cf;
+    margin: 1px 0;
+}
+
+button:hover,
+#workspaces button:hover {
+}
+
+button {
+    border: 0px;
+    margin: 2px 0;
+}
+
+button:hover {
+    border-radius: 0;
+    box-shadow: none;
+    border-width: 0px;
+}
+
+#workspaces button.visible {
+    color: #bbc2cf;
+    background-color: #2b125d;
+    border-radius: 0;
+    box-shadow: none;
+    border-width: 0px;
+}
+
+#workspaces button.focused.current_output {
+    color: #ffffff;
+    background-color: #5f27cd;
+    border-radius: 0px;
+}
+
+#workspaces button.urgent {
+    color: #6d4774;
+    background-color: #7bc275;
+    border-radius: 0px;
+}
+
+#workspaces button.focused:hover {
+    color: white;
+    background-color: #2b125d;
+}
+
+#workspaces {
+    padding: 1px 10px;
+}
+
+/* MODULES */
+
+#backlight {
+    color: yellow;
+}
+#battery {
+    color: #bbc2cf;
+}
+
+#battery.charging {
+    color: #7bc275;
+}
+
+#battery.warning:not(.charging) {
+    background-color: #2a2e38;
+    color: #FCCE7B;
+}
+
+#bluetooth {
+    color: #c9545d;
+}
+
+#clock {
+    color: #4db5bd;
+}
+
+#custom-cpu_speed {
+    color: #C57BDB;
+    border-radius: 0px 0px 0px 0px;
+}
+
+#pulseaudio {
+    color: #4db5bd;
+}
+
+#custom-recorder {
+    font-size: 18px;
+    margin: 2px 7px 0px 7px;
+    color: #c9545d;
+}
+
+#custom-powermenu {
+    color: lightcoral;
+}
+
+#custom-storage {
+    color: #C57BDB;
+}
+
+#custom-weather {
+    color: lightcoral;
+}
+
+#temperature {
+    color: lightpink;
+}
+
+#temperature.critical {
+    background: #eb4d4b;
+}
+
+#mode {
+    color: #C57BDB;
+}
+
+#network {
+    color: #7bc275;
+}
