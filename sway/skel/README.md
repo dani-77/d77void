@@ -46,8 +46,13 @@ super + shift + q -> close window
 
 super + r -> resize window
 
-# Sway tweaks
+## Sway tweaks
 
 To alter the autostart programs, add/swap keybinds and keyboard layout configure ~/.config/sway/config ; the file is self explanatory and with several examples already configured.
+
+## st directory
+
+Inside this directory you have all the source code used to compile st.
+All the dependencies are already installed in the iso, so, it is just a matter of adapt and compile to your needs.
 
 Have fun!

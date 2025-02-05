@@ -36,8 +36,13 @@ super + o -> gmrun
 
 super + x -> powermenu
 
-# Labwc tweaks
+## Labwc tweaks
 
 To alter the autostart programs, add/swap keybinds, change keyboard layout and menu items configure the files inside ~/.config/labwc/ ; the files are self explanatory and with several examples already configured.
+
+## st directory
+
+Inside this directory you have all the source code used to compile st.
+All the dependencies are already installed in the iso, so, it is just a matter of adapt and compile to your needs.
 
 Have fun!
