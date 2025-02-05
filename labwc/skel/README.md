@@ -15,17 +15,6 @@ During install, add your user to the storage group. That way udiskie will automo
 
 # 1st run:
 
-## Powermenu
-
-After install, to make powermenu work properly run:
-
-```
-sudo chmod u+s /usr/bin/poweroff
-sudo chmod u+s /usr/bin/reboot
-```
-
-That way, even non privileged users can use powermenu.
-
 ## Keybinds
 
 super + return -> terminal
