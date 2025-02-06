@@ -22,17 +22,20 @@ set $term st
 set $menu wmenu-run
 
 # Nighshift (the location set here is for Oporto, Portugal; gather your latitude and longitude at openstreetmap)
-exec wlsunset -l 41.6 -L -8.62
+exec wlsunset -g 0.8 -l 41.6 -L -8.62 &
 
 # Automount
-exec udiskie -at
+exec udiskie -at &
 
 # Gaps
 gaps inner 5
 gaps outer 5
 
+# Borders
+for_window [class="^.*"] border pixel 1
+
 # Set bar
-exec waybar
+exec waybar &
 
 # Themes
 exec_always {
@@ -41,10 +44,13 @@ exec_always {
 }
 
 # Start SwayNotificationCenter
-exec swaync
+exec swaync &
 
 # Start nm
-exec nm-applet
+exec nm-applet --indicator
+
+# Start octo-notifier
+exec octoxbps-notifier &
 
 # Keyboard layout
 input type:keyboard {
