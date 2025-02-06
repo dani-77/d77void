@@ -17,7 +17,7 @@
     <default />
     <!-- Use a different terminal emulator -->
     <keybind key="W-Return">
-      <action name="Execute" command="st" />
+      <action name="Execute" command="foot" />
     </keybind>
     <keybind key="W-p">
       <action name="Execute" command="rofi -show drun" />
