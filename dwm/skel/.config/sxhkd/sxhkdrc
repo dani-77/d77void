@@ -12,3 +12,5 @@ super + m
 	geary
 super + p
 	scrot
+super + b
+	wswap-X

@@ -43,4 +43,32 @@ sed -i 's|BAT0|BAT1|' .conkyrc
 
 To edit and customize your fluxbox variables, like menu, wallpaper and startup applications, go to ~/.fluxbox/ and edit the files in there to fit your needs.
 
+# Keybinds
+
+ctrl + alt + del -> logout
+
+alt + shift + return -> terminal
+
+alt + b -> swap wallpaper
+
+alt + d -> rofi
+
+alt + e -> editor
+
+alt + f -> file manager
+
+alt + j -> menu
+
+alt + l -> lock
+
+alt + m -> mail
+
+alt + p -> print screen
+
+alt + r -> run
+
+alt + w -> web browser
+
+alt + x -> power menu
+
 Have fun!

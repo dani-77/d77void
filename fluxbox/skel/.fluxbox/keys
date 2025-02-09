@@ -137,7 +137,7 @@ Control Mod4 F11 :TakeToWorkspace 11
 Control Mod4 F12 :TakeToWorkspace 12
 
 Shift Mod1 Return :Exec xterm
-Mod1 w :Exec firefox
+Mod1 b :Exec wswap-X
 Mod1 m :Exec geary
 Mod1 e :Exec mousepad
 Mod1 f :Exec pcmanfm

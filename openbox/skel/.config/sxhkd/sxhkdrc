@@ -18,3 +18,5 @@ alt + x
 	rofi -show power-menu -modi power-menu:rofi-power-menu
 alt + l
 	slock
+alt + b
+	wswap-X
