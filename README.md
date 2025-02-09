@@ -17,7 +17,7 @@ terminal 1 example)
 ```
 sudo ./mkiso.sh -b fluxbox -- -K -T d77void
 ```
-## side hyprland
+## side note *hyprland*
 
 To use it properly, run this:
 
