@@ -8,7 +8,7 @@ sudo void-installer
 ```
 
 Note: 
-To mantain the configuration of the live iso, during install, choose local instead of network install.
+To maintain the configuration of the live iso, during install, choose local instead of network install.
 
 During install, add your user to the storage group. That way udiskie will automount disks.
 

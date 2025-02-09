@@ -8,16 +8,26 @@ sudo void-installer
 ```
 
 Note: 
-To mantain the configuration of the live iso, during install, choose local instead of network install.
+To maintain the configuration of the live iso, during install, choose local instead of network install.
 
 During install, add your user to the storage group. That way udiskie will automount disks.
 
 
 # 1st run:
 
+After install, run the script 1strun:
+
+```
+sudo ./1strun
+```
+
+That way, a new sddm greeter will be available.
+
 ## Keybinds
 
 super + return -> terminal
+
+super + b -> swap wallpaper
 
 super + d -> wmenu
 
