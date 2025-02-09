@@ -1,0 +1,3 @@
+#!/bin/bash
+
+feh --bg-fill --randomize /home/dani77/Wallpaper/

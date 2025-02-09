@@ -11,3 +11,4 @@ cp slstatus mklive-build.*/image/rootfs/usr/bin/
 cp st mklive-build.*/image/rootfs/usr/bin/
 cp st-* mklive-build.*/image/rootfs/usr/share/terminfo/s/
 cp power_menu mklive-build.*/image/rootfs/usr/bin/
+cp wswap-X mklive-build.*/image/rootfs/usr/bin/
