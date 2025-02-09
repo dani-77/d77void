@@ -17,6 +17,16 @@ terminal 1 example)
 ```
 sudo ./mkiso.sh -b fluxbox -- -K -T d77void
 ```
+## side hyprland
+
+To use it properly, run this:
+
+```
+sudo ./mkiso.sh -r https://repo-de.voidlinux.org/current -r https://raw.githubusercontent.com/Makrennel/hyprland-void/repository-x86_64-glibc -b hyprland -- -K -T d77void
+```
+
+instead of the usual mkiso command; it is needed to accept a new outside repo.
+
 
 terminal 2)
 

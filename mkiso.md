@@ -8,6 +8,11 @@ fluxbox)
             SERVICES="$SERVICES dbus elogind slim NetworkManager polkitd"
         ;;
 
+hyprland)
+            PKGS="$PKGS $XORG_PKGS abiword acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brightnessctl btop ca-certificates cargo cups cups-browsed curl dunst elogind epson-inkjet-printer-escpr ethtool feh firefox flashrom font-awesome6 font-hack-ttf foot geary gettext git github-cli gmrun gnumeric grim gufw htop hyprland inxi lxappearance mousepad mpv nano ncspot NetworkManager network-manager-applet nerd-fonts-symbols-ttf neofetch nextcloud-client octoxbps papirus-icon-theme pavucontrol pcmanfm polkit pcsc-ccid pcsc-tools pcsclite python3-pip ranger rofi rust sddm smartmontools swaybg swayidle swaylock SwayNotificationCenter system-config-printer tlp tlp-rdw transmission-gtk transset udiskie ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree Waybar wget wlsunset wmenu xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xterm yt-dlp zathura zathura-pdf-poppler"
+            SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
+        ;;
+
 labwc)
             PKGS="$PKGS $XORG_PKGS abiword acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brightnessctl btop ca-certificates cargo cups cups-browsed curl dunst elogind epson-inkjet-printer-escpr ethtool feh firefox flashrom font-awesome6 font-hack-ttf foot geary gettext git github-cli gmrun gnumeric grim gufw htop inxi labwc lxappearance mousepad mpv nano ncspot NetworkManager network-manager-applet nerd-fonts-symbols-ttf neofetch nextcloud-client octoxbps papirus-icon-theme pavucontrol pcmanfm polkit pcsc-ccid pcsc-tools pcsclite python3-pip ranger rofi rust sddm smartmontools swaybg swayidle swaylock SwayNotificationCenter system-config-printer tlp tlp-rdw transmission-gtk transset udiskie ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree Waybar wget wlsunset wmenu xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xterm yt-dlp zathura zathura-pdf-poppler"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
