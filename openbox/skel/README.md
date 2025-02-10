@@ -39,4 +39,29 @@ In case battery is not working properly, swap BAT0 to BAT1 this way; open a term
 sed -i 's|BAT0|BAT1|' .conkyrc
 ```
 
+# Keybinds
+
+alt + shift + return -> terminal
+
+alt + b -> swap wallpaper
+
+alt + d -> rofi menu
+
+alt + e -> editor
+
+alt + f -> file manager
+
+alt + j -> menu
+
+alt + l -> lock
+
+alt + m -> mail
+
+alt + p -> print screen
+
+alt + w -> web browser
+
+alt + x -> power menu
+
+
 Have fun!

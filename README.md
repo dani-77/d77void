@@ -1,37 +1,40 @@
-# d77void iso generator
+# d77void WM void editions
 
-To use the repo properly, clone the void-mklive repo:
+d77void intend to be a friendly general use OS based on 
+Void GNU/Linux with an WM pre configured.
 
-```
-git clone https://github.com/void-linux/void-mklive
-```
+All the variants are very light and with just some apps 
+installed.
 
-and copy the contents of this repo to void-mklive that you previously cloned.
+I started this project for myself, and so, the first ISOS 
+had my common apps installed, but right now almost every 
+ISO has just the bare essential, giving you the chance to 
+install just what you need.
 
-Edit mkiso.sh with the contents of mkiso.md after lxqt variant, before *).
+It is distributed in three X11 WM and three Wayland WM. 
+The lightest in memory usage is dwm and fluxbox (both X11) 
+and the more resource hungry are Openbox and Labwc.
 
-Copy the contents of one of the directories to main void-mklive repo directory, and then:
+The easiest to go out of the box is Openbox, Labwc and in my 
+opinion dwm (even though not the easiest to configure).
 
-terminal 1 example)
+Hyprland is the more bleeding edge, even needs to have an extra 
+repository because it is not yet distributed in Void. As so, 
+see this ISO as highly experimental; it shouldn't happen, but 
+things can get break.
 
-```
-sudo ./mkiso.sh -b fluxbox -- -K -T d77void
-```
-## side note *hyprland*
+## 1st run
 
-To use it properly, run this:
+In all the Wayland variants, I suggest to run a script named 
+1strun; it isn't crucial, but running it will chnge the SDDM 
+theme to something more in line with my vision. In the Hyprland 
+variant creates the extra repo as well.
 
-```
-sudo ./mkiso.sh -r https://repo-de.voidlinux.org/current -r https://raw.githubusercontent.com/Makrennel/hyprland-void/repository-x86_64-glibc -b hyprland -- -K -T d77void
-```
+## Help
 
-instead of the usual mkiso command; it is needed to accept a new outside repo.
+In case of need, I have a Discord server with a channel for each 
+variant of the OS. It is the easiest way to get some help from 
+me.
 
 
-terminal 2)
-
-```
-sudo ./skel.sh
-```
-
-Happy hacking. 
+Have fun!
