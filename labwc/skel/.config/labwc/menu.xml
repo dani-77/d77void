@@ -81,10 +81,7 @@
         <menu id="3" label="Office">
             <item label="AbiWord"> <action name="Execute">
                 <execute>abiword</execute>
-            </action> </item>
-            <item label="Abook"> <action name="Execute">
-                <execute>xterm -e abook</execute>
-            </action> </item>
+             </action> </item>
             <item label="Gnumeric"> <action name="Execute">
                 <execute>gnumeric --name org.gnumeric.gnumeric</execute>
             </action> </item>

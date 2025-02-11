@@ -1,8 +1,16 @@
 /* GENERAL */
 
+@import url("./colors.css");
+/* example usage */
+window#waybar {
+background: @background;
+color: @purple;
+/* or cyan, green, orange, pink, red, yellow, foreground, background-darker etc. */
+}
+
 * {
     font-family: "FuraMono Nerd Font";
-    font-size: 15px;
+    font-size: 12px;
     font-weight: 500;
     min-height: 22px;
 }
@@ -82,7 +90,7 @@ button:hover {
     color: yellow;
 }
 #battery {
-    color: #bbc2cf;
+    color: lightblue;
 }
 
 #battery.charging {
@@ -99,7 +107,11 @@ button:hover {
 }
 
 #clock {
-    color: #4db5bd;
+    color: yellow;
+}
+	
+#cpu {
+    color: lightblue;
 }
 
 #custom-cpu_speed {
@@ -107,8 +119,8 @@ button:hover {
     border-radius: 0px 0px 0px 0px;
 }
 
-#pulseaudio {
-    color: #4db5bd;
+#custom-powermenu {
+    color: lightcoral;
 }
 
 #custom-recorder {
@@ -117,24 +129,20 @@ button:hover {
     color: #c9545d;
 }
 
-#custom-powermenu {
-    color: lightcoral;
-}
-
 #custom-storage {
     color: #C57BDB;
 }
 
 #custom-weather {
-    color: lightcoral;
+    color: cyan;
 }
 
-#temperature {
-    color: lightpink;
+#keyboard-state {
+    color: lightcoral; 
 }
 
-#temperature.critical {
-    background: #eb4d4b;
+#memory {
+    color: lightblue;
 }
 
 #mode {
@@ -142,5 +150,21 @@ button:hover {
 }
 
 #network {
-    color: #7bc275;
+    color: lightcoral; 
+}
+
+#pulseaudio {
+    color: lightblue;
+}
+
+#sway-language {
+    color: lightcoral;
+}
+
+#temperature {
+    color: lightblue;
+}
+
+#temperature.critical {
+    background: #eb4d4b;
 }

@@ -1,0 +1,24 @@
+scanner {
+# Poll CPU fan rpm
+  file("/sys/devices/platform/it87*/hwmon/hwmon2/fan2_input") {
+    CPUFan = Grab()
+  }
+
+# Poll MB fan rpm
+  file("/sys/devices/platform/it87*/hwmon/hwmon2/fan1_input") {
+    MBFan = Grab()
+  }
+}
+
+layout {
+  css = "* { -GtkWidget-direction: right; -GtkWidget-vexpand: true; -GtkWidget-hexpand: true; }"
+  image {
+    style = "value_icon"
+    value = "icons/misc/fan.svg"
+  }
+  label {
+    style = "value"
+    interval = 1000
+    value = Str(CPUFan,0)
+  }
+}

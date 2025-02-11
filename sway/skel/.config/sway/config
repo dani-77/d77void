@@ -116,14 +116,14 @@ output * bg ~/Wallpaper/macos-monterey-wwdc-21-stock-dark-mode-5k-3840x2160-5585
     # Start rofi
     bindsym $mod+p exec rofi -show drun
 
+    # Swap Wallpaper
+    bindsym $mod+y exec wswap-way
+
     # Start Gmrun
     bindsym $mod+o exec gmrun
 
     # Lock screen
     bindsym $mod+t exec swaylock
-
-    # Swap Wallpaper
-    bindsym $mod+b exec wswap-way
 
     # Powermenu
     bindsym $mod+x exec rofi -show power-menu -modi power-menu:rofi-power-menu

@@ -1,0 +1,9 @@
+include("cpu-temp.source")
+
+layout {
+  label {
+    style = if(XCpuTempPresent,"temperature","hidden")
+    interval = 10000
+    value = Str(XCPUTemp/1000)+'°C '+Lookup(XCpuTemp/1000,40,"",20,"","")
+  }
+}

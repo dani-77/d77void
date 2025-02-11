@@ -1,0 +1,19 @@
+scanner {
+# Poll motherboard temperature
+  file("/sys/class/hwmon/hwmon2/temp1_input") {
+    MBTemp = Grab(First)
+  }
+}
+
+layout {
+  css = "* { -GtkWidget-direction: right; -GtkWidget-vexpand: true; -GtkWidget-hexpand: true; }"
+  image {
+    style = "value_icon"
+    value = "icons/misc/comp.svg"
+  }
+  label {
+    style = "value"
+    interval = 1000
+    value = Str(MBTemp/1000,0)+"C"
+  }
+}

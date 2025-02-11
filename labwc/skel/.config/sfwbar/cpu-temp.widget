@@ -1,0 +1,14 @@
+include("cpu-temp.source")
+
+layout {
+  css = "* { -GtkWidget-direction: right; -GtkWidget-vexpand: true; -GtkWidget-hexpand: true; }"
+  image {
+    style = "value_icon"
+    value = "icons/misc/cpu.svg"
+  }
+  label {
+    style = "value"
+    interval = 1000
+    value = Str(XCpuTemp/1000,0)+"C"
+  }
+}

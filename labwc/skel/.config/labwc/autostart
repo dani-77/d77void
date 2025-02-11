@@ -5,7 +5,7 @@ swaybg -m fill -i Wallpaper/macos-monterey-wwdc-21-stock-dark-mode-5k-3840x2160-
 wlsunset -l 41.6 -L -8.62 >/dev/null 2>&1 &
 
 # Automount disks
-udiskie -at &
+udiskie -a &
 
 # Configure output directives such as mode, position, scale and transform.
 # Use wlr-randr to get your output names
@@ -15,12 +15,14 @@ udiskie -at &
 #     output eDP-1 position 0,0
 #   }
 kanshi >/dev/null 2>&1 &
-gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark" &
+gsettings set org.gnome.desktop.interface gtk-theme "Arc-Dark" &
 gsettings set org.gnome.desktop.interface icon-theme "Papirus-Dark" &
 
 # Launch a panel such as yambar or waybar.
-waybar >/dev/null 2>&1 &
-nm-applet &
+sfwbar >/dev/null 2>&1 &
+waybar -c ~/.config/waybar/config_labwc.jsonc >/dev/null 2>&1 &
+#nm-applet &
+octoxbps-notifier &
 
 # Enable notifications. Typically GNOME/KDE application notifications go
 # through the org.freedesktop.Notifications D-Bus API and require a client such
