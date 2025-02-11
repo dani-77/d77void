@@ -25,16 +25,6 @@ sudo ./1strun
 
 That way, a new sddm greeter will be available.
 
-## srcpkgs dir
-
-Available in srcpkgs dir are 2 packages; labwc-menu-generator and sfwbar.
-
-To install any of them:
-
-```
-sudo xbps-install --repository=/home/$USER/srcpkgs <pkg_name>
-```
-
 ## Keybinds
 
 super + return -> terminal
@@ -55,6 +45,6 @@ To alter the autostart programs, add/swap keybinds, change keyboard layout and m
 
 In ~/.config/waybar there are several styles and configs; adapt to your liking and need. wittr.sh has to be modified to suit your CITY.
 
-In ~/.config/sfwbar there are several configs, being the default w10.config with some minor changes. To use it, install sfwbar from srcpkgs dir and uncomment the line in ~/.config/labwc/autostart.
+In ~/.config/sfwbar there are several configs, being the default w10.config with some minor changes.
 
 Have fun!

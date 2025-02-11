@@ -17,6 +17,7 @@ terminal 1 example)
 ```
 sudo ./mkiso.sh -b fluxbox -- -K -T d77void
 ```
+
 ## side note *hyprland*
 
 To use it properly, run this:
@@ -26,6 +27,16 @@ sudo ./mkiso.sh -r https://repo-de.voidlinux.org/current -r https://raw.githubus
 ```
 
 instead of the usual mkiso command; it is needed to accept a new outside repo.
+
+## side note *labwc*
+
+To use it properly, run this:
+
+```
+sudo ./mkiso.sh -r /home/dani77/void-packages/hostdir/binpkgs/  -b labwc -- -K -T d77void
+```
+
+instead of the usual mkiso command; it is needed to accept a local repo.
 
 
 terminal 2)

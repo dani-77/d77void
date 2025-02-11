@@ -19,7 +19,7 @@ gsettings set org.gnome.desktop.interface gtk-theme "Arc-Dark" &
 gsettings set org.gnome.desktop.interface icon-theme "Papirus-Dark" &
 
 # Launch a panel such as yambar or waybar.
-#sfwbar -c ~/.config/sfwbar/w10.config >/dev/null 2>&1 &
+sfwbar -c ~/.config/sfwbar/w10.config >/dev/null 2>&1 &
 waybar -c ~/.config/waybar/config_labwc.jsonc >/dev/null 2>&1 &
 nm-applet &
 octoxbps-notifier &
