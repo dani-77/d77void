@@ -61,14 +61,15 @@ ${color green}${offset 55}Keybinds
 $color${hr}
 
 ${color grey}alt + shift + return -> ${color}xterm
-${color grey}alt + w -> ${color}firefox
-${color grey}alt + m -> ${color}mail
-${color grey}alt + f -> ${color}pcmanfm
-${color grey}alt + e -> ${color}editor
+${color grey}alt + b -> ${color}wallpaper swap
 ${color grey}alt + d -> ${color}rofi
-${color grey}alt + j -> ${color}jgmenu 
-${color grey}alt + x -> ${color}powermenu
-${color grey}alt + F2 -> ${color}run
-${color grey}alt + p -> ${color}scrot
+${color grey}alt + e -> ${color}editor
+${color grey}alt + f -> ${color}file manager
+${color grey}alt + j -> ${color}menu 
 ${color grey}alt + l -> ${color}lock
+${color grey}alt + m -> ${color}mail
+${color grey}alt + p -> ${color}print screen
+${color grey}alt + w -> ${color}firefox
+${color grey}alt + x -> ${color}powermenu
+${color grey}alt + r -> ${color}run
 ]]

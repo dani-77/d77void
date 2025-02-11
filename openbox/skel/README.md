@@ -59,6 +59,8 @@ alt + m -> mail
 
 alt + p -> print screen
 
+alt + r -> run
+
 alt + w -> web browser
 
 alt + x -> power menu

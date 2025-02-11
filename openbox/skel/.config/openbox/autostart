@@ -7,13 +7,13 @@ sxhkd -c ~/.config/sxhkd/sxhkdrc &
 udiskie -at &
 conky -c .conkyrc &
 conky -c .conkyrc1 &
-feh --bg-fill ~/Wallpaper/macos-monterey-wwdc-21-stock-dark-mode-5k-3840x2160-5585.jpg &
+feh --bg-fill --randomize ~/Wallpaper/ &
 xrdb merge ~/.Xresources &
-setxkbmap de deadtilde &
+#setxkbmap de deadtilde &
 /usr/bin/octoxbps-notifier &
 xautolock -time 5 -locker slock &
 exec synclient TapButton1=1 &
 exec synclient TapButton2=3 &
 exec synclient TapButton3=2 &
 tint2 &
-#xterm -e vi README.md &
+xterm -e vi README.md &

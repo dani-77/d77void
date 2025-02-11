@@ -21,11 +21,11 @@ dunst &
 cbatticon &
 volumeicon &
 nm-applet &
-redshift-gtk -l 41.6:-8.62 &
+#redshift-gtk -l 41.6:-8.62 &
 udiskie -at &
 conky -c .conkyrc &
 conky -c .conkyrc1 &
-fbsetbg -f Wallpaper/macos-monterey-wwdc-21-stock-dark-mode-5k-3840x2160-5585.jpg &
+fbsetbg -f Wallpaper/wall_macos1.jpg &
 xrdb merge ~/.Xresources &
 #setxkbmap de deadtilde &
 /usr/bin/octoxbps-notifier &

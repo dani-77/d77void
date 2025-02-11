@@ -138,12 +138,13 @@ Control Mod4 F12 :TakeToWorkspace 12
 
 Shift Mod1 Return :Exec xterm
 Mod1 b :Exec wswap-X
-Mod1 m :Exec geary
+Mod1 d :Exec rofi -show drun
 Mod1 e :Exec mousepad
 Mod1 f :Exec pcmanfm
-Mod1 d :Exec rofi -show drun
 Mod1 j :Exec jgmenu_run
-Mod1 x :Exec rofi -show power-menu -modi power-menu:rofi-power-menu
 Mod1 l :exec slock
+Mod1 m :Exec geary
 Mod1 p :exec scrot
+Mod1 w :exec firefox
+Mod1 x :Exec rofi -show power-menu -modi power-menu:rofi-power-menu
 Mod1 r :exec gmrun
