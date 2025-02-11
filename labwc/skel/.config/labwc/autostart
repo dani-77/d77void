@@ -1,11 +1,11 @@
 # Example autostart file
 
 # Set background and nightshift
-swaybg -m fill -i Wallpaper/macos-monterey-wwdc-21-stock-dark-mode-5k-3840x2160-5585.jpg &
-wlsunset -l 41.6 -L -8.62 >/dev/null 2>&1 &
+swaybg -m fill -i Wallpaper/wall_macos1.jpg &
+wlsunset -l 41.6 -L -8.62 >/dev/null 2>&1 & # latitude and Longitude set to Oporto, Portugal
 
 # Automount disks
-udiskie -a &
+udiskie -at &
 
 # Configure output directives such as mode, position, scale and transform.
 # Use wlr-randr to get your output names
@@ -19,9 +19,9 @@ gsettings set org.gnome.desktop.interface gtk-theme "Arc-Dark" &
 gsettings set org.gnome.desktop.interface icon-theme "Papirus-Dark" &
 
 # Launch a panel such as yambar or waybar.
-sfwbar >/dev/null 2>&1 &
+#sfwbar -c ~/.config/sfwbar/w10.config >/dev/null 2>&1 &
 waybar -c ~/.config/waybar/config_labwc.jsonc >/dev/null 2>&1 &
-#nm-applet &
+nm-applet &
 octoxbps-notifier &
 
 # Enable notifications. Typically GNOME/KDE application notifications go
