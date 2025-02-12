@@ -8,37 +8,37 @@
     "wlr/taskbar"
   ],
   "modules-center": [
-    "wlr/window",
+    "sway/window",
     "custom/weather",
     "clock"
   ],
   "modules-right": [
-   // "tray",
     "battery",
-    "wlr/language"
+    "sway/language"
   ],
+
   "wlr/taskbar": {
     "on-click": "activate",
     "on-click-middle": "close",
     "ignore-list": [
-      "foot"
+      	"foot",
+	"pcmanfm",
     ]
   },
-  "wlr/workspaces": {
-    "on-click": "activate",
-    "on-scroll-up": "hyprctl dispatch workspace e-1",
-    "on-scroll-down": "hyprctl dispatch workspace e+1"
-  },
+
   "wlr/window": {
     "max-length": 128
   },
+
   "clock": {
     "format": "{:%A, %d %B %Y - %X}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
   },
+
   "tray": {
     "spacing": 4
   },
+
   "custom/weather": {
     "exec": "~/.config/waybar/wittr.sh",
     "return-type": "json",
@@ -67,6 +67,5 @@
   "wlr/language": {
     "format-pl": "[pl]",
     "format-en": "[us]",
-    "on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next"
   }
 }
