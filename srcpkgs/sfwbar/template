@@ -1,7 +1,7 @@
 # Template file for 'sfwbar'
 pkgname=sfwbar
 version=v1.0
-revision=1
+revision=2
 build_style=meson
 hostmakedepends="alsa-lib-devel cmake gnome-icon-theme-symbolic pkg-config pulseaudio-devel python3"
 makedepends="gtk+3-devel gtk-layer-shell-devel json-c-devel"
