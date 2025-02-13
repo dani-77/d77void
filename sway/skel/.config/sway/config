@@ -63,7 +63,7 @@ input type:keyboard {
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output * bg ~/Wallpaper/macos-monterey-wwdc-21-stock-dark-mode-5k-3840x2160-5585.jpg fill
+output * bg ~/Wallpaper/wall_macos1.jpg fill
 
 #
 # Example configuration:

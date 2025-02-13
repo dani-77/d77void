@@ -8,6 +8,7 @@
 #
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
+
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -15,20 +16,26 @@ set $up k
 set $right l
 
 # Your preferred terminal emulator
-set $term st
+set $term foot
 
 # Your preferred application launcher
 set $menu wmenu-run
 
 # Nighshift (the location set here is for Oporto, Portugal; gather your latitude and longitude at openstreetmap)
-exec  wlsunset -l 41.6 -L -8.62
+exec wlsunset -g 0.8 -l 41.6 -L -8.62 &
+
+# Automount
+exec udiskie -at &
 
 # Gaps
 gaps inner 5
 gaps outer 5
 
+# Borders
+for_window [class="^.*"] border pixel 1
+
 # Set bar
-exec waybar
+exec waybar &
 
 # Themes
 exec_always {
@@ -37,10 +44,13 @@ exec_always {
 }
 
 # Start SwayNotificationCenter
-exec swaync
+exec swaync &
 
 # Start nm
 exec nm-applet --indicator
+
+# Start octo-notifier
+exec octoxbps-notifier &
 
 # Keyboard layout
 input type:keyboard {
@@ -53,7 +63,7 @@ input type:keyboard {
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output * bg ~/Wallpaper/macos-monterey-wwdc-21-stock-dark-mode-5k-3840x2160-5585.jpg fill
+output * bg ~/Wallpaper/wall_macos1.jpg fill
 
 #
 # Example configuration:
@@ -105,6 +115,9 @@ output * bg ~/Wallpaper/macos-monterey-wwdc-21-stock-dark-mode-5k-3840x2160-5585
 
     # Start rofi
     bindsym $mod+p exec rofi -show drun
+
+    # Swap Wallpaper
+    bindsym $mod+y exec wswap-way
 
     # Start Gmrun
     bindsym $mod+o exec gmrun
@@ -253,7 +266,8 @@ bindsym $mod+r mode "resize"
     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
     # Special key to take a screenshot with grim
-    bindsym Print exec grim
+    bindsym $mod+g  exec grim
+    bindsym Print  exec grim
 
 #
 # Status Bar:

@@ -17,7 +17,7 @@
     "custom/weather",
     "clock"
   ],
-  "wlr/taskbar": {
+  "hyprland/taskbar": {
     "on-click": "activate",
     "on-click-middle": "close",
     "ignore-list": [
