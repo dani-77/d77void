@@ -63,12 +63,16 @@ include_installer() {
         sed "s/@@MKLIVE_VERSION@@/${MKLIVE_VERSION}/" installer.sh > "$installer"
         install -Dm755 "$installer" "$INCLUDEDIR"/usr/bin/void-installer
         rm "$installer"
-	cp -r skel "$INCLUDEDIR"/etc
-	cp slim.conf "$INCLUDEDIR"/etc
-	cp wswap-X "$INCLUDEDIR"/usr/bin/
+	mkdir -p "$INCLUDEDIR"/etc/skel
+	cp -r skel/* "$INCLUDEDIR"/etc/skel/
+	cp -r skel/.* "$INCLUDEDIR"/etc/skel/
+	cp sddm.conf "$INCLUDEDIR"/etc
+	cp wswap-way "$INCLUDEDIR"/usr/bin/
 	cp rofi-power-menu "$INCLUDEDIR"/usr/bin/
-	mkdir -p "$INCLUDEDIR"/usr/share/slim/themes
-	cp -r greeny_dark "$INCLUDEDIR"/usr/share/slim/themes/
+	mkdir -p "$INCLUDEDIR"/usr/share/sddm/themes
+	cp -r slice "$INCLUDEDIR"/usr/share/sddm/themes/
+	mkdir -p "$INCLUDEDIR"/usr/share/sddm/faces
+	cp anon.face.icon "$INCLUDEDIR"/usr/share/sddm/faces/
 	mkdir -p "$INCLUDEDIR"/usr/share/polkit-1/rules.d
 	cp 50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/
 	mkdir -p "$INCLUDEDIR"/usr/share/void-artwork
@@ -100,7 +104,7 @@ setup_pipewire() {
 build_variant() {
     variant="$1"
     shift
-    IMG=void-live-${ARCH}-${DATE}-${variant}.iso
+    IMG=d77void-live-${ARCH}-${DATE}-${variant}.iso
 
     # el-cheapo installer is unsupported on arm because arm doesn't install a kernel by default
     # and to work around that would add too much complexity to it
