@@ -1,0 +1,16 @@
+# Template file for 'labwc-tweaks-qt'
+pkgname=labwc-tweaks-qt
+version=20250212
+revision=1
+build_style=meson
+hostmakedepends="gtk+3-devel cmake pkg-config"
+makedepends="gtk+3-devel cmake pkg-config"
+depends="gtk+3-devel cmake pkg-config"
+short_desc="A tweak tool to labwc"
+maintainer="dani-77 <daniazevedo77@posteo.net>"
+license="GPL-3.0-or-later"
+homepage="https://www.labwc.github.io"
+#changelog=""
+distfiles="https://github.com/dani-77/labwc-tweaks-gtk/archive/refs/tags/${version}.tar.gz"
+checksum=da53f3f6998582af95d68304ddb8c61d01753284e86f0200fcb4865c253eba7b
+
