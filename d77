@@ -102,6 +102,28 @@ include_x11() {
 	cp $variant/splash.png "$INCLUDEDIR"/usr/share/void-artwork/
 }	
 
+include_dwm() {
+	mkdir -p "$INCLUDEDIR"/etc/skel
+	cp -r $variant/skel/* "$INCLUDEDIR"/etc/skel/
+	cp -r $variant/skel/.* "$INCLUDEDIR"/etc/skel/
+	cp $variant/slim.conf "$INCLUDEDIR"/etc
+	mkdir -p "$INCLUDEDIR"/usr/bin
+	cp $variant/dwm/dwm "$INCLUDEDIR"/usr/bin/
+	cp $variant/slock "$INCLUDEDIR"/usr/bin/
+	cp $variant/slstatus "$INCLUDEDIR"/usr/bin/
+	cp $variant/st "$INCLUDEDIR"/usr/bin
+	mkdir -p "$INCLUDEDIR"/usr/share/terminfo/s
+	cp $variant/st-* "$INCLUDEDIR"/usr/share/terminfo/s/
+	cp $variant/wswap-X "$INCLUDEDIR"/usr/bin/
+	cp $variant/power_menu "$INCLUDEDIR"/usr/bin/
+	mkdir -p "$INCLUDEDIR"/usr/share/slim/themes
+	cp -r $variant/greeny_dark "$INCLUDEDIR"/usr/share/slim/themes/
+	mkdir -p "$INCLUDEDIR"/usr/share/polkit-1/rules.d
+	cp $variant/50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/
+	mkdir -p "$INCLUDEDIR"/usr/share/void-artwork
+	cp $variant/splash.png "$INCLUDEDIR"/usr/share/void-artwork/
+}
+
 setup_pipewire() {
     PKGS="$PKGS pipewire alsa-pipewire"
     case "$ARCH" in
@@ -135,9 +157,11 @@ build_variant() {
             GFX_PKGS="xorg-video-drivers"
             GFX_WL_PKGS="mesa-dri"
             WANT_INSTALLER=yes
-	    WAY=yes
             TARGET_ARCH="$ARCH"
-            ;;
+	    X11=
+	    WAY=
+	    DWM=
+	    ;;
         aarch64*)
             GRUB_PKGS="grub-arm64-efi"
             GFX_PKGS="xorg-video-drivers"
@@ -171,26 +195,32 @@ build_variant() {
             SERVICES="$SERVICES dhcpcd wpa_supplicant acpid"
         ;;
 	dwm)
+	    DWM=yes
             PKGS="$PKGS $XORG_PKGS base-devel fontconfig-devel freetype-devel gcr-devel gcr4-devel glibc-devel gtk+3-devel harfbuzz-devel imlib2-devel libX11-devel libXft-devel libXinerama-devel webkit2gtk-devel abiword acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc btop ca-certificates cargo cmus cups cups-browsed curl dmenu dunst elogind epson-inkjet-printer-escpr ethtool feh firefox flashrom font-awesome font-awesome5 font-awesome6 font-hack-ttf geary gettext git github-cli gmrun gnumeric gufw htop inxi lxappearance mousepad mpv nano ncspot NetworkManager nerd-fonts-symbols-ttf neofetch nextcloud-client octoxbps papirus-icon-theme pcmanfm polkit pcsc-ccid pcsc-tools pcsclite python3-pip ranger redshift rofi rust scrot slim slock smartmontools sxhkd tlp tlp-rdw transmission-gtk transset udiskie ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree wget xautolock xcompmgr xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xterm yt-dlp zathura zathura-pdf-poppler"
             SERVICES="$SERVICES dbus elogind slim NetworkManager polkitd"
         ;;
 	fluxbox)
+	    X11=yes
             PKGS="$PKGS $XORG_PKGS abiword abook acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc btop ca-certificates calcurse cargo cbatticon cmus conky cups cups-browsed curl dunst dvtm elogind epson-inkjet-printer-escpr ethtool feh firefox flashrom fluxbox font-hack-ttf geary gettext git github-cli gmrun gnumeric gufw htop inxi isync jgmenu jq lxappearance mousepad mpv msmtp nano ncspot NetworkManager network-manager-applet neomutt nerd-fonts-symbols-ttf neofetch nextcloud-client octoxbps papirus-icon-theme pass pcmanfm polkit pcsc-ccid pcsc-tools pcsclite python3-pip ranger redshift redshift-gtk rofi rust scrot slim slock smartmontools system-config-printer tlp tlp-rdw transmission-gtk transset udiskie ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree volumeicon wget xautolock xcompmgr xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xterm yt-dlp zathura zathura-pdf-poppler"
             SERVICES="$SERVICES dbus elogind slim NetworkManager polkitd"
         ;;
 	hyprland)
+	    WAY=yes
             PKGS="$PKGS $WAYLAND_PKGS acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brightnessctl ca-certificates cargo cups cups-browsed curl dunst elogind epson-inkjet-printer-escpr ethtool feh firefox flashrom font-awesome6 font-hack-ttf foot geary gettext git github-cli gmrun grim gufw htop hyprland inxi lxappearance mousepad mpv nano ncspot NetworkManager network-manager-applet nerd-fonts-symbols-ttf neofetch nextcloud-client octoxbps papirus-icon-theme pavucontrol pcmanfm polkit python3-pip qt6-wayland ranger rofi rust sddm smartmontools swaybg swayidle swaylock SwayNotificationCenter system-config-printer tlp tlp-rdw transmission-gtk transset udiskie ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree wayland-devel wayland-protocols Waybar wget wlsunset wmenu xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xorg-server-xwayland xterm yt-dlp zathura zathura-pdf-poppler"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
 	labwc)
+	    WAY=yes
             PKGS="$PKGS $WAYLAND_PKGS abiword acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brightnessctl btop ca-certificates cargo cups cups-browsed curl dunst elogind epson-inkjet-printer-escpr ethtool feh firefox flashrom font-awesome6 font-hack-ttf foot geary gettext git github-cli gmrun gnumeric grim gufw htop inxi labwc labwc-menu-generator lxappearance mousepad mpv nano ncspot NetworkManager network-manager-applet nerd-fonts-symbols-ttf neofetch nextcloud-client octoxbps papirus-icon-theme pavucontrol pcmanfm polkit pcsc-ccid pcsc-tools pcsclite python3-pip ranger rofi rust sddm sfwbar smartmontools swaybg swayidle swaylock SwayNotificationCenter system-config-printer tlp tlp-rdw transmission-gtk transset udiskie ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree Waybar wget wlsunset wmenu xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xterm yt-dlp zathura zathura-pdf-poppler"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
 	openbox)
+	    X11=yes
             PKGS="$PKGS $XORG_PKGS abiword abook acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc btop ca-certificates calcurse cargo cbatticon cmus conky cups cups-browsed curl dunst dvtm elogind epson-inkjet-printer-escpr ethtool feh firefox flashrom font-hack-ttf geary gettext git github-cli gmrun gnumeric gufw htop inxi isync jgmenu jq lxappearance lxappearance-obconf menumaker mousepad mpv msmtp nano ncspot NetworkManager network-manager-applet neomutt nerd-fonts-symbols-ttf neofetch nextcloud-client obconf octoxbps openbox papirus-icon-theme pass pcmanfm polkit pcsc-ccid pcsc-tools pcsclite python3-pip ranger redshift redshift-gtk rofi rust scrot slim slock smartmontools sxhkd system-config-printer tint2 tint2conf tlp tlp-rdw transmission-gtk transset udiskie ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree volumeicon wget xautolock xcompmgr xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xterm yt-dlp zathura zathura-pdf-poppler"
             SERVICES="$SERVICES dbus elogind slim NetworkManager polkitd"
         ;;        
 	sway)
+	    WAY=yes
             PKGS="$PKGS $WAYLAND_PKGS abiword acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brightnessctl btop ca-certificates cargo cups cups-browsed curl dunst elogind epson-inkjet-printer-escpr ethtool feh firefox flashrom font-awesome6 font-hack-ttf foot geary gettext git github-cli gmrun gnumeric grim gufw htop inxi lxappearance mousepad mpv nano ncspot NetworkManager network-manager-applet nerd-fonts-symbols-ttf neofetch nextcloud-client octoxbps papirus-icon-theme pavucontrol pcmanfm polkit pcsc-ccid pcsc-tools pcsclite python3-pip ranger rofi rust sddm smartmontools sway swaybg swayidle swaylock SwayNotificationCenter system-config-printer tlp tlp-rdw transmission-gtk transset udiskie ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree Waybar wget wlsunset wmenu xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xterm yt-dlp zathura zathura-pdf-poppler"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
@@ -210,7 +240,11 @@ indicators = ~host;~spacer;~clock;~spacer;~layout;~session;~a11y;~power
 EOF
     fi
 
-    if [ "$XORG_PKGS" = yes ]; then
+    if [ "$DWM" = yes ]; then
+        include_dwm
+    fi
+
+    if [ "$X11" = yes ]; then
         include_x11
     fi
 
