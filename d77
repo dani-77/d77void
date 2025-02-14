@@ -71,42 +71,35 @@ include_installer() {
 
 include_way() {
 	mkdir -p "$INCLUDEDIR"/etc/skel
-	cp -r skel/* "$INCLUDEDIR"/etc/skel/
-	cp -r skel/.* "$INCLUDEDIR"/etc/skel/
-	cp sddm.conf "$INCLUDEDIR"/etc
-	cp wswap-way "$INCLUDEDIR"/usr/bin/
-	cp rofi-power-menu "$INCLUDEDIR"/usr/bin/
+	cp -r $variant/skel/* "$INCLUDEDIR"/etc/skel/
+	cp -r $variant/skel/.* "$INCLUDEDIR"/etc/skel/
+	cp $variant/skel/sddm.conf "$INCLUDEDIR"/etc
+	mkdir -p "$INCLUDEDIR"/usr/bin
+	cp $variant/wswap-way "$INCLUDEDIR"/usr/bin/
+	cp $variant/rofi-power-menu "$INCLUDEDIR"/usr/bin/
 	mkdir -p "$INCLUDEDIR"/usr/share/sddm/themes
-	cp -r slice "$INCLUDEDIR"/usr/share/sddm/themes/
+	cp -r $variant/slice "$INCLUDEDIR"/usr/share/sddm/themes/
 	mkdir -p "$INCLUDEDIR"/usr/share/sddm/faces
-	cp anon.face.icon "$INCLUDEDIR"/usr/share/sddm/faces/
+	cp $variant/anon.face.icon "$INCLUDEDIR"/usr/share/sddm/faces/
 	mkdir -p "$INCLUDEDIR"/usr/share/polkit-1/rules.d
-	cp 50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/
+	cp $variant/50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/
 	mkdir -p "$INCLUDEDIR"/usr/share/void-artwork
-	cp splash.png "$INCLUDEDIR"/usr/share/void-artwork
-    else
-        echo skel not found >&2
-        exit 1
-    fi
+	cp $variant/splash.png "$INCLUDEDIR"/usr/share/void-artwork
 }	
 
 include_x11() {
 	mkdir -p "$INCLUDEDIR"/etc/skel
-	cp -r skel/* "$INCLUDEDIR"/etc/skel/
-	cp -r skel/.* "$INCLUDEDIR"/etc/skel/
-	cp slim.conf "$INCLUDEDIR"/etc
-	cp wswap-X "$INCLUDEDIR"/usr/bin/
-	cp rofi-power-menu "$INCLUDEDIR"/usr/bin/
+	cp -r $variant/skel/* "$INCLUDEDIR"/etc/skel/
+	cp -r $variant/skel/.* "$INCLUDEDIR"/etc/skel/
+	cp $variant/slim.conf "$INCLUDEDIR"/etc
+	cp $variant/wswap-X "$INCLUDEDIR"/usr/bin/
+	cp $variant/rofi-power-menu "$INCLUDEDIR"/usr/bin/
 	mkdir -p "$INCLUDEDIR"/usr/share/slim/themes
-	cp -r greeny_dark "$INCLUDEDIR"/usr/share/slim/themes/
+	cp -r $variant/greeny_dark "$INCLUDEDIR"/usr/share/slim/themes/
 	mkdir -p "$INCLUDEDIR"/usr/share/polkit-1/rules.d
-	cp 50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/
+	cp $variant/50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/
 	mkdir -p "$INCLUDEDIR"/usr/share/void-artwork
-	cp splash.png "$INCLUDEDIR"/usr/share/void-artwork/
-   else
-        echo skel not found >&2
-        exit 1
-    fi
+	cp $variant/splash.png "$INCLUDEDIR"/usr/share/void-artwork/
 }	
 
 setup_pipewire() {
@@ -142,6 +135,7 @@ build_variant() {
             GFX_PKGS="xorg-video-drivers"
             GFX_WL_PKGS="mesa-dri"
             WANT_INSTALLER=yes
+	    WAY=yes
             TARGET_ARCH="$ARCH"
             ;;
         aarch64*)
@@ -220,7 +214,7 @@ EOF
         include_x11
     fi
 
-    if [ "$WAYLAND_PKGS" = yes ]; then
+    if [ "$WAY" = yes ]; then
         include_way
     fi
 
