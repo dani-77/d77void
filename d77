@@ -1,5 +1,4 @@
 #!/bin/bash
-#Licensed under GPL-3 Daniel Azevedo (dani-77) daniazevedo77@posteo.net
 
 set -eu
 
@@ -18,11 +17,13 @@ usage() {
 
 	Wrapper script around mklive.sh for several standard flavors of live images.
 	Adds void-installer and other helpful utilities to the generated images.
+        
+	adaptation of mkiso.sh by Daniel Azevedo (dani-77) 
 
 	OPTIONS
 	 -a <arch>     Set architecture (or platform) in the image
 	 -b <variant>  One of base, dwm, fluxbox, hyprland, labwc, openbox or sway. 
-		       May be specified multiple times to build multiple variants.
+               May be specified multiple times to build multiple variants.
 	 -d <date>     Override the datestamp on the generated image (YYYYMMDD format)
 	 -t <arch-date-variant>
 	               Equivalent to setting -a, -b, and -d
