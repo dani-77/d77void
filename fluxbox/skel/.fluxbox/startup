@@ -25,7 +25,7 @@ nm-applet &
 udiskie -at &
 conky -c .conkyrc &
 conky -c .conkyrc1 &
-fbsetbg -f Wallpaper/wall_macos1.jpg &
+fbsetbg -f Wallpaper/background2.png &
 xrdb merge ~/.Xresources &
 #setxkbmap de deadtilde &
 /usr/bin/octoxbps-notifier &

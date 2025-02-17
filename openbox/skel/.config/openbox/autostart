@@ -7,7 +7,7 @@ sxhkd -c ~/.config/sxhkd/sxhkdrc &
 udiskie -at &
 conky -c .conkyrc &
 conky -c .conkyrc1 &
-feh --bg-fill --randomize ~/Wallpaper/ &
+feh --bg-fill  ~/Wallpaper/background2.png &
 xrdb merge ~/.Xresources &
 #setxkbmap de deadtilde &
 /usr/bin/octoxbps-notifier &
