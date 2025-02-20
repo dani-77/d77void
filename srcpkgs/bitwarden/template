@@ -1,7 +1,7 @@
 # Template file for 'bitwarden'
 pkgname=bitwarden
 version=2025.2.0
-revision=1
+revision=2
 hostmakedepends="bsdtar"
 short_desc="Bitwarden desktop client"
 maintainer="dani-77 <daniazevedo77@posteo.net>"
@@ -11,6 +11,7 @@ distfiles="https://github.com/bitwarden/clients/releases/download/desktop-v${ver
 checksum=7eda862c6bf6602eefddcf26844e116b2ac3d09ec063f27ff7ef43594a2e2dcd
 
 do_install() {
+	vmkdir /usr
+	vcopy usr/* /usr/
 	vcopy "*" /
-
 }
