@@ -1,0 +1,50 @@
+# Template file for 'calamares'
+pkgname=calamares
+version=3.3.9
+revision=2
+build_style=cmake
+repository=cereus-extra
+configure_args="
+    -DWITH_PYTHON:BOOL=ON
+    -DWITH_QT6:BOOL=ON
+    -DINSTALL_CONFIG:BOOL=ON
+    -DINSTALL_POLKIT:BOOL=ON
+    -DBoost_NO_BOOST_CMAKE=ON
+    -DBUILD_APPSTREAM:BOOL=OFF
+    -DBUILD_APPDATA:BOOL=OFF
+    -DCMAKE_BUILD_TYPE=Release
+    -DSKIP_MODULES='webview;interactiveterminal;services-systemd;dummyprocess;dummypython;dummycpp;dummypythonqt;oemid;tracking;packagechooser;'"
+hostmakedepends="git extra-cmake-modules pkg-config gettext
+    ckbcomp kf6-kcoreaddons kdelibs4support python3-yaml clang qt6-tools"
+makedepends="python3-devel python3-jsonschema yaml-cpp-devel qt6-base-devel python3-devel kpmcore-devel
+    qt6-tools-devel qt6-translations qt6-svg-devel libpwquality-devel"
+depends="kf6-kconfig kf6-kcoreaddons kf6-kiconthemes kf6-ki18n kf6-kio yaml-cpp kpmcore boost ckbcomp
+    hardinfo qt6-svg polkit-qt6 gtk-update-icon-cache
+    squashfs-tools libpwquality icu"
+short_desc="Distribution-independent installer framework"
+maintainer="Kevin Figueroa <kfdevart@disroot.org>"
+license="GPL-3.0-or-later"
+homepage="https://calamares.io"
+distfiles="https://github.com/${pkgname}/${pkgname}/releases/download/v${version}/${pkgname}-${version}.tar.gz"
+checksum=d8f70fa682ca732f448c7033e66c5d4f747161031f74f46778e20728ceff6b45
+
+case ${XBPS_TARGET_MACHINE} in
+	*-musl)
+		depends+=" musl-locales" ;;
+esac
+
+pre_configure() {
+    vsed -i -e "s/desired_size = 512 \* 1024 \* 1024  \# 512MiB/desired_size = 512 \* 1024 \* 1024 \* 4  \# 2048MiB/" src/modules/fstab/main.py
+    vsed -i 's/services-systemd/services-runit/g' settings.conf
+}
+
+post_install() {
+    vmkdir etc/polkit-1/rules.d/
+    vinstall ${FILESDIR}/49-nopasswd-calamares.rules 644 etc/polkit-1/rules.d/
+
+    for license in BSD-2-Clause CC-BY-4.0 CC0-1.0 GPL-3.0-or-later LGPL-2.1-only LGPL-3.0-or-later MIT; do
+   	 vlicense LICENSES/${license}.txt
+    done
+
+    vbin build/loadmodule
+}

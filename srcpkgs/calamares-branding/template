@@ -1,0 +1,23 @@
+# Template file for 'calamares-branding'
+pkgname=calamares-branding
+version=2023.01.31
+revision=1
+_brandingdir="etc/calamares/branding/cereus"
+repository="cereus-core"
+short_desc="Calamares branding for Cereus Linux"
+maintainer="Kevin Figueroa <kfdevart@disroot.org>"
+license="CC-BY-SA-4.0"
+homepage="https://codeberg.org/cereus-linux/artwork/src/branch/main/calamares-branding"
+_commit="7d2c92125dae9db643e490194fd6188d322427d5"
+distfiles="https://codeberg.org/cereus-linux/artwork/archive/${_commit}.tar.gz"
+checksum=22cbf5270ccff6ca876d88fbcfc5c7438411c83b7498741d116659f2034f5d8f
+
+do_install() {
+	vmkdir ${_brandingdir}
+	vcopy ${pkgname}/*.png ${_brandingdir}
+    vinstall ${pkgname}/show.qml 0644 ${_brandingdir}
+	cp Branding/cereus-logo-512x512.png Branding/logo.png
+	vinstall Branding/logo.png 0644 ${_brandingdir}
+	vinstall ${pkgname}/branding.desc 0644 ${_brandingdir}
+	vlicense LICENSE
+}

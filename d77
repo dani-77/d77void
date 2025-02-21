@@ -6,7 +6,7 @@ set -eu
 
 PROGNAME=$(basename "$0")
 ARCH=$(uname -m)
-IMAGES="base"
+IMAGES="base dwm fluxbox hyprland labwc openbox sway"
 TRIPLET=
 REPO=
 DATE=$(date -u +%Y%m%d)
@@ -71,6 +71,7 @@ include_installer() {
 }
 
 include_common() {
+	mkdir -p "$INCLUDEDIR"/etc/default
 	mkdir -p "$INCLUDEDIR"/etc/skel
 	mkdir -p "$INCLUDEDIR"/usr/bin
 	mkdir -p "$INCLUDEDIR"/usr/share/polkit-1/rules.d
@@ -79,6 +80,7 @@ include_common() {
 	cp -r $variant/skel/.* "$INCLUDEDIR"/etc/skel/
 	cp $variant/50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/
 	cp $variant/splash.png "$INCLUDEDIR"/usr/share/void-artwork/
+	cp $variant/grub "$INCLUDEDIR"/etc/default/
 }
 
 include_way() {
