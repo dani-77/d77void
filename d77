@@ -16,7 +16,7 @@ usage() {
 	Usage: $PROGNAME [options ...] [-- mklive options ...]
 
 	Wrapper script around mklive.sh for several standard flavors of live images.
-	Adds void-installer and other helpful utilities to the generated images.
+	Adds d77void-installer and other helpful utilities to the generated images.
         
 	adaptation of mkiso.sh by Daniel Azevedo (dani-77) 
 
@@ -62,7 +62,7 @@ include_installer() {
         MKLIVE_VERSION="$(PROGNAME='' version)"
         installer=$(mktemp)
         sed "s/@@MKLIVE_VERSION@@/${MKLIVE_VERSION}/" installer.sh > "$installer"
-        install -Dm755 "$installer" "$INCLUDEDIR"/usr/bin/void-installer
+        install -Dm755 "$installer" "$INCLUDEDIR"/usr/bin/d77void-installer
         rm "$installer"
     else
         echo installer.sh not found >&2
@@ -252,8 +252,8 @@ EOF
         include_installer
     else
         mkdir -p "$INCLUDEDIR"/usr/bin
-        printf "#!/bin/sh\necho 'void-installer is not supported on this live image'\n" > "$INCLUDEDIR"/usr/bin/void-installer
-        chmod 755 "$INCLUDEDIR"/usr/bin/void-installer
+        printf "#!/bin/sh\necho 'd77void-installer is not supported on this live image'\n" > "$INCLUDEDIR"/usr/bin/d77void-installer
+        chmod 755 "$INCLUDEDIR"/usr/bin/d77void-installer
     fi
 
     if [ "$variant" != base ]; then
