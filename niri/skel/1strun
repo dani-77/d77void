@@ -1,5 +1,0 @@
-#!/bin/bash
-
-sudo cp sddm.conf /etc/
-sudo xbps-install -Syu
-
