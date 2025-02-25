@@ -3,7 +3,6 @@ pkgname=calamares
 version=3.3.9
 revision=2
 build_style=cmake
-repository=cereus-extra
 configure_args="
     -DWITH_PYTHON:BOOL=ON
     -DWITH_QT6:BOOL=ON

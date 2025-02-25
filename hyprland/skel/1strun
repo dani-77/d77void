@@ -1,6 +1,5 @@
 #!/bin/bash
 
-sudo cp sddm.conf /etc/
 sudo cp hyprland-void.conf /etc/xbps.d/
 sudo xbps-install -Syu
 

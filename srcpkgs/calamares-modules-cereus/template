@@ -4,7 +4,6 @@ version=2023.02.15
 revision=1
 depends="python3-setuptools"
 _modules_dir="usr/lib/calamares/modules/"
-repository="cereus-core"
 _commit="1b0ce33acc98c5caf06065ad20dd8077acdd9526"
 short_desc="Additional Cereus Linux modules for Calamares installer"
 maintainer="Kevin Figueroa <kfdevart@disroot.org>"
