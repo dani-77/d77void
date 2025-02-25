@@ -31,8 +31,8 @@ Presentation
     Slide {
 
         Image {
-            id: background
-            source: "squid.png"
+            id: squid
+            source: "1squid.png"
             width: 200; height: 200
             fillMode: Image.PreserveAspectFit
             anchors.centerIn: parent
@@ -54,8 +54,9 @@ Presentation
 
         Image {
             id: background
-            source: "background1.png"
-            width: 640; height: 480
+            source: "2background1.png"
+            width: 1920 
+	    height: 1080
             fillMode: Image.PreserveAspectFit
             anchors.centerIn: parent
         }
@@ -63,9 +64,10 @@ Presentation
     Slide {
 
         Image {
-            id: background
-            source: "desktop.png"
-            width: 640; height: 480
+            id: desktop
+            source: "3desktop.png"
+            width: 1366
+	    height: 768
             fillMode: Image.PreserveAspectFit
             anchors.centerIn: parent
         }

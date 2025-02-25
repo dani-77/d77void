@@ -116,7 +116,7 @@ strings:
     shortProductName:    d77void
     version:             Rolling
     shortVersion:        Rolling
-    versionedName:       d77void Labwc
+    versionedName:       d77void labwc
     shortVersionedName:  d77void
     bootloaderEntryName: d77void
     productUrl:          https://d77void.sourceforge.io
