@@ -16,7 +16,7 @@ set $up k
 set $right l
 
 # Your preferred terminal emulator
-set $term foot
+set $term kitty
 
 # Your preferred application launcher
 set $menu wmenu-run

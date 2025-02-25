@@ -13,7 +13,7 @@
     <default/>
     <!-- Use a different terminal emulator -->
     <keybind key="W-Return">
-      <action name="Execute" command="foot"/>
+      <action name="Execute" command="kitty"/>
     </keybind>
     <keybind key="W-a">
       <action name="Execute" command="rofi -show drun"/>
