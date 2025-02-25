@@ -10,7 +10,7 @@ without a password.
 
 To start the installation please type:
 
-    # void-installer
+    # d77void-installer
 
 and follow the on-screen instructions. To install additional software make
 sure to configure your network interface and then use:
