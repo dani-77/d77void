@@ -26,6 +26,7 @@ strings:
     releaseNotesUrl:     https://d77void.sourceforge.io
     donateUrl:           https://kde.org/community/donations/index.php
 
+images:
     productIcon:         "1squid.png"
     productLogo:         "1squid.png"
     productWelcome:      "languages.png"
