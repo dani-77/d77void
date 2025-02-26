@@ -27,7 +27,7 @@ Presentation
         repeat: true
         onTriggered: nextSlide()
     }
-
+	
     Slide {
 
         Image {
@@ -38,11 +38,11 @@ Presentation
             anchors.centerIn: parent
         }
         Text {
-            anchors.horizontalCenter: background.horizontalCenter
+            anchors.horizontalCenter: squid.horizontalCenter
             anchors.top: background.bottom
             text: "This is a simple installer for d77void.<br/>"+
                   "Void distribution don't have it by default and <br/>"+
-                  "because of some complaints about the default install.<br/>"+
+                  "because of some complaints about the default install <br/>"+
                   "method, this was created."
             wrapMode: Text.WordWrap
             width: presentation.width
@@ -60,6 +60,16 @@ Presentation
             fillMode: Image.PreserveAspectFit
             anchors.centerIn: parent
         }
+        Text {
+            anchors.horizontalCenter: background.horizontalCenter
+            anchors.top: background.bottom
+            text: "One of the few original backgrounds <br/>"+
+                  "created for d77."
+            wrapMode: Text.WordWrap
+            width: presentation.width
+            horizontalAlignment: Text.Center
+        }
+    }
 
     Slide {
 
@@ -71,7 +81,16 @@ Presentation
             fillMode: Image.PreserveAspectFit
             anchors.centerIn: parent
         }
-
+        Text {
+            anchors.horizontalCenter: desktop.horizontalCenter
+            anchors.top: background.bottom
+            text: "The usual labwc appearance after install."
+            wrapMode: Text.WordWrap
+            width: presentation.width
+            horizontalAlignment: Text.Center
+        }
+    }
+          
     // When this slideshow is loaded as a V1 slideshow, only
     // activatedInCalamares is set, which starts the timer (see above).
     //
