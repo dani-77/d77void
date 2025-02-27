@@ -70,6 +70,24 @@ include_installer() {
     fi
 }
 
+setup_pipewire() {
+    PKGS="$PKGS pipewire alsa-pipewire"
+    case "$ARCH" in
+        asahi*)
+            PKGS="$PKGS asahi-audio"
+            SERVICES="$SERVICES speakersafetyd"
+            ;;
+    esac
+    mkdir -p "$INCLUDEDIR"/etc/xdg/autostart
+    ln -sf /usr/share/applications/pipewire.desktop "$INCLUDEDIR"/etc/xdg/autostart/
+    mkdir -p "$INCLUDEDIR"/etc/pipewire/pipewire.conf.d
+    ln -sf /usr/share/examples/wireplumber/10-wireplumber.conf "$INCLUDEDIR"/etc/pipewire/pipewire.conf.d/
+    ln -sf /usr/share/examples/pipewire/20-pipewire-pulse.conf "$INCLUDEDIR"/etc/pipewire/pipewire.conf.d/
+    mkdir -p "$INCLUDEDIR"/etc/alsa/conf.d
+    ln -sf /usr/share/alsa/alsa.conf.d/50-pipewire.conf "$INCLUDEDIR"/etc/alsa/conf.d
+    ln -sf /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf "$INCLUDEDIR"/etc/alsa/conf.d
+}
+
 include_common() {
 	mkdir -p "$INCLUDEDIR"/etc
 	mkdir -p "$INCLUDEDIR"/etc/default
@@ -77,9 +95,8 @@ include_common() {
 	mkdir -p "$INCLUDEDIR"/usr/bin
 	mkdir -p "$INCLUDEDIR"/usr/share/polkit-1/rules.d
 	mkdir -p "$INCLUDEDIR"/usr/share/void-artwork
-	cp -r $variant/calamares "$INCLUDEDIR"/etc/calamares
-	cp -r $variant/skel/* "$INCLUDEDIR"/etc/skel/
-	cp -r $variant/skel/.* "$INCLUDEDIR"/etc/skel/
+	cp -r $variant/calamares "$INCLUDEDIR"/etc/
+	cp -r $variant/skel "$INCLUDEDIR"/etc/skel/
 	cp $variant/50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/
 	cp $variant/splash.png "$INCLUDEDIR"/usr/share/void-artwork/
 	cp $variant/grub "$INCLUDEDIR"/etc/default/
@@ -88,7 +105,7 @@ include_common() {
 include_way() {
 	mkdir -p "$INCLUDEDIR"/usr/share/sddm/faces
 	mkdir -p "$INCLUDEDIR"/usr/share/sddm/themes
-	cp $variant/skel/sddm.conf "$INCLUDEDIR"/etc
+	cp $variant/sddm.conf "$INCLUDEDIR"/etc/
 	cp $variant/wswap-way "$INCLUDEDIR"/usr/bin/
 	cp $variant/rofi-power-menu "$INCLUDEDIR"/usr/bin/
 	cp -r $variant/slice "$INCLUDEDIR"/usr/share/sddm/themes/
@@ -98,7 +115,7 @@ include_way() {
 include_x11() {
 	mkdir -p "$INCLUDEDIR"/usr/share/sddm/faces
 	mkdir -p "$INCLUDEDIR"/usr/share/sddm/themes
-	cp $variant/skel/sddm.conf "$INCLUDEDIR"/etc
+	cp $variant/sddm.conf "$INCLUDEDIR"/etc/
 	cp $variant/rofi-power-menu "$INCLUDEDIR"/usr/bin/
 	cp -r $variant/slice "$INCLUDEDIR"/usr/share/sddm/themes/
 	cp $variant/anon.face.icon "$INCLUDEDIR"/usr/share/sddm/faces/
@@ -118,33 +135,15 @@ include_dwm() {
 	cp $variant/splash.png "$INCLUDEDIR"/usr/share/void-artwork/
 	mkdir -p "$INCLUDEDIR"/usr/share/terminfo/s
 	mkdir -p "$INCLUDEDIR"/usr/share/slim/themes
-	cp $variant/slim.conf "$INCLUDEDIR"/etc
+	cp $variant/slim.conf "$INCLUDEDIR"/etc/
 	cp $variant/dwm "$INCLUDEDIR"/usr/bin/
 	cp $variant/slock "$INCLUDEDIR"/usr/bin/
 	cp $variant/slstatus "$INCLUDEDIR"/usr/bin/
-	cp $variant/st "$INCLUDEDIR"/usr/bin
+	cp $variant/st "$INCLUDEDIR"/usr/bin/
 	cp $variant/st-* "$INCLUDEDIR"/usr/share/terminfo/s/
 	cp $variant/wswap-X "$INCLUDEDIR"/usr/bin/
 	cp $variant/power_menu "$INCLUDEDIR"/usr/bin/
 	cp -r $variant/greeny_dark "$INCLUDEDIR"/usr/share/slim/themes/
-}
-
-setup_pipewire() {
-    PKGS="$PKGS pipewire alsa-pipewire"
-    case "$ARCH" in
-        asahi*)
-            PKGS="$PKGS asahi-audio"
-            SERVICES="$SERVICES speakersafetyd"
-            ;;
-    esac
-    mkdir -p "$INCLUDEDIR"/etc/xdg/autostart
-    ln -sf /usr/share/applications/pipewire.desktop "$INCLUDEDIR"/etc/xdg/autostart/
-    mkdir -p "$INCLUDEDIR"/etc/pipewire/pipewire.conf.d
-    ln -sf /usr/share/examples/wireplumber/10-wireplumber.conf "$INCLUDEDIR"/etc/pipewire/pipewire.conf.d/
-    ln -sf /usr/share/examples/pipewire/20-pipewire-pulse.conf "$INCLUDEDIR"/etc/pipewire/pipewire.conf.d/
-    mkdir -p "$INCLUDEDIR"/etc/alsa/conf.d
-    ln -sf /usr/share/alsa/alsa.conf.d/50-pipewire.conf "$INCLUDEDIR"/etc/alsa/conf.d
-    ln -sf /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf "$INCLUDEDIR"/etc/alsa/conf.d
 }
 
 build_variant() {
