@@ -71,6 +71,25 @@ Presentation
     Slide {
 
         Image {
+            id: octo
+            source: "4octo.png"
+            width: 640
+	    height: 360
+            fillMode: Image.PreserveAspectFit
+            anchors.centerIn: parent
+        }
+        Text {
+            anchors.horizontalCenter: desktop.horizontalCenter
+            anchors.top: background.bottom
+            text: "octoxbps as default store"
+            wrapMode: Text.WordWrap
+            width: presentation.width
+            horizontalAlignment: Text.Center
+        }
+    }
+    Slide {
+
+        Image {
             id: desktop
             source: "3desktop.png"
             width: 640
