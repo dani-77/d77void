@@ -40,10 +40,8 @@ Presentation
         Text {
             anchors.horizontalCenter: squid.horizontalCenter
             anchors.top: background.bottom
-            text: "This is a simple installer for d77void.<br/>"+
-                  "Void distribution don't have it by default and <br/>"+
-                  "because of some complaints about the default install <br/>"+
-                  "method, this was created."
+            text: "This is a simple Calamares installer for d77void.<br/>"+
+                  "Void distribution don't have it by default and because of some complaints about the default install method, this was created."
             wrapMode: Text.WordWrap
             width: presentation.width
             horizontalAlignment: Text.Center
@@ -63,8 +61,7 @@ Presentation
         Text {
             anchors.horizontalCenter: background.horizontalCenter
             anchors.top: background.bottom
-            text: "One of the few original backgrounds <br/>"+
-                  "created for d77."
+            text: "One of the few original backgrounds created for d77."
             wrapMode: Text.WordWrap
             width: presentation.width
             horizontalAlignment: Text.Center

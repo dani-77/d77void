@@ -98,6 +98,7 @@ include_common() {
 	mkdir -p "$INCLUDEDIR"/usr/share/sddm/themes
 	cp -r ./common/calamares "$INCLUDEDIR"/etc/
 	cp -r $variant/skel "$INCLUDEDIR"/etc/
+	cp ./common/sddm.conf "$INCLUDEDIR"/etc/
 	cp ./common/grub "$INCLUDEDIR"/etc/default/
 	cp ./common/rofi-power-menu "$INCLUDEDIR"/usr/bin/
 	cp ./common/50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/
