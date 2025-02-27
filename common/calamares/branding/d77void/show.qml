@@ -55,8 +55,8 @@ Presentation
         Image {
             id: background
             source: "2background1.png"
-            width: 1920 
-	    height: 1080
+            width: 640 
+	    height: 360
             fillMode: Image.PreserveAspectFit
             anchors.centerIn: parent
         }
@@ -76,8 +76,8 @@ Presentation
         Image {
             id: desktop
             source: "3desktop.png"
-            width: 1366
-	    height: 768
+            width: 640
+	    height: 360
             fillMode: Image.PreserveAspectFit
             anchors.centerIn: parent
         }

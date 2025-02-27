@@ -102,8 +102,8 @@ include_common() {
 	cp ./common/rofi-power-menu "$INCLUDEDIR"/usr/bin/
 	cp ./common/50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/
 	cp ./common/splash.png "$INCLUDEDIR"/usr/share/void-artwork/
-	cp ./common/slice "$INCLUDEDIR"/usr/share/sddm/themes/
 	cp ./common/anon.face.icon "$INCLUDEDIR"/usr/share/sddm/faces/
+	cp -r ./common/slice "$INCLUDEDIR"/usr/share/sddm/themes/
 }
 
 include_way() {
