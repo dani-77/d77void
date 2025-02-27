@@ -96,7 +96,7 @@ include_common() {
 	mkdir -p "$INCLUDEDIR"/usr/share/polkit-1/rules.d
 	mkdir -p "$INCLUDEDIR"/usr/share/void-artwork
 	cp -r $variant/calamares "$INCLUDEDIR"/etc/
-	cp -r $variant/skel "$INCLUDEDIR"/etc/skel/
+	cp -r $variant/skel "$INCLUDEDIR"/etc/
 	cp $variant/50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/
 	cp $variant/splash.png "$INCLUDEDIR"/usr/share/void-artwork/
 	cp $variant/grub "$INCLUDEDIR"/etc/default/
