@@ -16,7 +16,7 @@ strings:
     shortProductName:    d77void
     version:             Rolling
     shortVersion:        Rolling
-    versionedName:       d77void labwc
+    versionedName:       d77void
     shortVersionedName:  d77void
     bootloaderEntryName: d77void
 

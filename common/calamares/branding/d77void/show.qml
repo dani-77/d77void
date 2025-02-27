@@ -78,15 +78,17 @@ Presentation
             fillMode: Image.PreserveAspectFit
             anchors.centerIn: parent
         }
-        Text {
-            anchors.horizontalCenter: desktop.horizontalCenter
-            anchors.top: background.bottom
-            text: "octoxbps as default store"
-            wrapMode: Text.WordWrap
-            width: presentation.width
-            horizontalAlignment: Text.Center
-        }
+
+#        Text {
+#            anchors.horizontalCenter: desktop.horizontalCenter
+#            anchors.top: background.bottom
+#            text: "octoxbps as default store"
+#            wrapMode: Text.WordWrap
+#            width: presentation.width
+#            horizontalAlignment: Text.Center
+#        }
     }
+
     Slide {
 
         Image {
@@ -97,14 +99,14 @@ Presentation
             fillMode: Image.PreserveAspectFit
             anchors.centerIn: parent
         }
-        Text {
-            anchors.horizontalCenter: desktop.horizontalCenter
-            anchors.top: background.bottom
-            text: "The usual labwc appearance after install."
-            wrapMode: Text.WordWrap
-            width: presentation.width
-            horizontalAlignment: Text.Center
-        }
+ #       Text {
+ #           anchors.horizontalCenter: desktop.horizontalCenter
+ #           anchors.top: background.bottom
+ #           text: "The usual labwc appearance after install."
+ #           wrapMode: Text.WordWrap
+ #           width: presentation.width
+ #           horizontalAlignment: Text.Center
+ #       }
     }
           
     // When this slideshow is loaded as a V1 slideshow, only
