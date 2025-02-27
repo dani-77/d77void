@@ -91,57 +91,50 @@ setup_pipewire() {
 include_common() {
 	mkdir -p "$INCLUDEDIR"/etc
 	mkdir -p "$INCLUDEDIR"/etc/default
-	mkdir -p "$INCLUDEDIR"/etc/skel
 	mkdir -p "$INCLUDEDIR"/usr/bin
 	mkdir -p "$INCLUDEDIR"/usr/share/polkit-1/rules.d
 	mkdir -p "$INCLUDEDIR"/usr/share/void-artwork
-	cp -r $variant/calamares "$INCLUDEDIR"/etc/
+	mkdir -p "$INCLUDEDIR"/usr/share/sddm/faces
+	mkdir -p "$INCLUDEDIR"/usr/share/sddm/themes
+	cp -r ./common/calamares "$INCLUDEDIR"/etc/
 	cp -r $variant/skel "$INCLUDEDIR"/etc/
-	cp $variant/50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/
-	cp $variant/splash.png "$INCLUDEDIR"/usr/share/void-artwork/
-	cp $variant/grub "$INCLUDEDIR"/etc/default/
+	cp ./common/grub "$INCLUDEDIR"/etc/default/
+	cp ./common/rofi-power-menu "$INCLUDEDIR"/usr/bin/
+	cp ./common/50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/
+	cp ./common/splash.png "$INCLUDEDIR"/usr/share/void-artwork/
+	cp ./common/slice "$INCLUDEDIR"/usr/share/sddm/themes/
+	cp ./common/anon.face.icon "$INCLUDEDIR"/usr/share/sddm/faces/
 }
 
 include_way() {
-	mkdir -p "$INCLUDEDIR"/usr/share/sddm/faces
-	mkdir -p "$INCLUDEDIR"/usr/share/sddm/themes
-	cp $variant/sddm.conf "$INCLUDEDIR"/etc/
-	cp $variant/wswap-way "$INCLUDEDIR"/usr/bin/
-	cp $variant/rofi-power-menu "$INCLUDEDIR"/usr/bin/
-	cp -r $variant/slice "$INCLUDEDIR"/usr/share/sddm/themes/
-	cp $variant/anon.face.icon "$INCLUDEDIR"/usr/share/sddm/faces/
+	cp ./common/wswap-way "$INCLUDEDIR"/usr/bin/
 }	
 
 include_x11() {
-	mkdir -p "$INCLUDEDIR"/usr/share/sddm/faces
-	mkdir -p "$INCLUDEDIR"/usr/share/sddm/themes
-	cp $variant/sddm.conf "$INCLUDEDIR"/etc/
-	cp $variant/rofi-power-menu "$INCLUDEDIR"/usr/bin/
-	cp -r $variant/slice "$INCLUDEDIR"/usr/share/sddm/themes/
-	cp $variant/anon.face.icon "$INCLUDEDIR"/usr/share/sddm/faces/
-	cp $variant/wswap-X "$INCLUDEDIR"/usr/bin/
+	cp ./common/wswap-X "$INCLUDEDIR"/usr/bin/
 }	
 
 include_dwm() {
+	mkdir -p "$INCLUDEDIR"/etc
 	mkdir -p "$INCLUDEDIR"/etc/default
-	mkdir -p "$INCLUDEDIR"/etc/skel
 	mkdir -p "$INCLUDEDIR"/usr/bin
 	mkdir -p "$INCLUDEDIR"/usr/share/polkit-1/rules.d
 	mkdir -p "$INCLUDEDIR"/usr/share/void-artwork
-	cp -r $variant/calamares "$INCLUDEDIR"/etc/calamares
-	cp -r $variant/skel "$INCLUDEDIR"/etc/
-	cp $variant/50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/
-	cp $variant/splash.png "$INCLUDEDIR"/usr/share/void-artwork/
 	mkdir -p "$INCLUDEDIR"/usr/share/terminfo/s
 	mkdir -p "$INCLUDEDIR"/usr/share/slim/themes
+	cp -r $variant/skel "$INCLUDEDIR"/etc/
+	cp -r ./common/calamares "$INCLUDEDIR"/etc/
 	cp $variant/slim.conf "$INCLUDEDIR"/etc/
+	cp ./common/grub "$INCLUDEDIR"/etc/default/
 	cp $variant/dwm "$INCLUDEDIR"/usr/bin/
 	cp $variant/slock "$INCLUDEDIR"/usr/bin/
 	cp $variant/slstatus "$INCLUDEDIR"/usr/bin/
 	cp $variant/st "$INCLUDEDIR"/usr/bin/
-	cp $variant/st-* "$INCLUDEDIR"/usr/share/terminfo/s/
 	cp $variant/wswap-X "$INCLUDEDIR"/usr/bin/
 	cp $variant/power_menu "$INCLUDEDIR"/usr/bin/
+	cp $variant/50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/
+	cp $variant/splash.png "$INCLUDEDIR"/usr/share/void-artwork/
+	cp $variant/st-* "$INCLUDEDIR"/usr/share/terminfo/s/
 	cp -r $variant/greeny_dark "$INCLUDEDIR"/usr/share/slim/themes/
 }
 
