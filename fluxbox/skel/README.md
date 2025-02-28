@@ -20,6 +20,14 @@ I would like to thank Calamares team, Kevin Figueroa (Cereus Linux) and johna1 (
 
 I would like to express my gratitude and say a big thank you to Rúben Gomez (Youtube channel Ruben_&_Linux_:~) for all the encouragement.
 
+To install with Calamares:
+
+```
+su
+
+calamares
+```
+
 # 1st run:
 
 ## Conky
@@ -37,7 +45,7 @@ ip a
 The one with w??? is the correct name. Change it this way:
 
 ```
-sed -i 's|wlp21s0|w???|' .conkyrc
+sed -i 's|wlp21s0|w???|g' .conkyrc
 ```
 
 In case battery is not working properly, swap BAT0 to BAT1 this way; open a terminal and type:

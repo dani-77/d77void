@@ -20,6 +20,14 @@ I would like to thank Calamares team, Kevin Figueroa (Cereus Linux) and johna1 (
 
 I would like to express my gratitude and say a big thank you to Rúben Gomez (Youtube channel Ruben_&_Linux_:~) for all the encouragement.
 
+To install with Calamares:
+
+```
+su
+
+calamares
+```
+
 ## Keybinds
 
 super + return -> terminal
