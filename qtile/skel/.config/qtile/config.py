@@ -200,7 +200,7 @@ screens = [
 		widget.Volume(fmt="  {}",
                 mouse_callbacks={'Button3': lazy.spawn('pavucontrol')}),
 		widget.Battery(format = '  {percent:2.0%} {hour:d}:{min:02d}'),
-		widget.KeyboardLayout(configured_keyboards = ["de deadtilde", "pt"],font = "Hack",fontsize = "12",fmt = '  {}'),
+		widget.KeyboardLayout(configured_keyboards = ["pt", "us", "de deadtilde"],font = "Hack",fontsize = "12",fmt = '  {}'),
 		widget.CheckUpdates(distro = 'Void',no_update_string='  ',
 		mouse_callbacks={'Button1': lazy.spawn('octoxbps')}),
                 widget.QuickExit(default_text=' ', countdown_format='{}'),
