@@ -28,23 +28,19 @@ from libqtile import bar, layout, qtile, widget, hook
 from libqtile.backend.wayland import InputConfig
 from libqtile.config import Click, Drag, Group, Key, Match, Screen, Rule
 from libqtile.lazy import lazy
-from libqtile.utils import guess_terminal, send_notification
-import cairocffi
+from libqtile.utils import guess_terminal
+from qtile_extras.resources import wallpapers
+from qtile_extras import widget
 import os
 import subprocess
-
+ 
 mod = "mod4"
 terminal = "kitty"
 
-
 @hook.subscribe.startup_once
 def autostart():
-    script = os.path.expanduser("~/.config/qtile/autostart.sh")
-    subprocess.run([script])
-
-@hook.subscribe.startup
-def run_every_startup():
-    send_notification("qtile", "Startup")
+    home = os.path.expanduser('~/.config/qtile/autostart.sh')
+    subprocess.call(home)
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -97,6 +93,7 @@ keys = [
     Key([mod], "a", lazy.spawn("rofi -show drun"), desc="Rofi Menu"),
     Key([mod], "b", lazy.spawn("wswap-way"), desc="Swap Wallpaper"),
     Key([mod], "f", lazy.spawn("pcmanfm"), desc="Filemanager"),
+    Key([mod], "m", lazy.spawn("geary"), desc="Web browser"),
     Key([mod], "x", lazy.spawn("rofi -show power-menu -modi power-menu:rofi-power-menu"), desc="Rofi PowerMenu"),
     Key([mod], "w", lazy.spawn("firefox"), desc="Web browser"),
     Key([], "XF86AudioRaiseVolume",lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%")),
@@ -194,15 +191,19 @@ screens = [
 		widget.Spacer(),
 		#widget.StatusNotifier(),
 		#widget.HDD(),
-		widget.CPU(format=" {load_percent}%"),
-		widget.Memory(format="  {MemUsed:.0f}{mm}",interval=1.0),
-		widget.Net(format='  {down:.0f}{down_suffix} ↓↑ {up:.0f}{up_suffix}',update_interval=1.0),
-		widget.Volume(fmt="  {}"),
-		widget.Battery(format = "  {percent:2.0%} - {hour:d}:{min:02d}"),
-		widget.KeyboardLayout(configured_keyboards = ["de deadtilde", "pt"],),
-		#widget.CapsNumLockIndicator(),
-		widget.CheckUpdates(distro = 'Void',no_update_string='  '),
-                widget.QuickExit(default_text=' ', countdown_format='{}'),
+		widget.CPU(format=" {load_percent}%",
+                mouse_callbacks={'Button1': lazy.spawn(terminal + ' --class floating_shell -e htop')}),
+		widget.Memory(format="  {MemUsed:.0f}{mm}",interval=1.0,
+                mouse_callbacks={'Button1': lazy.spawn(terminal + ' --class floating_shell -e htop')}),
+		widget.Net(format='  {down:.0f}{down_suffix} ↓↑ {up:.0f}{up_suffix}',update_interval=1.0,
+                mouse_callbacks={'Button1': lazy.spawn(terminal + ' --class floating_shell -e nmtui')}),
+		widget.Volume(fmt="  {}",
+                mouse_callbacks={'Button3': lazy.spawn('pavucontrol')}),
+		widget.Battery(format = '  {percent:2.0%} {hour:d}:{min:02d}'),
+		widget.KeyboardLayout(configured_keyboards = ["de deadtilde", "pt"],font = "Hack",fontsize = "12",fmt = '  {}'),
+		widget.CheckUpdates(distro = 'Void',no_update_string='  ',
+		mouse_callbacks={'Button1': lazy.spawn('octoxbps')}),
+                widget.QuickExit(default_text=' ', countdown_format='{}'),
             ], 
             24,
 	    background = "#11111b80"
