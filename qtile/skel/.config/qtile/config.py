@@ -93,7 +93,7 @@ keys = [
     Key([mod], "a", lazy.spawn("rofi -show drun"), desc="Rofi Menu"),
     Key([mod], "b", lazy.spawn("wswap-way"), desc="Swap Wallpaper"),
     Key([mod], "f", lazy.spawn("pcmanfm"), desc="Filemanager"),
-    Key([mod], "m", lazy.spawn("geary"), desc="Web browser"),
+    Key([mod], "m", lazy.spawn("geary"), desc="Mail Reader"),
     Key([mod], "x", lazy.spawn("rofi -show power-menu -modi power-menu:rofi-power-menu"), desc="Rofi PowerMenu"),
     Key([mod], "w", lazy.spawn("firefox"), desc="Web browser"),
     Key([], "XF86AudioRaiseVolume",lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%")),
