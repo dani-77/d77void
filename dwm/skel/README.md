@@ -4,7 +4,7 @@ Thank you for trying d77void.
 To run the installer just open a terminal and type:
 
 ```
-sudo void-installer
+sudo d77void-installer
 ```
 
 Note: 
@@ -12,17 +12,31 @@ To maintain the configuration of the live iso, during install, choose local inst
 
 During install, add your user to the storage group. That way udiskie will automount disks.
 
+# Calamares
 
-# 1st run:
+Added Calamares installer to dwm ISO as well; 
 
-After install, to make powermenu work properly run:
+To use it open a terminal and
 
 ```
-sudo chmod u+s /usr/bin/poweroff
-sudo chmod u+s /usr/bin/reboot
+su
+
+calamares
 ```
 
-That way, even non privileged users can use powermenu.
+# News
+
+Among other changes:
+
+-  calamres installer and d77void-installer;
+
+-  sddm replaces slim as login manager;
+
+-  slstatus bar displays only DATE/TIME for super compatibility;
+
+-  new rofi theme;
+
+-  new Wallpapers;
 
 ## Keybinds
 
@@ -55,10 +69,5 @@ super + l -> slock
 super + m -> geary
 
 super + p -> scrot
-
-## Suckless directory
-
-Inside this directory you have all the source code used to compile the programs from suckless, from the window manager (dwm) to a web surfer that is not installed in the iso (surf).
-All the dependencies are already installed in the iso, so, it is just a matter of compile and adapt to your needs.
 
 Have fun!

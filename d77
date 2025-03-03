@@ -116,27 +116,9 @@ include_x11() {
 }	
 
 include_dwm() {
-	mkdir -p "$INCLUDEDIR"/etc
-	mkdir -p "$INCLUDEDIR"/etc/default
 	mkdir -p "$INCLUDEDIR"/usr/bin
-	mkdir -p "$INCLUDEDIR"/usr/share/polkit-1/rules.d
-	mkdir -p "$INCLUDEDIR"/usr/share/void-artwork
-	mkdir -p "$INCLUDEDIR"/usr/share/terminfo/s
-	mkdir -p "$INCLUDEDIR"/usr/share/slim/themes
-	cp -r $variant/skel "$INCLUDEDIR"/etc/
-	cp -r ./common/calamares "$INCLUDEDIR"/etc/
-	cp $variant/slim.conf "$INCLUDEDIR"/etc/
-	cp ./common/grub "$INCLUDEDIR"/etc/default/
-	cp $variant/dwm "$INCLUDEDIR"/usr/bin/
-	cp $variant/slock "$INCLUDEDIR"/usr/bin/
-	cp $variant/slstatus "$INCLUDEDIR"/usr/bin/
-	cp $variant/st "$INCLUDEDIR"/usr/bin/
 	cp $variant/wswap-X "$INCLUDEDIR"/usr/bin/
 	cp $variant/power_menu "$INCLUDEDIR"/usr/bin/
-	cp $variant/50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/
-	cp $variant/splash.png "$INCLUDEDIR"/usr/share/void-artwork/
-	cp $variant/st-* "$INCLUDEDIR"/usr/share/terminfo/s/
-	cp -r $variant/greeny_dark "$INCLUDEDIR"/usr/share/slim/themes/
 }
 
 build_variant() {
@@ -195,8 +177,8 @@ build_variant() {
         ;;
 	dwm)
 	    X11=yes
-	    DWM=no
-            PKGS="$PKGS $XORG_PKGS dwm dmenu st slock slstatus base-devel fontconfig-devel freetype-devel gcr-devel gcr4-devel glibc-devel gtk+3-devel harfbuzz-devel imlib2-devel libX11-devel libXft-devel libXinerama-devel webkit2gtk-devel abiword acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc ca-certificates cmus cups cups-browsed curl dmenu dunst elogind epson-inkjet-printer-escpr ethtool feh firefox font-awesome font-awesome5 font-awesome6 font-hack-ttf geary gettext git github-cli gmrun gnumeric htop inxi lxappearance mousepad mpv nano ncspot NetworkManager nerd-fonts-symbols-ttf neofetch nextcloud-client octoxbps papirus-icon-theme pcmanfm polkit pcsc-ccid pcsc-tools pcsclite ranger redshift rofi scrot slim slock smartmontools sxhkd tlp tlp-rdw transmission-gtk transset udiskie ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree wget xautolock xcompmgr xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf xterm yt-dlp zathura zathura-pdf-poppler"
+	    DWM=yes
+            PKGS="$PKGS $XORG_PKGS $CALAMARES dwm dmenu st slock slstatus base-devel fontconfig-devel freetype-devel gcr-devel gcr4-devel glibc-devel gtk+3-devel harfbuzz-devel imlib2-devel libX11-devel libXft-devel libXinerama-devel webkit2gtk-devel abiword acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc ca-certificates cmus cups cups-browsed curl dmenu dunst elogind epson-inkjet-printer-escpr ethtool feh firefox font-awesome font-awesome5 font-awesome6 font-hack-ttf geary gettext git github-cli gmrun gnumeric htop inxi lxappearance mousepad mpv nano ncspot NetworkManager nerd-fonts-symbols-ttf neofetch nextcloud-client octoxbps papirus-icon-theme pcmanfm polkit pcsc-ccid pcsc-tools pcsclite ranger redshift rofi scrot slim slock smartmontools sxhkd tlp tlp-rdw transmission-gtk transset udiskie ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree wget xautolock xcompmgr xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf xterm yt-dlp zathura zathura-pdf-poppler"
             SERVICES="$SERVICES dbus elogind slim NetworkManager polkitd"
         ;;
 	fluxbox)
