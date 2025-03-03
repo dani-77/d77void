@@ -28,7 +28,7 @@ calamares
 
 Among other changes:
 
--  calamres installer and d77void-installer;
+-  calamares installer and d77void-installer;
 
 -  sddm replaces slim as login manager;
 
