@@ -1,0 +1,35 @@
+# Template file for 'dwm_icon'
+pkgname=dwm
+version=6.2
+revision=1
+#archs="i686 x86_64"
+#build_wrksrc=
+build_style="gnu-makefile"
+#configure_args=""
+#make_build_args=""
+#make_install_args=""
+#conf_files=""
+#make_dirs="/var/log/dir 0755 root root"
+hostmakedepends="libXinerama-devel libXft-devel freetype-devel"
+makedepends="libXinerama-devel libXft-devel freetype-devel"
+depends="libXinerama-devel libXft-devel freetype-devel"
+short_desc="dwm patched"
+maintainer="dani-77 <daniazevedo77@posteo.net>"
+license="MIT"
+homepage="https://suckless.org"
+#changelog=""
+distfiles="https://github.com/dani-77/dwm/archive/refs/tags/dwm-6.2.tar.gz"
+checksum=45f99bfcd1007bd27a83f0719ba443065f4af69b5c578b64aff2c932ec08503f
+
+do_build() {
+	[ -e ${FILESDIR}/config.h ] && cp ${FILESDIR}/config.h config.h
+	vsed -e "/CFLAGS/s|\${CPPFLAGS}|& $CFLAGS|g" -i config.mk
+	make CC=$CC INCS="-I. -I${XBPS_CROSS_BASE}/usr/include/freetype2" LIBS="-lX11 -lXinerama -lXft -lfontconfig"
+}
+
+do_install() {
+	make PREFIX=/usr DESTDIR=$DESTDIR install
+	vinstall README 644 usr/share/doc/$pkgname
+	vinstall ${FILESDIR}/dwm.desktop 644 usr/share/xsessions
+	vlicense LICENSE
+}
