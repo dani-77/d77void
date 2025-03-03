@@ -9,7 +9,7 @@ exec sxhkd -c ~/.config/sxhkd/sxhkdrc &
 # automount disks
 exec udiskie -a &
 # wallpaper
-exec feh --bg-fill --randomize ~/Wallpaper/ &
+exec feh --bg-fill ~/Wallpaper/dwm_d77.png &
 #exec xrdb merge ~/.Xresources &
 # screenlocker
 exec xautolock -time 10 -locker slock &
