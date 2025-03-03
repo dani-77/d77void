@@ -1,7 +1,7 @@
 # Template file for 'st'
 pkgname=st
-version=0.9
-revision=1
+version=0.9.2
+revision=77
 #archs="i686 x86_64"
 #build_wrksrc=
 build_style=gnu-makefile
@@ -17,9 +17,9 @@ short_desc="st patched with alpha and dracula"
 maintainer="dani-77 <daniazevedo77@posteo.net>"
 license="MIT"
 homepage="https://suckless.org"
-#changelog=""
-distfiles="https://github.com/dani-77/st/archive/refs/tags/st-0.9.tar.gz"
-checksum=a2849181841810e9938363d8a280904636bd33d1fdcc435f87a8350173c08c09
+changelog="https://github.com/dani-77/st/releases/tag/st-0.9.2"
+distfiles="https://github.com/dani-77/st/archive/refs/tags/st-0.9.2.tar.gz"
+checksum=950442117b99b022bab541f7cb1a6298a555b46ce33721f8574176cb279794e8
 
 pre_build() {
 	mkdir -p ${DESTDIR}/usr/share/terminfo

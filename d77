@@ -194,7 +194,8 @@ build_variant() {
             SERVICES="$SERVICES dhcpcd wpa_supplicant acpid"
         ;;
 	dwm)
-	    DWM=yes
+	    X11=yes
+	    DWM=no
             PKGS="$PKGS $XORG_PKGS base-devel fontconfig-devel freetype-devel gcr-devel gcr4-devel glibc-devel gtk+3-devel harfbuzz-devel imlib2-devel libX11-devel libXft-devel libXinerama-devel webkit2gtk-devel abiword acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc ca-certificates cmus cups cups-browsed curl dmenu dunst elogind epson-inkjet-printer-escpr ethtool feh firefox font-awesome font-awesome5 font-awesome6 font-hack-ttf geary gettext git github-cli gmrun gnumeric htop inxi lxappearance mousepad mpv nano ncspot NetworkManager nerd-fonts-symbols-ttf neofetch nextcloud-client octoxbps papirus-icon-theme pcmanfm polkit pcsc-ccid pcsc-tools pcsclite ranger redshift rofi scrot slim slock smartmontools sxhkd tlp tlp-rdw transmission-gtk transset udiskie ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree wget xautolock xcompmgr xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf xterm yt-dlp zathura zathura-pdf-poppler"
             SERVICES="$SERVICES dbus elogind slim NetworkManager polkitd"
         ;;

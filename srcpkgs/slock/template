@@ -1,7 +1,7 @@
 # Template file for 'slock'
 pkgname=slock
-version=1.4
-revision=1
+version=1.5
+revision=77
 #archs="i686 x86_64"
 #build_wrksrc=
 build_style=gnu-makefile
@@ -17,9 +17,9 @@ short_desc="slock with patches"
 maintainer="dani-77 <daniazevedo77@posteo.net>"
 license="MIT"
 homepage="https://suckless.org"
-#changelog=""
-distfiles="https://github.com/dani-77/slock/archive/refs/tags/slock-1.4.tar.gz"
-checksum=badbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadb
+changelog="https://github.com/dani-77/slock/releases/tag/slock-1.5"
+distfiles="https://github.com/dani-77/slock/archive/refs/tags/slock-1.5.tar.gz"
+checksum=59397a98a24397a09f08fe4ea1d51e6e32a9f70fbbeba89525091d0be317d4d6
 
 if [ "$XBPS_TARGET_LIBC" = "glibc" ]; then
 	makedepends+=" libxcrypt-devel"
@@ -30,7 +30,7 @@ do_build() {
 	sed -i 's/CPPFLAGS =/CPPFLAGS +=/g' config.mk
 	sed -i 's/CFLAGS =/CFLAGS +=/g' config.mk
 	sed -i 's/LDFLAGS =/LDFLAGS +=/g' config.mk
-	make CC=$CC INCS="-I." LIBS="-lX11 -lXext -lcrypt -lXrandr" ${makejobs}
+	make CC=$CC INCS="-I." LIBS="-lX11 -lXext -lcrypt -lXrandr -lImlib2" ${makejobs}
 }
 
 do_install() {
