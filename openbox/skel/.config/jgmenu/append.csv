@@ -2,5 +2,5 @@
 Exit,^checkout(exit),system-shutdown
 ^tag(exit)
 Log Out,openbox --exit,system-log-out
-Reboot,reboot,system-reboot
-Poweroff,poweroff,system-shutdown
+Reboot,loginctl reboot,system-reboot
+Poweroff,loginctl poweroff,system-shutdown

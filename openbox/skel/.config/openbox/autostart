@@ -16,4 +16,5 @@ exec synclient TapButton1=1 &
 exec synclient TapButton2=3 &
 exec synclient TapButton3=2 &
 tint2 &
-xterm -e vi README.md &
+exec xcompmgr -c -f -n &
+#xterm -e vi README.md &
