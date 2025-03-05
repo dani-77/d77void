@@ -29,9 +29,11 @@ from libqtile.backend.wayland import InputConfig
 from libqtile.config import Click, Drag, Group, Key, Match, Screen, Rule
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
+from qtile_extras.widget.decorations import BorderDecoration # type: ignore
 from qtile_extras.resources import wallpapers
 from qtile_extras import widget
 import os
+import colors
 import subprocess
  
 mod = "mod4"
@@ -93,7 +95,7 @@ keys = [
     Key([mod], "a", lazy.spawn("rofi -show drun"), desc="Rofi Menu"),
     Key([mod], "b", lazy.spawn("wswap-way"), desc="Swap Wallpaper"),
     Key([mod], "f", lazy.spawn("pcmanfm"), desc="Filemanager"),
-    Key([mod], "m", lazy.spawn("geary"), desc="Mail Reader"),
+    Key([mod], "m", lazy.spawn("geary"), desc="Web browser"),
     Key([mod], "x", lazy.spawn("rofi -show power-menu -modi power-menu:rofi-power-menu"), desc="Rofi PowerMenu"),
     Key([mod], "w", lazy.spawn("firefox"), desc="Web browser"),
     Key([], "XF86AudioRaiseVolume",lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%")),
@@ -115,68 +117,59 @@ for vt in range(1, 8):
             desc=f"Switch to VT{vt}",
         )
     )
+workspaces = [
+    {"name": " ", "key": "1", "matches": [Match(wm_class='kitty'), Match(wm_class='mousepad'), Match(wm_class='ranger')], "layout": "bsp"},
+    {"name": " ", "key": "2", "matches": [Match(wm_class='Firefox'), Match(wm_class='geary')], "layout": "max"},
+    {"name": " ", "key": "3", "matches": [Match(wm_class='mpv'), Match(wm_class='cmus')], "layout": "monadtall"},
+    {"name": " ", "key": "4", "matches": [Match(wm_class='abiword'), Match(wm_class='Gnumeric')], "layout": "max"},
+    {"name": " ", "key": "5", "matches": [Match(wm_class='telegram-desktop'), Match(wm_class='discord')], "layout": "monadtall"},
+]
 
-groups = [Group(i) for i in "1234"]
 
-for i in groups:
-    keys.extend(
-        [
-            # mod + group number = switch to group
-            Key(
-                [mod],
-                i.name,
-                lazy.group[i.name].toscreen(),
-                desc=f"Switch to group {i.name}",
-            ),
-            # mod + shift + group number = switch to & move focused window to group
-            Key(
-                [mod, "shift"],
-                i.name,
-                lazy.window.togroup(i.name, switch_group=True),
-                desc=f"Switch to & move focused window to group {i.name}",
-            ),
-            # Or, use below if you prefer not to switch to that group.
-            # # mod + shift + group number = move focused window to group
-            # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
-            #     desc="move focused window to group {}".format(i.name)),
-        ]
-    )
+groups = []
+for workspace in workspaces:
+    matches = workspace["matches"] if "matches" in workspace else None
+    layouts = workspace["layout"] if "layout" in workspace else None
+    groups.append(Group(workspace["name"], matches=matches, layout=layouts))
+    keys.append(Key([mod], workspace["key"], lazy.group[workspace["name"]].toscreen()))
+    keys.append(Key([mod, "shift"], workspace["key"], lazy.window.togroup(workspace["name"])))
+
+qtile_colors = colors.Macchiato
 
 layouts = [
-    #layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
-    # Try more layouts by unleashing below layouts.
-     layout.Bsp(),
-     layout.Max(),
-     layout.MonadTall(),
-     layout.Tile(),
-     layout.Stack(num_stacks=2),
-     #layout.Matrix(),
-     #layout.MonadWide(),
-     #layout.RatioTile(),
-     #layout.TreeTab(),
-     #layout.VerticalTile(),
-     #layout.Zoomy(),
+     #layout.Columns(border_focus_stack=["#4d235c", "#686714"]),
+     layout.Bsp(border_width = 2, border_focus = qtile_colors[11], border_normal = qtile_colors[15], margin = 5),
+     layout.Max(border_width = 2, border_focus = qtile_colors[11], border_normal = qtile_colors[15], margin = 5),
+     layout.MonadTall(border_width = 2, border_focus = qtile_colors[11], border_normal = qtile_colors[15], margin = 5),
+     #layout.Tile(border_width = 2, border_focus = qtile_colors[11], border_normal = qtile_colors[15], margin = 5),
+     #layout.Stack(num_stacks=2, border_width = 2, border_focus = qtile_colors[11], border_normal = qtile_colors[15], margin = 5),
+     #layout.Matrix(border_width = 2, border_focus = qtile_colors[11], border_normal = qtile_colors[15], margin = 5),
+     #layout.MonadWide(border_width = 2, border_focus = qtile_colors[11], border_normal = qtile_colors[15], margin = 5),
+     #layout.RatioTile(border_width = 2, border_focus = qtile_colors[11], border_normal = qtile_colors[15], margin = 5),
+     #layout.TreeTab(border_width = 2, border_focus = qtile_colors[11], border_normal = qtile_colors[15], margin = 5),
+     #layout.VerticalTile(border_width = 2, border_focus = qtile_colors[11], border_normal = qtile_colors[15], margin = 5),
+     #layout.Zoomy(border_width = 2, border_focus = qtile_colors[11], border_normal = qtile_colors[15], margin = 5),
 ]
 
 widget_defaults = dict(
     font="hack",
-    fontsize=12,
+    fontsize=10,
     padding=3,
 )
 extension_defaults = widget_defaults.copy()
-
 
 screens = [
     Screen(
 	wallpaper='~/Wallpaper/qte_triangles_rounded.png',
     	wallpaper_mode='fill',        
 	top=bar.Bar(
-            [
+            [	
 		widget.CurrentLayoutIcon(),
                 widget.CurrentLayout(),
                 widget.GroupBox(
 		highlight_method='block',
-		rounded=True),
+		rounded=True,
+		inactive='9d8b8b'),
                 widget.Prompt(),
                 widget.WindowName(),
                 widget.Chord(
@@ -200,12 +193,13 @@ screens = [
 		widget.Volume(fmt="  {}",
                 mouse_callbacks={'Button3': lazy.spawn('pavucontrol')}),
 		widget.Battery(format = '  {percent:2.0%} {hour:d}:{min:02d}'),
-		widget.KeyboardLayout(configured_keyboards = ["pt", "us", "de deadtilde"],font = "Hack",fontsize = "12",fmt = '  {}'),
-		widget.CheckUpdates(distro = 'Void',no_update_string='  ',
+		widget.KeyboardLayout(configured_keyboards = ["de deadtilde", "pt"],font = "Hack",fontsize = "10",fmt = '  {}'),
+		widget.CheckUpdates(distro = 'Void',no_update_string=' No updates',update_interval=600,
 		mouse_callbacks={'Button1': lazy.spawn('octoxbps')}),
-                widget.QuickExit(default_text=' ', countdown_format='{}'),
+		widget.TextBox(text=" ", fontsize = 10,
+		mouse_callbacks={'Button1': lazy.spawn('rofi -show power-menu -modi power-menu:rofi-power-menu')}),
             ], 
-            24,
+            25,
 	    background = "#11111b80"
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
@@ -214,6 +208,10 @@ screens = [
         # By default we handle these events delayed to already improve performance, however your system might still be struggling
         # This variable is set to None (no cap) by default, but you can set it to 60 to indicate that you limit it to 60 events per second
         # x11_drag_polling_rate = 60,
+
+	#right=bar.Gap(10),
+        #left=bar.Gap(10),
+        #bottom=bar.Gap(10)
     ),
 ]
 
