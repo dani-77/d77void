@@ -27,13 +27,11 @@ conky -c .conkyrc &
 conky -c .conkyrc1 &
 fbsetbg -f Wallpaper/background2.png &
 xrdb merge ~/.Xresources &
-#setxkbmap de deadtilde &
 /usr/bin/octoxbps-notifier &
 xautolock -time 5 -locker slock &
 synclient TapButton1=1 &
 synclient TapButton2=3 &
 synclient TapButton3=2 &
-#xterm -e vi README.md &
 exec xcompmgr -c -f -n &
 exec fluxbox
 # or if you want to keep a log:

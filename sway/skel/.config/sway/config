@@ -54,8 +54,8 @@ exec octoxbps-notifier &
 
 # Keyboard layout
 input type:keyboard {
-    xkb_layout "de"
-    xkb_variant "deadtilde"
+    xkb_layout ""
+    xkb_variant ""
 }
 
 
