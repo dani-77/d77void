@@ -164,7 +164,7 @@ screens = [
     	wallpaper_mode='fill',        
 	top=bar.Bar(
             [	
-		widget.CurrentLayoutIcon(),
+		widget.CurrentLayoutIcon(scale=0.7),
                 widget.CurrentLayout(),
                 widget.GroupBox(
 		highlight_method='block',
@@ -193,7 +193,7 @@ screens = [
 		widget.Volume(fmt="  {}",
                 mouse_callbacks={'Button3': lazy.spawn('pavucontrol')}),
 		widget.Battery(format = '  {percent:2.0%} {hour:d}:{min:02d}'),
-		widget.KeyboardLayout(configured_keyboards = ["de deadtilde", "pt"],font = "Hack",fontsize = "10",fmt = '  {}'),
+		widget.KeyboardLayout(configured_keyboards = ["pt", "de deadtilde", "us"],font = "Hack",fontsize = "10",fmt = '  {}'),
 		widget.CheckUpdates(distro = 'Void',no_update_string=' No updates',update_interval=600,
 		mouse_callbacks={'Button1': lazy.spawn('octoxbps')}),
 		widget.TextBox(text=" ", fontsize = 10,
