@@ -1,0 +1,11 @@
+include("cpu.source")
+
+layout {
+  chart {
+    interval = 1000
+    style = If(XCpuPresent,"cpu_chart","hidden")
+    value = XCpuUtilization
+    tooltip = "CPU: " + Str(XCpuUtilization*100) + '%'
+    action = Exec $Term + " -e top"
+  }
+}

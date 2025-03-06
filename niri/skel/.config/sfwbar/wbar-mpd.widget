@@ -1,0 +1,40 @@
+include("mpd.source")
+
+Set XMpdElapsed = MpdElapsed+If($MpdState="play",MpdElapsed.age/1000000,0)
+Set XMpdRandom = If(!MpdRandom,'<span color="#f53c3c">','<span>')
+
+function("SetMpd") {
+  SetValue "Mpd",
+    If($MpdState="disconnected",
+      "Disconnected",
+      Map($MpdState,"pause"," ","play","","") +
+      $XMpdRandom + " "+ '</span>' + If(!MpdRepeat,""," ")+
+      if($MpdState="stop","Stopped",
+        $MpdArtist + " - " +
+        $MpdAlbum + " - " +
+        $MpdTitle + " (" +
+        Pad(Str((XMpdElapsed-XMpdElapsed%60)/60),2,"0") + ":" +
+          Pad(Str(XMpdElapsed%60),2,"0") +
+        "/" +
+        Pad(Str((MpdDuration-MpdDuration%60)/60),2,"0") + ":" +
+          Pad(Str(MpdDuration%60),2,"0") +
+        ") " + " ⸨" + $MpdQPos + "|" + $MpdQLen + "⸩ " + Str(MpdVolume) + "%"
+      )
+    ) + " "
+}
+
+TriggerAction "mpd", Function "SetMpd"
+
+layout {
+  label "Mpd" {
+    interval = 1000
+    style = Map($MpdState,
+              "play", "mpd_play",
+              "pause", "mpd_paused",
+              "stop", "mpd_stopped",
+              "mpd_disconnected"
+            )
+    action[0] = Function "SetMpd"
+    action = MpdCmd "pause"
+  }
+}

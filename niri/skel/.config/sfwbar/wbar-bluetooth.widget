@@ -1,0 +1,11 @@
+include("rfkill.source")
+
+Set RfKillBTVisible = Cached(RfKillBTVisible) | RfKillBluetoothSoft.count
+
+layout {
+  label {
+    style = If(RfKillBTVisible,"bluetooth","hidden")
+    trigger = "rfkill"
+    value = If(RfKillBluetoothSoft = 0," ","")
+  }
+}

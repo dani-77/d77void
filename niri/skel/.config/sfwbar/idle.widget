@@ -1,0 +1,13 @@
+Module("idleinhibit");
+
+layout {
+  button {
+    style = If(Ident(IdleInhibitState),"module","hidden")
+    value = If(IdleInhibitState()="on",
+        "icons/misc/lock.svg",
+        "icons/misc/unlock.svg")
+    local = true
+    trigger = "idleinhibitor"
+    action[1] = SetIdleInhibitor "toggle"
+  }
+}

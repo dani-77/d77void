@@ -1,0 +1,20 @@
+scanner {
+# Add up received and transmitted bytes cross all enp* interfaces  
+  file("/proc/net/dev") {
+    EthRcvd = RegEx("wlp.*:[\t ]*([0-9]+)",Sum)
+    EthSent = RegEx("wlp.*:(?:[\t ]*[0-9]+){8}[\t ]([0-9]+)",Sum)
+  }
+}
+
+layout {
+  css = "* { -GtkWidget-direction: right; -GtkWidget-vexpand: true; -GtkWidget-hexpand: true; }"
+  image {
+    style = "value_icon"
+    value = "icons/misc/lan.svg"
+  }
+  label {
+    style = "value"
+    interval = 1000
+    value = Str((EthRcvd-EthRcvd.pval)/0.001024/EthRcvd.time,0)+"K/s"
+  }
+}
