@@ -89,6 +89,7 @@ setup_pipewire() {
 }
 
 include_common() {
+	mkdir -p "$INCLUDEDIR"/boot/grub/themes
 	mkdir -p "$INCLUDEDIR"/etc
 	mkdir -p "$INCLUDEDIR"/etc/default
 	mkdir -p "$INCLUDEDIR"/usr/bin
@@ -96,6 +97,7 @@ include_common() {
 	mkdir -p "$INCLUDEDIR"/usr/share/void-artwork
 	mkdir -p "$INCLUDEDIR"/usr/share/sddm/faces
 	mkdir -p "$INCLUDEDIR"/usr/share/sddm/themes
+	cp -r ./common/d77-grub-theme "$INCLUDEDIR"/boot/grub/themes/
 	cp -r ./common/calamares "$INCLUDEDIR"/etc/
 	cp -r $variant/skel "$INCLUDEDIR"/etc/
 	cp ./common/sddm.conf "$INCLUDEDIR"/etc/
