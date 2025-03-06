@@ -1,22 +1,16 @@
-# d77void - WM void editions
+# d77void - iso creator for my respin with WM
 
-d77void intend to be a friendly general use OS based on 
-Void GNU/Linux with a Window Manager pre configured.
+## Usage
 
-All the variants are very light and with just some apps 
-installed.
+Clone repo
 
-## 1st run
 
-In all the Wayland variants, I suggest to run a script named 
-1strun; it isn't crucial, but running it will change the SDDM 
-theme to something more in line with my vision. In the Hyprland 
-variant creates the extra repo as well.
+```
+git clone https://github.com/dani-77/d77void
+```
 
-## Help
+copy it's contents to void-mklive and run the script d77.
 
-In case of need, I have a Discord server with a channel for each 
-variant of the OS. It is the easiest way to get some help from 
-me.
+Read carefully the INSTALL.md file to know how to use it.
 
-Have fun!
+Happy hacking.
