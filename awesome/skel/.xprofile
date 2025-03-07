@@ -1,0 +1,9 @@
+exec xcompmgr -c -f -n &
+exec redshift-gtk &
+exec slstatus &
+exec feh --bg-fill ~/Wallpaper/dwm_d77.png &
+exec dunst &
+exec cbatticon &
+exec octoxbps-notifier &
+exec volumeicon &
+exec nm-applet &
