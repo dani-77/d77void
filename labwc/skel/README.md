@@ -32,11 +32,21 @@ calamares
 
 super + return -> terminal
 
+super + a -> rofi
+
 super + b -> swap wallpaper
 
-super + o -> gmrun
+super + f -> filemanager
 
-super + a -> rofi
+super + m -> mail
+
+super + p -> printscreen
+
+super + r -> gmrun
+
+super + t -> lock screen
+
+super + w -> firefox
 
 super + x -> powermenu
 

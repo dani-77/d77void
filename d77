@@ -6,7 +6,7 @@ set -eu
 
 PROGNAME=$(basename "$0")
 ARCH=$(uname -m)
-IMAGES="base dwm fluxbox hyprland labwc niri openbox qtile sway"
+IMAGES="awesome base dwm fluxbox hyprland labwc niri openbox qtile sway"
 TRIPLET=
 REPO=
 DATE=$(date -u +%Y%m%d)
@@ -22,7 +22,7 @@ usage() {
 
 	OPTIONS
 	 -a <arch>     Set architecture (or platform) in the image
-	 -b <variant>  One of base, dwm, fluxbox, hyprland, labwc, openbox or sway. 
+	 -b <variant>  One of base, awesome, dwm, fluxbox, hyprland, labwc, niri, openbox, qtile or sway. 
                May be specified multiple times to build multiple variants.
 	 -d <date>     Override the datestamp on the generated image (YYYYMMDD format)
 	 -t <arch-date-variant>
@@ -138,6 +138,8 @@ build_variant() {
             GFX_WL_PKGS="mesa-dri"
             WANT_INSTALLER=yes
             TARGET_ARCH="$ARCH"
+	    D77_CORE="abiword acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brightnessctl ca-certificates conky cmus cups cups-browsed curl elogind epson-inkjet-printer-escpr ethtool feh firefox font-awesome font-awesome5 font-awesome6 font-hack-ttf geary gettext git github-cli gmrun gnumeric htop inxi jq mousepad mpv nano ncspot NetworkManager network-manager-applet nerd-fonts-symbols-ttf neofetch nextcloud-client octoxbps papirus-icon-theme pcmanfm polkit ranger rofi sddm smartmontools system-config-printer tlp tlp-rdw transmission-gtk udiskie ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree wget xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf xterm yt-dlp zathura zathura-pdf-poppler"
+	    D77_EXTRA="abook calcurse isync neomutt pass pcsc-ccid pcsc-tools pcsclite"
             CALAMARES="calamares grub rsync"
 	    COMMON=
 	    X11=
@@ -176,53 +178,59 @@ build_variant() {
         base)
             SERVICES="$SERVICES dhcpcd wpa_supplicant acpid"
         ;;
+	awesome)
+	    COMMON=yes
+	    X11=yes
+            PKGS="$PKGS $XORG_PKGS $CALAMARESS $D77_CORE awesome cbatticon dunst lxappearance redshift redshift-gtk scrot slock transset volumeicon xautolock xcompmgr"
+            SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
+        ;;
 	dwm)
 	    COMMON=yes
 	    X11=yes
 	    DWM=yes
-            PKGS="$PKGS $XORG_PKGS $CALAMARES dwm dmenu st slock slstatus base-devel fontconfig-devel freetype-devel gcr-devel gcr4-devel glibc-devel gtk+3-devel harfbuzz-devel imlib2-devel libX11-devel libXft-devel libXinerama-devel webkit2gtk-devel abiword acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc ca-certificates cmus cups cups-browsed curl dmenu dunst elogind epson-inkjet-printer-escpr ethtool feh firefox font-awesome font-awesome5 font-awesome6 font-hack-ttf geary gettext git github-cli gmrun gnumeric htop inxi lxappearance mousepad mpv nano ncspot NetworkManager nerd-fonts-symbols-ttf neofetch nextcloud-client octoxbps papirus-icon-theme pcmanfm polkit pcsc-ccid pcsc-tools pcsclite ranger redshift rofi scrot sddm slock smartmontools sxhkd tlp tlp-rdw transmission-gtk transset udiskie ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree wget xautolock xcompmgr xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf xterm yt-dlp zathura zathura-pdf-poppler"
+            PKGS="$PKGS $XORG_PKGS $CALAMARES $D77_CORE base-devel dwm dmenu fontconfig-devel freetype-devel gcr-devel gcr4-devel glibc-devel gtk+3-devel harfbuzz-devel imlib2-devel libX11-devel libXft-devel libXinerama-devel webkit2gtk-devel dunst lxappearance redshift scrot slock slstatus sxhkd st xautolock xcompmgr"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
 	fluxbox)
 	    COMMON=yes
 	    X11=yes
-            PKGS="$PKGS $XORG_PKGS $CALAMARES abiword acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc ca-certificates cbatticon cmus conky cups cups-browsed curl dunst elogind epson-inkjet-printer-escpr ethtool feh firefox fluxbox font-hack-ttf geary gettext git github-cli gmrun gnumeric htop inxi jgmenu jq lxappearance mousepad mpv nano ncspot NetworkManager network-manager-applet nerd-fonts-symbols-ttf neofetch nextcloud-client octoxbps papirus-icon-theme pass pcmanfm polkit pcsc-ccid pcsc-tools pcsclite ranger redshift redshift-gtk rofi scrot sddm slock smartmontools system-config-printer tlp tlp-rdw transmission-gtk transset udiskie ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree volumeicon wget xautolock xcompmgr xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf xterm yt-dlp zathura zathura-pdf-poppler"
+            PKGS="$PKGS $XORG_PKGS $CALAMARESS $D77_CORE cbatticon dunst fluxbox jgmenu jq lxappearance redshift redshift-gtk scrot slock transset volumeicon xautolock xcompmgr"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
 	hyprland)
 	    COMMON=yes
 	    WAY=yes
-            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brightnessctl ca-certificates cups cups-browsed curl elogind epson-inkjet-printer-escpr ethtool feh firefox font-awesome6 font-hack-ttf geary gettext git github-cli gmrun grim htop hyprland ImageMagick inxi kitty lxappearance mousepad mpv nano ncspot NetworkManager network-manager-applet nerd-fonts-symbols-ttf neofetch nextcloud-client octoxbps papirus-icon-theme pavucontrol pcmanfm polkit qt6-wayland ranger rofi sddm smartmontools swaybg swayidle swayimg swaylock SwayNotificationCenter system-config-printer tlp tlp-rdw transmission-gtk udiskie ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree wayland-devel wayland-protocols Waybar wget wlsunset wmenu xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xorg-server-xwayland xpdf xterm yt-dlp zathura zathura-pdf-poppler"
+            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARESS $D77_CORE grim hyprland ImageMagick kitty pavucontrol qt6-wayland swaybg swayidle swayimg swaylock SwayNotificationCenter wayland-devel wayland-protocols Waybar wlsunset wmenu xorg-server-xwayland"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
 	labwc)
 	    COMMON=yes
 	    WAY=yes
-            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES abiword acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brightnessctl ca-certificates cups cups-browsed curl elogind epson-inkjet-printer-escpr ethtool feh firefox font-awesome6 font-hack-ttf geary gettext git github-cli gmrun gnumeric grim htop ImageMagick inxi kitty labwc labwc-menu-generator labwc-tweaks-qt lxappearance mousepad mpv nano ncspot NetworkManager network-manager-applet nerd-fonts-symbols-ttf neofetch nextcloud-client octoxbps papirus-icon-theme pcmanfm polkit pcsc-ccid pcsc-tools pcsclite ranger rofi sddm sfwbar smartmontools swaybg swayidle swayimg swaylock SwayNotificationCenter system-config-printer tlp tlp-rdw transmission-gtk udiskie ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree Waybar wget wlsunset xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xpdf xterm yt-dlp zathura zathura-pdf-poppler"
+            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARESS $D77_CORE grim ImageMagick kitty labwc labwc-menu-generator labwc-tweaks-qt sfwbar swaybg swayidle swayimg swaylock SwayNotificationCenter Waybar wlsunset"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
 	niri)
 	    COMMON=yes
 	    WAY=yes
-            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES abiword acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brightnessctl ca-certificates cbatticon cups cups-browsed curl elogind epson-inkjet-printer-escpr ethtool feh firefox font-awesome6 font-hack-ttf fuzzel geary gettext git github-cli gmrun gnumeric grim htop ImageMagick inxi kitty mousepad mpv nano ncspot NetworkManager network-manager-applet nerd-fonts-symbols-ttf neofetch nextcloud-client niri nwg-look octoxbps papirus-icon-theme pavucontrol pcmanfm polkit pcsc-ccid pcsc-tools pcsclite ranger sddm sfwbar smartmontools swaylock swww system-config-printer tlp tlp-rdw transmission-gtk udiskie ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree volumeicon wget wlsunset wmenu xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xpdf xterm yt-dlp zathura zathura-pdf-poppler"
+            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARESS $D77_CORE grim ImageMagick kitty niri nwg-look sfwbar swaylock swww wlsunset wmenu"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
 	openbox)
 	    COMMON=yes
 	    X11=yes
-            PKGS="$PKGS $XORG_PKGS $CALAMARES abiword acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc ca-certificates cbatticon cmus conky cups cups-browsed curl dunst elogind epson-inkjet-printer-escpr ethtool feh firefox font-hack-ttf geary gettext git github-cli gmrun gnumeric htop inxi jgmenu jq lxappearance lxappearance-obconf menumaker mousepad mpv nano ncspot NetworkManager network-manager-applet nerd-fonts-symbols-ttf neofetch nextcloud-client obconf octoxbps openbox papirus-icon-theme pcmanfm polkit pcsc-ccid pcsc-tools pcsclite ranger redshift redshift-gtk rofi scrot sddm slock smartmontools sxhkd system-config-printer tint2 tint2conf tlp tlp-rdw transmission-gtk transset udiskie ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree volumeicon wget xautolock xcompmgr xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf xterm yt-dlp zathura zathura-pdf-poppler"
+            PKGS="$PKGS $XORG_PKGS $CALAMARESS $D77_CORE cbatticon conky dunst jgmenu jq lxappeaance lxappearance-obconf menumaker obconf openbox redshift redshift-gtk scrot slock sxhkd tint2 tint2conf volumeicon xautolock xcompmgr"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;        
 	qtile)
 	    COMMON=yes
 	    WAY=yes
-    	    PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES abiword acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brightnessctl ca-certificates cups cups-browsed curl elogind epson-inkjet-printer-escpr ethtool feh firefox font-awesome6 font-hack-ttf geary gettext git github-cli gnumeric grim htop ImageMagick inxi kitty lxappearance mousepad mpv nano ncspot NetworkManager network-manager-applet nerd-fonts-symbols-ttf neofetch nextcloud-client octoxbps papirus-icon-theme pavucontrol pcmanfm polkit pcsc-ccid pcsc-tools pcsclite python3-qtile-extras qtile qtile-wayland ranger redshift rofi sddm smartmontools swaybg swaylock SwayNotificationCenter system-config-printer tlp tlp-rdw transmission-gtk udiskie ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree wget wlroots wlsunset xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xcompmgr xpdf xterm yt-dlp zathura zathura-pdf-poppler"
+    	    PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARESS $D77_CORE dunst grim ImageMagick kitty lxappearance pavucontrol python3-qtile-extras qtile qtile-wayland redhift scrot swaybg swaylock SwayNotificationCenter wlroots wlsunset"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
 	sway)
 	    COMMON=yes
 	    WAY=yes
-            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES abiword acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brightnessctl ca-certificates cups cups-browsed curl elogind epson-inkjet-printer-escpr ethtool feh firefox font-awesome6 font-hack-ttf geary gettext git github-cli gmrun gnumeric grim htop ImageMagick inxi kitty lxappearance mousepad mpv nano ncspot NetworkManager network-manager-applet nerd-fonts-symbols-ttf neofetch nextcloud-client octoxbps papirus-icon-theme pavucontrol pcmanfm polkit pcsc-ccid pcsc-tools pcsclite ranger rofi sddm smartmontools sway swaybg swayidle swayimg swaylock SwayNotificationCenter system-config-printer tlp tlp-rdw transmission-gtk udiskie ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree Waybar wget wlsunset wmenu xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xpdf xterm yt-dlp zathura zathura-pdf-poppler"
+            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARESS $D77_CORE grim ImageMagick kitty pavucontrol sway swaybg swayidle swayimg swaylock SwayNotificationCenter Waybar wlsunset wmenu"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
         *)
