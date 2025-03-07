@@ -181,7 +181,7 @@ build_variant() {
 	awesome)
 	    COMMON=yes
 	    X11=yes
-            PKGS="$PKGS $XORG_PKGS $CALAMARES $D77_CORE awesome cbatticon dunst lxappearance redshift redshift-gtk scrot slock transset volumeicon xautolock xcompmgr"
+            PKGS="$PKGS $XORG_PKGS $CALAMARES $D77_CORE awesome cbatticon dunst lxappearance redshift redshift-gtk scrot slock st transset volumeicon xautolock xcompmgr"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
 	dwm)
