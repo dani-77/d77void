@@ -181,7 +181,7 @@ build_variant() {
 	awesome)
 	    COMMON=yes
 	    X11=yes
-            PKGS="$PKGS $XORG_PKGS $CALAMARESS $D77_CORE awesome cbatticon dunst lxappearance redshift redshift-gtk scrot slock transset volumeicon xautolock xcompmgr"
+            PKGS="$PKGS $XORG_PKGS $CALAMARES $D77_CORE awesome cbatticon dunst lxappearance redshift redshift-gtk scrot slock transset volumeicon xautolock xcompmgr"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
 	dwm)
@@ -194,43 +194,43 @@ build_variant() {
 	fluxbox)
 	    COMMON=yes
 	    X11=yes
-            PKGS="$PKGS $XORG_PKGS $CALAMARESS $D77_CORE cbatticon dunst fluxbox jgmenu jq lxappearance redshift redshift-gtk scrot slock transset volumeicon xautolock xcompmgr"
+            PKGS="$PKGS $XORG_PKGS $CALAMARES $D77_CORE cbatticon dunst fluxbox jgmenu jq lxappearance redshift redshift-gtk scrot slock transset volumeicon xautolock xcompmgr"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
 	hyprland)
 	    COMMON=yes
 	    WAY=yes
-            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARESS $D77_CORE grim hyprland ImageMagick kitty pavucontrol qt6-wayland swaybg swayidle swayimg swaylock SwayNotificationCenter wayland-devel wayland-protocols Waybar wlsunset wmenu xorg-server-xwayland"
+            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES $D77_CORE grim hyprland ImageMagick kitty pavucontrol qt6-wayland swaybg swayidle swayimg swaylock SwayNotificationCenter wayland-devel wayland-protocols Waybar wlsunset wmenu xorg-server-xwayland"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
 	labwc)
 	    COMMON=yes
 	    WAY=yes
-            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARESS $D77_CORE grim ImageMagick kitty labwc labwc-menu-generator labwc-tweaks-qt sfwbar swaybg swayidle swayimg swaylock SwayNotificationCenter Waybar wlsunset"
+            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES $D77_CORE grim ImageMagick kitty labwc labwc-menu-generator labwc-tweaks-qt sfwbar swaybg swayidle swayimg swaylock SwayNotificationCenter Waybar wlsunset"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
 	niri)
 	    COMMON=yes
 	    WAY=yes
-            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARESS $D77_CORE grim ImageMagick kitty niri nwg-look sfwbar swaylock swww wlsunset wmenu"
+            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES $D77_CORE grim ImageMagick kitty niri nwg-look sfwbar swaylock swww wlsunset wmenu"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
 	openbox)
 	    COMMON=yes
 	    X11=yes
-            PKGS="$PKGS $XORG_PKGS $CALAMARESS $D77_CORE cbatticon conky dunst jgmenu jq lxappeaance lxappearance-obconf menumaker obconf openbox redshift redshift-gtk scrot slock sxhkd tint2 tint2conf volumeicon xautolock xcompmgr"
+            PKGS="$PKGS $XORG_PKGS $CALAMARES $D77_CORE cbatticon conky dunst jgmenu jq lxappeaance lxappearance-obconf menumaker obconf openbox redshift redshift-gtk scrot slock sxhkd tint2 tint2conf volumeicon xautolock xcompmgr"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;        
 	qtile)
 	    COMMON=yes
 	    WAY=yes
-    	    PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARESS $D77_CORE dunst grim ImageMagick kitty lxappearance pavucontrol python3-qtile-extras qtile qtile-wayland redhift scrot swaybg swaylock SwayNotificationCenter wlroots wlsunset"
+    	    PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES $D77_CORE dunst grim ImageMagick kitty lxappearance pavucontrol python3-qtile-extras qtile qtile-wayland redhift scrot swaybg swaylock SwayNotificationCenter wlroots wlsunset"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
 	sway)
 	    COMMON=yes
 	    WAY=yes
-            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARESS $D77_CORE grim ImageMagick kitty pavucontrol sway swaybg swayidle swayimg swaylock SwayNotificationCenter Waybar wlsunset wmenu"
+            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES $D77_CORE grim ImageMagick kitty pavucontrol sway swaybg swayidle swayimg swaylock SwayNotificationCenter Waybar wlsunset wmenu"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
         *)
