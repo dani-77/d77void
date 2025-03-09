@@ -224,7 +224,7 @@ build_variant() {
 	qtile)
 	    COMMON=yes
 	    WAY=yes
-    	    PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES $D77_CORE dunst grim ImageMagick kitty lxappearance pavucontrol python3-qtile-extras qtile qtile-wayland redhift scrot swaybg swaylock SwayNotificationCenter wlroots wlsunset"
+    	    PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES $D77_CORE dunst grim ImageMagick kitty lxappearance pavucontrol python3-qtile-extras qtile qtile-wayland redshift scrot swaybg swaylock SwayNotificationCenter wlroots wlsunset"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
 	sway)
