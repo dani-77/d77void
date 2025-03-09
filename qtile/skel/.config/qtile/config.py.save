@@ -119,7 +119,7 @@ for vt in range(1, 8):
     )
 workspaces = [
     {"name": " ", "key": "1", "matches": [Match(wm_class='kitty'), Match(wm_class='mousepad'), Match(wm_class='ranger')], "layout": "bsp"},
-    {"name": " ", "key": "2", "matches": [Match(wm_class='Firefox'), Match(wm_class='uGet'), Match(wm_class='geary')], "layout": "max"},
+    {"name": " ", "key": "2", "matches": [Match(wm_class='Firefox'), Match(wm_class='uG7;9uugt'), Match(wm_class='geary')], "layout": "max"},
     {"name": " ", "key": "3", "matches": [Match(wm_class='mpv'), Match(wm_class='cmus')], "layout": "monadtall"},
     {"name": " ", "key": "4", "matches": [Match(wm_class='abiword'), Match(wm_class='gimp-2.10'), Match(wm_class='Gnumeric')], "layout": "max"},
     {"name": " ", "key": "5", "matches": [Match(wm_class='telegram-desktop'), Match(wm_class='discord')], "layout": "monadtall"},
