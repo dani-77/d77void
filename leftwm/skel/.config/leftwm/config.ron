@@ -69,7 +69,7 @@
     disable_cursor_reposition_on_resize: false,
     window_hiding_strategy: MoveOnly,
     keybind: [
-        (command: Execute, value: "brave-browser-nightly", modifier: ["modkey"], key: "b"),
+        (command: Execute, value: "brave-browser-stable", modifier: ["modkey"], key: "b"),
         (command: Execute, value: "rofi -show drun", modifier: ["modkey"], key: "a"),
         (command: Execute, value: "rofi -show power-menu -modi power-menu:rofi-power-menu", modifier: ["modkey"], key: "x"),
         (command: Execute, value: "pcmanfm", modifier: ["modkey"], key: "f"),
