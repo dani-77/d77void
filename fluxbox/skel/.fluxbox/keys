@@ -145,6 +145,6 @@ Mod1 j :Exec jgmenu_run
 Mod1 l :exec slock
 Mod1 m :Exec geary
 Mod1 p :exec scrot
-Mod1 w :exec firefox
+Mod1 w :exec brave-browser-stable
 Mod1 x :Exec rofi -show power-menu -modi power-menu:rofi-power-menu
 Mod1 r :exec gmrun
