@@ -8,7 +8,7 @@ local dpi = require("beautiful.xresources").apply_dpi
 
 -- {{{ Main
 local theme = {}
-theme.wallpaper = themes_path .. "zenburn/background4.png"
+theme.wallpaper = themes_path .. "zenburn/zenburn-background.png"
 -- }}}
 
 -- {{{ Styles

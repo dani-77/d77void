@@ -91,6 +91,8 @@ setup_pipewire() {
 include_common() {
 	mkdir -p "$INCLUDEDIR"/boot/grub/themes
 	mkdir -p "$INCLUDEDIR"/etc
+	mkdir -p "$INCLUDEDIR"/etc/skel/.config
+	mkdir -p "$INCLUDEDIR"/etc/skel/.local/share
 	mkdir -p "$INCLUDEDIR"/etc/default
 	mkdir -p "$INCLUDEDIR"/usr/bin
 	mkdir -p "$INCLUDEDIR"/usr/share/polkit-1/rules.d
@@ -107,6 +109,15 @@ include_common() {
 	cp ./common/splash.png "$INCLUDEDIR"/usr/share/void-artwork/
 	cp ./common/anon.face.icon "$INCLUDEDIR"/usr/share/sddm/faces/
 	cp -r ./common/slice "$INCLUDEDIR"/usr/share/sddm/themes/
+	cp -r ./common/dunst "$INCLUDEDIR"/etc/skel/.config/
+	cp -r ./common/gtk-3.0 "$INCLUDEDIR"/etc/skel/.config/
+	cp -r ./common/neofetch "$INCLUDEDIR"/etc/skel/.config/
+	cp -r ./common/rofi "$INCLUDEDIR"/etc/skel/.config/
+	cp -r ./common/xsettingsd "$INCLUDEDIR"/etc/skel/.config/
+	cp -r ./common/themes "$INCLUDEDIR"/etc/skel/.local/share/
+	cp -r ./common/.icons "$INCLUDEDIR"/etc/skel/
+	cp -r ./common/Wallpaper "$INCLUDEDIR"/etc/skel/
+	cp ./common/.gtkrc-2.0 "$INCLUDEDIR"/etc/skel/
 }
 
 include_way() {
@@ -229,6 +240,7 @@ build_variant() {
         ;;        
 	qtile)
 	    COMMON=yes
+	    X11=yes
 	    WAY=yes
     	    PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES $D77_CORE dunst grim ImageMagick kitty lxappearance pavucontrol python3-qtile-extras qtile qtile-wayland redshift scrot swaybg swaylock SwayNotificationCenter wlroots wlsunset"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
