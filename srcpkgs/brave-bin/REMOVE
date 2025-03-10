@@ -1,0 +1,14 @@
+# REMOVE
+case "$ACTION" in
+
+post)
+
+#
+# After removing opt/brave.com/, xbps removes opt if empty!
+# This script restores opt
+#
+        mkdir -p opt
+        ;;
+esac
+
+
