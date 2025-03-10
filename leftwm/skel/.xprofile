@@ -1,0 +1,12 @@
+exec dunst &
+exec xcompmgr -c -f -n &
+exec redshift -l 41.6:-8.62 & 
+exec udiskie -at &
+exec feh --bg-fill ~/Wallpaper/wall_macos3.jpg &
+exec xautolock -time 10 -locker slock &
+exec polybar &
+exec synclient TapButton1=1 &
+exec synclient TapButton2=3 &
+exec synclient TapButton3=2 &
+#exec sxhkd -c ~/.config/sxhkd/sxhkdrc &
+#exec slstatus &
