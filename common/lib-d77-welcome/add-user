@@ -1,0 +1,18 @@
+clear
+
+# echo "  -----------------------------[ screen $STEP of $STEPS ]----------------------------
+echo "
+
+  INSTALL FLATPAK
+  -------------------------------
+  You will need to add your user to dbus and flatpak Groups.
+  Would you like to add them to be able to use Flatpak now?
+  If you choose to do this, the following will be done: 
+  
+  usermod $USER -G dbus,_flatpak -a
+	  
+  Note: additional packages listed as dependencies will also be installed."
+
+if prompt "  Would you like to add your user to dbus and flatpak groups?"; then
+	sudo usermod $USER -G dbus,_flatpak -a
+fi

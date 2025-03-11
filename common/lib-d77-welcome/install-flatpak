@@ -1,0 +1,18 @@
+clear
+
+# echo "  -----------------------------[ screen $STEP of $STEPS ]----------------------------
+echo "
+
+  INSTALL FLATPAK
+  -------------------------------
+  By default, d77void don't have Flatpak enabled.
+  Would you like to install Flatpak now?
+  If you choose to do this, the following packages will be installed: 
+  
+  flatpak
+	  
+  Note: additional packages listed as dependencies will also be installed."
+
+if prompt "  Would you like to install Flatpak?"; then
+	sudo xbps-install -Sy flatpak && flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+fi

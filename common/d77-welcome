@@ -144,12 +144,14 @@ fi
 
 # Run through steps
 # STEPS_BASIC=('update' 'dist-upgrade' 'office-print' 'media-graphics' 'install-gimp' 'install-libreoffice')
-STEPS_MAIN=('set-root-password' 'update' 'dist-upgrade' 'office-print' 'media-graphics' 'bluetooth' 'browser' 'calamares' 'quit' )
+STEPS_MAIN=('set-root-password' 'update' 'dist-upgrade' 'office-print' 'media-graphics' 'bluetooth' 'browser' 'flatpak' 'steam' 'calamares' 'quit' )
 STEPS_OFFICE_PRINT=('install-libreoffice'  'back' )
 STEPS_MEDIA_GRAPHICS=('install-gimp' 'back')
 STEPS_BLUETOOTH=('install-bluetooth' 'back')
 STEPS_CALAMARES=('remove-calamares' 'back')
 STEPS_BROWSER=('install-firefox' 'install-chromium' 'back')
+STEPS_STEAM=('install-steam' 'back')
+STEPS_FLATPAK=('install-flatpak' 'add-user' 'back')
 
 # . "$LIBDIR/intro"
 connection-test
@@ -189,6 +191,16 @@ do
 
                         "browser")
 				submenu "Browser" STEPS_BROWSER
+				break
+                        ;;
+
+                        "steam")
+				submenu "install-steam" STEPS_STEAM
+				break
+                        ;;
+
+                        "flatpak")
+				submenu "flatpak" STEPS_FLATPAK
 				break
                         ;;
 
