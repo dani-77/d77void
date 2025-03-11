@@ -1,0 +1,17 @@
+clear
+
+echo "  -----------------------------[ screen $STEP of $STEPS ]----------------------------
+
+  INSTALL IMAGE EDITORS 
+  --------------------
+  By default, d77void does not come with IMAGE EDITORS 
+  Would you like to install Image Editors support now? If you choose to do 
+  this, the following packages will be installed:
+
+      gimp 
+
+  Note: additional packages listed as dependencies will also be installed."
+
+if prompt "  Would you like to install Image Editors?"; then
+	sudo xbps-install -Sy gimp 
+fi

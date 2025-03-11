@@ -1,0 +1,211 @@
+#!/bin/bash
+# Post installation script
+
+TIME_OUT=25
+
+# makes sure that there is a connection, especially for kernel install wifi restarts
+connection-test()
+{
+	local repeat='' connection='' options='' opt=''
+	local UserAgent='Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1'
+
+	echo "Testing internet connection...."
+	# ping is a problem when there is no connection, takes too long to time out
+	#ping -c 1 -W 2 google.com &>/dev/null && connection=1 || connection=0
+	wget -T 7 -t 1 -q --spider http://www.google.com/ && connection=1 || connection=0
+
+	# some US ISPs block ping, so do backup tests if that's the case
+	if [ "$connection" -eq 0 ];then
+		echo "test 1 failed, trying test 2...."
+		wget -T 12 -t 1 -q --spider http://www.google.com/ && connection=1 || connection=0
+		if [ "$connection" -eq 0 ];then
+			echo "test 2 failed, trying test 3...."
+			wget -T $TIME_OUT -t 1 -q --spider http://www.ebay.com/ && connection=1 || connection=0
+		fi
+	fi
+
+	if [ "$connection" -eq 0 ];then
+		# restart connection just in case
+		if [ "$B_CONNECTION_RETRY" != 'true' ];then
+			restart_networking
+			repeat='true'
+		else
+			repeat=''
+			echo "No connection to the internet seems to be available."
+			exit 1
+		fi
+	else
+		echo "Internet connection is present and working."
+	fi
+	
+	if [ "$repeat" == 'true' ];then
+		connection-test
+	fi
+}
+
+restart_networking()
+{
+	local RestartNetworking='sv restart NetworkManager' response=''
+
+	echo $WLINE
+	echo "Connection failed, sorry."
+}
+
+createFlag() {
+	if [ ! -d "/home/$USER/.config/d77" ]; then
+		mkdir /home/$USER/.config/d77
+	fi
+	if [ ! -f "/home/$USER/.config/d77/d77-welcome" ]; then
+		touch /home/$USER/.config/d77/d77-welcome
+	fi
+}
+
+runInTerminal() {
+    x-terminal-emulator -e 'd77-welcome'
+    exit 0
+}
+
+showBanner(){
+echo "
+  Welcome to d77void! :)
+
+  This is an optional post-installation script, designed to help you configure
+  your new Linux installation and get the most out of d77void.
+
+  You will now be presented with a series of options. You will need your
+  administrator (sudo) password, so please have it ready.
+
+  You will also need a working internet connection, so if you have not done
+  so already, please configure your internet connection.
+
+  If you do not want to run this script now, you can run it at a later date
+  by entering the command \"d77-welcome\" in your terminal."
+  	
+}
+
+submenu () {
+	
+	TEMP=$2[@]
+	TEMP_SUB=("${!TEMP}")
+
+	while :
+	do		
+		printf "\033c"
+		echo " "
+		echo $1" : "
+		echo " "
+	
+		select option in "${TEMP_SUB[@]}"; do
+		echo "X "$option" X"
+			case $option in
+				"back")
+					return
+				;;
+				*)
+					. "$LIBDIR/$option"
+				break
+				;;
+			esac		
+		done
+	done
+}
+
+# First run
+if [[ $1 = '--firstrun' ]]; then
+
+#    if [[ -d /live/overlay || -e /home/$USER/.config/d77/d77-welcome || ! $(groups) =~ ( |^)wheel( |$) ]]; then
+    if [[ -d /lib/live/mount/overlay || -e /home/$USER/.config/d77/d77-welcome || ! $(groups) =~ ( |^)wheel( |$) ]]; then
+        exit 1
+    fi
+    runInTerminal
+fi
+
+# Open in terminal
+if [[ $1 = '--open' ]]; then
+    runInTerminal
+fi
+
+createFlag
+
+if ! [[ $(groups) =~ ( |^)wheel( |$) ]]; then
+  echo 'Error: must be a member of the sudo group to run this script.' # TODO 'root' user is not a member of the sudo group. Is it meant to restrict root from executing this script?
+  exit 1
+fi
+
+LIBDIR='/usr/lib/lib-d77-welcome'
+
+# Import prompt
+if [[ -f ${LIBDIR}/prompt ]]; then
+	source "${LIBDIR}/prompt"
+else
+	echo 'Error: Failed to locate prompt'
+	exit 1
+fi
+
+# Run through steps
+# STEPS_BASIC=('update' 'dist-upgrade' 'office-print' 'media-graphics' 'install-gimp' 'install-libreoffice')
+STEPS_MAIN=('set-root-password' 'update' 'dist-upgrade' 'office-print' 'media-graphics' 'bluetooth' 'browser' 'calamares' 'quit' )
+STEPS_OFFICE_PRINT=('install-libreoffice'  'back' )
+STEPS_MEDIA_GRAPHICS=('install-gimp' 'back')
+STEPS_BLUETOOTH=('install-bluetooth' 'back')
+STEPS_CALAMARES=('remove-calamares' 'back')
+STEPS_BROWSER=('install-firefox' 'install-chromium' 'back')
+
+# . "$LIBDIR/intro"
+connection-test
+
+ERROR_MESSAGE=""
+
+while :
+do
+	printf "\033c"
+	showBanner
+	echo ""
+	echo "Main Menu:"
+	echo ""
+	
+	select opt in "${STEPS_MAIN[@]}"; do
+	
+		case $opt in
+			"update" | "dist-upgrade" | "set-root-password" )
+				. "$LIBDIR/$opt"
+				break
+			;;
+		
+			 "office-print")
+				submenu "Office-Print" STEPS_OFFICE_PRINT
+				break
+			;;
+
+			"media-graphics")
+				submenu "Media-Graphics" STEPS_MEDIA_GRAPHICS
+				break
+			;;
+
+                        "bluetooth")
+                                submenu "Bluetooth" STEPS_BLUETOOTH
+                                break
+                        ;;
+
+                        "browser")
+				submenu "Browser" STEPS_BROWSER
+				break
+                        ;;
+
+                        "calamares")
+				submenu "remove-calamares" STEPS_CALAMARES
+				break
+                        ;;
+
+			"quit")
+				#. "$LIBDIR/fini"
+				printf "\033c"
+				exit
+			;;
+		esac	
+	done
+
+done
+
+
+exit 0

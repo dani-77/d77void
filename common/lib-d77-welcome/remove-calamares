@@ -1,0 +1,17 @@
+clear
+
+# echo "  -----------------------------[ screen $STEP of $STEPS ]----------------------------
+echo "
+
+  REMOVE CALAMARES INSTALLER
+  -------------------------------
+  Would you like to remove Calamares installer now?
+  If you choose to do this, the following packages will be removeed: 
+  
+  Calamares
+  
+  Note: additional packages listed as dependencies will also be installed."
+
+if prompt "  Would you like to remove Calamares?"; then
+	sudo xbps-remove -R calamares & sudo rm -rf /etc/calamares & sudo rm -rf /usr/bin/d77void-installer
+fi

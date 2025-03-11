@@ -95,6 +95,7 @@ include_common() {
 	mkdir -p "$INCLUDEDIR"/etc/skel/.local/share
 	mkdir -p "$INCLUDEDIR"/etc/default
 	mkdir -p "$INCLUDEDIR"/usr/bin
+	mkdir -p "$INCLUDEDIR"/usr/lib
 	mkdir -p "$INCLUDEDIR"/usr/share/polkit-1/rules.d
 	mkdir -p "$INCLUDEDIR"/usr/share/void-artwork
 	mkdir -p "$INCLUDEDIR"/usr/share/sddm/faces
@@ -104,11 +105,12 @@ include_common() {
 	cp -r $variant/skel "$INCLUDEDIR"/etc/
 	cp ./common/sddm.conf "$INCLUDEDIR"/etc/
 	cp ./common/grub "$INCLUDEDIR"/etc/default/
+	cp ./common/.gtkrc-2.0 "$INCLUDEDIR"/etc/skel/
+	cp ./common/d77-welcome "$INCLUDEDIR"/usr/bin/
 	cp ./common/rofi-power-menu "$INCLUDEDIR"/usr/bin/
 	cp ./common/50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/
 	cp ./common/splash.png "$INCLUDEDIR"/usr/share/void-artwork/
 	cp ./common/anon.face.icon "$INCLUDEDIR"/usr/share/sddm/faces/
-	cp -r ./common/slice "$INCLUDEDIR"/usr/share/sddm/themes/
 	cp -r ./common/dunst "$INCLUDEDIR"/etc/skel/.config/
 	cp -r ./common/gtk-3.0 "$INCLUDEDIR"/etc/skel/.config/
 	cp -r ./common/neofetch "$INCLUDEDIR"/etc/skel/.config/
@@ -117,7 +119,8 @@ include_common() {
 	cp -r ./common/themes "$INCLUDEDIR"/etc/skel/.local/share/
 	cp -r ./common/.icons "$INCLUDEDIR"/etc/skel/
 	cp -r ./common/Wallpaper "$INCLUDEDIR"/etc/skel/
-	cp ./common/.gtkrc-2.0 "$INCLUDEDIR"/etc/skel/
+	cp -r ./common/lib-d77-welcome "$INCLUDEDIR"/usr/lib/
+	cp -r ./common/slice "$INCLUDEDIR"/usr/share/sddm/themes/
 }
 
 include_way() {
