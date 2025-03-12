@@ -23,17 +23,15 @@ I would like to express my gratitude and say a big thank you to Rúben Gomez (Yo
 To install with Calamares:
 
 ```
-su
-
 calamares
 ```
 
 # 1st run:
 
-After install, run the script 1strun:
+After install, run the script d77-welcome:
 
 ```
-sudo ./1strun
+d77-welcome
 ```
 
 That way the hyprland repo will be added to /etc/xbps.d
