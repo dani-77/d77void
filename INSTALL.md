@@ -33,7 +33,7 @@ sudo ./d77 -r /home/dani77/cereus-pkgs/hostdir/binpkgs/cereus-extra -b fluxbox -
 To use it properly, run this:
 
 ```
-sudo ./d777 -r /home/dani77/cereus-pkgs/hostdir/binpkgs/cereus-extra -r https://raw.githubusercontent.com/Makrennel/hyprland-void/repository-x86_64-glibc -b hyprland -- -T d77void
+sudo ./d77 -r /home/dani77/cereus-pkgs/hostdir/binpkgs/cereus-extra -r https://raw.githubusercontent.com/Makrennel/hyprland-void/repository-x86_64-glibc -b hyprland -- -T d77void
 ```
 
 instead of the usual mkiso/d77 command; it is needed to accept a new outside repo.
