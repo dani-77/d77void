@@ -143,10 +143,10 @@ else
 fi
 
 # Run through steps
-# STEPS_BASIC=('update' 'dist-upgrade' 'office-print' 'media-graphics' 'install-gimp' 'install-libreoffice')
-STEPS_MAIN=('set-root-password' 'update' 'dist-upgrade' 'office-print' 'media-graphics' 'bluetooth' 'browser' 'flatpak' 'steam' 'calamares' 'quit' )
-STEPS_OFFICE_PRINT=('install-libreoffice'  'back' )
-STEPS_MEDIA_GRAPHICS=('install-gimp' 'back')
+# STEPS_BASIC=('update' 'dist-upgrade' 'office' 'media-graphics' 'install-gimp' 'install-libreoffice')
+STEPS_MAIN=('set-root-password' 'update' 'dist-upgrade' 'office' 'media-graphics' 'bluetooth' 'browser' 'flatpak' 'steam' 'calamares' 'quit' )
+STEPS_OFFICE=('install-libreoffice' 'install-abignu' 'back' )
+STEPS_MEDIA_GRAPHICS=('install-gimp' 'install-deadbeef' 'back')
 STEPS_BLUETOOTH=('install-bluetooth' 'back')
 STEPS_CALAMARES=('remove-calamares' 'back')
 STEPS_BROWSER=('install-firefox' 'install-chromium' 'back')
@@ -174,8 +174,8 @@ do
 				break
 			;;
 		
-			 "office-print")
-				submenu "Office-Print" STEPS_OFFICE_PRINT
+			 "office")
+				submenu "Office" STEPS_OFFICE
 				break
 			;;
 

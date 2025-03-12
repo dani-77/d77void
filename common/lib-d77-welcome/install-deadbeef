@@ -1,0 +1,17 @@
+clear
+
+echo "  -----------------------------[ screen $STEP of $STEPS ]----------------------------
+
+  INSTALL DEADBEEF 
+  --------------------
+  By default, d77void comes only with cmus as music player; 
+  Would you like to install the more advanced DeadBeef music player? If you choose to do 
+  this, the following packages will be installed:
+
+      deadbeef deadbeef-fb deadbeef-waveform-seekbar
+
+  Note: additional packages listed as dependencies will also be installed."
+
+if prompt "  Would you like to install DeadBeef?"; then
+	sudo xbps-install -Sy deadbeef deadbeef-fb deadbeef-waveform-seekbar
+fi

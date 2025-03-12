@@ -1,0 +1,18 @@
+clear
+
+# echo "  -----------------------------[ screen $STEP of $STEPS ]----------------------------
+echo "
+
+  INSTALL Abiword and Gnumeric
+  ----------------------------
+  By default, d77void comes preinstalled with some lightweight Office
+  applications. Would you like to install Abiword and Gnumeric?
+  If you choose to do this, the  following package will be installed:
+
+     abiword gnumeric
+
+  Note: additional packages listed as dependencies will also be installed."
+
+if prompt "  Would you like to install Abiword and Gnumeric?"; then
+	sudo xbps-install -Sy abiword gnumeric
+fi
