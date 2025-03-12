@@ -1,4 +1,4 @@
 Terminal,uxterm,utilities-terminal
-Browser,firefox,firefox
+Browser,brave-browser-stable,web-browser
 File manager,pcmanfm,system-file-manager
 ^sep()

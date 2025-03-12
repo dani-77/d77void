@@ -62,8 +62,8 @@
             </action> </item>
         </menu>
         <menu id="5" label="Network">
-            <item label="FireFox"> <action name="Execute">
-                <execute>firefox</execute>
+            <item label="Brave"> <action name="Execute">
+                <execute>brave-browser-stable</execute>
             </action> </item>
             <item label="Geary"> <action name="Execute">
                 <execute>geary</execute>

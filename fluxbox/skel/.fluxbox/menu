@@ -17,14 +17,14 @@
 [begin] (Fluxbox)
 [encoding] {UTF-8}
       [exec] (xterm) {xterm} 
-      [exec] (firefox) {firefox} 
+      [exec] (brave-browser) {brave-browser-stable} 
       [exec]   (Run) {fbrun} 
 [submenu] (Terminals)
       [exec]   (xterm) {xterm} 
 [end]
 [submenu] (Net)
 [submenu] (Browsers)
-      [exec]   (firefox) {firefox} 
+      [exec]   (brave-browser) {brave-browser-stable} 
 [end]
 [end]
 [submenu] (Editors)

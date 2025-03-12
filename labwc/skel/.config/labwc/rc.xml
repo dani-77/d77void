@@ -37,7 +37,7 @@
       <action name="Execute" command="swaylock"/>
     </keybind>
     <keybind key="W-w">
-      <action name="Execute" command="firefox"/>
+      <action name="Execute" command="brave-browser-stable"/>
     </keybind>
     <keybind key="W-x">
       <action name="Execute" command="rofi -show power-menu -modi power-menu:rofi-power-menu"/>

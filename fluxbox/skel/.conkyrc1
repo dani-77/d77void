@@ -69,7 +69,7 @@ ${color grey}alt + j -> ${color}menu
 ${color grey}alt + l -> ${color}lock
 ${color grey}alt + m -> ${color}mail
 ${color grey}alt + p -> ${color}print screen
-${color grey}alt + w -> ${color}firefox
+${color grey}alt + w -> ${color}web browser
 ${color grey}alt + x -> ${color}powermenu
 ${color grey}alt + r -> ${color}run
 ]]

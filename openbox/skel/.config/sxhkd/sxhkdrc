@@ -1,7 +1,7 @@
 alt + shift + Return
 	xterm
 alt + w
-	firefox
+	brave-browser-stable
 alt + m
 	geary
 alt + e
