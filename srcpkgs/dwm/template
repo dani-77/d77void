@@ -17,8 +17,8 @@ short_desc="dwm patched"
 maintainer="dani-77 <daniazevedo77@posteo.net>"
 license="MIT"
 homepage="https://suckless.org"
-#changelog="https://github.com/dani-77/dwm/releases/tag/dwm-6.5"
-distfiles="https://github.com/dani-77/dwm/archive/refs/tags/dwm-6.5.tar.gz"
+changelog="https://github.com/dani-77/dwm/releases/tag/dwm-${version}"
+distfiles="https://github.com/dani-77/dwm/archive/refs/tags/dwm-${version}.tar.gz"
 checksum=00db32d3427d70e56a5481cee7b5b9ca284761e79f9cdabab95edbc35c04c413
 
 do_build() {

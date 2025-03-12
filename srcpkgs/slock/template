@@ -17,8 +17,8 @@ short_desc="slock with patches"
 maintainer="dani-77 <daniazevedo77@posteo.net>"
 license="MIT"
 homepage="https://suckless.org"
-changelog="https://github.com/dani-77/slock/releases/tag/slock-1.5"
-distfiles="https://github.com/dani-77/slock/archive/refs/tags/slock-1.5.tar.gz"
+changelog="https://github.com/dani-77/slock/releases/tag/slock-${version}"
+distfiles="https://github.com/dani-77/slock/archive/refs/tags/slock-${version}.tar.gz"
 checksum=59397a98a24397a09f08fe4ea1d51e6e32a9f70fbbeba89525091d0be317d4d6
 
 if [ "$XBPS_TARGET_LIBC" = "glibc" ]; then

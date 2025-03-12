@@ -17,8 +17,8 @@ short_desc="st patched with alpha and dracula"
 maintainer="dani-77 <daniazevedo77@posteo.net>"
 license="MIT"
 homepage="https://suckless.org"
-changelog="https://github.com/dani-77/st/releases/tag/st-0.9.2"
-distfiles="https://github.com/dani-77/st/archive/refs/tags/st-0.9.2.tar.gz"
+changelog="https://github.com/dani-77/st/releases/tag/st-${version}"
+distfiles="https://github.com/dani-77/st/archive/refs/tags/st-${version}.tar.gz"
 checksum=950442117b99b022bab541f7cb1a6298a555b46ce33721f8574176cb279794e8
 
 pre_build() {
