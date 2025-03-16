@@ -238,7 +238,7 @@ build_variant() {
 	openbox)
 	    COMMON=yes
 	    X11=yes
-            PKGS="$PKGS $XORG_PKGS $CALAMARES $D77_CORE cbatticon conky dunst jgmenu jq lxappeaance lxappearance-obconf menumaker obconf openbox redshift redshift-gtk scrot slock sxhkd tint2 tint2conf volumeicon xautolock xcompmgr"
+            PKGS="$PKGS $XORG_PKGS $CALAMARES $D77_CORE cbatticon conky dunst jgmenu jq lxappeaance lxappearance-obconf menumaker obconf openbox redshift redshift-gtk scrot slock sxhkd st tint2 tint2conf volumeicon xautolock xcompmgr"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;        
 	qtile)

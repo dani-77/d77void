@@ -8,12 +8,12 @@ echo "  -----------------------------[ screen $STEP of $STEPS ]-----------------
   repos are. Would you like to install it now? If you choose to do 
   this, the following packages will be installed:
   
-   xbps-install -S libgcc-32bit libstdc++-32bit libdrm-32bit
+   xbps-install -S steam libgcc-32bit libstdc++-32bit libdrm-32bit
    libglvnd-32bit mesa-32bit mesa-dri-32bit
    
   Note: additional packages listed as dependencies will also be installed."
 
 if prompt "  Would you like to install STEAM?"; then
-	sudo xbps-install -y xbps-install -S libgcc-32bit libstdc++-32bit libdrm-32bit libglvnd-32bit mesa-dri-32bit
+	sudo xbps-install -y steam libgcc-32bit libstdc++-32bit libdrm-32bit libglvnd-32bit mesa-dri-32bit
 
 fi
