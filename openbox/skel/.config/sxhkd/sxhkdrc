@@ -1,5 +1,5 @@
 alt + shift + Return
-	xterm
+	st
 alt + w
 	brave-browser-stable
 alt + m
@@ -20,3 +20,5 @@ alt + l
 	slock
 alt + b
 	wswap-X
+alt + r
+	gmrun
