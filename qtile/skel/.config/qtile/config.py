@@ -134,9 +134,9 @@ for workspace in workspaces:
     keys.append(Key([mod], workspace["key"], lazy.group[workspace["name"]].toscreen()))
     keys.append(Key([mod, "shift"], workspace["key"], lazy.window.togroup(workspace["name"])))
 
-qtile_colors = colors.Macchiato
+qtile_colors = colors.d77
 
-layout_theme = {"border_width": 5, "border_focus": qtile_colors[25], "border_normal": qtile_colors[6], "margin": 5}
+layout_theme = {"border_width": 5, "border_focus": qtile_colors[30], "border_normal": qtile_colors[33], "margin": 5}
 
 layouts = [
      #layout.Columns(border_focus_stack=["#4d235c", "#686714"]),

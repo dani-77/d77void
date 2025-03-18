@@ -1,4 +1,4 @@
-Macchiato = [
+d77 = [
     ["#f4dbd6", "#f4dbd6"], # 0 rosewater
     ["#f0c6c6", "#f0c6c6"], # 1 flamingo
     ["#f5bde6", "#f5bde6"], # 2 pink
@@ -24,5 +24,18 @@ Macchiato = [
     ["#24273a", "#24273a"], # 22 base
     ["#1e2030", "#1e2030"], # 23 mantle
     ["#181926", "#181926"], # 24 crust
-    ["#50fa7b", "#50fa7b"] # 25 green
+
+    ["#282a36", "#282a36"], # 25 background
+    ["#44475a", "#44475a"], # 26 current
+    ["#f8f8f2", "#f8f8f2"], # 27 foreground
+    ["#6272a4", "#6272a4"], # 28 comment
+    ["#8be9fd", "#8be9fd"], # 29 cyan
+    ["#50fa7b", "#50fa7b"], # 30 green1
+    ["#ffb86c", "#ffb86c"], # 31 orange
+    ["#ff79c6", "#ff79c6"], # 32 pink1
+    ["#bd93f9", "#bd93f9"], # 33 purple
+    ["#ff5555", "#ff5555"], # 34 red1
+    ["#f1fa8c", "#f1fa8c"] # 35 yellow
 ]
+
+
