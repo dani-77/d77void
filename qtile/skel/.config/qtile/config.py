@@ -119,7 +119,7 @@ for vt in range(1, 8):
     )
 workspaces = [
     {"name": " ", "key": "1", "matches": [Match(wm_class='kitty'), Match(wm_class='mousepad'), Match(wm_class='ranger')], "layout": "bsp"},
-    {"name": " ", "key": "2", "matches": [Match(wm_class='Firefox'), Match(wm_class='brave-browser-stable'), Match(wm_class='uGet'), Match(wm_class='geary')], "layout": "max"},
+    {"name": " ", "key": "2", "matches": [Match(wm_class='Firefox'), Match(wm_class='Epiphany'), Match(wm_class='uGet'), Match(wm_class='geary')], "layout": "max"},
     {"name": " ", "key": "3", "matches": [Match(wm_class='mpv'), Match(wm_class='cmus')], "layout": "monadtall"},
     {"name": " ", "key": "4", "matches": [Match(wm_class='abiword'), Match(wm_class='gimp-2.10'), Match(wm_class='Gnumeric')], "layout": "max"},
     {"name": " ", "key": "5", "matches": [Match(wm_class='telegram-desktop'), Match(wm_class='discord')], "layout": "monadtall"},
@@ -136,7 +136,7 @@ for workspace in workspaces:
 
 qtile_colors = colors.Macchiato
 
-layout_theme = {"border_width": 5, "border_focus": qtile_colors[6], "border_normal": qtile_colors[15], "margin": 5}
+layout_theme = {"border_width": 5, "border_focus": qtile_colors[25], "border_normal": qtile_colors[6], "margin": 5}
 
 layouts = [
      #layout.Columns(border_focus_stack=["#4d235c", "#686714"]),
@@ -198,7 +198,7 @@ screens = [
 		widget.Battery(format = '  {percent:2.0%} {hour:d}:{min:02d}'),
 		widget.KeyboardLayout(configured_keyboards = ["pt"],font = "Hack",fontsize = "12",fmt = '  {}'),
 		widget.CheckUpdates(distro = 'Void',no_update_string=' No updates',update_interval=600,
-		mouse_callbacks={'Button1': lazy.spawn('octoxbps')}),
+		mouse_callbacks={'Button1': lazy.spawn('qt-sudo xbps-install -Su -y')}),
 		widget.TextBox(text=" ", fontsize = 12,
 		mouse_callbacks={'Button1': lazy.spawn('rofi -show power-menu -modi power-menu:rofi-power-menu')}),
             ], 
