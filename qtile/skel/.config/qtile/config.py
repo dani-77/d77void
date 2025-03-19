@@ -29,7 +29,8 @@ from libqtile.backend.wayland import InputConfig
 from libqtile.config import Click, Drag, Group, Key, Match, Screen, Rule
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
-from qtile_extras.widget.decorations import BorderDecoration # type: ignore
+from qtile_extras.widget.decorations import BorderDecoration  # type: ignore
+from qtile_extras.layout.decorations import GradientBorder, RoundedCorners
 from qtile_extras.resources import wallpapers
 from qtile_extras import widget
 import os
@@ -94,7 +95,7 @@ keys = [
 
     Key([mod], "a", lazy.spawn("rofi -show drun"), desc="Rofi Menu"),
     Key([mod], "b", lazy.spawn("wswap-way"), desc="Swap Wallpaper"),
-    Key([mod], "f", lazy.spawn("pcmanfm"), desc="Filemanager"),
+    Key([mod], "d", lazy.spawn("pcmanfm"), desc="Filemanager"),
     Key([mod], "m", lazy.spawn("geary"), desc="Web browser"),
     Key([mod], "x", lazy.spawn("rofi -show power-menu -modi power-menu:rofi-power-menu"), desc="Rofi PowerMenu"),
     Key([mod], "w", lazy.spawn("brave-browser-stable"), desc="Web browser"),
@@ -118,10 +119,10 @@ for vt in range(1, 8):
         )
     )
 workspaces = [
-    {"name": " ", "key": "1", "matches": [Match(wm_class='kitty'), Match(wm_class='mousepad'), Match(wm_class='ranger')], "layout": "bsp"},
-    {"name": " ", "key": "2", "matches": [Match(wm_class='Firefox'), Match(wm_class='Epiphany'), Match(wm_class='uGet'), Match(wm_class='geary')], "layout": "max"},
-    {"name": " ", "key": "3", "matches": [Match(wm_class='mpv'), Match(wm_class='cmus')], "layout": "monadtall"},
-    {"name": " ", "key": "4", "matches": [Match(wm_class='abiword'), Match(wm_class='gimp-2.10'), Match(wm_class='Gnumeric')], "layout": "max"},
+    {"name": " ", "key": "1", "matches": [Match(wm_class='kitty'), Match(wm_class='mousepad'), Match(wm_class='ranger'), Match(wm_class='geany')], "layout": "bsp"},
+    {"name": " ", "key": "2", "matches": [Match(wm_class='Firefox'), Match(wm_class='org.gnome.Evolution-alarm-notify.desktop'), Match(wm_class='transmission-gtk.desktop'), Match(wm_class='geary')], "layout": "max"},
+    {"name": " ", "key": "3", "matches": [Match(wm_class='mpv'), Match(wm_class='deadbeef'),  Match(wm_class='cmus')], "layout": "monadtall"},
+    {"name": " ", "key": "4", "matches": [Match(wm_class='abiword'), Match(wm_class='gimp,desktop'), Match(wm_class='Gnumeric')], "layout": "max"},
     {"name": " ", "key": "5", "matches": [Match(wm_class='telegram-desktop'), Match(wm_class='discord')], "layout": "monadtall"},
 ]
 
@@ -136,14 +137,14 @@ for workspace in workspaces:
 
 qtile_colors = colors.d77
 
-layout_theme = {"border_width": 5, "border_focus": qtile_colors[30], "border_normal": qtile_colors[33], "margin": 5}
+layout_theme = {"border_width": 3, "border_focus": qtile_colors[30], "border_normal": qtile_colors[33], "margin": 5}
 
 layouts = [
      #layout.Columns(border_focus_stack=["#4d235c", "#686714"]),
      layout.Bsp(**layout_theme),
      layout.Max(**layout_theme),
      layout.MonadTall(**layout_theme),
-     #layout.Tile(**layout_theme),
+     layout.Tile(**layout_theme),
      #layout.Stack(num_stacks=2, **layout_theme), 
      #layout.Matrix(**layout_theme),
      #layout.MonadWide(**layout_theme),
@@ -196,7 +197,7 @@ screens = [
 		widget.Volume(fmt="  {}",
                 mouse_callbacks={'Button3': lazy.spawn('pavucontrol')}),
 		widget.Battery(format = '  {percent:2.0%} {hour:d}:{min:02d}'),
-		widget.KeyboardLayout(configured_keyboards = ["pt"],font = "Hack",fontsize = "12",fmt = '  {}'),
+		widget.KeyboardLayout(configured_keyboards = ["us", "de deadtilde", "pt"],font = "Hack",fontsize = "12",fmt = '  {}'),
 		widget.CheckUpdates(distro = 'Void',no_update_string=' No updates',update_interval=600,
 		mouse_callbacks={'Button1': lazy.spawn('qt-sudo xbps-install -Su -y')}),
 		widget.TextBox(text=" ", fontsize = 12,
