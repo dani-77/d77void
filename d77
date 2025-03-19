@@ -114,6 +114,7 @@ include_common() {
 	cp -r ./common/dunst "$INCLUDEDIR"/etc/skel/.config/
 	cp -r ./common/gtk-3.0 "$INCLUDEDIR"/etc/skel/.config/
 	cp -r ./common/neofetch "$INCLUDEDIR"/etc/skel/.config/
+	cp -r ./common/fastfetch "$INCLUDEDIR"/etc/skel/.config/
 	cp -r ./common/rofi "$INCLUDEDIR"/etc/skel/.config/
 	cp -r ./common/xsettingsd "$INCLUDEDIR"/etc/skel/.config/
 	cp -r ./common/themes "$INCLUDEDIR"/etc/skel/.local/share/
@@ -152,7 +153,7 @@ build_variant() {
             GFX_WL_PKGS="mesa-dri"
             WANT_INSTALLER=yes
             TARGET_ARCH="$ARCH"
-	    D77_CORE="acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brave-bin brightnessctl ca-certificates conky cmus cups cups-browsed curl elogind epson-inkjet-printer-escpr ethtool feh font-awesome font-awesome5 font-awesome6 font-hack-ttf geary gettext git github-cli gmrun htop inxi jq mousepad mpv nano ncspot NetworkManager network-manager-applet nerd-fonts-symbols-ttf neofetch nextcloud-client octoxbps papirus-icon-theme pcmanfm polkit ranger rofi sddm smartmontools system-config-printer tlp tlp-rdw transmission-gtk udiskie ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree wget xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf xterm yt-dlp zathura zathura-pdf-poppler"
+	    D77_CORE="acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brave-bin brightnessctl ca-certificates conky cmus cups cups-browsed curl elogind epson-inkjet-printer-escpr ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-hack-ttf geary gettext git github-cli gmrun htop inxi jq mousepad mpv nano ncspot NetworkManager network-manager-applet nerd-fonts-symbols-ttf neofetch nextcloud-client octoxbps papirus-icon-theme pcmanfm polkit ranger rofi sddm smartmontools system-config-printer tlp tlp-rdw transmission-gtk udiskie ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree wget xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf xterm yt-dlp zathura zathura-pdf-poppler"
 	    D77_EXTRA="abook calcurse isync neomutt pass pcsc-ccid pcsc-tools pcsclite"
             CALAMARES="calamares grub rsync"
 	    COMMON=
@@ -214,7 +215,7 @@ build_variant() {
 	hyprland)
 	    COMMON=yes
 	    WAY=yes
-            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES $D77_CORE grim hyprland ImageMagick kitty pavucontrol qt6-wayland swaybg swayidle swayimg swaylock SwayNotificationCenter wayland-devel wayland-protocols Waybar wlsunset wmenu xorg-server-xwayland"
+            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES $D77_CORE grim hyprland hyprlock hyprpaper ImageMagick kitty pavucontrol qt6-wayland swaybg swayidle swayimg swaylock SwayNotificationCenter wayland-devel wayland-protocols Waybar wlsunset wmenu xorg-server-xwayland"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
 	labwc)
