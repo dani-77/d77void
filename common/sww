@@ -1,0 +1,4 @@
+#! /bin/bash
+
+swww-daemon
+swww img ~/Wallpaper/background2.png

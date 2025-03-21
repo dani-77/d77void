@@ -253,8 +253,7 @@ spawn-at-startup "xwayland-satellite"
 environment {
     DISPLAY ":1"
 }
-spawn-at-startup "swww-daemon"
-spawn-at-startup "swww" "img ~/Wallpaper/background2.png"
+spawn-at-startup "sww"
 spawn-at-startup "dconf_niri"
 spawn-at-startup "dunst"
 spawn-at-startup "waybar"
