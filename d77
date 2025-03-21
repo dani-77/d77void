@@ -137,6 +137,11 @@ include_dwm() {
 	cp $variant/power_menu "$INCLUDEDIR"/usr/bin/
 }
 
+include_dwm() {
+	mkdir -p "$INCLUDEDIR"/usr/bin
+	cp ./common/dconf_niri "$INCLUDEDIR"/usr/bin/
+} 
+
 build_variant() {
     variant="$1"
     shift
@@ -160,6 +165,7 @@ build_variant() {
 	    X11=
 	    WAY=
 	    DWM=
+	    NIRI=
 	    ;;
         aarch64*)
             GRUB_PKGS="grub-arm64-efi"
@@ -233,7 +239,7 @@ build_variant() {
 	niri)
 	    COMMON=yes
 	    WAY=yes
-            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES $D77_CORE grim ImageMagick kitty niri nwg-look sfwbar swaylock swww wlsunset wmenu"
+            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES $D77_CORE fuzzel gnome-keyring grim ImageMagick kitty niri swayidle swaylock swww xdg-desktop-portal-gnome xdg-desktop-portal-gtk wlsunset xwayland-satellite"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
 	openbox)

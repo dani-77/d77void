@@ -1,0 +1,4 @@
+#! /bin/bash
+
+dconf write /org/gnome/desktop/interface/gtk-theme '"Arc-Dark"'
+dconf write /org/gnome/desktop/interface/icon-theme '"Papirus-Dark"'
