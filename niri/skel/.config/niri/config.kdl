@@ -253,6 +253,7 @@ spawn-at-startup "xwayland-satellite"
 environment {
     DISPLAY ":1"
 }
+spawn-at-startup "niri_1st"
 spawn-at-startup "sww"
 spawn-at-startup "dconf_niri"
 spawn-at-startup "dunst"
@@ -260,7 +261,6 @@ spawn-at-startup "waybar"
 spawn-at-startup "nm-applet"
 spawn-at-startup "udiskie" "-at"
 spawn-at-startup "octoxbps-notifier"
-spawn-at-startup "kitty" "-e" "d77-welcome"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.

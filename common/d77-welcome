@@ -144,7 +144,7 @@ fi
 
 # Run through steps
 # STEPS_BASIC=('update' 'dist-upgrade' 'office' 'media-graphics' 'install-gimp' 'install-libreoffice')
-STEPS_MAIN=('set-root-password' 'update' 'dist-upgrade' 'office' 'media-graphics' 'bluetooth' 'browser' 'flatpak' 'steam' 'hyprland' 'niri only' 'calamares' 'quit' )
+STEPS_MAIN=('set-root-password' 'update' 'dist-upgrade' 'office' 'media-graphics' 'bluetooth' 'browser' 'flatpak' 'steam' 'hyprland' 'calamares' 'quit' )
 STEPS_OFFICE=('install-libreoffice' 'install-abignu' 'back' )
 STEPS_MEDIA_GRAPHICS=('install-gimp' 'install-deadbeef' 'back')
 STEPS_BLUETOOTH=('install-bluetooth' 'back')
@@ -153,7 +153,7 @@ STEPS_BROWSER=('install-firefox' 'install-chromium' 'back')
 STEPS_STEAM=('install-steam' 'back')
 STEPS_FLATPAK=('install-flatpak' 'add-user' 'back')
 STEPS_HYPRLAND=('hyprland' 'back')
-STEPS_NIRI=('niri' 'back')
+
 # . "$LIBDIR/intro"
 connection-test
 
@@ -207,11 +207,6 @@ do
 
                         "hyprland")
 				submenu "hyprland" STEPS_HYPRLAND
-				break
-                        ;;
-
-			"niri only")
-				submenu "niri" STEPS_NIRI
 				break
                         ;;
 

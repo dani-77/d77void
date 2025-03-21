@@ -141,6 +141,8 @@ include_niri() {
 	mkdir -p "$INCLUDEDIR"/usr/bin
 	cp ./common/dconf_niri "$INCLUDEDIR"/usr/bin/
 	cp ./common/sww "$INCLUDEDIR"/usr/bin/
+	cp ./common/screenlock "$INCLUDEDIR"/usr/bin/
+	cp ./common/niri_1st "$INCLUDEDIR"/usr/bin/
 } 
 
 build_variant() {

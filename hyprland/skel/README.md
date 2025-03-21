@@ -2,7 +2,18 @@
 
 Hello Thank you for trying d77void.
 
-To run the installer just open a terminal and type:
+## Installers
+
+To run Calamares:
+
+```
+su
+
+calamares
+```
+
+
+To run the tui installer just open a terminal and type:
 
 ```
 sudo d77void-installer
@@ -18,7 +29,7 @@ During install, add your user to the storage group. That way udiskie will automo
 
 - Hyprlock configured;
 
-- new d77-welcome script avilable and corrected;
+- new d77-welcome script available and corrected;
 
 - some minor changes in keybinds;
 
@@ -33,7 +44,7 @@ After install, run the script d77-welcome:
 d77-welcome
 ```
 
-That way the hyprland repo will be added to /etc/xbps.d
+That way the hyprland repo will be added to /etc/xbps.d and you can add easily other things like steam, flatpak, etc.
 
 # Keybinds
 
