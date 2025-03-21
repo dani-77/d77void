@@ -240,7 +240,7 @@ build_variant() {
 	    COMMON=yes
 	    WAY=yes
 	    NIRI=yes
-            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES $D77_CORE fuzzel gnome-keyring grim ImageMagick kitty niri swayidle swaylock swww xdg-desktop-portal-gnome xdg-desktop-portal-gtk wlsunset xwayland-satellite"
+            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES $D77_CORE fuzzel gnome-keyring grim ImageMagick kitty niri swayidle swaylock swww xdg-desktop-portal-gnome xdg-desktop-portal-gtk waybar wlsunset xwayland-satellite"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
 	openbox)

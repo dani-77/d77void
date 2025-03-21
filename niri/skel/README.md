@@ -25,13 +25,15 @@ calamares
 
 super + return -> terminal
 
-super + b -> swap wallpaper
+super + b -> web browser
 
 super + d -> fuzzel
 
+super + shift + e -> logout
+
 super + o -> gmrun
 
-super + shift + e -> logout
+super + p -> file manager
 
 super + q -> close window
 

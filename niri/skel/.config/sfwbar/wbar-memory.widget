@@ -1,9 +1,0 @@
-include("memory.source")
-
-layout {
-  label {
-    style = if(XMemPresent,"memory","hidden")
-    interval = 30000
-    value = Str(XMemUtilization*100) + '% '
-  }
-}

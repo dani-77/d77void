@@ -351,6 +351,7 @@ binds {
     Mod+D { spawn "fuzzel"; }
     Mod+B { spawn "brave-browser-stable"; }
     Mod+P { spawn "pcmanfm"; }
+    Mod+O { spawn "gmrun"; }
     Super+T { spawn "swaylock"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
