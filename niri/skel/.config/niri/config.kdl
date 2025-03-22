@@ -13,8 +13,8 @@ input {
             // For more information, see xkeyboard-config(7).
 
             // For example:
-            layout "de"
-            variant "deadtilde"
+            // layout "de"
+            // variant "deadtilde"
             // options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
         }
     }
@@ -261,6 +261,9 @@ spawn-at-startup "waybar"
 spawn-at-startup "nm-applet"
 spawn-at-startup "udiskie" "-at"
 spawn-at-startup "octoxbps-notifier"
+spawn-at-startup "screenlock"
+//spawn-at-startup "wlsunset" "-l 41,6" "-L -8,62" Porto, Portugal
+
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
