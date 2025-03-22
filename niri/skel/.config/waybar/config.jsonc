@@ -7,6 +7,7 @@
     "spacing": 5, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
+        "niri/workspaces",
         "sway/workspaces",
         "sway/mode",
         "sway/scratchpad",
@@ -229,6 +230,20 @@
 			"hibernate": "loginctl suspend"
 		}
     	},
+
+	"niri/workspaces": {
+	"format": "{icon}",
+	"format-icons": {
+		// Named workspaces
+		// (you need to configure them in niri)
+		"browser": "",
+		"discord": "",
+		"chat": "<b></b>",
+		// Icons by state
+		"active": "",
+		"default": ""
+	}
+	},
 
     	"sway/language": {
     	"format-pl": "[pl]",
