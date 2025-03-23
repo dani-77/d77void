@@ -1,0 +1,106 @@
+//  by Bina
+
+
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "logo": {
+    	"source": "~/.config/fastfetch/images/original.png",
+    	"type": "kitty",
+    	"height": 18,
+    	"padding": {
+    		"top": 2
+    	}
+    },
+    "display": {
+        "separator": " "
+    },
+    "modules": [
+	"break",
+        "break",
+        "break",
+        
+        {
+            "type": "title",
+            "keyWidth": 10
+        },
+	{
+            "type": "custom",
+            "format": "~~~~~~~~~~~~~~~~~~~~~~~~~~",
+        },
+	 "break",
+        {
+            "type": "os",
+            "key": " ",
+            "keyColor": "35",  
+        },
+        {
+            "type": "kernel",
+            "key": " ",
+            "keyColor": "36",
+        },
+        {
+            "type": "uptime",
+            "key": " ",
+            "keyColor": "35", 
+        },
+        {
+            "type": "packages",
+            "key": " ",
+            "keyColor": "33",  
+        },
+        {
+            "type": "wm",
+            "key": " ",
+            "keyColor": "31", 
+        },
+        {
+            "type": "terminal",
+            "key": " ",
+            "keyColor": "36", 
+        },
+        {
+            "type": "shell",
+            "key": " ",
+            "keyColor": "34", 
+        },
+        {
+            "type": "datetime",
+            "format": "{1}-{3}-{11}",
+            "key": " ",
+            "keyColor": "31", 
+        },
+        {
+            "type": "cpu",
+            "key": " ",
+            "keyColor": "34", 
+        },
+        {
+            "type": "gpu",
+            "key": " ",
+            "keyColor": "37", 
+        },
+        {
+            "type": "display",
+            "key": "󰍹 ",
+            "keyColor": "31"
+        },
+        {
+            "type": "memory",
+            "key": " ",
+            "keyColor": "green"
+        },
+        {
+            "type": "battery",
+            "key": "󰄌 ",
+            "keyColor": "31"
+        },
+        
+       "break",
+        {
+            "type": "custom",
+            "format": "\u001b[90m  \u001b[31m  \u001b[32m  \u001b[33m  \u001b[34m  \u001b[35m  \u001b[36m  \u001b[37m "
+        },
+        "break",
+        "break",
+    ]
+}
