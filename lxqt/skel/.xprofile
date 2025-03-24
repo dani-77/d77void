@@ -1,0 +1,4 @@
+#!/bin/bash
+
+exec xautolock -time 15 -locker slock &
+exec xcompmgr -c -f -n &
