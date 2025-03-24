@@ -144,12 +144,20 @@ include_lxqt() {
 	cp ./common/d77void.png "$INCLUDEDIR"/usr/share/lxqt/graphics/
 }
 
+include_wayfire() {
+	mkdir -p "$INCLUDEDIR"/usr/bin
+	mkdir -p "$INCLUDEDIR"/usr/share/wayfire/icons
+	cp ./common/background2.png "$INCLUDEDIR"/usr/share/wayfire/
+	cp ./common/d77void.png "$INCLUDEDIR"/usr/share/wayfire/icons/
+	cp ./common/screenlock "$INCLUDEDIR"/usr/bin/
+}
+
 include_niri() {
 	mkdir -p "$INCLUDEDIR"/usr/bin
 	cp ./common/dconf_niri "$INCLUDEDIR"/usr/bin/
 	cp ./common/sww "$INCLUDEDIR"/usr/bin/
-	cp ./common/screenlock "$INCLUDEDIR"/usr/bin/
 	cp ./common/niri_1st "$INCLUDEDIR"/usr/bin/
+	cp ./common/screenlock "$INCLUDEDIR"/usr/bin/
 } 
 
 build_variant() {
@@ -177,6 +185,7 @@ build_variant() {
 	    DWM=
 	    NIRI=
 	    LXQT=
+	    WAYFIRE=
 	    ;;
         aarch64*)
             GRUB_PKGS="grub-arm64-efi"
@@ -247,6 +256,13 @@ build_variant() {
             PKGS="$PKGS $XORG_PKGS $CALAMARES $D77_CORE base-devel fontconfig-devel freetype-devel gcr-devel gcr4-devel glibc-devel gtk+3-devel harfbuzz-devel imlib2-devel libX11-devel libXft-devel libXinerama-devel webkit2gtk-devel dunst leftwm lxappearance polybar redshift scrot slock st xautolock xcompmgr"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
+	lxqt)
+	    COMMON=yes
+	    X11=yes
+	    LXQT=yes
+            PKGS="$PKGS $XORG_PKGS $CALAMARES acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brave-bin brightnessctl ca-certificates cmus cups cups-browsed curl elogind epson-inkjet-printer-escpr ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-hack-ttf geary gettext git github-cli gvfs-afc gvfs-mtp gvfs-smb htop inxi kitty lxqt mpv nano ncspot NetworkManager network-manager-applet nerd-fonts-symbols-ttf neofetch nextcloud-client octoxbps papirus-icon-theme polkit ranger rofi sddm smartmontools system-config-printer tlp tlp-rdw transmission-gtk udisks2 ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree wget xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf xterm yt-dlp zathura zathura-pdf-poppler"
+            SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
+        ;;
 	niri)
 	    COMMON=yes
 	    WAY=yes
@@ -276,17 +292,10 @@ build_variant() {
 	wayfire)
 	    COMMON=yes
 	    WAY=yes
-	    NIRI=yes
+	    WAYFIRE=yes
             PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES $D77_CORE grim ImageMagick kitty pavucontrol swayidle swaylock SwayNotificationCenter wayfire wayfire-plugins-extra wcm wlroots wlsunset xorg-server-xwayland xwayland-satellite"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
 	;;
-	lxqt)
-	    COMMON=yes
-	    X11=yes
-	    LXQT=yes
-            PKGS="$PKGS $XORG_PKGS $CALAMARES acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brave-bin brightnessctl ca-certificates cmus cups cups-browsed curl elogind epson-inkjet-printer-escpr ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-hack-ttf geary gettext git github-cli gvfs-afc gvfs-mtp gvfs-smb htop inxi kitty lxqt mpv nano ncspot NetworkManager network-manager-applet nerd-fonts-symbols-ttf neofetch nextcloud-client octoxbps papirus-icon-theme polkit ranger rofi sddm smartmontools system-config-printer tlp tlp-rdw transmission-gtk udisks2 ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree wget xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf xterm yt-dlp zathura zathura-pdf-poppler"
-            SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
-        ;;
         *)
             >&2 echo "Unknown variant $variant"
             exit 1
@@ -325,6 +334,10 @@ EOF
 
     if [ "$WAY" = yes ]; then
         include_way
+    fi
+
+    if [ "$WAYFIRE" = yes ]; then
+        include_wayfire
     fi
 
     if [ "$WANT_INSTALLER" = yes ]; then
