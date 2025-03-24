@@ -29,8 +29,8 @@ from libqtile.backend.wayland import InputConfig
 from libqtile.config import Click, Drag, Group, Key, Match, Screen, Rule
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
-from qtile_extras.widget.decorations import BorderDecoration  # type: ignore
-from qtile_extras.layout.decorations import GradientBorder, RoundedCorners
+from qtile_extras.widget.decorations import GradientDecoration, BorderDecoration  # type: ignore
+from qtile_extras.layout.decorations import RoundedCorners
 from qtile_extras.resources import wallpapers
 from qtile_extras import widget
 import os
@@ -159,6 +159,7 @@ widget_defaults = dict(
     fontsize=12,
     padding=3,
 )
+
 extension_defaults = widget_defaults.copy()
 
 screens = [
@@ -172,7 +173,7 @@ screens = [
                 widget.CurrentLayout(),
                 widget.GroupBox(
 		highlight_method='block',
-		rounded=True,
+		rounded = True,
 		inactive='9d8b8b'),
                 widget.Prompt(),
                 widget.WindowName(),
@@ -197,16 +198,16 @@ screens = [
 		widget.Volume(fmt="  {}",
                 mouse_callbacks={'Button3': lazy.spawn('pavucontrol')}),
 		widget.Battery(format = '  {percent:2.0%} {hour:d}:{min:02d}'),
-		widget.KeyboardLayout(configured_keyboards = ["us", "de deadtilde", "pt"],font = "Hack",fontsize = "12",fmt = '  {}'),
+		widget.KeyboardLayout(configured_keyboards = ["pt", "us"],font = "Hack",fontsize = "12",fmt = '  {}'),
 		widget.CheckUpdates(distro = 'Void',no_update_string=' No updates',update_interval=600,
 		mouse_callbacks={'Button1': lazy.spawn('qt-sudo xbps-install -Su -y')}),
 		widget.TextBox(text=" ", fontsize = 12,
 		mouse_callbacks={'Button1': lazy.spawn('rofi -show power-menu -modi power-menu:rofi-power-menu')}),
             ], 
             25,
-	    background = "#11111b80"
-            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+	    background = "#11111b80",
+            border_width=[0, 0, 3, 0],  # Draw top and bottom borders
+            border_color=["ff00ff", "000000", "b7bdf8", "000000"]  # Borders are magenta
         ),
         # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
         # By default we handle these events delayed to already improve performance, however your system might still be struggling
