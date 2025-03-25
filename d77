@@ -6,7 +6,7 @@ set -eu
 
 PROGNAME=$(basename "$0")
 ARCH=$(uname -m)
-IMAGES="awesome base dwm fluxbox hyprland labwc leftwm niri openbox qtile sway"
+IMAGES="awesome base dwm fluxbox hyprland labwc leftwm lxqt niri openbox qtile sway awesome leftwm"
 TRIPLET=
 REPO=
 DATE=$(date -u +%Y%m%d)
@@ -142,13 +142,6 @@ include_lxqt() {
 	cp ./common/d77void.png "$INCLUDEDIR"/usr/share/lxqt/graphics/
 }
 
-include_wayfire() {
-	mkdir -p "$INCLUDEDIR"/usr/bin
-	mkdir -p "$INCLUDEDIR"/usr/share/wayfire/icons
-	cp ./common/background2.png "$INCLUDEDIR"/usr/share/wayfire/
-	cp ./common/d77void.png "$INCLUDEDIR"/usr/share/wayfire/icons/
-	cp ./common/screenlock "$INCLUDEDIR"/usr/bin/
-}
 
 include_niri() {
 	mkdir -p "$INCLUDEDIR"/usr/bin
@@ -183,7 +176,6 @@ build_variant() {
 	    DWM=
 	    NIRI=
 	    LXQT=
-	    WAYFIRE=
 	    ;;
         aarch64*)
             GRUB_PKGS="grub-arm64-efi"
@@ -287,13 +279,6 @@ build_variant() {
             PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES $D77_CORE grim ImageMagick kitty pavucontrol sway swaybg swayidle swayimg swaylock SwayNotificationCenter Waybar wlsunset wmenu xorg-server-xwayland xwayland-satellite"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
-	wayfire)
-	    COMMON=yes
-	    WAY=yes
-	    WAYFIRE=yes
-            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES $D77_CORE grim ImageMagick kitty pavucontrol swayidle swaylock SwayNotificationCenter wayfire wayfire-plugins-extra wcm wlroots wlsunset xorg-server-xwayland xwayland-satellite"
-            SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
-	;;
         *)
             >&2 echo "Unknown variant $variant"
             exit 1
@@ -332,10 +317,6 @@ EOF
 
     if [ "$WAY" = yes ]; then
         include_way
-    fi
-
-    if [ "$WAYFIRE" = yes ]; then
-        include_wayfire
     fi
 
     if [ "$WANT_INSTALLER" = yes ]; then
