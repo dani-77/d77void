@@ -138,7 +138,9 @@ include_dwm() {
 }
 
 include_lxqt() {
+	mkdir -p "$INCLUDEDIR"/usr/share/lxqt/wallpapers
 	mkdir -p "$INCLUDEDIR"/usr/share/lxqt/graphics
+	cp ./common/background3.png "$INCLUDEDIR"/usr/share/lxqt/wallpapers/
 	cp ./common/d77void.png "$INCLUDEDIR"/usr/share/lxqt/graphics/
 }
 
