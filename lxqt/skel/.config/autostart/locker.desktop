@@ -1,0 +1,6 @@
+[Desktop Entry]
+Exec=xautolock -locker slock
+Name=locker
+Type=Application
+Version=1.0
+X-LXQt-X11-Only=true
