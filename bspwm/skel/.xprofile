@@ -1,0 +1,14 @@
+exec dunst &
+exec xcompmgr -c -f -n &
+exec redshift -l 41.6:-8.62 & 
+exec feh --bg-fill ~/Wallpaper/background3.png &
+exec polybar &
+exec sxhkd -c ~/.config/sxhkd/sxhkdrc_bsp &
+exec xautolock -time 5 - locker slock &
+exec nm-applet &
+exec volumeicon &
+exec octoxbps-notifier &
+exec udiskie -at &
+exec synclient TapButton1=1 &
+exec synclient TapButton2=3 &
+exec synclient TapButton3=2 &

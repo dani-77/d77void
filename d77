@@ -6,7 +6,7 @@ set -eu
 
 PROGNAME=$(basename "$0")
 ARCH=$(uname -m)
-IMAGES="awesome base dwm fluxbox hyprland labwc leftwm lxqt niri openbox qtile sway awesome leftwm"
+IMAGES="awesome base bspwm dwm fluxbox hyprland labwc leftwm lxqt niri openbox qtile sway awesome leftwm"
 TRIPLET=
 REPO=
 DATE=$(date -u +%Y%m%d)
@@ -118,6 +118,7 @@ include_common() {
 	cp -r ./common/rofi "$INCLUDEDIR"/etc/skel/.config/
 	cp -r ./common/xsettingsd "$INCLUDEDIR"/etc/skel/.config/
 	cp -r ./common/themes "$INCLUDEDIR"/etc/skel/.local/share/
+	cp -r ./common/fonts "$INCLUDEDIR"/etc/skel/.local/share/
 	cp -r ./common/.icons "$INCLUDEDIR"/etc/skel/
 	cp -r ./common/Wallpaper "$INCLUDEDIR"/etc/skel/
 	cp -r ./common/lib-d77-welcome "$INCLUDEDIR"/usr/lib/
@@ -217,6 +218,13 @@ build_variant() {
             PKGS="$PKGS $XORG_PKGS $CALAMARES $D77_CORE awesome cbatticon dunst lxappearance redshift redshift-gtk scrot slock st transset volumeicon xautolock xcompmgr"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
+	bspwm)
+	    COMMON=yes
+	    X11=yes
+	    DWM=yes
+            PKGS="$PKGS $XORG_PKGS $CALAMARES $D77_CORE base-devel bspwm dmenu dunst lxappearance polybar redshift scrot slock slstatus sxhkd st volumeicon xautolock xcompmgr"
+            SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
+        ;;
 	dwm)
 	    COMMON=yes
 	    X11=yes
@@ -245,7 +253,7 @@ build_variant() {
 	leftwm)
 	    COMMON=yes
 	    X11=yes
-            PKGS="$PKGS $XORG_PKGS $CALAMARES $D77_CORE base-devel fontconfig-devel freetype-devel gcr-devel gcr4-devel glibc-devel gtk+3-devel harfbuzz-devel imlib2-devel libX11-devel libXft-devel libXinerama-devel webkit2gtk-devel dunst leftwm lxappearance polybar redshift scrot slock st xautolock xcompmgr"
+            PKGS="$PKGS $XORG_PKGS $CALAMARES $D77_CORE dunst leftwm lxappearance polybar redshift scrot slock st xautolock xcompmgr"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
 	lxqt)
