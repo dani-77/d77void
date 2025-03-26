@@ -221,7 +221,6 @@ build_variant() {
 	bspwm)
 	    COMMON=yes
 	    X11=yes
-	    DWM=yes
             PKGS="$PKGS $XORG_PKGS $CALAMARES $D77_CORE base-devel bspwm dmenu dunst lxappearance polybar redshift scrot slock slstatus sxhkd st volumeicon xautolock xcompmgr"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
