@@ -13,5 +13,5 @@ echo "
   Note: additional packages listed as dependencies will also be installed."
 
 if prompt "  Would you like to remove Calamares?"; then
-	sudo xbps-remove -R -y calamares && sudo rm -rf /etc/calamares -y && sudo rm -rf /usr/bin/d77void-installer -y
+	sudo rm -rf /etc/calamares && sudo rm -rf /usr/bin/d77void-installer && sudo xbps-remove -R -y calamares
 fi
