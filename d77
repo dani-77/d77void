@@ -6,7 +6,7 @@ set -eu
 
 PROGNAME=$(basename "$0")
 ARCH=$(uname -m)
-IMAGES="awesome base bspwm dwm fluxbox hyprland labwc leftwm lxqt niri openbox qtile sway awesome leftwm"
+IMAGES="awesome base bspwm dwm fluxbox hyprland labwc leftwm lxqt niri openbox qtile sway"
 TRIPLET=
 REPO=
 DATE=$(date -u +%Y%m%d)
@@ -22,7 +22,7 @@ usage() {
 
 	OPTIONS
 	 -a <arch>     Set architecture (or platform) in the image
-	 -b <variant>  One of base, awesome, dwm, fluxbox, hyprland, labwc, leftwm, niri, openbox, qtile or sway. 
+	 -b <variant>  One of base, awesome, bspwm, dwm, fluxbox, hyprland, labwc, leftwm, niri, openbox, qtile or sway. 
                May be specified multiple times to build multiple variants.
 	 -d <date>     Override the datestamp on the generated image (YYYYMMDD format)
 	 -t <arch-date-variant>
