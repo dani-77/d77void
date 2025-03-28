@@ -137,6 +137,11 @@ include_dwm() {
 	cp $variant/power_menu "$INCLUDEDIR"/usr/bin/
 }
 
+include_poly() {
+	mkdir -p "$INCLUDEDIR"/etc/skel/.local
+	cp -r .common/fonts "$INCLUDEDIR"/etc/skel/.local/
+}
+
 include_lxqt() {
 	mkdir -p "$INCLUDEDIR"/usr/share/lxqt/wallpapers
 	mkdir -p "$INCLUDEDIR"/usr/share/lxqt/graphics
@@ -178,6 +183,7 @@ build_variant() {
 	    DWM=
 	    NIRI=
 	    LXQT=
+	    POLY=
 	    ;;
         aarch64*)
             GRUB_PKGS="grub-arm64-efi"
@@ -220,6 +226,7 @@ build_variant() {
 	bspwm)
 	    COMMON=yes
 	    X11=yes
+	    POLY=yes
             PKGS="$PKGS $XORG_PKGS $CALAMARES $D77_CORE base-devel bspwm dmenu dunst lxappearance polybar redshift scrot slock slstatus sxhkd st volumeicon xautolock xcompmgr"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
@@ -251,6 +258,7 @@ build_variant() {
 	leftwm)
 	    COMMON=yes
 	    X11=yes
+	    POLY=yes
             PKGS="$PKGS $XORG_PKGS $CALAMARES $D77_CORE dunst leftwm lxappearance polybar redshift scrot slock st xautolock xcompmgr"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
@@ -311,20 +319,24 @@ EOF
         include_dwm
     fi
     
-    if [ "$NIRI" = yes ]; then
-        include_niri
-    fi
-
     if [ "$LXQT" = yes ]; then
         include_lxqt
     fi
 
-    if [ "$X11" = yes ]; then
-        include_x11
+    if [ "$NIRI" = yes ]; then
+        include_niri
+    fi
+
+    if [ "$POLY" = yes ]; then
+        include_poly
     fi
 
     if [ "$WAY" = yes ]; then
         include_way
+    fi
+
+    if [ "$X11" = yes ]; then
+        include_x11
     fi
 
     if [ "$WANT_INSTALLER" = yes ]; then
