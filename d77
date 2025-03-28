@@ -124,22 +124,9 @@ include_common() {
 	cp -r ./common/slice "$INCLUDEDIR"/usr/share/sddm/themes/
 }
 
-include_way() {
-	cp ./common/wswap-way "$INCLUDEDIR"/usr/bin/
-}	
-
-include_x11() {
-	cp ./common/wswap-X "$INCLUDEDIR"/usr/bin/
-}	
-
 include_dwm() {
 	mkdir -p "$INCLUDEDIR"/usr/bin
 	cp $variant/power_menu "$INCLUDEDIR"/usr/bin/
-}
-
-include_poly() {
-	mkdir -p "$INCLUDEDIR"/etc/skel/.local
-	cp -r .common/fonts "$INCLUDEDIR"/etc/skel/.local/
 }
 
 include_lxqt() {
@@ -149,7 +136,6 @@ include_lxqt() {
 	cp ./common/d77void.png "$INCLUDEDIR"/usr/share/lxqt/graphics/
 }
 
-
 include_niri() {
 	mkdir -p "$INCLUDEDIR"/usr/bin
 	cp ./common/dconf_niri "$INCLUDEDIR"/usr/bin/
@@ -157,6 +143,19 @@ include_niri() {
 	cp ./common/niri_1st "$INCLUDEDIR"/usr/bin/
 	cp ./common/screenlock "$INCLUDEDIR"/usr/bin/
 } 
+
+include_poly() {
+	mkdir -p "$INCLUDEDIR"/etc/skel/.local
+	cp -r ./common/fonts "$INCLUDEDIR"/etc/skel/.local/
+}
+
+include_way() {
+	cp ./common/wswap-way "$INCLUDEDIR"/usr/bin/
+}	
+
+include_x11() {
+	cp ./common/wswap-X "$INCLUDEDIR"/usr/bin/
+}	
 
 build_variant() {
     variant="$1"
