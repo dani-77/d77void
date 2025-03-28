@@ -219,14 +219,14 @@ build_variant() {
 	awesome)
 	    COMMON=yes
 	    X11=yes
-            PKGS="$PKGS $XORG_PKGS $CALAMARES $D77_CORE awesome cbatticon dunst lxappearance redshift redshift-gtk scrot slock st transset volumeicon xautolock xcompmgr"
+            PKGS="$PKGS $XORG_PKGS $CALAMARES $D77_CORE awesome cbatticon dunst lxappearance redshift scrot slock st transset volumeicon xautolock xcompmgr"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
 	bspwm)
 	    COMMON=yes
 	    X11=yes
 	    POLY=yes
-            PKGS="$PKGS $XORG_PKGS $CALAMARES $D77_CORE base-devel bspwm dmenu dunst lxappearance polybar redshift scrot slock slstatus sxhkd st volumeicon xautolock xcompmgr"
+            PKGS="$PKGS $XORG_PKGS $CALAMARES $D77_CORE base-devel bspwm dmenu dunst lxappearance polybar redshift redshift-gtk scrot slock slstatus sxhkd st volumeicon xautolock xcompmgr"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
 	dwm)
@@ -258,7 +258,7 @@ build_variant() {
 	    COMMON=yes
 	    X11=yes
 	    POLY=yes
-            PKGS="$PKGS $XORG_PKGS $CALAMARES $D77_CORE dunst leftwm lxappearance polybar redshift scrot slock st xautolock xcompmgr"
+            PKGS="$PKGS $XORG_PKGS $CALAMARES $D77_CORE dunst leftwm lxappearance polybar redshift redshift-gtk scrot slock st xautolock xcompmgr"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
 	lxqt)
