@@ -118,7 +118,6 @@ include_common() {
 	cp -r ./common/rofi "$INCLUDEDIR"/etc/skel/.config/
 	cp -r ./common/xsettingsd "$INCLUDEDIR"/etc/skel/.config/
 	cp -r ./common/themes "$INCLUDEDIR"/etc/skel/.local/share/
-	cp -r ./common/fonts "$INCLUDEDIR"/etc/skel/.local/share/
 	cp -r ./common/.icons "$INCLUDEDIR"/etc/skel/
 	cp -r ./common/Wallpaper "$INCLUDEDIR"/etc/skel/
 	cp -r ./common/lib-d77-welcome "$INCLUDEDIR"/usr/lib/
