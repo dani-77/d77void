@@ -145,8 +145,8 @@ include_niri() {
 } 
 
 include_poly() {
-	mkdir -p "$INCLUDEDIR"/etc/skel/.local
-	cp -r ./common/fonts "$INCLUDEDIR"/etc/skel/.local/
+	mkdir -p "$INCLUDEDIR"/etc/skel/.local/share
+	cp -r ./common/fonts "$INCLUDEDIR"/etc/skel/.local/share/
 }
 
 include_way() {
