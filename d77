@@ -111,12 +111,7 @@ include_common() {
 	cp ./common/50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/
 	cp ./common/splash.png "$INCLUDEDIR"/usr/share/void-artwork/
 	cp ./common/anon.face.icon "$INCLUDEDIR"/usr/share/sddm/faces/
-	cp -r ./common/dunst "$INCLUDEDIR"/etc/skel/.config/
-	cp -r ./common/gtk-3.0 "$INCLUDEDIR"/etc/skel/.config/
-	cp -r ./common/neofetch "$INCLUDEDIR"/etc/skel/.config/
-	cp -r ./common/fastfetch "$INCLUDEDIR"/etc/skel/.config/
-	cp -r ./common/rofi "$INCLUDEDIR"/etc/skel/.config/
-	cp -r ./common/xsettingsd "$INCLUDEDIR"/etc/skel/.config/
+	cp -r ./common/config/* "$INCLUDEDIR"/etc/skel/.config/
 	cp -r ./common/themes "$INCLUDEDIR"/etc/skel/.local/share/
 	cp -r ./common/.icons "$INCLUDEDIR"/etc/skel/
 	cp -r ./common/Wallpaper "$INCLUDEDIR"/etc/skel/
