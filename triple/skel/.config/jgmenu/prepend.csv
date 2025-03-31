@@ -1,0 +1,4 @@
+Terminal,uxterm,utilities-terminal
+Browser,brave-browser-stable,web-browser
+File manager,pcmanfm,system-file-manager
+^sep()

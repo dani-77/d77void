@@ -1,0 +1,18 @@
+dunst &
+cbatticon &
+volumeicon &
+nm-applet &
+#redshift-gtk -l 41.6:-8.62 &
+sxhkd -c ~/.config/sxhkd/sxhkdrc &
+udiskie -at &
+conky -c .conkyrc &
+conky -c .conkyrc1 &
+feh --bg-fill  ~/Wallpaper/background2.png &
+xrdb merge ~/.Xresources &
+/usr/bin/octoxbps-notifier &
+xautolock -time 5 -locker slock &
+exec synclient TapButton1=1 &
+exec synclient TapButton2=3 &
+exec synclient TapButton3=2 &
+tint2 &
+exec xcompmgr -c -f -n &

@@ -294,6 +294,15 @@ build_variant() {
             PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES $D77_CORE grim ImageMagick kitty pavucontrol sway swaybg swayidle swayimg swaylock SwayNotificationCenter Waybar wlsunset wmenu xorg-server-xwayland xwayland-satellite"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
+	triple)
+	    COMMON=yes
+	    LXQT=yes
+	    WAY=yes
+	    X11=yes
+            PKGS="$PKGS $XORG_PKGS $CALAMARES $D77_CORE cbatticon conky dunst gvfs-mtp gvfs-smb jgmenu jq lxappearance lxappearance-obconf lxqt menumaker obconf openbox redshift redshift-gtk scrot slock sxhkd st tint2 tint2conf volumeicon xautolock xcompmgr grim hyprland hyprlock hyprpaper ImageMagick kitty pavucontrol qt6-wayland swaybg swayidle swayimg swaylock SwayNotificationCenter wayland-devel wayland-protocols Waybar wlsunset wmenu xorg-server-xwayland xwayland-satellite"
+            SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
+        ;;        
+
         *)
             >&2 echo "Unknown variant $variant"
             exit 1
