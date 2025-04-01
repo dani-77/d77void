@@ -106,6 +106,8 @@ include_common() {
 	cp ./common/sddm.conf "$INCLUDEDIR"/etc/
 	cp ./common/grub "$INCLUDEDIR"/etc/default/
 	cp ./common/.gtkrc-2.0 "$INCLUDEDIR"/etc/skel/
+	cp ./common/.bashrc "$INCLUDEDIR"/etc/skel/
+	cp ./common/.Xresources "$INCLUDEDIR"/etc/skel/
 	cp ./common/d77-welcome "$INCLUDEDIR"/usr/bin/
 	cp ./common/rofi-power-menu "$INCLUDEDIR"/usr/bin/
 	cp ./common/50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/

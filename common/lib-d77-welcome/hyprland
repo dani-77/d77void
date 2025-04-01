@@ -13,5 +13,5 @@ echo "
   Note: additional packages listed as dependencies will also be installed."
 
 if prompt "  Would you like to install Hyprland repo now?"; then
-	sudo cp ~/.hyprland-void.conf /etc/xbps.d/hyprland-void.conf && sudo xbps-install -Syu
+	sudo cp /usr/lib/lib-d77-welcome/hyprland-void.conf /etc/xbps.d/hyprland-void.conf && sudo xbps-install -Syu
 fi
