@@ -98,6 +98,7 @@ keys = [
     Key([mod], "d", lazy.spawn("pcmanfm"), desc="Filemanager"),
     Key([mod], "m", lazy.spawn("geary"), desc="Web browser"),
     Key([mod], "x", lazy.spawn("rofi -show power-menu -modi power-menu:rofi-power-menu"), desc="Rofi PowerMenu"),
+    Key([mod], "y", lazy.spawn("slock"), desc="screen locker"),
     Key([mod], "w", lazy.spawn("brave-browser-stable"), desc="Web browser"),
     Key([], "XF86AudioRaiseVolume",lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%")),
     Key([], "XF86AudioLowerVolume",lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%")),
@@ -119,8 +120,8 @@ for vt in range(1, 8):
         )
     )
 workspaces = [
-    {"name": " ", "key": "1", "matches": [Match(wm_class='kitty'), Match(wm_class='mousepad'), Match(wm_class='ranger'), Match(wm_class='geany')], "layout": "bsp"},
-    {"name": " ", "key": "2", "matches": [Match(wm_class='Firefox'), Match(wm_class='org.gnome.Evolution-alarm-notify.desktop'), Match(wm_class='transmission-gtk.desktop'), Match(wm_class='geary')], "layout": "max"},
+    {"name": " ", "key": "1", "matches": [Match(wm_class='kitty'), Match(wm_class='mousepad'), Match(wm_class='ranger'), Match(wm_class='geany')], "layout": "monadtall"},
+    {"name": " ", "key": "2", "matches": [Match(wm_class='Firefox'), Match(wm_class='brave-browser-stable'), Match(wm_class='org.gnome.Evolution-alarm-notify.desktop'), Match(wm_class='transmission-gtk.desktop'), Match(wm_class='geary')], "layout": "max"},
     {"name": " ", "key": "3", "matches": [Match(wm_class='mpv'), Match(wm_class='deadbeef'),  Match(wm_class='cmus')], "layout": "monadtall"},
     {"name": " ", "key": "4", "matches": [Match(wm_class='abiword'), Match(wm_class='gimp,desktop'), Match(wm_class='Gnumeric')], "layout": "max"},
     {"name": " ", "key": "5", "matches": [Match(wm_class='telegram-desktop'), Match(wm_class='discord')], "layout": "monadtall"},
@@ -137,7 +138,7 @@ for workspace in workspaces:
 
 qtile_colors = colors.d77
 
-layout_theme = {"border_width": 3, "border_focus": qtile_colors[30], "border_normal": qtile_colors[33], "margin": 5}
+layout_theme = {"border_width": 5, "border_focus": qtile_colors[33], "border_normal": qtile_colors[32], "margin": 5}
 
 layouts = [
      #layout.Columns(border_focus_stack=["#4d235c", "#686714"]),
@@ -198,7 +199,7 @@ screens = [
 		widget.Volume(fmt="  {}",
                 mouse_callbacks={'Button3': lazy.spawn('pavucontrol')}),
 		widget.Battery(format = '  {percent:2.0%} {hour:d}:{min:02d}'),
-		widget.KeyboardLayout(configured_keyboards = ["pt", "us"],font = "Hack",fontsize = "12",fmt = '  {}'),
+		widget.KeyboardLayout(configured_keyboards = ["de deadtilde", "pt", "us"],font = "Hack",fontsize = "12",fmt = '  {}'),
 		widget.CheckUpdates(distro = 'Void',no_update_string=' No updates',update_interval=600,
 		mouse_callbacks={'Button1': lazy.spawn('qt-sudo xbps-install -Su -y')}),
 		widget.TextBox(text=" ", fontsize = 12,
@@ -206,8 +207,8 @@ screens = [
             ], 
             25,
 	    background = "#11111b80",
-            border_width=[0, 0, 3, 0],  # Draw top and bottom borders
-            border_color=["ff00ff", "000000", "b7bdf8", "000000"]  # Borders are magenta
+            border_width=[0, 0, 5, 0],  # Draw top and bottom borders
+            border_color=["ff00ff", "000000", "50fa7b", "000000"]  # Borders are magenta
         ),
         # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
         # By default we handle these events delayed to already improve performance, however your system might still be struggling
