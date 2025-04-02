@@ -1,9 +1,7 @@
 exec xcompmgr -c -f -n &
 exec redshift-gtk &
 exec dunst &
-exec cbatticon &
 exec octoxbps-notifier &
-exec volumeicon &
 exec nm-applet &
 exec synclient TapButton1=1 &
 exec synclient TapButton2=3 &
