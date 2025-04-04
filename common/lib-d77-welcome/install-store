@@ -1,0 +1,19 @@
+clear
+
+# echo "  -----------------------------[ screen $STEP of $STEPS ]----------------------------
+echo "
+
+  INSTALL FLATPAK
+  -------------------------------
+  It is not needed, but simplifies a lot.
+  Would you like to install easyflatpak store now?
+  If you choose to do this, the following will be done: 
+  
+  flatpak install org.dupot.easyflatpak
+	  
+  Note: additional packages listed as dependencies will also be installed."
+
+if prompt "  Would you like to install easyflatpak store?"; then
+	  flatpak install org.dupot.easyflatpak
+
+fi

@@ -151,7 +151,7 @@ STEPS_BLUETOOTH=('install-bluetooth' 'back')
 STEPS_CALAMARES=('remove-calamares' 'back')
 STEPS_BROWSER=('install-firefox' 'install-chromium' 'back')
 STEPS_STEAM=('install-steam' 'back')
-STEPS_FLATPAK=('install-flatpak' 'add-user' 'back')
+STEPS_FLATPAK=('install-flatpak' 'add-user' 'install-store' 'back')
 STEPS_HYPRLAND=('hyprland' 'back')
 
 # . "$LIBDIR/intro"
