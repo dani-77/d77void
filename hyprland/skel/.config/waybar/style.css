@@ -12,14 +12,14 @@ color: @purple;
     font-family: "FuraMono Nerd Font";
     font-size: 12px;
     font-weight: 500;
-    min-height: 22px;
+    min-height: 16px;
 }
 
 /* BAR FEATURES */
 
 window#waybar {
     background: #2D2B55;
-    border-radius: 0px;
+    border-radius: 20px;
 }
 
 button.focused {
@@ -27,7 +27,7 @@ button.focused {
 
 #workspaces {
     border-radius: 0px 0px 0px 0px;
-    margin-left: -9px;
+    margin-left: 5px;
 }
 
 #workspaces button:nth-child(1) .visible {
@@ -35,7 +35,7 @@ button.focused {
 }
 
 #workspaces button {
-    padding: 5px 15px 5px 10px;
+    padding: 5px 10px 5px 10px;
     color: #bbc2cf;
     margin: 1px 0;
 }

@@ -15,7 +15,8 @@
     "battery",
     "hyprland/language",
     "custom/weather",
-    "clock"
+    "clock",
+    "custom/power"
   ],
   "hyprland/taskbar": {
     "on-click": "activate",
@@ -62,6 +63,19 @@
         // "format-full": "",
         "format-icons": ["", "", "", "", ""]
   },
+
+    "custom/power": {
+                "format" : "⏻ ",
+                "tooltip": false,
+                "menu": "on-click",
+                "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu fi>
+                "menu-actions": {
+                        "shutdown": "loginctl poweroff",
+                        "reboot": "loginctl reboot",
+                        "logout": "loginctl terminate-user $USER",
+                        "hibernate": "loginctl suspend"
+                }
+        },
 
   "hyprland/language": {
     "format-pl": "[pl]",
