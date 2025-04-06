@@ -13,6 +13,7 @@ color: @purple;
     font-size: 12px;
     font-weight: 500;
     min-height: 16px;
+    margin-left: 5px;
     margin-right: 5px;
 }
 
@@ -28,15 +29,14 @@ button.focused {
 
 #workspaces {
     border-radius: 0px 0px 0px 0px;
-    margin-left: 5px;
 }
 
 #workspaces button:nth-child(1) .visible {
-    border-radius: 0px 0px 0px 6px;
+    border-radius: 0px 0px 0px 0px;
 }
 
 #workspaces button {
-    padding: 5px 10px 5px 10px;
+    padding: 5px 5px 5px 5px;
     color: #bbc2cf;
     margin: 1px 0;
 }
