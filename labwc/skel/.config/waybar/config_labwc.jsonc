@@ -14,7 +14,8 @@
   ],
   "modules-right": [
     "battery",
-    "sway/language"
+    "sway/language",
+    "custom/power"
   ],
 
   "wlr/taskbar": {
@@ -46,6 +47,19 @@
     "tooltip": true,
     "interval": 900
   },
+
+    "custom/power": {
+                "format" : "⏻ ",
+                "tooltip": false,
+                "menu": "on-click",
+                "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu fi>
+                "menu-actions": {
+                        "shutdown": "loginctl poweroff",
+                        "reboot": "loginctl reboot",
+                        "logout": "loginctl terminate-user $USER",
+                        "hibernate": "loginctl suspend"
+                }
+        },
 
     "battery": {
     "states": {

@@ -12,14 +12,16 @@ color: @purple;
     font-family: "FuraMono Nerd Font";
     font-size: 12px;
     font-weight: 500;
-    min-height: 22px;
+    min-height: 16px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 /* BAR FEATURES */
 
 window#waybar {
     background: #2D2B55;
-    border-radius: 0px;
+    border-radius: 20px;
 }
 
 button.focused {
@@ -27,15 +29,14 @@ button.focused {
 
 #workspaces {
     border-radius: 0px 0px 0px 0px;
-    margin-left: -9px;
 }
 
 #workspaces button:nth-child(1) .visible {
-    border-radius: 0px 0px 0px 6px;
+    border-radius: 0px 0px 0px 0px;
 }
 
 #workspaces button {
-    padding: 5px 15px 5px 10px;
+    padding: 5px 5px 5px 5px;
     color: #bbc2cf;
     margin: 1px 0;
 }
