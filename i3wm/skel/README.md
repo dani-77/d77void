@@ -14,13 +14,11 @@ During install, add your user to the storage group. That way udiskie will automo
 
 # Calamares
 
-Added Calamares installer to dwm ISO as well; 
+Calamares installer usage; 
 
 To use it open a terminal and
 
 ```
-su
-
 calamares
 ```
 
@@ -35,5 +33,7 @@ alt + shift + q -> close window
 alt + d -> rofi
 
 alt + x -> powermenu
+
+alt + t -> lock screen
 
 Have fun!
