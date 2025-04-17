@@ -170,6 +170,7 @@ screens = [
     	wallpaper_mode='fill',        
 	top=bar.Bar(
             [	
+		widget.Image(scale=0.7, filename='/usr/share/pixmaps/d77void.png', mouse_callbacks={'Button1': lazy.spawn('nwggrid')}),
 		widget.CurrentLayoutIcon(scale=0.7),
                 widget.CurrentLayout(),
                 widget.GroupBox(
