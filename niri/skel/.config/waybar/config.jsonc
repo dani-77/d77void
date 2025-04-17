@@ -4,10 +4,11 @@
     // "position": "bottom", // Waybar position (top|bottom|left|right)
     "height": 30, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
-    "spacing": 5, // Gaps between modules (4px)
+    "spacing": 2, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
-        "niri/workspaces",
+        "image",
+	"niri/workspaces",
         "sway/workspaces",
         "sway/mode",
         "sway/scratchpad",
@@ -257,5 +258,12 @@
     	"format": "{}",
     	"tooltip": true,
     	"interval": 900
+	},
+
+	"image": {
+	"path": "/usr/share/pixmaps/d77void.png",
+	"size": 18,
+	"on-click": "nwggrid",
+	"tooltip": false
 	},
 }

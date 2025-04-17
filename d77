@@ -6,7 +6,7 @@ set -eu
 
 PROGNAME=$(basename "$0")
 ARCH=$(uname -m)
-IMAGES="awesome base bspwm dwm fluxbox hyprland labwc leftwm lxqt niri openbox qtile sway"
+IMAGES="awesome base bspwm dwm fluxbox hyprland i3wm labwc leftwm lxqt niri openbox qtile sway"
 TRIPLET=
 REPO=
 DATE=$(date -u +%Y%m%d)
@@ -22,7 +22,7 @@ usage() {
 
 	OPTIONS
 	 -a <arch>     Set architecture (or platform) in the image
-	 -b <variant>  One of base, awesome, bspwm, dwm, fluxbox, hyprland, labwc, leftwm, niri, openbox, qtile or sway. 
+	 -b <variant>  One of base, awesome, bspwm, dwm, fluxbox, hyprland, i3wm, labwc, leftwm, niri, openbox, qtile or sway. 
                May be specified multiple times to build multiple variants.
 	 -d <date>     Override the datestamp on the generated image (YYYYMMDD format)
 	 -t <arch-date-variant>
@@ -96,6 +96,7 @@ include_common() {
 	mkdir -p "$INCLUDEDIR"/etc/default
 	mkdir -p "$INCLUDEDIR"/usr/bin
 	mkdir -p "$INCLUDEDIR"/usr/lib
+	mkdir -p "$INCLUDEDIR"/usr/share/pixmaps
 	mkdir -p "$INCLUDEDIR"/usr/share/polkit-1/rules.d
 	mkdir -p "$INCLUDEDIR"/usr/share/void-artwork
 	mkdir -p "$INCLUDEDIR"/usr/share/sddm/faces
@@ -111,6 +112,7 @@ include_common() {
 	cp ./common/d77-welcome "$INCLUDEDIR"/usr/bin/
 	cp ./common/rofi-power-menu "$INCLUDEDIR"/usr/bin/
 	cp ./common/50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/
+	cp ./common/d77void.png "$INCLUDEDIR"/usr/share/pixmaps/
 	cp ./common/splash.png "$INCLUDEDIR"/usr/share/void-artwork/
 	cp ./common/anon.face.icon "$INCLUDEDIR"/usr/share/sddm/faces/
 	cp -r ./common/config/* "$INCLUDEDIR"/etc/skel/.config/

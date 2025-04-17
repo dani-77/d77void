@@ -2,10 +2,11 @@
   "layer": "top",
   "position": "top",
   "height": 24,
-  "spacing": 4,
+  "spacing": 1,
   "modules-left": [
-    "hyprland/workspaces",
-    "hyprland/taskbar"
+   "image#album-art", 
+   "hyprland/workspaces",
+   "hyprland/taskbar"
   ],
   "modules-center": [
     "hyprland/window"
@@ -76,6 +77,13 @@
                         "hibernate": "loginctl suspend"
                 }
         },
+
+  "image#album-art": {
+        "path": "/usr/share/pixmaps/d77void.png",
+	"size": 18,
+        "on-click": "nwggrid",
+        "tooltip": false
+    },
 
   "hyprland/language": {
     "format-pl": "[pl]",

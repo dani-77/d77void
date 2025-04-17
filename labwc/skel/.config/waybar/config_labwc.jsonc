@@ -4,6 +4,7 @@
   "height": 24,
   "spacing": 4,
   "modules-left": [
+    "image",
     "wlr/workspaces",
     "wlr/taskbar"
   ],
@@ -48,6 +49,13 @@
     "interval": 900
   },
 
+    "image": {
+	"path": "/usr/share/pixmaps/d77void.png",
+	"size": 18,
+	"on-click": "nwggrid",
+	"tooltip": false
+	},
+
     "custom/power": {
                 "format" : "⏻ ",
                 "tooltip": false,
@@ -81,5 +89,5 @@
   "wlr/language": {
     "format-pl": "[pl]",
     "format-en": "[us]",
-  }
+  },
 }
