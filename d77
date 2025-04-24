@@ -262,7 +262,7 @@ build_variant() {
 	labwc)
 	    COMMON=yes
 	    WAY=yes
-            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES $D77_CORE grim ImageMagick kitty labwc labwc-menu-generator labwc-tweaks-qt qt5-wayland qt6-wayland sfwbar swaybg swayidle swayimg swaylock SwayNotificationCenter Waybar wlsunset xorg-server-xwayland xwayland-satellite"
+            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES $D77_CORE grim ImageMagick kitty labwc labwc-menu-generator labwc-tweaks-qt pavucontrol qt5-wayland qt6-wayland sfwbar swaybg swayidle swayimg swaylock SwayNotificationCenter Waybar wlsunset xorg-server-xwayland xwayland-satellite"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
 	leftwm)
@@ -283,7 +283,7 @@ build_variant() {
 	    COMMON=yes
 	    WAY=yes
 	    NIRI=yes
-            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES $D77_CORE fuzzel gnome-keyring grim ImageMagick kitty niri qt5-wayland qt6-wayland swayidle swaylock swww xdg-desktop-portal-gnome xdg-desktop-portal-gtk Waybar wlsunset xorg-server-xwayland xwayland-satellite"
+            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES $D77_CORE fuzzel gnome-keyring grim ImageMagick kitty niri pavucontrol qt5-wayland qt6-wayland swayidle swaylock swww xdg-desktop-portal-gnome xdg-desktop-portal-gtk Waybar wlsunset xorg-server-xwayland xwayland-satellite"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
 	openbox)
