@@ -103,6 +103,7 @@ include_common() {
 	mkdir -p "$INCLUDEDIR"/usr/share/sddm/themes
 	cp -r ./common/d77-grub-theme "$INCLUDEDIR"/boot/grub/themes/
 	cp -r ./common/calamares "$INCLUDEDIR"/etc/
+	cp -r ./common/.bash_it "$INCLUDEDIR"/etc/skel/
 	cp -r $variant/skel "$INCLUDEDIR"/etc/
 	cp ./common/sddm.conf "$INCLUDEDIR"/etc/
 	cp ./common/grub "$INCLUDEDIR"/etc/default/
@@ -256,7 +257,8 @@ build_variant() {
 	i3wm)
 	    COMMON=yes
 	    X11=yes
-            PKGS="$PKGS $XORG_PKGS $CALAMARES $D77_CORE dunst i3-gaps i3lock i3status ImageMagick kitty redshift redshift-gtk scrot volumeicon xcompmgr"
+	    POLY=yes
+            PKGS="$PKGS $XORG_PKGS $CALAMARES $D77_CORE dunst i3-gaps i3lock i3status ImageMagick kitty polybar redshift redshift-gtk scrot volumeicon xcompmgr"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
 	labwc)
