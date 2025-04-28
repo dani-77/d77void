@@ -96,6 +96,7 @@ include_common() {
 	mkdir -p "$INCLUDEDIR"/etc/default
 	mkdir -p "$INCLUDEDIR"/usr/bin
 	mkdir -p "$INCLUDEDIR"/usr/lib
+	mkdir -p "$INCLUDEDIR"/usr/share/applications
 	mkdir -p "$INCLUDEDIR"/usr/share/pixmaps
 	mkdir -p "$INCLUDEDIR"/usr/share/polkit-1/rules.d
 	mkdir -p "$INCLUDEDIR"/usr/share/void-artwork
@@ -113,6 +114,7 @@ include_common() {
 	cp ./common/d77-welcome "$INCLUDEDIR"/usr/bin/
 	cp ./common/rofi-power-menu "$INCLUDEDIR"/usr/bin/
 	cp ./common/50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/
+	cp ./common/d77-welcome.desktop "$INCLUDEDIR"/usr/share/applications/
 	cp ./common/d77void.png "$INCLUDEDIR"/usr/share/pixmaps/
 	cp ./common/splash.png "$INCLUDEDIR"/usr/share/void-artwork/
 	cp ./common/anon.face.icon "$INCLUDEDIR"/usr/share/sddm/faces/
