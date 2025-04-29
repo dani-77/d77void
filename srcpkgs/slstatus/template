@@ -18,5 +18,5 @@ maintainer="Daniel Azevedo <daniazevedo77@posteo.net>"
 license="GPL-3.0-or-later"
 homepage="https://tools.suckless.org/slstatus"
 changelog="https://github.com/dani-77/$pkgname/commits/$version"
-distfiles="https://github.com/dani-77/$pkgname/archive/refs/tags/$version.tar.gz"
-checksum=6da9159a636b7061d7bebae32a4ae71e1a60ca2a70ffc94273a9a550b823c273
+distfiles="https://github.com/dani-77/$pkgname/archive/refs/tags/$version-1.tar.gz"
+checksum=718a20d4a3dc35a215d5016e597cf3585187efa4c92d86ae185097ef14f2dc21
