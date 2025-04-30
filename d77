@@ -180,7 +180,7 @@ build_variant() {
             GFX_WL_PKGS="mesa-dri"
             WANT_INSTALLER=yes
             TARGET_ARCH="$ARCH"
-	    D77_CORE="acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brave-bin brightnessctl ca-certificates cmus cups cups-browsed curl elogind ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-hack-ttf geary gettext git gmrun htop inxi kvantum lxappearance mousepad mpv nano NetworkManager network-manager-applet nerd-fonts-symbols-ttf neofetch octoxbps papirus-icon-theme pcmanfm polkit qt5ct qt6ct qt5-graphicaleffects ranger rofi sddm smartmontools system-config-printer tlp tlp-rdw transmission-gtk udiskie ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree wget xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf xterm yt-dlp zathura zathura-pdf-poppler"
+	    D77_CORE="acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brave-bin brightnessctl ca-certificates cmus cups cups-browsed curl elogind ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-hack-ttf geary gettext git gmrun htop inxi kitty kvantum lxappearance mousepad mpv nano NetworkManager network-manager-applet nerd-fonts-symbols-ttf neofetch octoxbps papirus-icon-theme pcmanfm polkit qt5ct qt6ct qt5-graphicaleffects ranger rofi sddm smartmontools system-config-printer tlp tlp-rdw transmission-gtk udiskie ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree wget xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf xterm yt-dlp zathura zathura-pdf-poppler"
 	    D77_EXTRA="abook automake calcurse cargo epson-inkjet-printer-escpr gcc isync make ncspot nextcloud-client neomutt pass pcsc-ccid pcsc-tools pcsclite python3-pip rust"
             CALAMARES="calamares grub rsync"
 	    COMMON=
@@ -253,20 +253,20 @@ build_variant() {
 	hyprland)
 	    COMMON=yes
 	    WAY=yes
-            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES $D77_CORE grim hyprland hyprland-qtutils hyprlock hyprpaper ImageMagick kitty pavucontrol qt5-wayland qt6-wayland swaybg swayidle swayimg swaylock SwayNotificationCenter wayland-devel wayland-protocols Waybar wlsunset wmenu xorg-server-xwayland xwayland-satellite"
+            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES $D77_CORE grim hyprland hyprland-qtutils hyprlock hyprpaper ImageMagick pavucontrol qt5-wayland qt6-wayland swaybg swayidle swayimg swaylock SwayNotificationCenter wayland-devel wayland-protocols Waybar wlsunset wmenu xorg-server-xwayland xwayland-satellite"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
 	i3wm)
 	    COMMON=yes
 	    X11=yes
 	    POLY=yes
-            PKGS="$PKGS $XORG_PKGS $CALAMARES $D77_CORE dunst i3-gaps i3lock i3status ImageMagick kitty polybar redshift redshift-gtk scrot volumeicon xcompmgr"
+            PKGS="$PKGS $XORG_PKGS $CALAMARES $D77_CORE dunst i3-gaps i3lock i3status ImageMagick polybar redshift redshift-gtk scrot volumeicon xcompmgr"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
 	labwc)
 	    COMMON=yes
 	    WAY=yes
-            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES $D77_CORE grim ImageMagick kitty labwc labwc-menu-generator labwc-tweaks-qt pavucontrol qt5-wayland qt6-wayland sfwbar swaybg swayidle swayimg swaylock SwayNotificationCenter Waybar wlsunset xorg-server-xwayland xwayland-satellite"
+            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES $D77_CORE grim ImageMagick labwc labwc-menu-generator labwc-tweaks-qt pavucontrol qt5-wayland qt6-wayland sfwbar swaybg swayidle swayimg swaylock SwayNotificationCenter Waybar wlsunset xorg-server-xwayland xwayland-satellite"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
 	leftwm)
@@ -280,14 +280,14 @@ build_variant() {
 	    COMMON=yes
 	    X11=yes
 	    LXQT=yes
-            PKGS="$PKGS $XORG_PKGS $CALAMARES acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brave-bin brightnessctl ca-certificates cmus cups cups-browsed curl elogind epson-inkjet-printer-escpr ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-hack-ttf geary gettext git github-cli gvfs-afc gvfs-mtp gvfs-smb htop ImageMagick inxi kitty lxqt mpv nano ncspot NetworkManager network-manager-applet nerd-fonts-symbols-ttf neofetch nextcloud-client octoxbps papirus-icon-theme polkit ranger redshift redshift-gtk rofi sddm slock smartmontools system-config-printer tlp tlp-rdw transmission-gtk udisks2 ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree wget xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xautolock xcalc xcompmgr xinit xorg xorg-server xpdf xterm yt-dlp zathura zathura-pdf-poppler"
+            PKGS="$PKGS $XORG_PKGS $CALAMARES acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brave-bin brightnessctl ca-certificates cmus cups cups-browsed curl elogind epson-inkjet-printer-escpr ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-hack-ttf geary gettext git github-cli gvfs-afc gvfs-mtp gvfs-smb htop ImageMagick inxi lxqt mpv nano ncspot NetworkManager network-manager-applet nerd-fonts-symbols-ttf neofetch nextcloud-client octoxbps papirus-icon-theme polkit ranger redshift redshift-gtk rofi sddm slock smartmontools system-config-printer tlp tlp-rdw transmission-gtk udisks2 ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree wget xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xautolock xcalc xcompmgr xinit xorg xorg-server xpdf xterm yt-dlp zathura zathura-pdf-poppler"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
 	niri)
 	    COMMON=yes
 	    WAY=yes
 	    NIRI=yes
-            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES $D77_CORE fuzzel gnome-keyring grim ImageMagick kitty niri pavucontrol qt5-wayland qt6-wayland swayidle swaylock swww xdg-desktop-portal-gnome xdg-desktop-portal-gtk Waybar wlsunset xorg-server-xwayland xwayland-satellite"
+            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES $D77_CORE fuzzel gnome-keyring grim ImageMagick niri pavucontrol qt5-wayland qt6-wayland swayidle swaylock swww xdg-desktop-portal-gnome xdg-desktop-portal-gtk Waybar wlsunset xorg-server-xwayland xwayland-satellite"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
 	openbox)
@@ -301,13 +301,13 @@ build_variant() {
 	    COMMON=yes
 	    X11=yes
 	    WAY=yes
-    	    PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES $D77_CORE dunst grim ImageMagick kitty pavucontrol python3-psutil python3-qtile-extras qt5-wayland qt6-wayland qtile qtile-wayland redshift scrot SwayNotificationCenter wlroots wlsunset xcompmgr xorg-server-xwayland xwayland-satellite"
+    	    PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES $D77_CORE dunst grim ImageMagick pavucontrol python3-psutil python3-qtile-extras qt5-wayland qt6-wayland qtile qtile-wayland redshift scrot SwayNotificationCenter wlroots wlsunset xcompmgr xorg-server-xwayland xwayland-satellite"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
 	sway)
 	    COMMON=yes
 	    WAY=yes
-            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES $D77_CORE grim ImageMagick kitty pavucontrol qt5-wayland qt6-wayland sway swaybg swayidle swayimg swaylock SwayNotificationCenter Waybar wlsunset wmenu xorg-server-xwayland xwayland-satellite"
+            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $CALAMARES $D77_CORE grim ImageMagick pavucontrol qt5-wayland qt6-wayland sway swaybg swayidle swayimg swaylock SwayNotificationCenter Waybar wlsunset wmenu xorg-server-xwayland xwayland-satellite"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;
 	triple)
@@ -315,7 +315,7 @@ build_variant() {
 	    LXQT=yes
 	    WAY=yes
 	    X11=yes
-            PKGS="$PKGS $XORG_PKGS $CALAMARES $D77_CORE cbatticon conky dunst gvfs-mtp gvfs-smb jgmenu jq lxappearance-obconf lxqt menumaker obconf openbox qt5-wayland qt6-wayland redshift redshift-gtk scrot slock sxhkd st tint2 tint2conf volumeicon xautolock xcompmgr grim hyprland hyprlock hyprpaper ImageMagick kitty pavucontrol qt6-wayland swaybg swayidle swayimg swaylock SwayNotificationCenter wayland-devel wayland-protocols Waybar wlsunset wmenu xorg-server-xwayland xwayland-satellite"
+            PKGS="$PKGS $XORG_PKGS $CALAMARES $D77_CORE cbatticon conky dunst gvfs-mtp gvfs-smb jgmenu jq lxappearance-obconf lxqt menumaker obconf openbox qt5-wayland qt6-wayland redshift redshift-gtk scrot slock sxhkd st tint2 tint2conf volumeicon xautolock xcompmgr grim hyprland hyprlock hyprpaper ImageMagick pavucontrol qt6-wayland swaybg swayidle swayimg swaylock SwayNotificationCenter wayland-devel wayland-protocols Waybar wlsunset wmenu xorg-server-xwayland xwayland-satellite"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd"
         ;;        
 
