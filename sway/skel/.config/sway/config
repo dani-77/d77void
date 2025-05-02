@@ -113,6 +113,9 @@ output * bg ~/Wallpaper/background1.png fill
     # Start your launcher
     bindsym $mod+d exec $menu
 
+    # Start nwggrid
+    bindsym $mod+p exec nwggrid
+
     # Start rofi
     bindsym $mod+p exec rofi -show drun
 
