@@ -21,11 +21,17 @@
     <keybind key="W-b">
       <action name="Execute" command="wswap-way"/>
     </keybind>
+    <keybind key="W-c">
+      <action name="Execute" command="better-control"/>
+    </keybind>
     <keybind key="W-f">
       <action name="Execute" command="pcmanfm"/>
     </keybind>
     <keybind key="W-m">
       <action name="Execute" command="geary"/>
+    </keybind>
+    <keybind key="W-n">
+      <action name="Execute" command="nwggrid"/>
     </keybind>
     <keybind key="W-p">
       <action name="Execute" command="grim"/>
