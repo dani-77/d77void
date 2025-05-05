@@ -1,0 +1,22 @@
+# Template file for 'better-control'
+pkgname=better-control
+version=20250502
+revision=1
+#archs="i686 x86_64"
+#build_wrksrc=
+build_style=gnu-makefile
+#configure_args=""
+#make_build_args=""
+#make_install_args=""
+#conf_files=""
+#make_dirs="/var/log/dir 0755 root root"
+hostmakedepends="NetworkManager python3-qrcode python3-gobject python3-dbus python3-Pillow python3-psutil python3-setproctitle bluez power-profiles-daemon upower gammastep usbguard"
+makedepends="NetworkManager python3-qrcode python3-gobject python3-dbus python3-Pillow python3-psutil python3-setproctitle bluez power-profiles-daemon upower gammastep usbguard"
+depends="NetworkManager python3-qrcode python3-gobject python3-dbus python3-Pillow python3-psutil python3-setproctitle bluez power-profiles-daemon upower gammastep usbguard"
+short_desc="A sleek GTK-themed control panel for Linux"
+maintainer="Daniel Azevedo <daniazevedo77@posteo.net>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/quantumvoid0/better-control/blob/main/README.md#-installation"
+#changelog=""
+distfiles="https://github.com/dani-77/$pkgname/archive/refs/tags/$version.tar.gz"
+checksum=6769fbfccc899416f594acf3530511d7b96668312c33a39af69fc9b0b73b2d96
