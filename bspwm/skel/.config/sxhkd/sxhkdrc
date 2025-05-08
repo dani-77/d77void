@@ -22,3 +22,6 @@ alt + b
 	wswap-X
 alt + r
 	gmrun
+alt + c
+	better-control
+	
