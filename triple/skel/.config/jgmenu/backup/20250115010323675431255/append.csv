@@ -1,6 +1,0 @@
-^sep()
-Exit,^checkout(exit),system-shutdown
-^tag(exit)
-LogOut,openbox --exit,system-log-out
-Reboot,reboot,system-reboot
-Poweroff,poweroff,system-shutdown
