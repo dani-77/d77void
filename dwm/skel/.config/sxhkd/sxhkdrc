@@ -1,9 +1,15 @@
 alt + d
 	rofi -show drun
-alt + x
-	power_menu
+alt + r
+	gmrun
 alt + w
 	brave-browser-stable
+alt + x
+	power_menu
+super + b
+	wswap-X
+super + c
+	better-control
 super + f
 	pcmanfm
 super + l
@@ -12,5 +18,3 @@ super + m
 	geary
 super + p
 	scrot
-super + b
-	wswap-X

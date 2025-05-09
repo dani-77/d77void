@@ -28,15 +28,11 @@ calamares
 
 Among other changes:
 
--  calamares installer and d77void-installer;
+-  new control pannel application
 
--  sddm replaces slim as login manager;
+-  new runner application
 
--  slstatus bar displays only DATE/TIME for super compatibility;
-
--  new rofi theme;
-
--  new Wallpapers;
+-  slstatus bar updated to latest version
 
 ## Keybinds
 
@@ -56,11 +52,15 @@ alt + d -> rofi
 
 alt + p -> dmenu
 
+alt + r -> gmrun
+
 alt + x -> powermenu
 
-alt + w -> firefox
+alt + w -> brave
 
 super + b -> swap wallpaper
+
+super + c -> control pannel
 
 super + f -> pcmanfm
 
