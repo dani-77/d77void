@@ -1,6 +1,6 @@
 # Template file for 'slstatus'
 pkgname=slstatus
-version=1.0
+version=1.1
 revision=77
 #archs="i686 x86_64"
 #build_wrksrc=
@@ -11,12 +11,13 @@ build_style=gnu-makefile
 #conf_files=""
 #make_dirs="/var/log/dir 0755 root root"
 hostmakedepends=""
-makedepends=""
-depends="alsa-lib-devel libX11-devel"
+makedepends="make alsa-lib-devel libX11 libX11-devel"
+depends="alsa-lib-devel libX11 libX11-devel"
 short_desc="slstatus is a status monitor for dwm."
 maintainer="Daniel Azevedo <daniazevedo77@posteo.net>"
 license="GPL-3.0-or-later"
 homepage="https://tools.suckless.org/slstatus"
 changelog="https://github.com/dani-77/$pkgname/commits/$version"
-distfiles="https://github.com/dani-77/$pkgname/archive/refs/tags/$version-1.tar.gz"
-checksum=718a20d4a3dc35a215d5016e597cf3585187efa4c92d86ae185097ef14f2dc21
+distfiles="https://github.com/dani-77/$pkgname/archive/refs/tags/$version.tar.gz"
+checksum=9acb7c6e3d45992bb4549ccfd50570a9bfcd85eebd50485df0c894ca8ea68a5b
+
