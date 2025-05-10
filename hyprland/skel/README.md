@@ -54,16 +54,22 @@ super + q -> close window
 
 super + shift + q -> logout
 
-super + d -> menu
+super + b -> swap background
 
-super + w -> web browser
+super + c -> control pannel
+
+super + d -> menu
 
 super + f -> file manager
 
-super + b -> swap background
+super + n -> nwg-grid
 
-super + x -> powermenu
+super + x -> run command
 
 super + t -> lock screen
+
+super + w -> web browser
+
+super + x -> powermenu
 
 Have fun!
