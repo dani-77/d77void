@@ -12,12 +12,12 @@
     "hyprland/window"
   ],
   "modules-right": [
-    "tray",
     "pulseaudio",
     "battery",
     "hyprland/language",
     "custom/weather",
     "clock",
+    "tray",
     "custom/power"
   ],
   "hyprland/taskbar": {
