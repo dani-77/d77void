@@ -144,7 +144,7 @@ fi
 
 # Run through steps
 # STEPS_BASIC=('update' 'dist-upgrade' 'office' 'media-graphics' 'install-gimp' 'install-libreoffice')
-STEPS_MAIN=('set-root-password' 'update' 'dist-upgrade' 'office' 'media-graphics' 'bluetooth' 'browser' 'flatpak' 'steam' 'hyprland' 'calamares' 'quit' )
+STEPS_MAIN=('set-root-password' 'update' 'dist-upgrade' 'office' 'media-graphics' 'bluetooth' 'browser' 'flatpak' 'steam' 'd77void-repo' 'hyprland' 'calamares' 'quit' )
 STEPS_OFFICE=('install-libreoffice' 'install-abignu' 'back' )
 STEPS_MEDIA_GRAPHICS=('install-gimp' 'install-deadbeef' 'back')
 STEPS_BLUETOOTH=('install-bluetooth' 'back')
@@ -152,6 +152,7 @@ STEPS_CALAMARES=('remove-calamares' 'back')
 STEPS_BROWSER=('install-firefox' 'install-chromium' 'back')
 STEPS_STEAM=('install-steam' 'back')
 STEPS_FLATPAK=('install-flatpak' 'add-user' 'install-store' 'back')
+STEPS_D77VOID=('d77void-repo' 'back')
 STEPS_HYPRLAND=('hyprland' 'back')
 
 # . "$LIBDIR/intro"
@@ -202,6 +203,11 @@ do
 
                         "flatpak")
 				submenu "flatpak" STEPS_FLATPAK
+				break
+                        ;;
+
+                        "d77void-repo")
+				submenu "d77void-repo" STEPS_D77VOID
 				break
                         ;;
 

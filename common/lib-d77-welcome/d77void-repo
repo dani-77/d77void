@@ -3,9 +3,9 @@ clear
 # echo "  -----------------------------[ screen $STEP of $STEPS ]----------------------------
 echo "
 
-  INSTALL HYPRLAND REPO
+  INSTALL D77void REPO
   -------------------------------
-  Would you like to install and update Hyprland repository now?
+  Would you like to install and update d77void repository now?
   If you choose to do this, the following will be done: 
   
   Copy repo to /etc/xbps.d and update
@@ -13,5 +13,5 @@ echo "
   Note: additional packages listed as dependencies will also be installed."
 
 if prompt "  Would you like to install Hyprland repo now?"; then
-	sudo cp /usr/lib/lib-d77-welcome/hyprland-void.conf /etc/xbps.d/hyprland-void.conf && sudo xbps-install -Syu
+	sudo cp /usr/lib/lib-d77-welcome/d77void.conf /etc/xbps.d/d77void-repo.conf && sudo xbps-install -Syu
 fi
