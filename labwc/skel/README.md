@@ -36,9 +36,13 @@ super + a -> rofi
 
 super + b -> swap wallpaper
 
+super + c -> control pannel
+
 super + f -> filemanager
 
 super + m -> mail
+
+super + n -> nwg-grid
 
 super + p -> printscreen
 
