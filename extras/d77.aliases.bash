@@ -12,6 +12,7 @@ function _set_pkg_aliases() {
 		alias pkginst='sudo xbps-install -S'
 		alias pkgupg='sudo xbps-install -Syu'
 		alias pkgrm='sudo xbps-remove -R'
+		alias pkgsig='xbps-rindex --sign-pkg --privkey privkey.pem hostdir/binpkgs/*.xbps'
 
 		alias srcbuild='./xbps-src pkg'
 	fi
