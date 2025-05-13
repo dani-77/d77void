@@ -1,0 +1,22 @@
+# Template file for 'spice-up'
+pkgname=spice-up
+version=1.9.1
+revision=1
+#archs="i686 x86_64"
+#build_wrksrc=
+build_style=meson
+#configure_args=""
+#make_build_args=""
+#make_install_args=""
+#conf_files=""
+#make_dirs="/var/log/dir 0755 root root"
+hostmakedepends="cmake cmake-vala glib-devel glibc-devel extra-cmake-modules granite-devel libevdev-devel libgee-devel libsoup-devel meson ninja pkg-config vala"
+makedepends="cmake cmake-vala glib-devel glibc-devel extra-cmake-modules granite-devel libevdev-devel libgee-devel libsoup-devel meson ninja pkg-config vala"
+depends="glib granite libevdev libsoup"
+short_desc="Create simple and beautifuul presentations."
+maintainer="Daniel Azevedo <daniazevedo77@posteo.net>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/Philip-Scott/Spice-up"
+#changelog=""
+distfiles="https://github.com/Philip-Scott/Spice-up/archive/$version/Spice-up-$version.tar.gz"
+checksum=39ca3f5cbfc1dbd46bc0847c81f8f0e41326dbecb8d74d7eb107c5f970a4ef3d
