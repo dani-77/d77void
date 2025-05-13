@@ -12,6 +12,6 @@ echo "
   
   Note: additional packages listed as dependencies will also be installed."
 
-if prompt "  Would you like to install Hyprland repo now?"; then
+if prompt "  Would you like to install d77void repo now?"; then
 	sudo cp /usr/lib/lib-d77-welcome/d77void.conf /etc/xbps.d/d77void-repo.conf && sudo xbps-install -Syu
 fi
