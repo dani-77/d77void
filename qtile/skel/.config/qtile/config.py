@@ -66,7 +66,7 @@ keys = [
     Key([mod, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
     Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
     Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
-    Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
+    Key([mod, "shift"], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
     # Unsplit = 1 window displayed, like Max layout, but still with
@@ -95,8 +95,10 @@ keys = [
 
     Key([mod], "a", lazy.spawn("rofi -show drun"), desc="Rofi Menu"),
     Key([mod], "b", lazy.spawn("wswap-way"), desc="Swap Wallpaper"),
+    Key([mod], "c", lazy.spawn("better-control"), desc="Control Panel"),
     Key([mod], "d", lazy.spawn("pcmanfm"), desc="Filemanager"),
     Key([mod], "m", lazy.spawn("geary"), desc="Web browser"),
+    Key([mod], "n", lazy.spawn("nwggrid"), desc="NWG Launcher"),
     Key([mod], "x", lazy.spawn("rofi -show power-menu -modi power-menu:rofi-power-menu"), desc="Rofi PowerMenu"),
     Key([mod], "y", lazy.spawn("slock"), desc="screen locker"),
     Key([mod], "w", lazy.spawn("brave-browser-stable"), desc="Web browser"),
