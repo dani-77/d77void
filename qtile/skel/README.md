@@ -26,6 +26,8 @@ super + return -> terminal
 
 super + b -> swap wallpaper
 
+super + c -> control panel
+
 super + a -> rofi
 
 super + f -> file manager
@@ -33,6 +35,8 @@ super + f -> file manager
 super + w -> firefox
 
 super+ m -> mail
+
+super+ n -> nwg grid
 
 super + i -> swap keyboard layout
 
@@ -47,7 +51,5 @@ super + ctrl + q -> logout
 super + ctrl + r -> reload config
 
 super + q -> close window
-
-super + r -> resize window
 
 Have fun!
