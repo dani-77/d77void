@@ -110,6 +110,9 @@ output * bg ~/Wallpaper/background1.png fill
     # Kill focused window
     bindsym $mod+Shift+q kill
 
+    # Start Better-Control
+    bindsym $mod+c exec better-control
+
     # Start your launcher
     bindsym $mod+d exec $menu
 

@@ -32,7 +32,7 @@ calamares
 
 super + return -> terminal
 
-super + b -> swap wallpaper
+super + c -> control pannel
 
 super + d -> wmenu
 
@@ -41,6 +41,8 @@ super + p -> rofi
 super + o -> gmrun
 
 super + x -> powermenu
+
+super + y -> swap wallpaper
 
 super + shift + e -> logout
 
