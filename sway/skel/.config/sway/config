@@ -117,7 +117,7 @@ output * bg ~/Wallpaper/background1.png fill
     bindsym $mod+d exec $menu
 
     # Start nwggrid
-    bindsym $mod+p exec nwggrid
+    bindsym $mod+n exec nwggrid
 
     # Start rofi
     bindsym $mod+p exec rofi -show drun
