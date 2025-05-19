@@ -62,6 +62,7 @@ $color${hr}
 
 ${color grey}alt + shift + return -> ${color}xterm
 ${color grey}alt + b -> ${color}wallpaper swap
+${color grey}alt + c -> ${color}control panel
 ${color grey}alt + d -> ${color}rofi
 ${color grey}alt + e -> ${color}editor
 ${color grey}alt + f -> ${color}file manager

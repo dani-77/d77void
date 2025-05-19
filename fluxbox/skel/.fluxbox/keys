@@ -138,6 +138,7 @@ Control Mod4 F12 :TakeToWorkspace 12
 
 Shift Mod1 Return :Exec xterm
 Mod1 b :Exec wswap-X
+Mod1 c :Exec better-control
 Mod1 d :Exec rofi -show drun
 Mod1 e :Exec mousepad
 Mod1 f :Exec pcmanfm
