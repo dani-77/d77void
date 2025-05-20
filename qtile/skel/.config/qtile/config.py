@@ -210,7 +210,7 @@ screens = [
             ], 
             25,
 	    background = "#11111b80",
-            border_width=[0, 0, 5, 0],  # Draw top and bottom borders
+            border_width=[0, 0, 0, 0],  # Draw top and bottom borders
             border_color=["ff00ff", "000000", "50fa7b", "000000"]  # Borders are magenta
         ),
         # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
