@@ -1,0 +1,5 @@
+[Desktop Entry]
+Exec=xcompmgr -c -f -n
+Name=compiz
+Type=Application
+Version=1.0

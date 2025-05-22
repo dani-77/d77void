@@ -1,0 +1,5 @@
+[Desktop Entry]
+Exec=synclient TapButton1=1
+Name=synclient1
+Type=Application
+Version=1.0
