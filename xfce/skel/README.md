@@ -26,6 +26,6 @@ Because XFCE has a way to run in wayland, I needed to install labwc as WM for wa
 
 The WM is configured but is not fully functional, so labwc and XFCE wayland should be avoided.
 
-In order to do it, because inn SDDM the default session is labwc (I couldn´t swap it), you shoud swap session to XFCE, not the wayland one.
+In order to do it, because in SDDM the default session is labwc (I couldn´t swap it), you shoud swap session to XFCE, not the wayland one.
 
 Have fun!
