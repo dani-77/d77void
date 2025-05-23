@@ -5,6 +5,8 @@
   <property name="applications" type="empty">
     <property name="known_applications" type="array">
       <value type="string" value="com.nextcloud.desktopclient.nextcloud"/>
+      <value type="string" value="Xfce volume control"/>
+      <value type="string" value="xfce4-power-manager"/>
     </property>
   </property>
 </channel>

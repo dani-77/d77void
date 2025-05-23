@@ -27,7 +27,7 @@ configs:
       row: 2
       col: 1
       last_seen: 1747949030130099
-    "trash:///":
+    "/home/dani77/Desktop/network.desktop":
       row: 1
       col: 0
     "7411-BBB1":
@@ -56,9 +56,10 @@ configs:
       row: 7
       col: 0
       last_seen: 1747949981851862
-    "/home/dani77/Desktop/network.desktop":
-      row: 1
-      col: 0
+    "9934-0927":
+      row: 8
+      col: 1
+      last_seen: 1747949971387848
     "/home/dani77/d77void/mklive-build.jhDNf/image/rootfs/dev/shm":
       row: 1
       col: 1
@@ -78,10 +79,10 @@ configs:
       row: 3
       col: 1
       last_seen: 1747949657195526
-    "9934-0927":
+    "/home/dani77/d77void/mklive-build.jhDNf/image/rootfs/dev/pts":
       row: 8
-      col: 1
-      last_seen: 1747949971387848
+      col: 0
+      last_seen: 1747949657187927
     "/home/dani77/d77void/mklive-build.jhDNf/image/rootfs/dev":
       row: 7
       col: 0
@@ -101,17 +102,14 @@ configs:
       row: 4
       col: 1
       last_seen: 1747949030133404
-    "/home/dani77":
-      row: 0
-      col: 0
-    "/home/dani77/d77void/mklive-build.jhDNf/image/rootfs/dev/pts":
-      row: 8
-      col: 0
-      last_seen: 1747949657187927
     "9e520e6b-0708-4392-8e63-32185ae5110e":
       row: 7
       col: 0
       last_seen: 1747949387696278
+    "/home/dani77/d77void/mklive-build.jhDNf/image/rootfs/sys/kernel/security":
+      row: 6
+      col: 1
+      last_seen: 1747949657200616
     "/home/dani77/d77void/mklive-build.jhDNf/image/rootfs/sys/fs/cgroup":
       row: 4
       col: 1
@@ -123,7 +121,22 @@ configs:
     "/home/dani77/Desktop/trash-can.desktop":
       row: 3
       col: 0
-    "/home/dani77/d77void/mklive-build.jhDNf/image/rootfs/sys/kernel/security":
-      row: 6
-      col: 1
-      last_seen: 1747949657200616
+- level: 0
+  monitors:
+  - id: "49411d0c60eb4e999318c428ec06e70a663bd7b6"
+    display_name: "LG Display 0x0306 (LVDS-1)"
+    geometry:
+      x: 0
+      y: 0
+      width: 1600
+      height: 900
+  icons:
+    "/home/dani77":
+      row: 0
+      col: 0
+    "trash:///":
+      row: 1
+      col: 0
+    "/home/dani77/\xC1rea de Trabalho/steam.desktop":
+      row: 2
+      col: 0
