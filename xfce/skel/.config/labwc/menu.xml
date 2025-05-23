@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openbox_menu>
+    <menu id="root-menu" label="OpenBox 3">
+        <menu id="1" label="Development">
+            <item label="Fluid"> <action name="Execute">
+                <execute>fluid</execute>
+            </action> </item>
+            <item label="Python"> <action name="Execute">
+                <execute>xterm -e python</execute>
+            </action> </item>
+        </menu>
+        <menu id="2" label="Editors">
+            <item label="Geany"> <action name="Execute">
+                <execute>geany</execute>
+            </action> </item>
+            <item label="Nano"> <action name="Execute">
+                <execute>xterm -e nano</execute>
+            </action> </item>
+            <item label="Vi"> <action name="Execute">
+                <execute>xterm -e vi</execute>
+            </action> </item>
+            <item label="Vim"> <action name="Execute">
+                <execute>xterm -e vim</execute>
+            </action> </item>
+        </menu>
+        <menu id="7" label="Multimedia">
+            <item label="ALSA mixer"> <action name="Execute">
+                <execute>xterm -e alsamixer</execute>
+            </action> </item>
+            <item label="cam"> <action name="Execute">
+                <execute>xterm -font vga -geometry 80x25 -bg black -fg gray -e /usr/bin/cam</execute>
+            </action> </item>
+            <item label="cam"> <action name="Execute">
+                <execute>xterm -e cam</execute>
+            </action> </item>
+            <item label="Echomixer"> <action name="Execute">
+                <execute>echomixer</execute>
+            </action> </item>
+            <item label="Envy24 Control"> <action name="Execute">
+                <execute>envy24control</execute>
+            </action> </item>
+            <item label="HDAJackRetask"> <action name="Execute">
+                <execute>hdajackretask</execute>
+            </action> </item>
+            <item label="HDSPConf"> <action name="Execute">
+                <execute>hdspconf</execute>
+            </action> </item>
+            <item label="HDSPMixer"> <action name="Execute">
+                <execute>hdspmixer</execute>
+            </action> </item>
+            <item label="Hwmixvolume"> <action name="Execute">
+                <execute>hwmixvolume</execute>
+            </action> </item>
+            <item label="mpv Media Player"> <action name="Execute">
+                <execute>mpv --player-operation-mode=pseudo-gui</execute>
+            </action> </item>
+            <item label="ncspot"> <action name="Execute">
+                <execute>xterm -e ncspot</execute>
+            </action> </item>
+            <item label="Rmedigicontrol"> <action name="Execute">
+                <execute>rmedigicontrol</execute>
+            </action> </item>
+        </menu>
+        <menu id="5" label="Network">
+            <item label="Brave"> <action name="Execute">
+                <execute>brave-browser-stable</execute>
+            </action> </item>
+            <item label="Geary"> <action name="Execute">
+                <execute>geary</execute>
+            </action> </item>
+            <item label="TkVNC"> <action name="Execute">
+                <execute>xterm -e tkvnc</execute>
+            </action> </item>
+            <item label="Transmission"> <action name="Execute">
+                <execute>transmission-gtk</execute>
+            </action> </item>
+            <item label="uGet"> <action name="Execute">
+                <execute>env GDK_BACKEND=x11 uget-gtk</execute>
+            </action> </item>
+        </menu>
+        <menu id="3" label="Office">
+            <item label="AbiWord"> <action name="Execute">
+                <execute>abiword</execute>
+             </action> </item>
+            <item label="Gnumeric"> <action name="Execute">
+                <execute>gnumeric --name org.gnumeric.gnumeric</execute>
+            </action> </item>
+            <item label="Zathura"> <action name="Execute">
+                <execute>zathura</execute>
+            </action> </item>
+        </menu>
+        <menu id="4" label="Science">
+            <item label="bc"> <action name="Execute">
+                <execute>xterm -e bc</execute>
+            </action> </item>
+            <item label="dc"> <action name="Execute">
+                <execute>xterm -e dc</execute>
+            </action> </item>
+            <item label="gnumeric"> <action name="Execute">
+                <execute>gnumeric</execute>
+            </action> </item>
+            <item label="Xcalc"> <action name="Execute">
+                <execute>xcalc</execute>
+            </action> </item>
+        </menu>
+        <menu id="19" label="Shells">
+            <item label="Dash"> <action name="Execute">
+                <execute>xterm -e dash -i</execute>
+            </action> </item>
+            <item label="File Manager PCManFM"> <action name="Execute">
+                <execute>pcmanfm</execute>
+            </action> </item>
+            <item label="GIT"> <action name="Execute">
+                <execute>xterm -e git</execute>
+            </action> </item>
+            <item label="ranger"> <action name="Execute">
+                <execute>xterm -e ranger</execute>
+            </action> </item>
+            <item label="ST"> <action name="Execute">
+                <execute>st</execute>
+            </action> </item>
+            <item label="UXTerm"> <action name="Execute">
+                <execute>uxterm</execute>
+            </action> </item>
+             </menu>
+        <menu id="37" label="System">
+            <menu id="36" label="Settings">
+                <menu id="21" label="GNOME">
+                    <item label="Advanced Network Configuration"> <action name="Execute">
+                        <execute>nm-connection-editor</execute>
+                    </action> </item>
+                    <item label="Firewall Configuration"> <action name="Execute">
+                        <execute>gufw</execute>
+                    </action> </item>
+                </menu>
+                <item label="Customize Look and Feel"> <action name="Execute">
+                    <execute>lxappearance</execute>
+                </action> </item>
+                <item label="Desktop Preferences"> <action name="Execute">
+                    <execute>pcmanfm --desktop-pref</execute>
+                </action> </item>
+                <item label="Manage Printing"> <action name="Execute">
+                    <execute>xdg-open http://localhost:631/</execute>
+                </action> </item>
+                <item label="Text Editor Settings"> <action name="Execute">
+                    <execute>mousepad --preferences</execute>
+                </action> </item>
+                <item label="Xfontsel"> <action name="Execute">
+                    <execute>xfontsel</execute>
+                </action> </item>
+            </menu>
+            <item label="btop++"> <action name="Execute">
+                <execute>xterm -e btop</execute>
+            </action> </item>
+            <item label="chronyc"> <action name="Execute">
+                <execute>xterm -e chronyc</execute>
+            </action> </item>
+            <item label="Htop"> <action name="Execute">
+                <execute>xterm -e htop</execute>
+            </action> </item>
+            <item label="OctoXBPS"> <action name="Execute">
+                <execute>octoxbps</execute>
+            </action> </item>
+            <item label="OctoXBPS Notifier"> <action name="Execute">
+                <execute>octoxbps-notifier</execute>
+            </action> </item>
+            <item label="Top"> <action name="Execute">
+                <execute>xterm -e top</execute>
+            </action> </item>
+            <item label="Xconsole"> <action name="Execute">
+                <execute>xconsole</execute>
+            </action> </item>
+            <item label="Xload"> <action name="Execute">
+                <execute>xload</execute>
+            </action> </item>
+        </menu>
+        <menu id="38" label="Utilities">
+            <item label="About Xfce"> <action name="Execute">
+                <execute>xfce4-about</execute>
+            </action> </item>
+            <item label="Nextcloud Desktop"> <action name="Execute">
+                <execute>nextcloud</execute>
+            </action> </item>
+            <item label="Oclock"> <action name="Execute">
+                <execute>oclock</execute>
+            </action> </item>
+            <item label="Xarchiver"> <action name="Execute">
+                <execute>xarchiver</execute>
+            </action> </item>
+            <item label="Xclipboard"> <action name="Execute">
+                <execute>xclipboard</execute>
+            </action> </item>
+            <item label="Xclock (analog)"> <action name="Execute">
+                <execute>xclock -analog</execute>
+            </action> </item>
+            <item label="Xclock (digital)"> <action name="Execute">
+                <execute>xclock -digital -update 1</execute>
+            </action> </item>
+            <item label="Xclock (digital)"> <action name="Execute">
+                <execute>xclock -digital</execute>
+            </action> </item>
+            <item label="Xcutsel"> <action name="Execute">
+                <execute>xcutsel</execute>
+            </action> </item>
+            <item label="Xev"> <action name="Execute">
+                <execute>xterm -e xev</execute>
+            </action> </item>
+            <item label="Xkill"> <action name="Execute">
+                <execute>xkill</execute>
+            </action> </item>
+            <item label="Xrefresh"> <action name="Execute">
+                <execute>xrefresh</execute>
+            </action> </item>
+            <item label="Xsetroot"> <action name="Execute">
+                <execute>xsetroot</execute>
+            </action> </item>
+        </menu>
+        <separator/>
+        <menu id="40" label="LabWC">
+            <menu id="client-list-menu"/>
+            <item label="Reconfigure"> <action name="Reconfigure"/> </item>
+            <separator/>
+            <item label="Exit"> <action name="Exit"/> </item>
+        </menu>
+    </menu>
+</openbox_menu>

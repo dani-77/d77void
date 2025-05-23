@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!--
+  This is a very simple config file with many options missing. For a complete
+  set of options with comments, see docs/rc.xml.all
+-->
+<labwc_config>
+  <theme>
+    <name>Arc-Dark</name>
+    <cornerRadius>8</cornerRadius>
+    <font name="sans" size="10"/>
+  </theme>
+  <keyboard>
+    <default/>
+    <!-- Use a different terminal emulator -->
+    <keybind key="W-Return">
+      <action name="Execute" command="kitty"/>
+    </keybind>
+    <keybind key="W-a">
+      <action name="Execute" command="rofi -show drun"/>
+    </keybind>
+    <keybind key="W-b">
+      <action name="Execute" command="wswap-way"/>
+    </keybind>
+    <keybind key="W-c">
+      <action name="Execute" command="better-control"/>
+    </keybind>
+    <keybind key="W-f">
+      <action name="Execute" command="pcmanfm"/>
+    </keybind>
+    <keybind key="W-m">
+      <action name="Execute" command="geary"/>
+    </keybind>
+    <keybind key="W-n">
+      <action name="Execute" command="nwggrid"/>
+    </keybind>
+    <keybind key="W-p">
+      <action name="Execute" command="grim"/>
+    </keybind>
+    <keybind key="W-r">
+      <action name="Execute" command="gmrun"/>
+    </keybind>
+    <keybind key="W-t">
+      <action name="Execute" command="swaylock"/>
+    </keybind>
+    <keybind key="W-w">
+      <action name="Execute" command="brave-browser-stable"/>
+    </keybind>
+    <keybind key="W-x">
+      <action name="Execute" command="rofi -show power-menu -modi power-menu:rofi-power-menu"/>
+    </keybind>
+    <!--
+      Remove a previously defined keybind
+      A shorter alternative is <keybind key="W-F4" />
+    -->
+    <keybind key="W-F4">
+      <action name="None"/>
+    </keybind>
+  </keyboard>
+  <mouse>
+    <default/>
+    <!-- Show a custom menu on desktop right click -->
+    <context name="Root">
+      <mousebind button="Right" action="Press">
+        <action name="ShowMenu" menu="some-custom-menu"/>
+      </mousebind>
+    </context>
+  </mouse>
+  <libinput>
+    <device>
+      <naturalScroll>yes</naturalScroll>
+    </device>
+  </libinput>
+</labwc_config>
