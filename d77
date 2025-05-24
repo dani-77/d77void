@@ -196,6 +196,7 @@ build_variant() {
 	    LXQT=
 	    OPENBOX=
 	    POLY=
+	    XFCE=
 	    ;;
         aarch64*)
             GRUB_PKGS="grub-arm64-efi"
@@ -365,9 +366,9 @@ EOF
     if [ "$WAY" = yes ]; then
         include_way
     fi
-
+    
     if [ "$XFCE" = yes ]; then
-        include_xfce
+	include_xfce
     fi
 
     if [ "$X11" = yes ]; then
