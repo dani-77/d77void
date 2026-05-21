@@ -13,5 +13,5 @@ configuration{
     sidebar-mode: true;
 }
 
-@theme "catppuccin-macchiato"
+@theme "rounded-gray-dark"
 
