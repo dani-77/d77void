@@ -21,7 +21,7 @@ color: @purple;
 
 window#waybar {
     background: #2D2B55;
-    border-radius: 20px;
+    /* border-radius: 20px; */
 }
 
 button.focused {
