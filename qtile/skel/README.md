@@ -4,13 +4,7 @@ Thank you for trying d77void. This ISO with Qtile is hybrid (X11/Wayland).
 
 To install use Calamares from the menu.
 
-In case it won't start, open a terminal and type:
-
-```
-sudo -E calamares
-```
-
-In Wayland, tray, notifications and locker don't work properly.
+In Wayland, tray and notifications don't work properly.
 
 ## Keybinds
 
