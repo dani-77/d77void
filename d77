@@ -575,7 +575,7 @@ build_variant() {
 	    X11=yes
 	    FUZZEL=yes
 	    ROFI=yes
-    	    PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist grim ImageMagick jgmenu kitty nwg-launchers python3-psutil python3-qtile-extras qt5-wayland qt6-wayland qtile qtile-wayland xorg-server-xwayland xterm wlroots wlsunset xwayland-satellite"
+    	    PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist grim ImageMagick jgmenu kitty nwg-launchers python3-psutil python3-qtile-extras qt5-wayland qt6-wayland qtile qtile-wayland swayidle swaylock xorg-server-xwayland xterm wlroots wlsunset xwayland-satellite"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
         ;;
 	river)
