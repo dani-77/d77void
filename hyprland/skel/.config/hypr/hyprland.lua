@@ -375,3 +375,9 @@ hl.window_rule({
 
     float = true,
 })
+hl.window_rule({
+    name  = "qt-sudo",
+    match = { class = "qt-sudo" },
+
+    float = true,
+})
