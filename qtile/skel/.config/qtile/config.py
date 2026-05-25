@@ -227,7 +227,7 @@ screens = [
                     name_transform=lambda name: name.upper(),
                 ),
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
-		#widget.Wttr(**decoration_group, location={'Porto':'Porto'}),
+		widget.Wttr(**decoration_group, location={'Porto':'Porto'}),
                 widget.Clock(**decoration_group, format=" %A, %d %B %Y %H:%M:%S %p"),
 		widget.Spacer(),
 		#widget.StatusNotifier(),
