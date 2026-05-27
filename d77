@@ -6,7 +6,7 @@ set -eu
 
 PROGNAME=$(basename "$0")
 ARCH=$(uname -m)
-IMAGES="awesome base bspwm cosmic dwm fluxbox gnome herbstluftwm hyprland i3wm jwm labwc leftwm lxqt mango niri openbox plasma pwm qtile river scroll sway wayfire wmd77 xfce"
+IMAGES="awesome base bspwm cosmic dwm fluxbox gnome herbstluftwm hyprland i3wm jwm labwc leftwm lxqt mango niri openbox plasma pwm qtile river scroll somewm sway wayfire wmd77 xfce"
 TRIPLET=
 REPO=
 DATE=$(date -u +%Y%m%d)
@@ -22,7 +22,7 @@ usage() {
 
 	OPTIONS
 	 -a <arch>     Set architecture (or platform) in the image
-	 -b <variant>  One of base, awesome, bspwm, cosmic, dwm, fluxbox, gnome, herbstluftwm, hyprland, i3wm, JWM, labwc, leftwm, mango, niri, openbox, plasma, pwm, qtile, river, scroll, sway, wayfire, wmd77 or xfce. 
+	 -b <variant>  One of base, awesome, bspwm, cosmic, dwm, fluxbox, gnome, herbstluftwm, hyprland, i3wm, JWM, labwc, leftwm, mango, niri, openbox, plasma, pwm, qtile, river, scroll, somewm, sway, wayfire, wmd77 or xfce. 
                May be specified multiple times to build multiple variants.
 	 -d <date>     Override the datestamp on the generated image (YYYYMMDD format)
 	 -t <arch-date-variant>
@@ -590,6 +590,12 @@ build_variant() {
 	    COMMON=yes
 	    FUZZEL=yes
             PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist gnome-keyring grim ImageMagick kitty nwg-look nwg-launchers pavucontrol polkit-gnome qt5-wayland qt6-wayland scroll swaybg swayidle swayimg swaylock SwayNotificationCenter wayle wlsunset wmenu xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-wlr xorg-server-xwayland xwayland-satellite"
+            SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+        ;;
+	somewm)
+	    COMMON=yes
+	    FUZZEL=yes
+            PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES  awesome-appmenu nwg-look nwg-wlsunset somewm xorg-server-xwayland xwayland-satellite"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
         ;;
 	sway)
