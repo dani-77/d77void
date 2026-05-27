@@ -5,7 +5,11 @@ font-mono = "Hack"
 [[bar.layout]]
 monitor = "*"
 show = true
-left = ["dashboard"]
+left = [
+    "dashboard",
+    "hyprland-workspaces",
+    "niri-workspaces",
+]
 center = [
     "clock",
     "weather",
@@ -34,6 +38,7 @@ blue = "#8be9fd"
 border-show = true
 
 [modules.clock]
+format = "%A %d %b %Y %I:%M"
 border-show = true
 
 [modules.cpu]
@@ -55,3 +60,5 @@ border-show = true
 location = "Porto"
 border-show = true
 
+[wallpaper]
+cycling-directory = "/home/dani77/Wallpaper/wallhaven-k82j91.png"
