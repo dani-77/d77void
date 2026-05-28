@@ -284,7 +284,7 @@ vicious.register(wifiwidget, vicious.widgets.wifi, "  ${ssid} ${linp}% ${rate
     }
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = 24 })
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = 28, stretch = "false", margins = { top = 15, left = 20, right =20,}, ontop = true, shape = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, 12) end, bg = "#1e1e2ecc", })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
