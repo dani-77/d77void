@@ -442,6 +442,14 @@ globalkeys = gears.table.join(
               end,
               {description = "restore minimized", group = "client"}),
 
+    -- Audio
+    awful.key({ modkey,           }, "XF86AudioRaiseVolume", function () awful.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%") end,
+              {description = "raise volume", group = "Audio"}),
+    awful.key({ modkey,           }, "XF86AudioLowerVolume", function () awful.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%") end,
+              {description = "lower volume", group = "Audio"}),
+    awful.key({ modkey,           }, "XF86AudioMute", function () awful.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle") end,
+              {description = "mute/unmute", group = "Audio"}),
+
     -- Prompt
     awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
               {description = "run prompt", group = "launcher"}),
