@@ -254,26 +254,9 @@ s.mytaglist = awful.widget.taglist {
     end
     }
 
--- Net
-eths = { 'easytether0', 'wlp3s0', 'wlp2s0', 'wlp21s0', 'eth0', 'eth1'}
-netwidget = wibox.widget.textbox()
-vicious.register( netwidget, vicious.widgets.net,
-function(widget,args)
-t=''
-for i = 1, #eths do
-e = eths[i]
-if args["{"..e.." carrier}"] == 1 then
-t=t..'|'..e..'(↑'..args['{'..e..' up_kb}']..',↓'
-..args['{' ..e..' down_kb}']..')kb/s'
-end
-end
-if string.len(t)>0 then -- remove leading '|'
-return string.sub(t,2,-1)
-end
-return ' No network'
-end
-, 1 )
-
+--wifi
+wifiwidget = wibox.widget.textbox()
+vicious.register(wifiwidget, vicious.widgets.wifi, "  ${ssid} ${linp}% ${rate}Mb/s", 1, "wlp0s20f3")
 
 -- Weather
 	wthwidget = wibox.widget.textbox()
@@ -318,7 +301,7 @@ end
             mykeyboardlayout,
             wthwidget,
             alsa,
-	    netwidget,
+	    wifiwidget,
             cpu,
             mem,
             bat,
@@ -453,6 +436,14 @@ globalkeys = gears.table.join(
                   end
               end,
               {description = "restore minimized", group = "client"}),
+
+    -- Audio
+    awful.key({ modkey,           }, "XF86AudioRaiseVolume", function () awful.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%") end,
+              {description = "raise volume", group = "Audio"}),
+    awful.key({ modkey,           }, "XF86AudioLowerVolume", function () awful.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%") end,
+              {description = "lower volume", group = "Audio"}),
+    awful.key({ modkey,           }, "XF86AudioMute", function () awful.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle") end,
+              {description = "mute/unmute", group = "Audio"}),
 
     -- Prompt
     awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
@@ -710,11 +701,10 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 -- {{{ Autostart programs
 awful.spawn.with_shell("octoxbps-notifier")
---awful.spawn.with_shell("xcompmgr -c -f -n")
-awful.spawn.with_shell("synclient TapButton1=1")
+awful.spawn.with_shell("dunst")
 awful.spawn.with_shell("udiskie -a")
-awful.spawn.with_shell("redshift")
-awful.spawn.with_shell("xautolock -time 10 -locker slock")
+awful.spawn.with_shell("wlsunset -l 41.16 -L -8.62 -T 6500 -t 4000")
+awful.spawn.with_shell("screenlock")
 -- }}}
 
 -- {{{ Importing appmenu module
