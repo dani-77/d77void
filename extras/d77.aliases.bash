@@ -23,6 +23,10 @@ function _set_pkg_aliases() {
 		alias hyprbuild='sudo ./d77 -r /home/dani77/d77void-pkgs/hostdir/binpkgs/d77/ -r https://raw.githubusercontent.com/sofijacom/hyprland-void/repository-x86_64-glibc'
 		alias sbuild='sudo ./d77 -r /home/dani77/d77void-pkgs/hostdir/binpkgs/d77/ -r https://raw.githubusercontent.com/Event-Horizon-VL/blackhole-vl/repository-x86_64'
 		alias cosmicbuild='sudo ./d77 -r /home/dani77/d77void-pkgs/hostdir/binpkgs/ -r /home/dani77/d77void-pkgs/hostdir/binpkgs/d77/ -r https://bellawagner.de/repo/x86_64 -b cosmic -- -T d77void'
+		alias nisobuild='sudo ./d77nc -r /home/dani77/d77void-pkgs/hostdir/binpkgs/d77/'
+		alias nhyprbuild='sudo ./d77nc -r /home/dani77/d77void-pkgs/hostdir/binpkgs/d77/ -r https://raw.githubusercontent.com/sofijacom/hyprland-void/repository-x86_64-glibc'
+		alias nsbuild='sudo ./d77nc -r /home/dani77/d77void-pkgs/hostdir/binpkgs/d77/ -r https://raw.githubusercontent.com/Event-Horizon-VL/blackhole-vl/repository-x86_64'
+		alias ncosmicbuild='sudo ./d77nc -r /home/dani77/d77void-pkgs/hostdir/binpkgs/ -r /home/dani77/d77void-pkgs/hostdir/binpkgs/d77/ -r https://bellawagner.de/repo/x86_64 -b cosmic -- -T d77void'
 	fi
 }
 
