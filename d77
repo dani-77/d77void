@@ -418,7 +418,7 @@ build_variant() {
 	    COMMON=yes
 	    X11=yes
 	    ROFI=yes
-            PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES awesome awesome-appmenu"
+            PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES awesome awesome-appmenu wireless_tools"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
         ;;
 	bspwm)

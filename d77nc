@@ -413,7 +413,7 @@ build_variant() {
 	    COMMON=yes
 	    X11=yes
 	    ROFI=yes
-            PKGS="$PKGS $XORG_PKGS $D77_CORE awesome awesome-appmenu"
+            PKGS="$PKGS $XORG_PKGS $D77_CORE awesome awesome-appmenu wireless_tools"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
         ;;
 	bspwm)
@@ -585,6 +585,13 @@ build_variant() {
 	    COMMON=yes
 	    FUZZEL=yes
             PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE cliphist gnome-keyring grim ImageMagick kitty nwg-look nwg-launchers pavucontrol polkit-gnome qt5-wayland qt6-wayland scroll swaybg swayidle swayimg swaylock SwayNotificationCenter wayle wlsunset wmenu xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-wlr xorg-server-xwayland xwayland-satellite"
+            SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+        ;;
+	somewm)
+	    COMMON=yes
+	    FUZZEL=yes
+	    NIRI=yes
+            PKGS="$PKGS $XORG_PKGS $D77_CORE alacritty awesome-appmenu dunst nwg-look pavucontrol somewm swayidle swaylock xorg-server-xwayland xwayland-satellite wireless_tools wlsunset"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
         ;;
 	sway)
