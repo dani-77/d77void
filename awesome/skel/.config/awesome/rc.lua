@@ -713,5 +713,5 @@ awful.spawn.with_shell("xautolock -time 10 -locker slock")
 -- }}}
 
 -- {{{ Importing appmenu module
-awful.spawn.with_shell("awesome-appmenu")
+awful.spawn.with_shell("awesome-appmenu -n")
 -- }}}

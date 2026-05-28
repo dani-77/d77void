@@ -589,9 +589,8 @@ build_variant() {
         ;;
 	somewm)
 	    COMMON=yes
-	    FUZZEL=yes
 	    NIRI=yes
-            PKGS="$PKGS $XORG_PKGS $D77_CORE alacritty awesome-appmenu dunst nwg-look somewm swayidle swaylock xorg-server-xwayland xwayland-satellite wireless_tools wlsunset"
+            PKGS="$PKGS $XORG_PKGS $D77_CORE alacritty awesome-appmenu dunst fuzzel nwg-look somewm swayidle swaylock xorg-server-xwayland xterm xwayland-satellite wireless_tools wlsunset"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
         ;;
 	sway)

@@ -397,8 +397,6 @@ globalkeys = gears.table.join(
     -- Standard program
     awful.key({ modkey,           }, "a", function () awful.spawn("fuzzel") end,
               {description = "open Fuzzel menu", group = "d77"}),
-    awful.key({ modkey,           }, "z", function () awful.spawn("fuzzel-power-menu") end,
-              {description = "open Fuzzel power menu", group = "d77"}),
     awful.key({ modkey,           }, "t", function () awful.spawn("swaylock") end,
               {description = "lock screen", group = "d77"}),
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
@@ -708,5 +706,5 @@ awful.spawn.with_shell("screenlock")
 -- }}}
 
 -- {{{ Importing appmenu module
-awful.spawn.with_shell("awesome-appmenu")
+awful.spawn.with_shell("awesome-appmenu -n")
 -- }}}
