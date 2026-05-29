@@ -2,6 +2,9 @@
   "layer": "top",
   "position": "top",
   "height": 24,
+  "margin-top": 10,
+  "margin-left": 10,
+  "margin-right": 10,
   "spacing": 1,
   "modules-left": [
    "image#album-art", 
