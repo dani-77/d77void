@@ -473,7 +473,7 @@ build_variant() {
         ;;
 	hypr-dms)
 	    COMMON=yes
-            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist dankmaterial-shell dgop hyprland hyprland-guiutils hyprpaper kitty mate-polkit matugen pavucontrol qt5-wayland qt6-multimedia qt6-wayland quickshell upower xwayland-satellite wayland-devel wayland-protocols wlsunset xdg-desktop-portal-hyprland xorg-server-xwayland"
+            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist dms dgop hyprland hyprland-guiutils hyprpaper kitty mate-polkit matugen pavucontrol qt5-wayland qt6-multimedia qt6-wayland quickshell upower xwayland-satellite wayland-devel wayland-protocols wlsunset xdg-desktop-portal-hyprland xorg-server-xwayland"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
         ;;
 	hypr-noctalia)
@@ -525,7 +525,7 @@ build_variant() {
         ;;
 	mango-dms)
 	    COMMON=yes
-            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist dankmaterial-shell dgop ImageMagick kitty mangowc mate-polkit matugen qt5-wayland qt6-wayland quickshell wayland-devel wayland-protocols xdg-desktop-portal-wlr"
+            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist dms dgop ImageMagick kitty mangowc mate-polkit matugen qt5-wayland qt6-wayland quickshell wayland-devel wayland-protocols xdg-desktop-portal-wlr"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
         ;;
 	mango-noctalia)
@@ -543,7 +543,7 @@ build_variant() {
         ;;
 	niri-dms)
 	    COMMON=yes
-            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist dankmaterial-shell dgop gnome-keyring grim ImageMagick kitty mate-polkit matugen niri pavucontrol qt5-wayland qt6-multimedia qt6-wayland quickshell upower wayland-devel wayland-protocols wlsunset xdg-desktop-portal-gnome xdg-desktop-portal-gtk xorg-server-xwayland xwayland-satellite"
+            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist dms dgop gnome-keyring grim ImageMagick kitty mate-polkit matugen niri pavucontrol qt5-wayland qt6-multimedia qt6-wayland quickshell upower wayland-devel wayland-protocols wlsunset xdg-desktop-portal-gnome xdg-desktop-portal-gtk xorg-server-xwayland xwayland-satellite"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
         ;;
 	niri-noctalia)
