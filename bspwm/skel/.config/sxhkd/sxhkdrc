@@ -2,6 +2,10 @@
 # wm independent hotkeys
 #
 
+# gmrun
+super + r
+	gmrun
+
 # rofi
 super + d
 	rofi -show drun
