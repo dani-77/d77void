@@ -141,7 +141,7 @@ animations {
     bindsym $mod+e exec $filemanager
     bindsym $mod+n exec nwggrid
     bindsym $mod+o exec gmrun
-    bindsym $mod+p exec fuzzel
+    bindsym $mod+space exec fuzzel
     bindsym $mod+x exec fuzzel-power-menu
 
     # Drag floating windows by holding down $mod and left mouse button.

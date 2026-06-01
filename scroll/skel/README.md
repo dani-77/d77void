@@ -34,7 +34,7 @@ super + return -> terminal
 
 super + r -> wmenu
 
-super + p -> menu
+super + space -> menu
 
 super + o -> gmrun
 
