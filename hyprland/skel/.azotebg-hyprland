@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-pkill swaybg
-swaybg -o 'LVDS-1' -i "/home/dani77/Wallpaper/wall_macos3.jpg" -m fill &
