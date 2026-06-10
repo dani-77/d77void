@@ -461,9 +461,7 @@ build_variant() {
         ;;
 	hyprland)
 	    COMMON=yes
-	    WAY=yes
-	    FUZZEL=yes
-            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE azote cliphist hyprland hyprland-guiutils hyprlock hyprpaper hyprsunset hyprutils kitty mate-polkit qt5-wayland qt6-wayland swaybg wayland-devel wayland-protocols xdg-desktop-portal-hyprland"
+            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE alacritty azote cliphist hyprland hyprland-guiutils hypridle hyprpolkit hyprsunset hyprutils network-manager-applet nwg-look nwg-launchers pavucontrol qsd77 qt5-wayland qt6-wayland quickshell SwayNotificationCenter wayland-devel wayland-protocols xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-hyprland xorg-server-xwayland xwayland-satellite "
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
         ;;
 	hypr-dms)
