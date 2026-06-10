@@ -1,0 +1,8 @@
+# ══════════════════════════════════════════════════════
+# Módulo launcher do quickshell-d77
+# ══════════════════════════════════════════════════════
+module launcher
+
+Launcher           1.0 Launcher.qml
+AppLoader          1.0 AppLoader.qml
+DesktopDirScanner  1.0 DesktopDirScanner.qml
