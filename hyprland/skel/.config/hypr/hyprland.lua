@@ -9,7 +9,6 @@
 -- Create your files separately and then require them like this:
 -- require("myColors")
 
-
 ------------------
 ---- MONITORS ----
 ------------------
@@ -28,7 +27,7 @@ hl.monitor({
 ---------------------
 
 -- Set programs that you use
-local terminal    	= "kitty"
+local terminal    	= "alacritty"
 local fileManager 	= "pcmanfm"
 local menu        	= "fuzzel"
 local mail    		= "geary"
@@ -46,14 +45,13 @@ local web 		= "brave-browser-stable"
 hl.on("hyprland.start", function () 
 	hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme 'Arc-Dark'")
 	hl.exec_cmd("gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'")
-	hl.exec_cmd("udiskie -at")
+	hl.exec_cmd("udiskie -a")
 	hl.exec_cmd("dunst")
-	hl.exec_cmd("octoxbps-notifier")
-	hl.exec_cmd("waybar -c ~/.config/waybar/config_hypr.jsonc")
-	hl.exec_cmd("nm-applet --indicator")
+	hl.exec_cmd("quickshell")
 	hl.exec_cmd("wlsunset -g 0.8 -l 41.6 -L -8.62")
-	hl.exec_cmd("/usr/lib/mate-polkit/polkit-mate-authentication-agent-1")
+	hl.exec_cmd("/usr/libexec/hyprpolkitagent")
 	hl.exec_cmd("~/.azotebg-hyprland")
+	hl.exec_cmd("hypridle")
 end)
 
 
@@ -95,7 +93,7 @@ hl.env("QT_WAYLAND_DISABLE_WINDOWDECORATION", "1")
 hl.config({
     general = {
         gaps_in  = 5,
-        gaps_out = 20,
+        gaps_out = 5,
 
         border_size = 2,
 
@@ -214,8 +212,8 @@ hl.config({
 
 hl.config({
     misc = {
-        force_default_wallpaper = -1,    -- Set to 0 or 1 to disable the anime mascot wallpapers
-        disable_hyprland_logo   = true, -- If true disables the random hyprland logo / anime girl background. :(
+        force_default_wallpaper = 0,
+        disable_hyprland_logo   = true,
     },
 })
 
@@ -266,15 +264,16 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
 local closeWindowBind = hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
+hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("qsd77 launcher"))
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + F", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + A", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd(mail))
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("nwggrid"))
+hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("grim"))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("gmrun"))
-hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("hyprlock"))
-hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("fuzzel-power-menu"))
+hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("qsd77 locker"))
+hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("qsd77 session"))
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(web))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
@@ -306,10 +305,9 @@ hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Laptop multimedia keys for volume and LCD brightness
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),      { locked = true, repeating = true })
-hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),     { locked = true, repeating = true })
-hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),   { locked = true, repeating = true })
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ +5%"), { locked = true, repeating = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ -5%"),      { locked = true, repeating = true })
+hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("pactl set-sink-mute @DEFAULT_AUDIO_SINK@ toggle"),     { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"),                  { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"),                  { locked = true, repeating = true })
 
@@ -381,3 +379,4 @@ hl.window_rule({
 
     float = true,
 })
+
