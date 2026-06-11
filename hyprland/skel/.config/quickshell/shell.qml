@@ -13,6 +13,10 @@ import "launcher"
 // Exposes Lockscreen
 import "lockscreen"
 
+// OSD native module (osd dir).
+// Exposes Osd (volume + brightness on-screen display)
+import "osd"
+
 ShellRoot {
 
     // ══════════════════════════════════════════════════════
@@ -51,6 +55,28 @@ ShellRoot {
         colRed:    g.colRed
         font:      g.font
         fsize:     g.fsize
+    }
+
+    // ══════════════════════════════════════════════════════
+    // OSD (On-Screen Display: volume + brilho)
+    // ══════════════════════════════════════════════════════
+    // Overlay minimalista no canto superior direito, mostrado
+    // durante ~2,5 s sempre que o volume (ALSA) ou o brilho
+    // (brightnessctl) mudam. Controlado por IPC/keybinds.
+    // Uses the Tokyo Night palette and font defined in "g".
+    Osd {
+        id: osd
+        colBg:     g.colBg
+        colFg:     g.colFg
+        colMuted:  g.colMuted
+        colBlue:   g.colBlue
+        colPurple: g.colPurple
+        colRed:    g.colRed
+        colYellow: g.colYellow
+        font:      g.font
+        fsize:     g.fsize
+        step:      5      // passo de 5% para volume e brilho
+        timeout:   2500   // visível durante 2,5 s
     }
 
     // ══════════════════════════════════════════════════════
@@ -103,6 +129,32 @@ ShellRoot {
         function unlock(): void { lockScreen.unlock() }
         // Alternates between locked/unlocked.
         function toggle(): void { lockScreen.toggle() }
+    }
+
+    // OSD IPC (volume via ALSA + brilho via brightnessctl).
+    // Ideal para ligar às teclas multimédia no Hyprland:
+    //   bindel = , XF86AudioRaiseVolume, exec, qs ipc call osd volumeUp
+    //   bindel = , XF86AudioLowerVolume, exec, qs ipc call osd volumeDown
+    //   bindl  = , XF86AudioMute,        exec, qs ipc call osd volumeMuteToggle
+    //   bindel = , XF86MonBrightnessUp,  exec, qs ipc call osd brightnessUp
+    //   bindel = , XF86MonBrightnessDown,exec, qs ipc call osd brightnessDown
+    IpcHandler {
+        target: "osd"
+
+        // Sobe o volume (passo definido em Osd.step) e mostra o OSD.
+        function volumeUp(): void { osd.volumeUp() }
+        // Desce o volume e mostra o OSD.
+        function volumeDown(): void { osd.volumeDown() }
+        // Alterna mute/unmute e mostra o OSD.
+        function volumeMuteToggle(): void { osd.volumeMuteToggle() }
+        // Aumenta o brilho e mostra o OSD.
+        function brightnessUp(): void { osd.brightnessUp() }
+        // Diminui o brilho e mostra o OSD.
+        function brightnessDown(): void { osd.brightnessDown() }
+        // Apenas mostra o OSD de volume (sem alterar).
+        function showVolume(): void { osd.showVolume() }
+        // Apenas mostra o OSD de brilho (sem alterar).
+        function showBrightness(): void { osd.showBrightness() }
     }
 
     // ── Global Hyprland keybinds (fallback) ───────────────
