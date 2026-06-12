@@ -443,7 +443,7 @@ build_variant() {
 	    BOX=yes
 	    X11=yes
 	    ROFI=yes
-            PKGS="$PKGS $XORG_PKGS $D77_CORE fluxbox"
+            PKGS="$PKGS $XORG_PKGS $D77_CORE fluxbox menumaker"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
         ;;
 	gnome)
