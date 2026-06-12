@@ -554,7 +554,7 @@ build_variant() {
 	    BOX=yes
 	    X11=yes
 	    ROFI=yes
-            PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES lxappearance-obconf menumaker obconf openbox sxhkd tint2 tint2conf"
+            PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES lxappearance-obconf obconf obmenu-generator openbox perl-File-DesktopEntry sxhkd tint2 tint2conf"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
         ;;        
 	plasma)

@@ -62,7 +62,6 @@ $color${hr}
 
 ${color grey}alt + shift + return -> ${color}terminal
 ${color grey}alt + b -> ${color}swap wallpaper
-${color grey}alt + c -> ${color}control panel
 ${color grey}alt + d -> ${color}rofi menu
 ${color grey}alt + e -> ${color}editor
 ${color grey}alt + f -> ${color}file manager
