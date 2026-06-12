@@ -122,9 +122,7 @@ include_common() {
 	cp ./common/.gtkrc-2.0 "$INCLUDEDIR"/etc/skel/
 	cp ./common/.bashrc "$INCLUDEDIR"/etc/skel/
 	cp ./common/.Xresources "$INCLUDEDIR"/etc/skel/
-	cp ./common/d77-welcome "$INCLUDEDIR"/usr/bin/
 	cp ./common/50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/
-	cp ./common/d77-welcome.desktop "$INCLUDEDIR"/usr/share/applications/
 	cp ./common/d77void.png "$INCLUDEDIR"/usr/share/pixmaps/
 	cp ./common/splash.png "$INCLUDEDIR"/usr/share/void-artwork/
 	cp ./common/anon.face.icon "$INCLUDEDIR"/usr/share/sddm/faces/
@@ -133,7 +131,6 @@ include_common() {
 	cp -r ./common/themes "$INCLUDEDIR"/etc/skel/.local/share/
 	cp -r ./common/.icons "$INCLUDEDIR"/etc/skel/
 	cp -r ./common/Wallpaper "$INCLUDEDIR"/etc/skel/
-	cp -r ./common/lib-d77-welcome "$INCLUDEDIR"/usr/lib/
 	cp -r ./common/slice "$INCLUDEDIR"/usr/share/sddm/themes/
 	cp -r ./common/Wallpaper "$INCLUDEDIR"/usr/share/
 }
@@ -180,16 +177,13 @@ include_gnome() {
 	cp ./common/.gtkrc-2.0 "$INCLUDEDIR"/etc/skel/
 	cp ./common/.bashrc "$INCLUDEDIR"/etc/skel/
 	cp ./common/.Xresources "$INCLUDEDIR"/etc/skel/
-	cp ./common/d77-welcome "$INCLUDEDIR"/usr/bin/
 	cp ./common/50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/
-	cp ./common/d77-welcome.desktop "$INCLUDEDIR"/usr/share/applications/
 	cp ./common/d77void.png "$INCLUDEDIR"/usr/share/pixmaps/
 	cp ./common/splash.png "$INCLUDEDIR"/usr/share/void-artwork/
 	cp -r ./common/gtksourceview-4 "$INCLUDEDIR"/etc/skel/.local/share/
 	cp -r ./common/config/* "$INCLUDEDIR"/etc/skel/.config/
 	cp -r ./common/themes "$INCLUDEDIR"/etc/skel/.local/share/
 	cp -r ./common/.icons "$INCLUDEDIR"/etc/skel/
-	cp -r ./common/lib-d77-welcome "$INCLUDEDIR"/usr/lib/
 	cp -r ./common/Wallpaper "$INCLUDEDIR"/usr/share/backgrounds/
 }
 
@@ -239,9 +233,7 @@ include_plasma() {
 	cp ./common/.gtkrc-2.0 "$INCLUDEDIR"/etc/skel/
 	cp ./common/.bashrc "$INCLUDEDIR"/etc/skel/
 	cp ./common/.Xresources "$INCLUDEDIR"/etc/skel/
-	cp ./common/d77-welcome "$INCLUDEDIR"/usr/bin/
 	cp ./common/50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/
-	cp ./common/d77-welcome.desktop "$INCLUDEDIR"/usr/share/applications/
 	cp ./common/d77void.png "$INCLUDEDIR"/usr/share/pixmaps/
 	cp ./common/splash.png "$INCLUDEDIR"/usr/share/void-artwork/
 	cp ./common/anon.face.icon "$INCLUDEDIR"/usr/share/sddm/faces/
@@ -250,7 +242,6 @@ include_plasma() {
 	cp -r ./common/config/* "$INCLUDEDIR"/etc/skel/.config/
 	cp -r ./common/themes "$INCLUDEDIR"/etc/skel/.local/share/
 	cp -r ./common/.icons "$INCLUDEDIR"/etc/skel/
-	cp -r ./common/lib-d77-welcome "$INCLUDEDIR"/usr/lib/
 	cp -r ./common/slice "$INCLUDEDIR"/usr/share/sddm/themes/
 	cp -r ./common/Wallpaper "$INCLUDEDIR"/usr/share/backgrounds/
 }
@@ -312,9 +303,7 @@ include_xfce() {
 	cp ./common/.gtkrc-2.0 "$INCLUDEDIR"/etc/skel/
 	cp ./common/.bashrc "$INCLUDEDIR"/etc/skel/
 	cp ./common/.Xresources "$INCLUDEDIR"/etc/skel/
-	cp ./common/d77-welcome "$INCLUDEDIR"/usr/bin/
 	cp ./common/50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/
-	cp ./common/d77-welcome.desktop "$INCLUDEDIR"/usr/share/applications/
 	cp ./common/Wallpaper/background3.png "$INCLUDEDIR"/usr/share/backgrounds/xfce/
 	cp ./common/d77void.png "$INCLUDEDIR"/usr/share/pixmaps/
 	cp ./common/splash.png "$INCLUDEDIR"/usr/share/void-artwork/
@@ -325,7 +314,6 @@ include_xfce() {
 	cp -r ./common/themes "$INCLUDEDIR"/etc/skel/.local/share/
 	cp -r ./common/.icons "$INCLUDEDIR"/etc/skel/
 	cp -r ./common/Wallpaper "$INCLUDEDIR"/etc/skel/
-	cp -r ./common/lib-d77-welcome "$INCLUDEDIR"/usr/lib/
 	cp -r ./common/slice "$INCLUDEDIR"/usr/share/sddm/themes/
 }
 
@@ -360,9 +348,9 @@ build_variant() {
             GFX_WL_PKGS="mesa-dri"
             WANT_INSTALLER=no
             TARGET_ARCH="$ARCH"
-	    D77_CORE="acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brave-bin brightnessctl ca-certificates cmus cups cups-browsed curl elogind ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-hack-ttf font-iosevka geary gettext git gmrun htop inxi kvantum mousepad mpv nano NetworkManager nerd-fonts-symbols-ttf nwg-look octoxbps papirus-icon-theme pcmanfm plymouth polkit power-profiles-daemon qt5ct qt6ct qt5-graphicaleffects ranger sddm smartmontools system-config-printer tlp tlp-rdw transmission-qt udiskie ufw uget unzip usbutils util-linux vim wget xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
+	    D77_CORE="acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc firefox brightnessctl ca-certificates cmus cups cups-browsed curl elogind ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-hack-ttf font-iosevka geary gettext git gmrun htop inxi kvantum mousepad mpv nano NetworkManager nerd-fonts-symbols-ttf nwg-look octoxbps papirus-icon-theme pcmanfm plymouth polkit power-profiles-daemon qt5ct qt6ct qt5-graphicaleffects ranger sddm smartmontools system-config-printer tlp tlp-rdw transmission-qt udiskie ufw uget unzip usbutils util-linux vim wget xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
 	    D77_GNOME="acpi apulse alsa-pipewire alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brightnessctl ca-certificates cmus cups cups-browsed curl elogind ethtool feh ffmpeg font-hack-ttf geary gettext git htop inxi kvantum nano NetworkManager neofetch nerd-fonts-symbols-ttf octoxbps papirus-icon-theme pipewire plymouth polkit power-profiles-daemon qt5ct qt6ct ranger smartmontools tlp tlp-rdw transmission-qt udiskie ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree wget wireplumber xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
-	    D77_WAYFIRE="acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brave-bin brightnessctl ca-certificates cmus cups cups-browsed curl dunst elogind ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-awesome7 font-hack-ttf geary gettext git gmrun htop inxi kitty kvantum mousepad mpv nano NetworkManager nerd-fonts-symbols-ttf nwg-look octoxbps papirus-icon-theme pcmanfm plymouth polkit power-profiles-daemon qt5ct qt6ct qt5-graphicaleffects ranger sddm smartmontools system-config-printer tlp tlp-rdw transmission-gtk udiskie ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree wget xdg-desktop-portal xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf xterm yt-dlp zathura zathura-pdf-poppler"
+	    D77_WAYFIRE="acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc firefox brightnessctl ca-certificates cmus cups cups-browsed curl dunst elogind ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-awesome7 font-hack-ttf geary gettext git gmrun htop inxi kitty kvantum mousepad mpv nano NetworkManager nerd-fonts-symbols-ttf nwg-look octoxbps papirus-icon-theme pcmanfm plymouth polkit power-profiles-daemon qt5ct qt6ct qt5-graphicaleffects ranger sddm smartmontools system-config-printer tlp tlp-rdw transmission-gtk udiskie ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree wget xdg-desktop-portal xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf xterm yt-dlp zathura zathura-pdf-poppler"
 	    D77_EXTRA="abook automake calcurse cargo epson-inkjet-printer-escpr gcc isync make ncspot nextcloud-client neomutt pass pcsc-ccid pcsc-tools pcsclite python3-pip rust"
 	    CALAMARES="calamares grub rsync"
 	    COMMON=
@@ -431,7 +419,7 @@ build_variant() {
         ;;
 	cosmic)
 	    COMMON=yes
-            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_GNOME $CALAMARES brave-bin cliphist cosmic-desktop-full gnome-keyring qt5-graphicaleffects qt5-wayland qt6-wayland sddm xarchiver xdg-desktop-portal-cosmic"
+            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_GNOME $CALAMARES firefox cliphist cosmic-desktop-full gnome-keyring qt5-graphicaleffects qt5-wayland qt6-wayland sddm xarchiver xdg-desktop-portal-cosmic"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
         ;;
 	dwm)
@@ -452,7 +440,7 @@ build_variant() {
         ;;
 	gnome)
 	    GNOME=yes
-            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_GNOME $CALAMARES brave-bin extension-manager gdm gnome gnome-keyring gnome-shell-extensions qt5-wayland qt6-wayland xarchiver xdg-desktop-portal-gnome"
+            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_GNOME $CALAMARES firefox extension-manager gdm gnome gnome-keyring gnome-shell-extensions qt5-wayland qt6-wayland xarchiver xdg-desktop-portal-gnome"
             SERVICES="$SERVICES dbus elogind gdm NetworkManager polkitd power-profiles-daemon"
         ;;
 	herbstluftwm)
@@ -510,7 +498,7 @@ build_variant() {
 	lxqt)
 	    COMMON=yes
 	    LXQT=yes
-            PKGS="$PKGS $XORG_PKGS $CALAMARES acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brave-bin brightnessctl ca-certificates cmus cups cups-browsed curl dunst elogind epson-inkjet-printer-escpr ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-hack-ttf geary gettext git github-cli gvfs-afc gvfs-mtp gvfs-smb htop inxi kvantum lxqt mpv nano NetworkManager network-manager-applet nerd-fonts-symbols-ttf nextcloud-client octoxbps papirus-icon-theme plymouth polkit power-profiles-daemon qt5-graphicaleffects qt5ct qt6ct ranger redshift redshift-gtk scrot sddm slock smartmontools system-config-printer tlp tlp-rdw transmission-gtk udisks2 ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree xautolock xcompmgr wget xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
+            PKGS="$PKGS $XORG_PKGS $CALAMARES acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc firefox brightnessctl ca-certificates cmus cups cups-browsed curl dunst elogind epson-inkjet-printer-escpr ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-hack-ttf geary gettext git github-cli gvfs-afc gvfs-mtp gvfs-smb htop inxi kvantum lxqt mpv nano NetworkManager network-manager-applet nerd-fonts-symbols-ttf nextcloud-client octoxbps papirus-icon-theme plymouth polkit power-profiles-daemon qt5-graphicaleffects qt5ct qt6ct ranger redshift redshift-gtk scrot sddm slock smartmontools system-config-printer tlp tlp-rdw transmission-gtk udisks2 ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree xautolock xcompmgr wget xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
         ;;
 	mango)
@@ -558,7 +546,7 @@ build_variant() {
         ;;        
 	plasma)
 	    PLASMA=yes
-            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_GNOME $CALAMARES ark kde5 kde5-baseapps kmail librewolf-bin qt5-graphicaleffects sddm yakuake"
+            PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_GNOME $CALAMARES ark kde5 kde5-baseapps kmail firefox qt5-graphicaleffects sddm yakuake"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
         ;;
 	pwm)
@@ -614,7 +602,7 @@ build_variant() {
         ;;
 	xfce)
 	    XFCE=yes
-            PKGS="$PKGS $XORG_PKGS $CALAMARES acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brave-bin brightnessctl ca-certificates cmus cups cups-browsed curl dunst elogind epson-inkjet-printer-escpr ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-hack-ttf geary gettext git github-cli gvfs-afc gvfs-mtp gvfs-smb htop inxi kvantum mpv mugshot nano NetworkManager network-manager-applet nerd-fonts-symbols-ttf octoxbps papirus-icon-theme polkit power-profiles-daemon qt5-graphicaleffects qt5ct qt6ct ranger redshift redshift-gtk sddm scrot slock smartmontools system-config-printer tlp tlp-rdw transmission-gtk udisks2 ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree wget xautolock xcompmgr xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xfce4 xfce4-pulseaudio-plugin xfce4-weather-plugin xfce4-whiskermenu-plugin xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
+            PKGS="$PKGS $XORG_PKGS $CALAMARES acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc firefox brightnessctl ca-certificates cmus cups cups-browsed curl dunst elogind epson-inkjet-printer-escpr ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-hack-ttf geary gettext git github-cli gvfs-afc gvfs-mtp gvfs-smb htop inxi kvantum mpv mugshot nano NetworkManager network-manager-applet nerd-fonts-symbols-ttf octoxbps papirus-icon-theme polkit power-profiles-daemon qt5-graphicaleffects qt5ct qt6ct ranger redshift redshift-gtk sddm scrot slock smartmontools system-config-printer tlp tlp-rdw transmission-gtk udisks2 ueberzug ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree wget xautolock xcompmgr xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xfce4 xfce4-pulseaudio-plugin xfce4-weather-plugin xfce4-whiskermenu-plugin xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
             SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
         ;;
         *)
