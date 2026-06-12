@@ -1,6 +1,6 @@
 configuration{
     modi: "run,drun,window";
-    icon-theme: "Oranchelo";
+    icon-theme: "Papirus-Dark";
     show-icons: true;
     drun-display-format: "{icon} {name}";
     location: 0;
