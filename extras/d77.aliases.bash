@@ -13,12 +13,13 @@ function _set_pkg_aliases() {
 		alias pkgupg='sudo xbps-install -Syu'
 		alias pkgrm='sudo xbps-remove -R'
 		alias pkgsig='xbps-rindex --sign-pkg --privkey privkey.pem hostdir/binpkgs/d77/*.xbps'
-		alias calasig='xbps-rindex --sign-pkg --privkey privkey.pem hostdir/binpkgs/*.xbps'		
 		alias srcbuild='./xbps-src pkg'
+		alias muslsrc='./xbps-src pkg -A x86_64-musl'
 
 		alias klist='vkpurge list'
 		alias krem='sudo vkpurge rm'
 
+		alias muslbuild='sudo ./musl-d77 -a x86_64-musl -r /home/dani77/d77void-pkgs/hostdir/binpkgs/d77/'
 		alias isobuild='sudo ./d77 -r /home/dani77/d77void-pkgs/hostdir/binpkgs/d77/'
 		alias hyprbuild='sudo ./d77 -r /home/dani77/d77void-pkgs/hostdir/binpkgs/d77/ -r https://raw.githubusercontent.com/sofijacom/hyprland-void/repository-x86_64-glibc'
 		alias sbuild='sudo ./d77 -r /home/dani77/d77void-pkgs/hostdir/binpkgs/d77/ -r https://raw.githubusercontent.com/Event-Horizon-VL/blackhole-vl/repository-x86_64'
