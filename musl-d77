@@ -94,11 +94,13 @@ include_box() {
 }
 
 include_plymouth() {
-	mkdir -p "$INCLUDEDIR"/etc/plymouth
 	mkdir -p "$INCLUDEDIR"/etc/dracut.conf.d
+	mkdir -p "$INCLUDEDIR"/etc/kernel.d/post-install
+	mkdir -p "$INCLUDEDIR"/etc/plymouth
 	mkdir -p "$INCLUDEDIR"/usr/share/plymouth/themes
-	cp ./common/plymouthd.conf "$INCLUDEDIR"/etc/plymouth/
 	cp ./common/10-plymouth.conf "$INCLUDEDIR"/etc/dracut.conf.d/
+	cp ./common/99-plymouth-dracut "$INCLUDEDIR"/etc/kernel.d/post-install/
+	cp ./common/plymouthd.conf "$INCLUDEDIR"/etc/plymouth/
 	cp -r ./common/d77 "$INCLUDEDIR"/usr/share/plymouth/themes/
 	cp -r ./common/d77-spinner "$INCLUDEDIR"/usr/share/plymouth/themes/
 }

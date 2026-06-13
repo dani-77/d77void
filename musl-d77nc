@@ -94,11 +94,13 @@ include_box() {
 }
 
 include_plymouth() {
-	mkdir -p "$INCLUDEDIR"/etc/plymouth
 	mkdir -p "$INCLUDEDIR"/etc/dracut.conf.d
+	mkdir -p "$INCLUDEDIR"/etc/kernel.d/post-install
+	mkdir -p "$INCLUDEDIR"/etc/plymouth
 	mkdir -p "$INCLUDEDIR"/usr/share/plymouth/themes
-	cp ./common/plymouthd.conf "$INCLUDEDIR"/etc/plymouth/
 	cp ./common/10-plymouth.conf "$INCLUDEDIR"/etc/dracut.conf.d/
+	cp ./common/99-plymouth-dracut "$INCLUDEDIR"/etc/kernel.d/post-install/
+	cp ./common/plymouthd.conf "$INCLUDEDIR"/etc/plymouth/
 	cp -r ./common/d77 "$INCLUDEDIR"/usr/share/plymouth/themes/
 	cp -r ./common/d77-spinner "$INCLUDEDIR"/usr/share/plymouth/themes/
 }
@@ -340,7 +342,7 @@ build_variant() {
             GRUB_PKGS="grub-i386-efi grub-x86_64-efi"
             GFX_PKGS="xorg-video-drivers"
             GFX_WL_PKGS="mesa-dri"
-            WANT_INSTALLER=no
+            WANT_INSTALLER=yes
             TARGET_ARCH="$ARCH"
 	    D77_CORE="acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc firefox brightnessctl ca-certificates cmus cups cups-browsed curl elogind ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-hack-ttf font-iosevka geary gettext git gmrun htop inxi kvantum mousepad mpv nano NetworkManager nerd-fonts-symbols-ttf nwg-look octoxbps papirus-icon-theme pcmanfm plymouth polkit power-profiles-daemon qt5ct qt6ct qt5-graphicaleffects ranger sddm smartmontools system-config-printer tlp tlp-rdw transmission-qt udiskie ufw uget unzip usbutils util-linux vim wget xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
 	    D77_GNOME="acpi apulse alsa-pipewire alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brightnessctl ca-certificates cmus cups cups-browsed curl elogind ethtool feh ffmpeg font-hack-ttf geary gettext git htop inxi kvantum nano NetworkManager neofetch nerd-fonts-symbols-ttf octoxbps papirus-icon-theme pipewire plymouth polkit power-profiles-daemon qt5ct qt6ct ranger smartmontools tlp tlp-rdw transmission-qt udiskie ufw uget unzip usbutils util-linux vim void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree wget wireplumber xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
