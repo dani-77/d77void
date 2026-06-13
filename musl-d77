@@ -93,6 +93,16 @@ include_box() {
 	cp ./common/jgmenu.desktop "$INCLUDEDIR"/usr/share/applications/
 }
 
+include_plymouth() {
+	mkdir -p "$INCLUDEDIR"/etc/plymouth
+	mkdir -p "$INCLUDEDIR"/etc/dracut.conf.d
+	mkdir -p "$INCLUDEDIR"/usr/share/plymouth/themes
+	cp ./common/plymouthd.conf "$INCLUDEDIR"/etc/plymouth/
+	cp ./common/10-plymouth.conf "$INCLUDEDIR"/etc/dracut.conf.d/
+	cp -r ./common/d77 "$INCLUDEDIR"/usr/share/plymouth/themes/
+	cp -r ./common/d77-spinner "$INCLUDEDIR"/usr/share/plymouth/themes/
+}
+
 include_common() {
 	mkdir -p "$INCLUDEDIR"/boot/grub/themes
 	mkdir -p "$INCLUDEDIR"/etc
@@ -105,15 +115,12 @@ include_common() {
 	mkdir -p "$INCLUDEDIR"/usr/lib
 	mkdir -p "$INCLUDEDIR"/usr/share/applications
 	mkdir -p "$INCLUDEDIR"/usr/share/pixmaps
-	mkdir -p "$INCLUDEDIR"/usr/share/plymouth/themes
 	mkdir -p "$INCLUDEDIR"/usr/share/polkit-1/rules.d
 	mkdir -p "$INCLUDEDIR"/usr/share/void-artwork
 	mkdir -p "$INCLUDEDIR"/usr/share/sddm/faces
 	mkdir -p "$INCLUDEDIR"/usr/share/sddm/themes
 	cp -r ./common/d77-grub-theme "$INCLUDEDIR"/boot/grub/themes/
 	cp -r ./common/calamares "$INCLUDEDIR"/etc/
-	cp -r ./common/d77 "$INCLUDEDIR"/usr/share/plymouth/themes/
-	cp -r ./common/d77-spinner "$INCLUDEDIR"/usr/share/plymouth/themes/
 	cp -r ./common/.bash_it "$INCLUDEDIR"/etc/skel/
 	cp -r $variant/skel "$INCLUDEDIR"/etc/
 	cp ./common/asound.conf "$INCLUDEDIR"/etc/
@@ -161,13 +168,10 @@ include_gnome() {
 	mkdir -p "$INCLUDEDIR"/usr/share/applications
 	mkdir -p "$INCLUDEDIR"/usr/share/backgrounds
 	mkdir -p "$INCLUDEDIR"/usr/share/pixmaps
-	mkdir -p "$INCLUDEDIR"/usr/share/plymouth/themes
 	mkdir -p "$INCLUDEDIR"/usr/share/polkit-1/rules.d
 	mkdir -p "$INCLUDEDIR"/usr/share/void-artwork
 	cp -r ./common/d77-grub-theme "$INCLUDEDIR"/boot/grub/themes/
 	cp -r ./common/calamares "$INCLUDEDIR"/etc/
-	cp -r ./common/d77 "$INCLUDEDIR"/usr/share/plymouth/themes/
-	cp -r ./common/d77-spinner "$INCLUDEDIR"/usr/share/plymouth/themes/
 	cp -r ./common/gnome-shell "$INCLUDEDIR"/etc/skel/.local/share/
 	cp -r ./common/.bash_it "$INCLUDEDIR"/etc/skel/
 	cp -r $variant/skel "$INCLUDEDIR"/etc/
@@ -215,15 +219,12 @@ include_plasma() {
 	mkdir -p "$INCLUDEDIR"/usr/share/applications
 	mkdir -p "$INCLUDEDIR"/usr/share/backgrounds
 	mkdir -p "$INCLUDEDIR"/usr/share/pixmaps
-	mkdir -p "$INCLUDEDIR"/usr/share/plymouth/themes
 	mkdir -p "$INCLUDEDIR"/usr/share/polkit-1/rules.d
 	mkdir -p "$INCLUDEDIR"/usr/share/void-artwork
 	mkdir -p "$INCLUDEDIR"/usr/share/sddm/faces
 	mkdir -p "$INCLUDEDIR"/usr/share/sddm/themes
 	cp -r ./common/d77-grub-theme "$INCLUDEDIR"/boot/grub/themes/
 	cp -r ./common/calamares "$INCLUDEDIR"/etc/
-	cp -r ./common/d77 "$INCLUDEDIR"/usr/share/plymouth/themes/
-	cp -r ./common/d77-spinner "$INCLUDEDIR"/usr/share/plymouth/themes/
 	cp -r ./common/gnome-shell "$INCLUDEDIR"/etc/skel/.local/share/
 	cp -r ./common/.bash_it "$INCLUDEDIR"/etc/skel/
 	cp -r $variant/skel "$INCLUDEDIR"/etc/
@@ -285,7 +286,6 @@ include_xfce() {
 	mkdir -p "$INCLUDEDIR"/usr/share/applications
 	mkdir -p "$INCLUDEDIR"/usr/share/backgrounds/xfce
 	mkdir -p "$INCLUDEDIR"/usr/share/pixmaps
-	mkdir -p "$INCLUDEDIR"/usr/share/plymouth/themes
 	mkdir -p "$INCLUDEDIR"/usr/share/polkit-1/rules.d
 	mkdir -p "$INCLUDEDIR"/usr/share/void-artwork
 	mkdir -p "$INCLUDEDIR"/usr/share/sddm/faces
@@ -293,8 +293,6 @@ include_xfce() {
 	mkdir -p "$INCLUDEDIR"/var/lib/sddm
 	cp -r ./common/d77-grub-theme "$INCLUDEDIR"/boot/grub/themes/
 	cp -r ./common/calamares "$INCLUDEDIR"/etc/
-	cp -r ./common/d77 "$INCLUDEDIR"/usr/share/plymouth/themes/
-	cp -r ./common/d77-spinner "$INCLUDEDIR"/usr/share/plymouth/themes/
 	cp -r ./common/.bash_it "$INCLUDEDIR"/etc/skel/
 	cp -r $variant/skel "$INCLUDEDIR"/etc/
 	cp ./common/asound.conf "$INCLUDEDIR"/etc/
@@ -361,6 +359,7 @@ build_variant() {
 	    NIRI=
 	    LXQT=
 	    BOX=
+	    PLYMOUTH=yes
 	    POLY=
 	    XFCE=
 	    DMENU=
@@ -653,6 +652,10 @@ EOF
         include_plasma
     fi
 
+    if [ "$PLYMOUTH" = yes ]; then
+        include_plymouth
+    fi
+
     if [ "$POLY" = yes ]; then
         include_poly
     fi
@@ -694,6 +697,7 @@ EOF
     fi
 
     ./mklive.sh -a "$TARGET_ARCH" -o "$IMG" -p "$PKGS" -S "$SERVICES" -I "$INCLUDEDIR" \
+	-x "dracut --force --regeneration" \
         ${KERNEL_PKG:+-v $KERNEL_PKG} ${REPO} "$@"
 
 	cleanup
