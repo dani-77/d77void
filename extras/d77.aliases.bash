@@ -13,11 +13,8 @@ function _set_pkg_aliases() {
 		alias pkgupg='sudo xbps-install -Syu'
 		alias pkgrm='sudo xbps-remove -R'
 		alias pkgsig='xbps-rindex --sign-pkg --privkey privkey.pem hostdir/binpkgs/d77/*.xbps'
-<<<<<<< HEAD
 		alias muslsig='xbps-rindex --sign-pkg --privkey privkey.pem hostdir/binpkgs/musld77/*.xbps'
-=======
 		alias muslpkgsig='xbps-rindex --sign-pkg --privkey privkey.pem hostdir/binpkgs/musld77/*.xbps'
->>>>>>> 9793cce (fluxbox ready and updated)
 		alias srcbuild='./xbps-src pkg'
 		alias muslsrcbuild='./xbps-src pkg -A x86_64-musl'
 
