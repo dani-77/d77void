@@ -347,7 +347,7 @@ build_variant() {
     # el-cheapo installer is unsupported on arm because arm doesn't install a kernel by default
     # and to work around that would add too much complexity to it
     # thus everyone should just do a chroot install anyways
-    WANT_INSTALLER=no
+    WANT_INSTALLER=yes
     case "$ARCH" in
         x86_64*|i686*)
             GRUB_PKGS="grub-i386-efi grub-x86_64-efi"
