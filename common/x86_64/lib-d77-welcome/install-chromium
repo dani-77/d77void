@@ -1,0 +1,20 @@
+clear
+
+# echo "  -----------------------------[ screen $STEP of $STEPS ]----------------------------
+echo "
+
+  INSTALL BROWSER SUPPORT
+  -------------------------------
+  Would you like to install also Chromium web browser now?
+  If you choose to do this, the following packages will be installed: 
+  
+  Chromium
+  
+  Note: additional packages listed as dependencies will also be installed."
+
+if prompt "  Would you like to also install Chromium?"; then
+	sudo xbps-install -Sy chromium
+fi
+
+	
+	

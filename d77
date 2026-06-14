@@ -132,7 +132,7 @@ include_common() {
 	cp ./common/.gtkrc-2.0 "$INCLUDEDIR"/etc/skel/
 	cp ./common/.bashrc "$INCLUDEDIR"/etc/skel/
 	cp ./common/.Xresources "$INCLUDEDIR"/etc/skel/
-	cp ./common/d77-welcome "$INCLUDEDIR"/usr/bin/
+	cp ./common/x86_64/d77-welcome "$INCLUDEDIR"/usr/bin/
 	cp ./common/50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/
 	cp ./common/d77-welcome.desktop "$INCLUDEDIR"/usr/share/applications/
 	cp ./common/d77void.png "$INCLUDEDIR"/usr/share/pixmaps/
@@ -143,7 +143,7 @@ include_common() {
 	cp -r ./common/themes "$INCLUDEDIR"/etc/skel/.local/share/
 	cp -r ./common/.icons "$INCLUDEDIR"/etc/skel/
 	cp -r ./common/Wallpaper "$INCLUDEDIR"/etc/skel/
-	cp -r ./common/lib-d77-welcome "$INCLUDEDIR"/usr/lib/
+	cp -r ./common/x86_64/lib-d77-welcome "$INCLUDEDIR"/usr/lib/
 	cp -r ./common/slice "$INCLUDEDIR"/usr/share/sddm/themes/
 	cp -r ./common/Wallpaper "$INCLUDEDIR"/usr/share/
 }
@@ -187,7 +187,7 @@ include_gnome() {
 	cp ./common/.gtkrc-2.0 "$INCLUDEDIR"/etc/skel/
 	cp ./common/.bashrc "$INCLUDEDIR"/etc/skel/
 	cp ./common/.Xresources "$INCLUDEDIR"/etc/skel/
-	cp ./common/d77-welcome "$INCLUDEDIR"/usr/bin/
+	cp ./common/x86_64/d77-welcome "$INCLUDEDIR"/usr/bin/
 	cp ./common/50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/
 	cp ./common/d77-welcome.desktop "$INCLUDEDIR"/usr/share/applications/
 	cp ./common/d77void.png "$INCLUDEDIR"/usr/share/pixmaps/
@@ -196,7 +196,7 @@ include_gnome() {
 	cp -r ./common/config/* "$INCLUDEDIR"/etc/skel/.config/
 	cp -r ./common/themes "$INCLUDEDIR"/etc/skel/.local/share/
 	cp -r ./common/.icons "$INCLUDEDIR"/etc/skel/
-	cp -r ./common/lib-d77-welcome "$INCLUDEDIR"/usr/lib/
+	cp -r ./common/x86_64/lib-d77-welcome "$INCLUDEDIR"/usr/lib/
 	cp -r ./common/Wallpaper "$INCLUDEDIR"/usr/share/backgrounds/
 }
 
@@ -243,7 +243,7 @@ include_plasma() {
 	cp ./common/.gtkrc-2.0 "$INCLUDEDIR"/etc/skel/
 	cp ./common/.bashrc "$INCLUDEDIR"/etc/skel/
 	cp ./common/.Xresources "$INCLUDEDIR"/etc/skel/
-	cp ./common/d77-welcome "$INCLUDEDIR"/usr/bin/
+	cp ./common/x86_64/d77-welcome "$INCLUDEDIR"/usr/bin/
 	cp ./common/50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/
 	cp ./common/d77-welcome.desktop "$INCLUDEDIR"/usr/share/applications/
 	cp ./common/d77void.png "$INCLUDEDIR"/usr/share/pixmaps/
@@ -254,7 +254,7 @@ include_plasma() {
 	cp -r ./common/config/* "$INCLUDEDIR"/etc/skel/.config/
 	cp -r ./common/themes "$INCLUDEDIR"/etc/skel/.local/share/
 	cp -r ./common/.icons "$INCLUDEDIR"/etc/skel/
-	cp -r ./common/lib-d77-welcome "$INCLUDEDIR"/usr/lib/
+	cp -r ./common/x86_64/lib-d77-welcome "$INCLUDEDIR"/usr/lib/
 	cp -r ./common/slice "$INCLUDEDIR"/usr/share/sddm/themes/
 	cp -r ./common/Wallpaper "$INCLUDEDIR"/usr/share/backgrounds/
 }
@@ -313,7 +313,7 @@ include_xfce() {
 	cp ./common/.gtkrc-2.0 "$INCLUDEDIR"/etc/skel/
 	cp ./common/.bashrc "$INCLUDEDIR"/etc/skel/
 	cp ./common/.Xresources "$INCLUDEDIR"/etc/skel/
-	cp ./common/d77-welcome "$INCLUDEDIR"/usr/bin/
+	cp ./common/x86_64/d77-welcome "$INCLUDEDIR"/usr/bin/
 	cp ./common/50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/
 	cp ./common/d77-welcome.desktop "$INCLUDEDIR"/usr/share/applications/
 	cp ./common/Wallpaper/background3.png "$INCLUDEDIR"/usr/share/backgrounds/xfce/
@@ -326,7 +326,7 @@ include_xfce() {
 	cp -r ./common/themes "$INCLUDEDIR"/etc/skel/.local/share/
 	cp -r ./common/.icons "$INCLUDEDIR"/etc/skel/
 	cp -r ./common/Wallpaper "$INCLUDEDIR"/etc/skel/
-	cp -r ./common/lib-d77-welcome "$INCLUDEDIR"/usr/lib/
+	cp -r ./common/x86_64/lib-d77-welcome "$INCLUDEDIR"/usr/lib/
 	cp -r ./common/slice "$INCLUDEDIR"/usr/share/sddm/themes/
 }
 

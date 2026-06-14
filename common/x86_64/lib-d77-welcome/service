@@ -1,0 +1,19 @@
+clear
+
+# echo "  -----------------------------[ screen $STEP of $STEPS ]----------------------------
+echo "
+
+  INSTALL BLUETOOTH
+  -------------------------------
+  You will need to enbale the bluettoth services on your system.
+  Would you like to enable them now?
+  If you choose to do this, the following will be done: 
+  
+  ln -s /etc/sv/bluetoothd /var/service/ && ln -s /etc/sv/bluetooth-meshd /var/service/
+	  
+  Note: additional packages listed as dependencies will also be installed."
+
+if prompt "  Would you like to enable bluetooth services?"; then
+	sudo  ln -s /etc/sv/bluetoothd /var/service/ && sudo ln -s /etc/sv/bluetooth-meshd /var/service/
+
+fi

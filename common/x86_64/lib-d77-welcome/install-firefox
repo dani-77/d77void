@@ -1,0 +1,22 @@
+clear
+
+# echo "  -----------------------------[ screen $STEP of $STEPS ]----------------------------
+echo "
+
+  INSTALL BROWSER SUPPORT
+  -------------------------------
+  By default, d77void offers brave-browser, a privacy focused
+  web browser. Would you like to install a more advanced web browser now?
+  If you choose to do this, the following packages will be installed: 
+  
+  Firefox
+	  
+  Note: additional packages listed as dependencies will also be installed."
+
+if prompt "  Would you like to install Firefox-esr?"; then
+	sudo xbps-install -Sy firefox
+fi
+
+
+	
+	

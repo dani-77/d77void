@@ -1,0 +1,19 @@
+clear
+
+# echo "  -----------------------------[ screen $STEP of $STEPS ]----------------------------
+echo "
+
+  INSTALL LibreOffice
+  -------------------
+  By default, d77void comes preinstalled with some lightweight Office
+  applications. Would you like to install the more
+  feature rich office suite, LibreOffice? If you choose to do this, the 
+  following package will be installed:
+
+     libreoffice
+
+  Note: additional packages listed as dependencies will also be installed."
+
+if prompt "  Would you like to install LibreOffice?"; then
+	sudo xbps-install -Sy libreoffice
+fi

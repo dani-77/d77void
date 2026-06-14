@@ -1,0 +1,17 @@
+clear
+
+# echo "  -----------------------------[ screen $STEP of $STEPS ]----------------------------
+echo "
+
+  INSTALL D77void boot animation 1
+  -------------------------------
+  Would you like to install d77void boot animation now?
+  If you choose to do this, the following will be done: 
+  
+  Edit plymouth entry
+  
+  Note: additional packages listed as dependencies will also be installed."
+
+if prompt "  Would you like to install d77void boot animation now?"; then
+	sudo plymouth-set-default-theme d77 --rebuild-initrd
+fi
