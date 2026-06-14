@@ -11,17 +11,27 @@ This repository provides:
 
 - **scripts and skels to build d77void ISOs**
 
-- **d77 will be used to build with Calamares**
+- **d77 and musl-d77 will be used to build with Calamares**
 
-- **d77nc will be used to build without Calamares**
+- **d77nc and musl-d77nc will be used to build without Calamares**
 
 If you want to build with Calamares, you should fork d77void/srcpkgs-d77 too and build calamares or 
 add the repository to your custom repositories like this:
 
 ```
+x86_64
+
 sudo touch /etc/xbps.d/d77void.conf
 su
 echo repository=https://sourceforge.net/projects/d77void/files/d77void-repo >> /etc/xbps.d/d77void.conf
+```
+
+```
+x86_64-musl
+
+sudo touch /etc/xbps.d/d77void.conf
+su
+echo repository=https://sourceforge.net/projects/d77void/files/d77void-musl >> /etc/xbps.d/d77void.conf
 ```
 
 Now update the system and you will be able to use d77void srcpkgs repository.
