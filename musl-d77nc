@@ -16,7 +16,7 @@ usage() {
 	Usage: $PROGNAME [options ...] [-- mklive options ...]
 
 	Wrapper script around mklive.sh for several standard flavors of live images.
-	Adds d77void-installer and other helpful utilities to the generated i<mages.
+	Adds d77void-installer and other helpful utilities to the generated images.
 	adaptation of mkiso.sh by Daniel Azevedo (dani-77) 
 
 	OPTIONS
