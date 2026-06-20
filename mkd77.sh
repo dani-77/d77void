@@ -141,21 +141,18 @@ include_plymouth() {
 	cp -r ./common/d77-spinner "$INCLUDEDIR"/usr/share/plymouth/themes/
 }
 
-include_common() {
+_include_base() {
 	mkdir -p "$INCLUDEDIR"/boot/grub/themes
 	mkdir -p "$INCLUDEDIR"/etc
 	mkdir -p "$INCLUDEDIR"/etc/skel/.config
 	mkdir -p "$INCLUDEDIR"/etc/skel/.local/share
 	mkdir -p "$INCLUDEDIR"/etc/default
-	mkdir -p "$INCLUDEDIR"/etc/sddm.conf.d
 	mkdir -p "$INCLUDEDIR"/usr/bin
 	mkdir -p "$INCLUDEDIR"/usr/lib
 	mkdir -p "$INCLUDEDIR"/usr/share/applications
 	mkdir -p "$INCLUDEDIR"/usr/share/pixmaps
 	mkdir -p "$INCLUDEDIR"/usr/share/polkit-1/rules.d
 	mkdir -p "$INCLUDEDIR"/usr/share/void-artwork
-	mkdir -p "$INCLUDEDIR"/usr/share/sddm/faces
-	mkdir -p "$INCLUDEDIR"/usr/share/sddm/themes
 	cp -r ./common/d77-grub-theme "$INCLUDEDIR"/boot/grub/themes/
 	if [ -z "$NC" ]; then
 		cp -r ./common/calamares "$INCLUDEDIR"/etc/
@@ -163,7 +160,6 @@ include_common() {
 	cp -r ./common/.bash_it "$INCLUDEDIR"/etc/skel/
 	cp -r "$variant"/skel "$INCLUDEDIR"/etc/
 	cp ./common/asound.conf "$INCLUDEDIR"/etc/
-	cp ./common/sddm.conf "$INCLUDEDIR"/etc/sddm.conf.d/
 	cp ./common/grub "$INCLUDEDIR"/etc/default/
 	cp ./common/.gtkrc-2.0 "$INCLUDEDIR"/etc/skel/
 	cp ./common/.bashrc "$INCLUDEDIR"/etc/skel/
@@ -173,13 +169,21 @@ include_common() {
 	cp ./common/d77-welcome.desktop "$INCLUDEDIR"/usr/share/applications/
 	cp ./common/d77void.png "$INCLUDEDIR"/usr/share/pixmaps/
 	cp ./common/splash.png "$INCLUDEDIR"/usr/share/void-artwork/
-	cp ./common/anon.face.icon "$INCLUDEDIR"/usr/share/sddm/faces/
 	cp -r ./common/gtksourceview-4 "$INCLUDEDIR"/etc/skel/.local/share/
 	cp -r ./common/config/* "$INCLUDEDIR"/etc/skel/.config/
 	cp -r ./common/themes "$INCLUDEDIR"/etc/skel/.local/share/
 	cp -r ./common/.icons "$INCLUDEDIR"/etc/skel/
-	cp -r ./common/Wallpaper "$INCLUDEDIR"/etc/skel/
 	cp -r ./common/"$ARCH_PATH"/lib-d77-welcome "$INCLUDEDIR"/usr/lib/
+}
+
+include_common() {
+	_include_base
+	mkdir -p "$INCLUDEDIR"/etc/sddm.conf.d
+	mkdir -p "$INCLUDEDIR"/usr/share/sddm/faces
+	mkdir -p "$INCLUDEDIR"/usr/share/sddm/themes
+	cp ./common/sddm.conf "$INCLUDEDIR"/etc/sddm.conf.d/
+	cp ./common/anon.face.icon "$INCLUDEDIR"/usr/share/sddm/faces/
+	cp -r ./common/Wallpaper "$INCLUDEDIR"/etc/skel/
 	cp -r ./common/slice "$INCLUDEDIR"/usr/share/sddm/themes/
 	cp -r ./common/Wallpaper "$INCLUDEDIR"/usr/share/
 }
@@ -199,41 +203,10 @@ include_fuzzel() {
 }
 
 include_gnome() {
-	mkdir -p "$INCLUDEDIR"/boot/grub/themes
-	mkdir -p "$INCLUDEDIR"/etc
-	mkdir -p "$INCLUDEDIR"/etc/skel/.config
-	mkdir -p "$INCLUDEDIR"/etc/skel/.local/share
-	mkdir -p "$INCLUDEDIR"/etc/default
-	mkdir -p "$INCLUDEDIR"/usr/bin
-	mkdir -p "$INCLUDEDIR"/usr/lib
-	mkdir -p "$INCLUDEDIR"/usr/share/applications
+	_include_base
 	mkdir -p "$INCLUDEDIR"/usr/share/backgrounds
-	mkdir -p "$INCLUDEDIR"/usr/share/pixmaps
-	mkdir -p "$INCLUDEDIR"/usr/share/polkit-1/rules.d
-	mkdir -p "$INCLUDEDIR"/usr/share/void-artwork
-	cp -r ./common/d77-grub-theme "$INCLUDEDIR"/boot/grub/themes/
-	if [ -z "$NC" ]; then
-		cp -r ./common/calamares "$INCLUDEDIR"/etc/
-	fi
 	cp -r ./common/gnome-shell "$INCLUDEDIR"/etc/skel/.local/share/
-	cp -r ./common/.bash_it "$INCLUDEDIR"/etc/skel/
-	cp -r "$variant"/skel "$INCLUDEDIR"/etc/
 	cp -r ./common/dconf "$INCLUDEDIR"/etc/
-	cp ./common/asound.conf "$INCLUDEDIR"/etc/
-	cp ./common/grub "$INCLUDEDIR"/etc/default/
-	cp ./common/.gtkrc-2.0 "$INCLUDEDIR"/etc/skel/
-	cp ./common/.bashrc "$INCLUDEDIR"/etc/skel/
-	cp ./common/.Xresources "$INCLUDEDIR"/etc/skel/
-	cp ./common/"$ARCH_PATH"/d77-welcome "$INCLUDEDIR"/usr/bin/
-	cp ./common/50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/
-	cp ./common/d77-welcome.desktop "$INCLUDEDIR"/usr/share/applications/
-	cp ./common/d77void.png "$INCLUDEDIR"/usr/share/pixmaps/
-	cp ./common/splash.png "$INCLUDEDIR"/usr/share/void-artwork/
-	cp -r ./common/gtksourceview-4 "$INCLUDEDIR"/etc/skel/.local/share/
-	cp -r ./common/config/* "$INCLUDEDIR"/etc/skel/.config/
-	cp -r ./common/themes "$INCLUDEDIR"/etc/skel/.local/share/
-	cp -r ./common/.icons "$INCLUDEDIR"/etc/skel/
-	cp -r ./common/"$ARCH_PATH"/lib-d77-welcome "$INCLUDEDIR"/usr/lib/
 	cp -r ./common/Wallpaper "$INCLUDEDIR"/usr/share/backgrounds/
 }
 
@@ -253,46 +226,15 @@ include_niri() {
 }
 
 include_plasma() {
-	mkdir -p "$INCLUDEDIR"/boot/grub/themes
-	mkdir -p "$INCLUDEDIR"/etc
+	_include_base
 	mkdir -p "$INCLUDEDIR"/etc/sddm.conf.d
-	mkdir -p "$INCLUDEDIR"/etc/skel/.config
-	mkdir -p "$INCLUDEDIR"/etc/skel/.local/share
-	mkdir -p "$INCLUDEDIR"/etc/default
-	mkdir -p "$INCLUDEDIR"/usr/bin
-	mkdir -p "$INCLUDEDIR"/usr/lib
-	mkdir -p "$INCLUDEDIR"/usr/share/applications
 	mkdir -p "$INCLUDEDIR"/usr/share/backgrounds
-	mkdir -p "$INCLUDEDIR"/usr/share/pixmaps
-	mkdir -p "$INCLUDEDIR"/usr/share/polkit-1/rules.d
-	mkdir -p "$INCLUDEDIR"/usr/share/void-artwork
 	mkdir -p "$INCLUDEDIR"/usr/share/sddm/faces
 	mkdir -p "$INCLUDEDIR"/usr/share/sddm/themes
-	cp -r ./common/d77-grub-theme "$INCLUDEDIR"/boot/grub/themes/
-	if [ -z "$NC" ]; then
-		cp -r ./common/calamares "$INCLUDEDIR"/etc/
-	fi
 	cp -r ./common/gnome-shell "$INCLUDEDIR"/etc/skel/.local/share/
-	cp -r ./common/.bash_it "$INCLUDEDIR"/etc/skel/
-	cp -r "$variant"/skel "$INCLUDEDIR"/etc/
 	cp -r ./common/dconf "$INCLUDEDIR"/etc/
-	cp ./common/asound.conf "$INCLUDEDIR"/etc/
-	cp ./common/grub "$INCLUDEDIR"/etc/default/
-	cp ./common/.gtkrc-2.0 "$INCLUDEDIR"/etc/skel/
-	cp ./common/.bashrc "$INCLUDEDIR"/etc/skel/
-	cp ./common/.Xresources "$INCLUDEDIR"/etc/skel/
-	cp ./common/"$ARCH_PATH"/d77-welcome "$INCLUDEDIR"/usr/bin/
-	cp ./common/50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/
-	cp ./common/d77-welcome.desktop "$INCLUDEDIR"/usr/share/applications/
-	cp ./common/d77void.png "$INCLUDEDIR"/usr/share/pixmaps/
-	cp ./common/splash.png "$INCLUDEDIR"/usr/share/void-artwork/
 	cp ./common/anon.face.icon "$INCLUDEDIR"/usr/share/sddm/faces/
 	cp ./common/sddm.conf "$INCLUDEDIR"/etc/sddm.conf.d/
-	cp -r ./common/gtksourceview-4 "$INCLUDEDIR"/etc/skel/.local/share/
-	cp -r ./common/config/* "$INCLUDEDIR"/etc/skel/.config/
-	cp -r ./common/themes "$INCLUDEDIR"/etc/skel/.local/share/
-	cp -r ./common/.icons "$INCLUDEDIR"/etc/skel/
-	cp -r ./common/"$ARCH_PATH"/lib-d77-welcome "$INCLUDEDIR"/usr/lib/
 	cp -r ./common/slice "$INCLUDEDIR"/usr/share/sddm/themes/
 	cp -r ./common/Wallpaper "$INCLUDEDIR"/usr/share/backgrounds/
 }
@@ -339,48 +281,17 @@ include_x11() {
 }
 
 include_xfce() {
-	mkdir -p "$INCLUDEDIR"/boot/grub/themes
-	mkdir -p "$INCLUDEDIR"/etc
-	mkdir -p "$INCLUDEDIR"/etc/skel/.config
-	mkdir -p "$INCLUDEDIR"/etc/skel/.local/share
-	mkdir -p "$INCLUDEDIR"/etc/default
+	_include_base
 	mkdir -p "$INCLUDEDIR"/etc/sddm.conf.d
-	mkdir -p "$INCLUDEDIR"/usr/bin
-	mkdir -p "$INCLUDEDIR"/usr/lib
-	mkdir -p "$INCLUDEDIR"/usr/share/applications
 	mkdir -p "$INCLUDEDIR"/usr/share/backgrounds/xfce
-	mkdir -p "$INCLUDEDIR"/usr/share/pixmaps
-	mkdir -p "$INCLUDEDIR"/usr/share/polkit-1/rules.d
-	mkdir -p "$INCLUDEDIR"/usr/share/void-artwork
 	mkdir -p "$INCLUDEDIR"/usr/share/sddm/faces
 	mkdir -p "$INCLUDEDIR"/usr/share/sddm/themes
 	mkdir -p "$INCLUDEDIR"/var/lib/sddm
-	cp -r ./common/d77-grub-theme "$INCLUDEDIR"/boot/grub/themes/
-	if [ -z "$NC" ]; then
-		cp -r ./common/calamares "$INCLUDEDIR"/etc/
-	fi
-	cp -r ./common/.bash_it "$INCLUDEDIR"/etc/skel/
-	cp -r "$variant"/skel "$INCLUDEDIR"/etc/
-	cp ./common/asound.conf "$INCLUDEDIR"/etc/
 	cp ./common/sddm_xfce.conf "$INCLUDEDIR"/etc/sddm.conf.d/
-	cp ./common/grub "$INCLUDEDIR"/etc/default/
-	cp ./common/.gtkrc-2.0 "$INCLUDEDIR"/etc/skel/
-	cp ./common/.bashrc "$INCLUDEDIR"/etc/skel/
-	cp ./common/.Xresources "$INCLUDEDIR"/etc/skel/
-	cp ./common/"$ARCH_PATH"/d77-welcome "$INCLUDEDIR"/usr/bin/
-	cp ./common/50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/
-	cp ./common/d77-welcome.desktop "$INCLUDEDIR"/usr/share/applications/
-	cp ./common/Wallpaper/background3.png "$INCLUDEDIR"/usr/share/backgrounds/xfce/
-	cp ./common/d77void.png "$INCLUDEDIR"/usr/share/pixmaps/
-	cp ./common/splash.png "$INCLUDEDIR"/usr/share/void-artwork/
 	cp ./common/anon.face.icon "$INCLUDEDIR"/usr/share/sddm/faces/
 	cp ./common/state.conf "$INCLUDEDIR"/var/lib/sddm/
-	cp -r ./common/gtksourceview-4 "$INCLUDEDIR"/etc/skel/.local/share/
-	cp -r ./common/config/* "$INCLUDEDIR"/etc/skel/.config/
-	cp -r ./common/themes "$INCLUDEDIR"/etc/skel/.local/share/
-	cp -r ./common/.icons "$INCLUDEDIR"/etc/skel/
+	cp ./common/Wallpaper/background3.png "$INCLUDEDIR"/usr/share/backgrounds/xfce/
 	cp -r ./common/Wallpaper "$INCLUDEDIR"/etc/skel/
-	cp -r ./common/"$ARCH_PATH"/lib-d77-welcome "$INCLUDEDIR"/usr/lib/
 	cp -r ./common/slice "$INCLUDEDIR"/usr/share/sddm/themes/
 }
 
