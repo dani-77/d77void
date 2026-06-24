@@ -55,6 +55,18 @@ terminal = "alacritty"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
+-- Touchpad settings
+awful.input.tap_to_click = 1
+awful.input.natural_scrolling = 1
+awful.input.accel_speed = 0.3
+
+-- Keyboard settings
+awful.input.xkb_layout = "us"
+awful.input.xkb_options = "ctrl:nocaps"
+--awful.input.xkb_variant = ""
+awful.input.keyboard_repeat_rate = 30
+awful.input.keyboard_repeat_delay = 300
+
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
@@ -284,7 +296,7 @@ vicious.register(wifiwidget, vicious.widgets.wifi, "  ${ssid} ${linp}% ${rate
     }
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = 28, stretch = "false", margins = { top = 15, left = 20, right =20,}, ontop = true, shape = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, 12) end, bg = "#1e1e2ecc", })
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = 28, stretch = "false", margins = { top = 15, left = 15, right =15,}, ontop = true, shape = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, 10) end, bg = "#1e1e2ecc", })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -397,6 +409,8 @@ globalkeys = gears.table.join(
     -- Standard program
     awful.key({ modkey,           }, "a", function () awful.spawn("fuzzel") end,
               {description = "open Fuzzel menu", group = "d77"}),
+    awful.key({ modkey,           }, "z", function () awful.spawn("fuzzel-power-menu") end,
+              {description = "open Fuzzel power menu", group = "d77"}),
     awful.key({ modkey,           }, "t", function () awful.spawn("swaylock") end,
               {description = "lock screen", group = "d77"}),
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
