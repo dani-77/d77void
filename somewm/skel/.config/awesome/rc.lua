@@ -411,7 +411,7 @@ globalkeys = gears.table.join(
               {description = "open Fuzzel menu", group = "d77"}),
     awful.key({ modkey,           }, "z", function () awful.spawn("fuzzel-power-menu") end,
               {description = "open Fuzzel power menu", group = "d77"}),
-    awful.key({ modkey,           }, "t", function () awful.spawn("swaylock") end,
+    awful.key({ modkey,           }, "l", function () awful.spawn("swaylock") end,
               {description = "lock screen", group = "d77"}),
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
