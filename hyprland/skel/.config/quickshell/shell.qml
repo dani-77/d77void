@@ -340,7 +340,7 @@ ShellRoot {
     // Reads the battery charge level (falls back to 100 if unavailable).
     Process {
         id: batProc
-        command: ["sh", "-c", "cat /sys/class/power_supply/BAT0/capacity 2>/dev/null || echo 100"]
+        command: ["sh", "-c", "bat=$(ls /sys/class/power_supply/ 2>/dev/null | grep -m1 '^BAT'); [ -n \"$bat\" ] && cat /sys/class/power_supply/$bat/capacity 2>/dev/null || echo 100"]
         stdout: SplitParser {
             onRead: data => { if (data.trim()) g.batLevel = parseInt(data.trim()) }
         }
@@ -350,7 +350,7 @@ ShellRoot {
     // Reads the battery charging status.
     Process {
         id: batStatusProc
-        command: ["sh", "-c", "cat /sys/class/power_supply/BAT1/status 2>/dev/null || echo Discharging"]
+        command: ["sh", "-c", "bat=$(ls /sys/class/power_supply/ 2>/dev/null | grep -m1 '^BAT'); [ -n \"$bat\" ] && cat /sys/class/power_supply/$bat/status 2>/dev/null || echo Discharging"]
         stdout: SplitParser {
             onRead: data => { g.batCharging = data.trim() === "Charging" }
         }
@@ -360,7 +360,7 @@ ShellRoot {
     // Reads the currently connected Wi-Fi SSID (shows "Offline" if none).
     Process {
         id: wifiProc
-        command: ["sh", "-c", "nmcli -t -f active,ssid dev wifi 2>/dev/null | grep '^sim' | cut -d: -f2 | head -1"]
+        command: ["sh", "-c", "LANG=C nmcli -t -f active,ssid dev wifi 2>/dev/null | grep '^yes' | cut -d: -f2 | head -1"]
         stdout: SplitParser {
             onRead: data => { g.wifiSSID = data.trim() !== "" ? data.trim() : "Offline" }
         }
