@@ -1,6 +1,6 @@
 # quickshell-d77
 
-d77-shell is a simple QT desktop shell built on top of Quickshell.
+d77-shell is a simple QT desktop shell built on top of Quickshell for Hyprland.
 
 ![sample](sample.png)
 
@@ -57,6 +57,13 @@ Trigger it from your media keys via IPC (see below). A background watcher also c
 
 Detailed module documentation lives in [`osd/README.md`](osd/README.md).
 
+## Semi Native Wallpaper chooser
+
+The shell ships with a built-in Wallpaper selector depending on Hyprpaper,
+written entirely in QML. It is already wired into `shell.qml`:
+
+- Trigger it from a Hyprland keybind via IPC (see below).
+
 ## Controlling the shell via IPC (recommended)
 
 `shell.qml` exposes three Quickshell `IpcHandler` targets so the launcher, the
@@ -67,6 +74,7 @@ running:
 |--------------|---------------------------|-------------------------------------------|
 | `launcher`   | `toggle`, `open`, `close` | Show/hide the application launcher        |
 | `session`    | `toggle`, `open`, `close` | Show/hide the session menu (lock/suspend/reboot/shutdown/logout) |
+| `wallpaper`  | `toggle`, `open`, `close`  | Show/hide the wallpaper menu               |
 | `lockscreen` | `lock`, `unlock`, `toggle` | Lock the screen (PAM) / unlock / alternate |
 | `osd`        | `volumeUp`, `volumeDown`, `volumeMuteToggle`, `brightnessUp`, `brightnessDown`, `showVolume`, `showBrightness` | Volume (ALSA, with mute) & brightness (brightnessctl) OSD |
 
@@ -84,6 +92,10 @@ qs ipc call session close       # close the session menu
 qs ipc call lockscreen lock     # lock the screen (asks for password via PAM)
 qs ipc call lockscreen unlock   # unlock without a password
 qs ipc call lockscreen toggle   # alternate locked/unlocked
+
+qs ipc call wallpaper toggle     # toggle the wallpaper menu
+qs ipc call wallpaper open       # open the wallpaper menu
+qs ipc call wallpaper close      # close the wallpaper menu
 
 qs ipc call osd volumeUp           # volume +5% (shows the OSD)
 qs ipc call osd volumeDown         # volume -5%
@@ -117,6 +129,7 @@ fragile. Add to your `hyprland.conf`:
 bind = SUPER, D, exec, qs ipc call launcher toggle      # application launcher
 bind = SUPER SHIFT, E, exec, qs ipc call session toggle # session menu
 bind = SUPER, L, exec, qs ipc call lockscreen lock      # lock the screen
+bind = SUPER, Y, exec, qs ipc call wallpaper toggle     # wallpaper menu
 ```
 
 Reload Hyprland (`hyprctl reload`) and press the keybind.
@@ -134,6 +147,7 @@ Reload Hyprland (`hyprctl reload`) and press the keybind.
 bind = SUPER, D, global, quickshell:launcher      # application launcher
 bind = SUPER SHIFT, E, global, quickshell:session # session menu
 bind = SUPER, L, global, quickshell:lock          # lock the screen
+bind = SUPER, Y, global, quickshell:wallpaper     # wallpaper menu
 ```
 
 The format is `<appid>:<name>` (default `appid` is `quickshell`). See

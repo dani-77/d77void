@@ -18,7 +18,7 @@ hl.monitor({
     output   = "",
     mode     = "preferred",
     position = "auto",
-    scale    = "auto",
+    scale    = "1",
 })
 
 
@@ -28,10 +28,6 @@ hl.monitor({
 
 -- Set programs that you use
 local terminal    	= "alacritty"
-local fileManager 	= "pcmanfm"
-local menu        	= "fuzzel"
-local mail    		= "geary"
-local web 		= "brave-browser-stable"
 
 -------------------
 ---- AUTOSTART ----
@@ -48,10 +44,11 @@ hl.on("hyprland.start", function ()
 	hl.exec_cmd("udiskie -a")
 	hl.exec_cmd("dunst")
 	hl.exec_cmd("quickshell")
+	hl.exec_cmd("hypridle")
+	hl.exec_cmd("~/.config/quickshell/wallpaper/apply-saved-wallpaper.sh")
+	hl.exec_cmd("hyprpaper")
 	hl.exec_cmd("hyprsunset")
 	hl.exec_cmd("/usr/libexec/hyprpolkitagent")
-	hl.exec_cmd("hyprpaper")
-	hl.exec_cmd("hypridle")
 end)
 
 
@@ -229,6 +226,7 @@ hl.config({
         kb_model   = "",
         kb_options = "",
         kb_rules   = "",
+	numlock_by_default = true,
 
         follow_mouse = 1,
 
@@ -263,18 +261,20 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
 local closeWindowBind = hl.bind(mainMod .. " + Q", hl.dsp.window.close())
--- closeWindowBind:set_enabled(false)
+
+-- Quickshell d77
 hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("qsd77 launcher"))
-hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
-hl.bind(mainMod .. " + F", hl.dsp.exec_cmd(fileManager))
-hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + L", hl.dsp.exec_cmd(mail))
+hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("qsd77 locker"))
+hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("qsd77 session"))
+hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd("qsd77 wallpaper"))
+
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("nwggrid"))
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("grim"))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("gmrun"))
-hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("qsd77 locker"))
-hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("qsd77 session"))
-hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(web))
+
+-- closeWindowBind:set_enabled(false)
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 

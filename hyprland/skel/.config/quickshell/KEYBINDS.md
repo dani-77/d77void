@@ -19,8 +19,9 @@ There are **two** ways to do this:
 | Toggle the application launcher       | `launcher` → `toggle`        | `SUPER + D`         |
 | Toggle the session menu               | `session`  → `toggle`        | `SUPER + SHIFT + E` |
 | Lock the screen                       | `lockscreen` → `lock`        | `SUPER + L`         |
+| Show Wallpaper dir contents           | `wallpaper`  → `toggle`      | `SUPER + Y`         |
 
-The `launcher` and `session` targets each expose three functions: `toggle`, `open`,
+The `launcher`, `session` and `wallpaper` targets each expose three functions: `toggle`, `open`,
 and `close`. The `lockscreen` target exposes `lock`, `unlock`, and `toggle`.
 
 ---
@@ -43,6 +44,13 @@ IpcHandler {
 
 IpcHandler {
     target: "session"
+    function toggle(): void { g.sessionOpen = !g.sessionOpen }
+    function open():   void { g.sessionOpen = true }
+    function close():  void { g.sessionOpen = false }
+}
+
+IpcHandler {
+    target: "wallpaper"
     function toggle(): void { g.sessionOpen = !g.sessionOpen }
     function open():   void { g.sessionOpen = true }
     function close():  void { g.sessionOpen = false }
@@ -74,6 +82,10 @@ qs ipc call session toggle      # toggle the session menu
 qs ipc call session open        # open the session menu
 qs ipc call session close       # close the session menu
 
+qs ipc call wallpaper toggle      # toggle the wallpaper menu
+qs ipc call wallpaper open        # open the walmenu menu
+qs ipc call wallpaper close       # close the wallpaper menu
+
 qs ipc call lockscreen lock     # lock the screen (asks for password via PAM)
 qs ipc call lockscreen unlock   # unlock without a password
 qs ipc call lockscreen toggle   # alternate locked/unlocked
@@ -101,6 +113,9 @@ bind = SUPER, D, exec, qs ipc call launcher toggle
 # Session menu: lock / suspend / reboot / shutdown / logout (SUPER + SHIFT + E)
 bind = SUPER SHIFT, E, exec, qs ipc call session toggle
 
+# Wallpaper menu (SUPER + Y)
+bind = SUPER, Y, exec, qs ipc call wallpaper toggle
+
 # Lock the screen (SUPER + L)
 bind = SUPER, L, exec, qs ipc call lockscreen lock
 ```
@@ -112,6 +127,7 @@ bind = <modifiers>, <key>, exec, qs ipc call <target> <function>
 ```
 
 After editing, reload Hyprland:
+
 
 ```bash
 hyprctl reload
@@ -133,6 +149,7 @@ local binds = {
   { "SUPER",       "D", "qs ipc call launcher toggle" },
   { "SUPER SHIFT", "E", "qs ipc call session toggle"  },
   { "SUPER",       "L", "qs ipc call lockscreen lock" },
+  { "SUPER",       "Y", "qs ipc call wallpaper toggle" },
 }
 
 local lines = {}
@@ -153,6 +170,7 @@ Result written to `hyprland.conf`:
 ```ini
 bind = SUPER, D, exec, qs ipc call launcher toggle
 bind = SUPER SHIFT, E, exec, qs ipc call session toggle
+bind = SUPER, Y, exec, qs ipc call wallpaper toggle
 bind = SUPER, L, exec, qs ipc call lockscreen lock
 ```
 
@@ -170,6 +188,7 @@ hypr.bind({
   { mods = "SUPER",       key = "D", dispatcher = "exec", arg = "qs ipc call launcher toggle" },
   { mods = "SUPER SHIFT", key = "E", dispatcher = "exec", arg = "qs ipc call session toggle"  },
   { mods = "SUPER",       key = "L", dispatcher = "exec", arg = "qs ipc call lockscreen lock" },
+  { mods = "SUPER",       key = "Y", dispatcher = "exec", arg = "qs ipc call wallpaper toggle" },
 })
 ```
 
@@ -184,6 +203,7 @@ local cmds = {
   'hyprctl keyword bind "SUPER, D, exec, qs ipc call launcher toggle"',
   'hyprctl keyword bind "SUPER SHIFT, E, exec, qs ipc call session toggle"',
   'hyprctl keyword bind "SUPER, L, exec, qs ipc call lockscreen lock"',
+  'hyprctl keyword bind "SUPER, Y, exec, qs ipc call wallpaper toggle"',
 }
 for _, c in ipairs(cmds) do
   os.execute(c)
@@ -229,6 +249,7 @@ dispatcher** and the `<appid>:<name>` argument:
 bind = SUPER, D, global, quickshell:launcher
 bind = SUPER SHIFT, E, global, quickshell:session
 bind = SUPER, L, global, quickshell:lock
+bind = SUPER, Y, global, quickshell:wallpaper
 ```
 
 `shell.qml` also registers a `quickshell:lock` shortcut that locks the screen via the
@@ -263,6 +284,7 @@ pgrep -af quickshell
 qs ipc show                       # should list the "launcher", "session" and "lockscreen" targets
 qs ipc call launcher toggle       # the launcher should toggle
 qs ipc call session toggle        # the session menu should toggle
+qs ipc call wallpaper toggle        # the wallpaper menu should toggle
 qs ipc call lockscreen lock       # the screen should lock (type your password to unlock)
 ```
 
@@ -278,6 +300,7 @@ You should see something like:
 quickshell:launcher -> Toggle the application launcher
 quickshell:session -> Toggle the session menu (lock/suspend/reboot/...)
 quickshell:lock -> Lock the screen (native lockscreen)
+quickshell:wallpaper -> Toggle the wallpaper menu
 ```
 
 ### Step 3 — Confirm the binds in Hyprland
@@ -291,7 +314,7 @@ hyprctl binds | grep -A4 -E "qs ipc call|global"
 - Press `SUPER + D` → the launcher should toggle.
 - Press `SUPER + SHIFT + E` → the session menu should toggle.
 - Press `SUPER + L` → the screen should lock (type your password to unlock).
-
+- Press `SUPER + Y` → the wallpaper menu should toggle.
 ---
 
 ## 4. Troubleshooting
@@ -322,7 +345,8 @@ hyprctl version
    bind = SUPER, D, exec, qs ipc call launcher toggle
    bind = SUPER SHIFT, E, exec, qs ipc call session toggle
    bind = SUPER, L, exec, qs ipc call lockscreen lock
+   bind = SUPER, Y, exec, qs ipc call wallpaper toggle
    ```
 3. `hyprctl reload`
 4. Verify: `qs ipc show`
-5. Test `SUPER+D`, `SUPER+SHIFT+E` and `SUPER+L`.
+5. Test `SUPER+D`, `SUPER+SHIFT+E`, `SUPER+Y` and `SUPER+L`.

@@ -17,6 +17,10 @@ import "lockscreen"
 // Exposes Osd (volume + brightness on-screen display)
 import "osd"
 
+// Wallpaper picker module (wallpaper dir).
+// Exposes Wallpaper
+import "wallpaper"
+
 ShellRoot {
 
     // ══════════════════════════════════════════════════════
@@ -36,7 +40,26 @@ ShellRoot {
         font:      g.font
         fsize:     g.fsize
         // Terminal used for apps with Terminal=true (adjust as needed).
-        terminal:  "foot"
+        terminal:  "alacritty"
+    }
+
+    // ══════════════════════════════════════════════════════
+    // WALLPAPER PICKER
+    // ══════════════════════════════════════════════════════
+    // Native wallpaper picker. Scans wallpaperDir for images
+    // and applies the selection through hyprpaper (hyprctl IPC).
+    // Toggle with wallpaperPicker.toggle().
+    Wallpaper {
+        id: wallpaperPicker
+        colBg:     g.colBg
+        colFg:     g.colFg
+        colMuted:  g.colMuted
+        colCyan:   g.colCyan
+        colBlue:   g.colBlue
+        colPurple: g.colPurple
+        font:      g.font
+        fsize:     g.fsize
+        wallpaperDir: "$HOME/Wallpaper"
     }
 
     // ══════════════════════════════════════════════════════
@@ -155,6 +178,34 @@ ShellRoot {
         function showVolume(): void { osd.showVolume() }
         // Apenas mostra o OSD de brilho (sem alterar).
         function showBrightness(): void { osd.showBrightness() }
+    }
+
+    // Wallpaper picker IPC.
+    //   qs ipc call wallpaper toggle
+    //   qs ipc call wallpaper open
+    //   qs ipc call wallpaper close
+    //   qs ipc call wallpaper reload
+    //   qs ipc call wallpaper set /caminho/para/imagem.png
+    //   qs ipc call wallpaper random
+    //
+    // Exemplo de bind no hyprland.conf:
+    //   bind = SUPER, W, exec, qs ipc call wallpaper toggle
+    IpcHandler {
+        target: "wallpaper"
+
+        // Alterna a visibilidade do picker.
+        function toggle(): void { wallpaperPicker.toggle() }
+        // Abre o picker e refaz o scan do diretório.
+        function open(): void { wallpaperPicker.open() }
+        // Fecha o picker.
+        function close(): void { wallpaperPicker.close() }
+        // Refaz o scan do diretório sem abrir/fechar o picker.
+        function reload(): void { wallpaperPicker.reload() }
+        // Aplica diretamente um wallpaper por caminho, sem abrir o picker.
+        // Útil em scripts: qs ipc call wallpaper set /home/daniel/Wallpaper/foo.png
+        function set(path: string): void { wallpaperPicker.apply(path) }
+        // Aplica um wallpaper aleatório da lista já carregada.
+        function random(): void { wallpaperPicker.applyRandom() }
     }
 
     // ── Global Hyprland keybinds (fallback) ───────────────
@@ -289,7 +340,7 @@ ShellRoot {
     // Reads the battery charge level (falls back to 100 if unavailable).
     Process {
         id: batProc
-        command: ["sh", "-c", "cat /sys/class/power_supply/BAT1/capacity 2>/dev/null || echo 100"]
+        command: ["sh", "-c", "cat /sys/class/power_supply/BAT0/capacity 2>/dev/null || echo 100"]
         stdout: SplitParser {
             onRead: data => { if (data.trim()) g.batLevel = parseInt(data.trim()) }
         }
@@ -326,7 +377,7 @@ ShellRoot {
     Process { id: suspendProc;  command: ["loginctl", "suspend"];   running: false }
     Process { id: rebootProc;   command: ["loginctl", "reboot"];    running: false }
     Process { id: shutdownProc; command: ["loginctl", "poweroff"];  running: false }
-    Process { id: logoutProc;   command: ["sh", "-c", "kill -9 -1"]; running: false }
+    Process { id: logoutProc;   command: ["hyprctl", "dispatch", "hl.dsp.exit()"]; running: false }
 
     // Periodically refresh all the polled system stats.
     Timer {
@@ -453,7 +504,7 @@ ShellRoot {
                 RowLayout {
                     spacing: 3
                     Text {
-                        text: " "
+                        text: "  "
                         font { family: g.font; pixelSize: g.fsize + 1 }
                         color: g.colCyan
                     }
@@ -680,6 +731,7 @@ ShellRoot {
                         Text {
                             text: "Lock"
                             font { family: g.font; pixelSize: g.fsize }
+                            anchors.horizontalCenter: parent.horizontalCenter
                             color: g.colFg
                         }
                     }
@@ -713,6 +765,7 @@ ShellRoot {
                         Text {
                             text: "Suspend"
                             font { family: g.font; pixelSize: g.fsize }
+                            anchors.horizontalCenter: parent.horizontalCenter
                             color: g.colFg
                         }
                     }
@@ -746,6 +799,7 @@ ShellRoot {
                         Text {
                             text: "Reboot"
                             font { family: g.font; pixelSize: g.fsize }
+                            anchors.horizontalCenter: parent.horizontalCenter
                             color: g.colFg
                         }
                     }
@@ -779,6 +833,7 @@ ShellRoot {
                         Text {
                             text: "Shutdown"
                             font { family: g.font; pixelSize: g.fsize }
+                            anchors.horizontalCenter: parent.horizontalCenter
                             color: g.colFg
                         }
                     }
@@ -812,7 +867,8 @@ ShellRoot {
                         Text {
                             text: "Logout"
                             font { family: g.font; pixelSize: g.fsize }
-                            color: g.colFg
+                            anchors.horizontalCenter: parent.horizontalCenter
+		            color: g.colFg
                         }
                     }
                     MouseArea {
