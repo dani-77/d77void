@@ -486,7 +486,7 @@ build_variant() {
 		;;
 		mango-noctalia)
 			COMMON=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist ImageMagick kitty mangowc mate-polkit matugen noctalia-cli noctalia-qs noctalia-shell qt5-wayland qt6-wayland swaybg wayland-devel wayland-protocols xdg-desktop-portal-wlr"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist ImageMagick kitty mangowc mate-polkit matugen noctalia-shell qt5-wayland qt6-wayland swaybg wayland-devel wayland-protocols xdg-desktop-portal-wlr"
 			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
 		;;
 		niri)
