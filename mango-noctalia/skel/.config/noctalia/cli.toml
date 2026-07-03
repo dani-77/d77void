@@ -1,0 +1,3 @@
+[components.shell]
+source = "release"
+installed = true
