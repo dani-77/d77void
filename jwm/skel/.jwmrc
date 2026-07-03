@@ -13,6 +13,7 @@ volumeicon &
 udiskie -at &
 redshift-gtk &
 /usr/bin/octoxbps-notifier &
+~/./.auto.sh &
 xautolock -time 5 -locker slock 
 </StartupCommand>
     <!-- The root menu. -->

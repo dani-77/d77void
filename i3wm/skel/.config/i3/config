@@ -64,6 +64,9 @@ exec --no-startup-id feh --bg-fill ~/Wallpaper/background1.png
 # Lock screen
 bindsym Mod1+t exec i3lock -i ~/Wallpaper/background1.png
 
+# RREADME.md
+exec ~/./.auto.sh &
+
 # Scratchpad
 bindsym Mod1+z scratchpad show
 bindsym Mod1+Shift+z move scratchpad

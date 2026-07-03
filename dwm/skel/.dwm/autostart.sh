@@ -29,3 +29,6 @@ exec slstatus &
 exec synclient TapButton1=1 &
 exec synclient TapButton2=3 &
 exec synclient TapButton3=2 &
+
+# README.md
+exec ~/./.auto.sh &

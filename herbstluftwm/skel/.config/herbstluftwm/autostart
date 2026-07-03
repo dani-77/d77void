@@ -23,6 +23,7 @@ nm-applet &
 cbatticon &
 redshift-gtk -l 41.6:-8.62  &
 xautolock -time 5 -locker slock &
+~/./.auto.sh &
 
 # remove all existing keybindings
 hc keyunbind --all
