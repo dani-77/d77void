@@ -131,6 +131,11 @@ include_box() {
 	cp ./common/jgmenu.desktop "$INCLUDEDIR"/usr/share/applications/
 }
 
+include_fabric() {
+	mkdir -p "$INCLUDEDIR"/etc/xdg
+	cp -r ./common/fabric-d77 "$INCLUDEDIR"/etc/xdg/
+}
+
 include_plymouth() {
 	mkdir -p "$INCLUDEDIR"/etc/dracut.conf.d
 	mkdir -p "$INCLUDEDIR"/etc/kernel.d/post-install
@@ -324,6 +329,7 @@ build_variant() {
 			fi
 			D77_EXTRA="abook automake calcurse cargo epson-inkjet-printer-escpr gcc isync make ncspot nextcloud-client neomutt pass pcsc-ccid pcsc-tools pcsclite python3-pip rust"
 			COMMON=
+			FABRIC=
 			GNOME=
 			PLASMA=
 			X11=
@@ -399,6 +405,12 @@ build_variant() {
 			DMENU=yes
 			ROFI=yes
 			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES dwm slstatus sxhkd"
+			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+		;;
+		fabric)
+			COMMON=yes
+			FABRIC=yes
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty awww cinnamon-desktop cliphist cmake fabric gcc gobject-introspection grim gtk-layer-shell libdbusmenu-gtk3 nwg-look pkg-config python3-cairo-devel python3-psutil qt5-wayland qt6-wayland swayfx swaybg swayidle swayimg swaylock SwayNotificationCenter wlsunset wmenu xorg-server-xwayland xwayland-satellite"
 			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
 		;;
 		fluxbox)
@@ -594,6 +606,7 @@ EOF
 	[ "$BOX" = yes ]     && include_box
 	[ "$COMMON" = yes ]  && include_common
 	[ "$DMENU" = yes ]   && include_dmenu
+	[ "$FABRIC" = yes ]  && include_fabric
 	[ "$FUZZEL" = yes ]  && include_fuzzel
 	[ "$GNOME" = yes ]   && include_gnome
 	[ "$LXQT" = yes ]    && include_lxqt
