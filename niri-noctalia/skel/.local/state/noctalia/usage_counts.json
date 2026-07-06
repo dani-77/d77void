@@ -1,0 +1,8 @@
+{
+  "Applications": {
+    "/usr/share/applications/AbacusAI.desktop": 1,
+    "/usr/share/applications/anjuta.desktop": 1,
+    "/usr/share/applications/brave-browser.desktop": 1,
+    "/var/lib/flatpak/exports/share/applications/org.dupot.easyflatpak.desktop": 1
+  }
+}
