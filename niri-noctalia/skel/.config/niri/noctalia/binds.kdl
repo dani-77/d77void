@@ -167,12 +167,7 @@ binds {
     Mod+Shift+Equal { set-window-height "+10%"; }
 
     // === Screenshots ===
-    XF86Launch1 { screenshot; }
-    Ctrl+XF86Launch1 { spawn "noctalia" "msg" "screenshot-fullscreen"; }
-    Alt+XF86Launch1 { spawn "noctalia" "msg" "screenshot-region"; }
-    Print { screenshot; }
-    Ctrl+Print { spawn "noctalia" msg" "screenshot-fullscreen"; }
-    Alt+Print { spawn "noctalia" "msg" "screenshot-region"; }
+    XF86Launch1 { spawn "noctalia" "msg" "screenshot-fullscreen"; }
     // === System Controls ===
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
     Mod+Shift+P { power-off-monitors; }
