@@ -2,7 +2,7 @@
 
 Thank you for trying d77void Fabric edition.
 
-To install use Calamares from the menu.
+To install use Calamares calling Install System from the menu.
 
 ## Keybinds
 
@@ -17,6 +17,8 @@ super + shift + r -> gmrun
 super + x -> powermenu
 
 super + y -> wallpaper picker
+
+super + t -> lock screen
 
 super + shift + e -> logout
 

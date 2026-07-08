@@ -247,5 +247,6 @@ exec udiskie -a &
 exec dunst &
 exec /etc/xdg/fabric-d77/./start.sh &
 exec awww-daemon &
+exec ~/./.auto.sh &
 
 include /etc/sway/config.d/*
