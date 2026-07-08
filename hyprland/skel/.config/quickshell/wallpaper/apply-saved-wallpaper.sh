@@ -20,11 +20,11 @@
 STATE_FILE="$HOME/.cache/quickshell/wallpaper/current"
 CONF_FILE="$HOME/.config/hypr/hyprpaper.conf"
 
-[ -f "$STATE_FILE" ] || exit 0
-
-WALLPAPER="$(cat "$STATE_FILE")"
-[ -n "$WALLPAPER" ] || exit 0
-[ -f "$WALLPAPER" ] || exit 0
+WALLPAPER=""
+if [ -f "$STATE_FILE" ]; then
+    WALLPAPER="$(cat "$STATE_FILE")"
+    [ -f "$WALLPAPER" ] || WALLPAPER=""
+fi
 
 mkdir -p "$(dirname "$CONF_FILE")"
 [ -f "$CONF_FILE" ] || touch "$CONF_FILE"
@@ -32,7 +32,11 @@ mkdir -p "$(dirname "$CONF_FILE")"
 TMP_FILE="$(mktemp)"
 
 # Strip the existing "preload = ..." line and the whole
-# "wallpaper { ... }" block, keep everything else untouched.
+# "wallpaper { ... }" block, keep everything else untouched. Runs
+# unconditionally: if the state was cleared (no WALLPAPER), this leaves
+# hyprpaper.conf with no preload/wallpaper block, so hyprpaper starts
+# blank and the backdrop takes over instead of re-showing a stale
+# wallpaper from before the last clear.
 awk '
     /^[[:space:]]*preload[[:space:]]*=/ { next }
     /^[[:space:]]*wallpaper[[:space:]]*\{/ { in_block = 1; next }
@@ -41,16 +45,19 @@ awk '
     { print }
 ' "$CONF_FILE" > "$TMP_FILE"
 
-# Prepend the fresh preload line + wallpaper block.
-{
-    printf 'preload = %s\n' "$WALLPAPER"
-    printf 'wallpaper {\n'
-    printf '\tmonitor =\n'
-    printf '\tpath = %s\n' "$WALLPAPER"
-    printf '\tfit_mode = fill\n'
-    printf '}\n'
-    printf '\n'
-    cat "$TMP_FILE"
-} | awk 'NF{blank=0} !NF{blank++} blank<2' > "$CONF_FILE"
-
-rm -f "$TMP_FILE"
+if [ -n "$WALLPAPER" ]; then
+    # Prepend the fresh preload line + wallpaper block.
+    {
+        printf 'preload = %s\n' "$WALLPAPER"
+        printf 'wallpaper {\n'
+        printf '\tmonitor =\n'
+        printf '\tpath = %s\n' "$WALLPAPER"
+        printf '\tfit_mode = fill\n'
+        printf '}\n'
+        printf '\n'
+        cat "$TMP_FILE"
+    } | awk 'NF{blank=0} !NF{blank++} blank<2' > "$CONF_FILE"
+    rm -f "$TMP_FILE"
+else
+    mv "$TMP_FILE" "$CONF_FILE"
+fi

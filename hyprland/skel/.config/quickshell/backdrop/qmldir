@@ -1,0 +1,7 @@
+# ══════════════════════════════════════════════════════
+# Módulo backdrop do quickshell-d77
+# ══════════════════════════════════════════════════════
+module backdrop
+
+Backdrop            1.0 Backdrop.qml
+WallpaperBackground 1.0 WallpaperBackground.qml

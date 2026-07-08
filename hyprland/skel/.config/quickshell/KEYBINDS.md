@@ -20,9 +20,10 @@ There are **two** ways to do this:
 | Toggle the session menu               | `session`  → `toggle`        | `SUPER + SHIFT + E` |
 | Lock the screen                       | `lockscreen` → `lock`        | `SUPER + L`         |
 | Show Wallpaper dir contents           | `wallpaper`  → `toggle`      | `SUPER + Y`         |
+| Toggle the info dashboard             | `dashboard`  → `toggle`      | `SUPER + I`         |
 
-The `launcher`, `session` and `wallpaper` targets each expose three functions: `toggle`, `open`,
-and `close`. The `lockscreen` target exposes `lock`, `unlock`, and `toggle`.
+The `launcher`, `session`, `wallpaper` and `dashboard` targets each expose three functions:
+`toggle`, `open`, and `close`. The `lockscreen` target exposes `lock`, `unlock`, and `toggle`.
 
 ---
 
@@ -118,6 +119,9 @@ bind = SUPER, Y, exec, qs ipc call wallpaper toggle
 
 # Lock the screen (SUPER + L)
 bind = SUPER, L, exec, qs ipc call lockscreen lock
+
+# Info dashboard (SUPER + I)
+bind = SUPER, I, exec, qs ipc call dashboard toggle
 ```
 
 General format:
@@ -172,6 +176,7 @@ bind = SUPER, D, exec, qs ipc call launcher toggle
 bind = SUPER SHIFT, E, exec, qs ipc call session toggle
 bind = SUPER, Y, exec, qs ipc call wallpaper toggle
 bind = SUPER, L, exec, qs ipc call lockscreen lock
+bind = SUPER, I, exec, qs ipc call dashboard toggle
 ```
 
 #### 3b. `init.lua` (Lua dotfiles frameworks)
@@ -189,6 +194,7 @@ hypr.bind({
   { mods = "SUPER SHIFT", key = "E", dispatcher = "exec", arg = "qs ipc call session toggle"  },
   { mods = "SUPER",       key = "L", dispatcher = "exec", arg = "qs ipc call lockscreen lock" },
   { mods = "SUPER",       key = "Y", dispatcher = "exec", arg = "qs ipc call wallpaper toggle" },
+  { mods = "SUPER",       key = "I", dispatcher = "exec", arg = "qs ipc call dashboard toggle" },
 })
 ```
 
@@ -204,6 +210,7 @@ local cmds = {
   'hyprctl keyword bind "SUPER SHIFT, E, exec, qs ipc call session toggle"',
   'hyprctl keyword bind "SUPER, L, exec, qs ipc call lockscreen lock"',
   'hyprctl keyword bind "SUPER, Y, exec, qs ipc call wallpaper toggle"',
+  'hyprctl keyword bind "SUPER, I, exec, qs ipc call dashboard toggle"',
 }
 for _, c in ipairs(cmds) do
   os.execute(c)
@@ -250,6 +257,7 @@ bind = SUPER, D, global, quickshell:launcher
 bind = SUPER SHIFT, E, global, quickshell:session
 bind = SUPER, L, global, quickshell:lock
 bind = SUPER, Y, global, quickshell:wallpaper
+bind = SUPER, I, global, quickshell:dashboard
 ```
 
 `shell.qml` also registers a `quickshell:lock` shortcut that locks the screen via the
@@ -346,7 +354,8 @@ hyprctl version
    bind = SUPER SHIFT, E, exec, qs ipc call session toggle
    bind = SUPER, L, exec, qs ipc call lockscreen lock
    bind = SUPER, Y, exec, qs ipc call wallpaper toggle
+   bind = SUPER, I, exec, qs ipc call dashboard toggle
    ```
 3. `hyprctl reload`
 4. Verify: `qs ipc show`
-5. Test `SUPER+D`, `SUPER+SHIFT+E`, `SUPER+Y` and `SUPER+L`.
+5. Test `SUPER+D`, `SUPER+SHIFT+E`, `SUPER+Y`, `SUPER+L` and `SUPER+I`.

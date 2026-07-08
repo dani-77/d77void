@@ -17,11 +17,32 @@ import "lockscreen"
 // Exposes Osd (volume + brightness on-screen display)
 import "osd"
 
+// Dashboard native module (dashboard dir).
+// Exposes Dashboard (quick info panel: stats, weather, cmus, session)
+import "dashboard"
+
 // Wallpaper picker module (wallpaper dir).
 // Exposes Wallpaper
 import "wallpaper"
 
+// Backdrop module (backdrop dir).
+// Exposes Backdrop and WallpaperBackground (decorative background shown
+// only while no wallpaper is set).
+import "backdrop"
+
 ShellRoot {
+
+    // ══════════════════════════════════════════════════════
+    // BACKDROP (conditional decorative background)
+    // ══════════════════════════════════════════════════════
+    // One instance per screen, on the Bottom layer-shell layer (above
+    // hyprpaper, which draws on the Background layer). Visible only while
+    // Services.WallpaperState.hasWallpaper is false.
+    WallpaperBackground {
+        colBg:     g.colBg
+        colFg:     g.colFg
+        colPurple: g.colPurple
+    }
 
     // ══════════════════════════════════════════════════════
     // LAUNCHER
@@ -81,11 +102,11 @@ ShellRoot {
     }
 
     // ══════════════════════════════════════════════════════
-    // OSD (On-Screen Display: volume + brilho)
+    // OSD (On-Screen Display: volume + brightness)
     // ══════════════════════════════════════════════════════
-    // Overlay minimalista no canto superior direito, mostrado
-    // durante ~2,5 s sempre que o volume (ALSA) ou o brilho
-    // (brightnessctl) mudam. Controlado por IPC/keybinds.
+    // Minimal overlay in the top-right corner, shown
+    // for ~2.5 s whenever volume (ALSA) or brightness
+    // (brightnessctl) changes. Controlled via IPC/keybinds.
     // Uses the Tokyo Night palette and font defined in "g".
     Osd {
         id: osd
@@ -96,10 +117,45 @@ ShellRoot {
         colPurple: g.colPurple
         colRed:    g.colRed
         colYellow: g.colYellow
+        colGreen:  g.colGreen
         font:      g.font
         fsize:     g.fsize
-        step:      5      // passo de 5% para volume e brilho
-        timeout:   2500   // visível durante 2,5 s
+        step:      5      // 5% step for volume and brightness
+        timeout:   2500   // visible for 2.5 s
+    }
+
+    // ══════════════════════════════════════════════════════
+    // DASHBOARD (quick panel: stats, weather, cmus, session)
+    // ══════════════════════════════════════════════════════
+    // Port of dashboard.py from fabric-d77. Appears in the top-left
+    // corner, below the bar. Toggled via IPC (qs ipc call dashboard toggle)
+    // or GlobalShortcut "dashboard" (suggestion: SUPER, I).
+    Dashboard {
+        id: dashboard
+        colBg:     g.colBg
+        colFg:     g.colFg
+        colMuted:  g.colMuted
+        colCyan:   g.colCyan
+        colBlue:   g.colBlue
+        colYellow: g.colYellow
+        colGreen:  g.colGreen
+        colRed:    g.colRed
+        colPurple: g.colPurple
+        font:      g.font
+        fsize:     g.fsize
+
+        // The bar automatically reserves an exclusive zone equal to its
+        // height (margins.top + implicitHeight), and Hyprland already shifts
+        // this window below that zone before applying margins.top.
+        // So using the bar's own margins.top here is enough to leave
+        // the same gap the bar has relative to the screen.
+        marginTop:  bar.margins.top
+        marginLeft: bar.margins.left
+
+        onLockRequested:     lockScreen.lock()
+        onLogoutRequested:   logoutProc.running = true
+        onRebootRequested:   rebootProc.running = true
+        onPoweroffRequested: shutdownProc.running = true
     }
 
     // ══════════════════════════════════════════════════════
@@ -154,8 +210,8 @@ ShellRoot {
         function toggle(): void { lockScreen.toggle() }
     }
 
-    // OSD IPC (volume via ALSA + brilho via brightnessctl).
-    // Ideal para ligar às teclas multimédia no Hyprland:
+    // OSD IPC (volume via ALSA + brightness via brightnessctl).
+    // Ideal for binding to multimedia keys in Hyprland:
     //   bindel = , XF86AudioRaiseVolume, exec, qs ipc call osd volumeUp
     //   bindel = , XF86AudioLowerVolume, exec, qs ipc call osd volumeDown
     //   bindl  = , XF86AudioMute,        exec, qs ipc call osd volumeMuteToggle
@@ -164,20 +220,37 @@ ShellRoot {
     IpcHandler {
         target: "osd"
 
-        // Sobe o volume (passo definido em Osd.step) e mostra o OSD.
+        // Raises the volume (step defined in Osd.step) and shows the OSD.
         function volumeUp(): void { osd.volumeUp() }
-        // Desce o volume e mostra o OSD.
+        // Lowers the volume and shows the OSD.
         function volumeDown(): void { osd.volumeDown() }
-        // Alterna mute/unmute e mostra o OSD.
+        // Toggles mute/unmute and shows the OSD.
         function volumeMuteToggle(): void { osd.volumeMuteToggle() }
-        // Aumenta o brilho e mostra o OSD.
+        // Increases the brightness and shows the OSD.
         function brightnessUp(): void { osd.brightnessUp() }
-        // Diminui o brilho e mostra o OSD.
+        // Decreases the brightness and shows the OSD.
         function brightnessDown(): void { osd.brightnessDown() }
-        // Apenas mostra o OSD de volume (sem alterar).
+        // Only shows the volume OSD (without changing it).
         function showVolume(): void { osd.showVolume() }
-        // Apenas mostra o OSD de brilho (sem alterar).
+        // Only shows the brightness OSD (without changing it).
         function showBrightness(): void { osd.showBrightness() }
+    }
+
+    // Dashboard IPC (quick info/session panel).
+    //   qs ipc call dashboard toggle
+    //   qs ipc call dashboard open
+    //   qs ipc call dashboard close
+    // Example bind in hyprland.conf:
+    //   bind = SUPER, I, exec, qs ipc call dashboard toggle
+    IpcHandler {
+        target: "dashboard"
+
+        // Toggles the panel visibility.
+        function toggle(): void { dashboard.toggle() }
+        // Opens the panel.
+        function open(): void { dashboard.open() }
+        // Closes the panel.
+        function close(): void { dashboard.close() }
     }
 
     // Wallpaper picker IPC.
@@ -185,27 +258,32 @@ ShellRoot {
     //   qs ipc call wallpaper open
     //   qs ipc call wallpaper close
     //   qs ipc call wallpaper reload
-    //   qs ipc call wallpaper set /caminho/para/imagem.png
+    //   qs ipc call wallpaper set /path/to/image.png
     //   qs ipc call wallpaper random
+    //   qs ipc call wallpaper clear
     //
-    // Exemplo de bind no hyprland.conf:
+    // Example bind in hyprland.conf:
     //   bind = SUPER, W, exec, qs ipc call wallpaper toggle
     IpcHandler {
         target: "wallpaper"
 
-        // Alterna a visibilidade do picker.
+        // Toggles the picker visibility.
         function toggle(): void { wallpaperPicker.toggle() }
-        // Abre o picker e refaz o scan do diretório.
+        // Opens the picker and rescans the directory.
         function open(): void { wallpaperPicker.open() }
-        // Fecha o picker.
+        // Closes the picker.
         function close(): void { wallpaperPicker.close() }
-        // Refaz o scan do diretório sem abrir/fechar o picker.
+        // Rescans the directory without opening/closing the picker.
         function reload(): void { wallpaperPicker.reload() }
-        // Aplica diretamente um wallpaper por caminho, sem abrir o picker.
-        // Útil em scripts: qs ipc call wallpaper set /home/daniel/Wallpaper/foo.png
+        // Applies a wallpaper directly by path, without opening the picker.
+        // Useful in scripts: qs ipc call wallpaper set /home/daniel/Wallpaper/foo.png
         function set(path: string): void { wallpaperPicker.apply(path) }
-        // Aplica um wallpaper aleatório da lista já carregada.
+        // Applies a random wallpaper from the already-loaded list.
         function random(): void { wallpaperPicker.applyRandom() }
+        // Removes the active wallpaper: unloads from hyprpaper and deletes the
+        // state file. The backdrop (decorative background) becomes
+        // visible automatically while no wallpaper is set.
+        function clear(): void { wallpaperPicker.clear() }
     }
 
     // ── Global Hyprland keybinds (fallback) ───────────────
@@ -234,6 +312,13 @@ ShellRoot {
         name: "lock"
         description: "Lock the screen (native lockscreen)"
         onPressed: lockScreen.lock()
+    }
+
+    GlobalShortcut {
+        appid: "quickshell"
+        name: "dashboard"
+        description: "open/close the quick info dashboard (stats, weather, cmus, session)"
+        onPressed: dashboard.toggle()
     }
 
     // ══════════════════════════════════════════════════════
@@ -373,6 +458,13 @@ ShellRoot {
         running: false
     }
 
+    // Opens nmtui in a floating terminal (same logic as the dashboard).
+    Process {
+        id: nmtuiBarProc
+        running: false
+        command: ["sh", "-c", dashboard.nmtuiLaunchCommand()]
+    }
+
     // Session processes (triggered from the session menu).
     Process { id: suspendProc;  command: ["loginctl", "suspend"];   running: false }
     Process { id: rebootProc;   command: ["loginctl", "reboot"];    running: false }
@@ -474,7 +566,7 @@ ShellRoot {
                         MouseArea {
                             anchors.fill: parent
                             onClicked: {
-                                wsProc.command = ["hyprctl", "dispatch", "workspace", wsId.toString()]
+                                wsProc.command = ["hyprctl", "dispatch", "hl.dsp.focus({workspace = " + wsId + "})"]
                                 wsProc.running = true
                             }
                         }
@@ -561,6 +653,7 @@ ShellRoot {
                 Rectangle { width: 1; height: 18; color: g.colMuted }
 
                 // ── Wi-Fi ─────────────────────────────────────
+                // Clicking opens nmtui in a floating terminal.
                 RowLayout {
                     spacing: 3
                     Text {
@@ -573,11 +666,18 @@ ShellRoot {
                         font { family: g.font; pixelSize: g.fsize }
                         color: g.colFg
                     }
+                    MouseArea {
+                        anchors.fill: parent
+                        acceptedButtons: Qt.LeftButton
+                        onClicked: nmtuiBarProc.running = true
+                    }
                 }
 
                 Rectangle { width: 1; height: 18; color: g.colMuted }
 
                 // ── Battery ───────────────────────────────────
+                // Clicking cycles the power profile (power-profiles-daemon)
+                // and shows the result in the OSD.
                 RowLayout {
                     spacing: 3
                     Text {
@@ -594,6 +694,11 @@ ShellRoot {
                         text: g.batLevel + "%"
                         font { family: g.font; pixelSize: g.fsize }
                         color: g.batLevel < 20 ? g.colRed : g.batLevel < 50 ? g.colYellow : g.colGreen
+                    }
+                    MouseArea {
+                        anchors.fill: parent
+                        acceptedButtons: Qt.LeftButton
+                        onClicked: osd.cyclePowerProfile()
                     }
                 }
 
@@ -680,7 +785,7 @@ ShellRoot {
             id: sessionBox
             anchors.centerIn: parent
             width:  220
-            height: 232
+            height: 256
             radius: 12
             color: Qt.darker(g.colBg, 1.4)
             border.color: g.colRed
@@ -716,7 +821,7 @@ ShellRoot {
                 // Lock
                 Rectangle {
                     Layout.fillWidth: true
-                    height: 36
+                    height: 44
                     radius: 6
                     color: (ma0.containsMouse || sessionBox.currentIndex === 0) ? Qt.rgba(0.48, 0.64, 0.97, 0.2) : "transparent"
                     RowLayout {
@@ -725,12 +830,12 @@ ShellRoot {
                         spacing: 8
                         Text {
                             text: "󰌾"
-                            font { family: g.font; pixelSize: 16 }
+                            font { family: g.font; pixelSize: g.fsize + 10 }
                             color: g.colBlue
                         }
                         Text {
                             text: "Lock"
-                            font { family: g.font; pixelSize: g.fsize }
+                            font { family: g.font; pixelSize: g.fsize + 1 }
                             anchors.horizontalCenter: parent.horizontalCenter
                             color: g.colFg
                         }
@@ -750,7 +855,7 @@ ShellRoot {
                 // Suspend
                 Rectangle {
                     Layout.fillWidth: true
-                    height: 36
+                    height: 44
                     radius: 6
                     color: (ma1.containsMouse || sessionBox.currentIndex === 1) ? Qt.rgba(0.88, 0.69, 0.41, 0.2) : "transparent"
                     RowLayout {
@@ -759,12 +864,12 @@ ShellRoot {
                         spacing: 8
                         Text {
                             text: "󰒲"
-                            font { family: g.font; pixelSize: 16 }
+                            font { family: g.font; pixelSize: g.fsize + 10 }
                             color: g.colYellow
                         }
                         Text {
                             text: "Suspend"
-                            font { family: g.font; pixelSize: g.fsize }
+                            font { family: g.font; pixelSize: g.fsize + 1 }
                             anchors.horizontalCenter: parent.horizontalCenter
                             color: g.colFg
                         }
@@ -784,7 +889,7 @@ ShellRoot {
                 // Reboot
                 Rectangle {
                     Layout.fillWidth: true
-                    height: 36
+                    height: 44
                     radius: 6
                     color: (ma2.containsMouse || sessionBox.currentIndex === 2) ? Qt.rgba(0.88, 0.69, 0.41, 0.2) : "transparent"
                     RowLayout {
@@ -793,12 +898,12 @@ ShellRoot {
                         spacing: 8
                         Text {
                             text: "󰑓"
-                            font { family: g.font; pixelSize: 16 }
+                            font { family: g.font; pixelSize: g.fsize + 10 }
                             color: g.colYellow
                         }
                         Text {
                             text: "Reboot"
-                            font { family: g.font; pixelSize: g.fsize }
+                            font { family: g.font; pixelSize: g.fsize + 1 }
                             anchors.horizontalCenter: parent.horizontalCenter
                             color: g.colFg
                         }
@@ -818,7 +923,7 @@ ShellRoot {
                 // Shutdown
                 Rectangle {
                     Layout.fillWidth: true
-                    height: 36
+                    height: 44
                     radius: 6
                     color: (ma3.containsMouse || sessionBox.currentIndex === 3) ? Qt.rgba(0.97, 0.46, 0.56, 0.2) : "transparent"
                     RowLayout {
@@ -827,12 +932,12 @@ ShellRoot {
                         spacing: 8
                         Text {
                             text: "󰐥"
-                            font { family: g.font; pixelSize: 16 }
+                            font { family: g.font; pixelSize: g.fsize + 10 }
                             color: g.colRed
                         }
                         Text {
                             text: "Shutdown"
-                            font { family: g.font; pixelSize: g.fsize }
+                            font { family: g.font; pixelSize: g.fsize + 1 }
                             anchors.horizontalCenter: parent.horizontalCenter
                             color: g.colFg
                         }
@@ -852,7 +957,7 @@ ShellRoot {
                 // Logout
                 Rectangle {
                     Layout.fillWidth: true
-                    height: 36
+                    height: 44
                     radius: 6
                     color: (ma4.containsMouse || sessionBox.currentIndex === 4) ? Qt.rgba(0.27, 0.29, 0.42, 0.5) : "transparent"
                     RowLayout {
@@ -861,14 +966,14 @@ ShellRoot {
                         spacing: 8
                         Text {
                             text: "󰍃"
-                            font { family: g.font; pixelSize: 16 }
+                            font { family: g.font; pixelSize: g.fsize + 10 }
                             color: g.colMuted
                         }
                         Text {
                             text: "Logout"
-                            font { family: g.font; pixelSize: g.fsize }
+                            font { family: g.font; pixelSize: g.fsize + 1 }
                             anchors.horizontalCenter: parent.horizontalCenter
-		            color: g.colFg
+                            color: g.colFg
                         }
                     }
                     MouseArea {

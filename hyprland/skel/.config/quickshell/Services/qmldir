@@ -1,0 +1,6 @@
+# ══════════════════════════════════════════════════════
+# Serviço de estado do wallpaper (singleton) do quickshell-d77
+# ══════════════════════════════════════════════════════
+module Services
+
+singleton WallpaperState 1.0 WallpaperState.qml

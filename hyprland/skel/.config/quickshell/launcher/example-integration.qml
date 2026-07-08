@@ -1,12 +1,12 @@
 // ══════════════════════════════════════════════════════
 // example-integration.qml
-// Exemplo MÍNIMO de como ativar o módulo launcher a partir
-// da configuração principal do Quickshell (shell.qml).
+// MINIMAL example of how to activate the launcher module
+// from the main Quickshell configuration (shell.qml).
 //
-// Este arquivo é apenas demonstrativo — copie os trechos
-// marcados para dentro do seu shell.qml.
+// This file is for demonstration only — copy the marked
+// snippets into your shell.qml.
 //
-// Para testar isoladamente:
+// To test in isolation:
 //   qs -p ~/.config/quickshell/launcher/example-integration.qml
 // ══════════════════════════════════════════════════════
 import Quickshell
@@ -15,32 +15,32 @@ import Quickshell.Hyprland
 import QtQuick
 import QtQuick.Layouts
 
-// (1) Importe o módulo launcher pelo caminho relativo.
-//     A pasta "launcher" precisa estar ao lado do shell.qml.
+// (1) Import the launcher module using the relative path.
+//     The "launcher" folder must sit alongside shell.qml.
 import "launcher"
 
 ShellRoot {
 
-    // (2) Instancie o Launcher uma única vez. Ele começa
-    //     invisível e é mostrado via launcher.toggle().
+    // (2) Instantiate the Launcher once. It starts
+    //     invisible and is shown via launcher.toggle().
     Launcher {
         id: appLauncher
-        // O tema já usa a paleta Tokyo Night por padrão,
-        // mas você pode sobrescrever qualquer propriedade:
+        // The theme already uses the Tokyo Night palette by default;
+        // but you can override any property:
         // colPurple: "#bb9af7"
         // terminal:  "foot"
     }
 
-    // (3) Atalho global via Hyprland para abrir/fechar.
-    //     Equivale a "bind = SUPER, D, ..." mas tratado aqui.
+    // (3) Global shortcut via Hyprland to open/close.
+    //     Equivalent to "bind = SUPER, D, ..." but handled here.
     GlobalShortcut {
         name: "launcher"
-        description: "Abre o launcher de aplicativos"
+        description: "Open the app launcher"
         onPressed: appLauncher.toggle()
     }
 
-    // (4) Botão na barra que abre o launcher nativo no lugar
-    //     de chamar o "fuzzel" via Process.
+    // (4) Bar button that opens the native launcher instead
+    //     of calling "fuzzel" via Process.
     PanelWindow {
         anchors.top:  true
         anchors.left: true
@@ -65,12 +65,12 @@ ShellRoot {
                 id: ma
                 anchors.fill: parent
                 hoverEnabled: true
-                // ── ANTES (chamava o fuzzel) ──────────────
+                // ── BEFORE (called fuzzel) ──────────────
                 // onClicked: {
                 //     launcherProc.command = ["fuzzel"]
                 //     launcherProc.running = true
                 // }
-                // ── DEPOIS (usa o módulo nativo) ──────────
+                // ── AFTER (uses the native module) ──────────────
                 onClicked: appLauncher.toggle()
             }
         }

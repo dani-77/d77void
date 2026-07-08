@@ -82,6 +82,16 @@ PanelWindow {
         monitorDetect.running = true
     }
 
+    // Removes the active wallpaper: unloads it from hyprpaper (so nothing
+    // is drawn on the Background layer) and clears stateFile, so
+    // Services.WallpaperState.hasWallpaper flips to false and the
+    // backdrop (WallpaperBackground) becomes visible again.
+    function clear() {
+        currentWallpaper = ""
+        lastError = ""
+        clearProc.running = true
+    }
+
     // Saves the chosen path so it survives logout/reboot. mkdir -p ensures
     // the cache dir exists on first run.
     function _persist(path) {
@@ -188,7 +198,22 @@ PanelWindow {
         }
         onExited: function(code) {
             if (code !== 0)
-                wallpaper.lastError = "wallpaper falhou (código " + code + ")"
+                wallpaper.lastError = "wallpaper failed (code " + code + ")"
+        }
+    }
+
+    // Unloads all wallpapers from hyprpaper (nothing left drawn on the
+    // Background layer) and removes stateFile, so the saved wallpaper
+    // isn't reapplied by apply-saved-wallpaper.sh on the next login.
+    Process {
+        id: clearProc
+        command: ["sh", "-c",
+            "hyprctl hyprpaper unload all >/dev/null 2>&1; rm -f '" + wallpaper.stateFile + "'"
+        ]
+        running: false
+        onExited: function(code) {
+            if (code !== 0)
+                wallpaper.lastError = "clear failed (code " + code + ")"
         }
     }
 
@@ -210,7 +235,7 @@ PanelWindow {
         }
         onExited: function(code) {
             if (code !== 0) {
-                wallpaper.lastError = "Falha ao detectar monitor (jq/hyprctl em falta?)"
+                wallpaper.lastError = "Failed to detect monitor (jq/hyprctl missing?)"
                 wallpaper._pendingApplyPath = ""
             }
         }
@@ -274,17 +299,56 @@ PanelWindow {
 
                 Text {
                     visible: wallpaper.loading
-                    text: "Carregando..."
+                    text: "Loading..."
                     font.family: wallpaper.font
                     font.pixelSize: wallpaper.fsize - 1
                     color: wallpaper.colMuted
                 }
 
                 Text {
-                    text: wallpaper.images.length + " imagens"
+                    text: wallpaper.images.length + " wallpapers"
                     font.family: wallpaper.font
                     font.pixelSize: wallpaper.fsize - 1
                     color: wallpaper.colMuted
+                }
+
+                // Reset wallpaper: returns to the decorative backdrop (Backdrop.qml).
+                Rectangle {
+                    id: resetBtn
+                    Layout.leftMargin: 4
+                    implicitWidth:  resetRow.implicitWidth  + 16
+                    implicitHeight: resetRow.implicitHeight + 8
+                    radius: 6
+                    color: resetMa.containsMouse ? Qt.rgba(0.94, 0.3, 0.3, 0.18) : "transparent"
+                    border.width: 1
+                    border.color: resetMa.containsMouse ? "#f7768e" : wallpaper.colMuted
+
+                    RowLayout {
+                        id: resetRow
+                        anchors.centerIn: parent
+                        spacing: 6
+
+                        Text {
+                            text: "󰑓"
+                            font.family: wallpaper.font
+                            font.pixelSize: wallpaper.fsize
+                            color: "#f7768e"
+                        }
+                        Text {
+                            text: "Clear"
+                            font.family: wallpaper.font
+                            font.pixelSize: wallpaper.fsize - 1
+                            color: "#f7768e"
+                        }
+                    }
+
+                    MouseArea {
+                        id: resetMa
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        cursorShape: Qt.PointingHandCursor
+                        onClicked: wallpaper.clear()
+                    }
                 }
             }
 
@@ -384,8 +448,8 @@ PanelWindow {
                     anchors.centerIn: parent
                     visible: wallpaper.images.length === 0
                     text: wallpaper.loading
-                        ? "Carregando wallpapers..."
-                        : "Nenhuma imagem encontrada em\n" + wallpaper.wallpaperDir
+                        ? "Loading wallpapers..."
+                        : "No images found in\n" + wallpaper.wallpaperDir
                     horizontalAlignment: Text.AlignHCenter
                     font.family: wallpaper.font
                     font.pixelSize: wallpaper.fsize

@@ -311,8 +311,8 @@ PanelWindow {
                 Text {
                     anchors.centerIn: parent
                     visible: launcher.results.length === 0
-                    text: appLoader.ready ? "Nenhum aplicativo encontrado"
-                                          : "Carregando aplicativos..."
+                    text: appLoader.ready ? "No applications found"
+                                          : "Loading applications..."
                     font.family: launcher.font
                     font.pixelSize: launcher.fsize
                     color: launcher.colMuted
