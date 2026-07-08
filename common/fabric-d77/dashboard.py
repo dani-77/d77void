@@ -1,8 +1,8 @@
 """Info Dashboard — fabric-d77.
 
-Overlay centrado com quadros de sistema (CPU, RAM, temperatura, disco),
-meteorologia, controlos cmus e acesso rápido a nmtui.
-Ativado por SIGRTMIN+7 em main.py com dashboard.toggle().
+Centered overlay with system stats (CPU, RAM, temperature, disk),
+weather, cmus controls and a quick nmtui launcher.
+Triggered by SIGRTMIN+7 in main.py via dashboard.toggle().
 """
 
 import os
@@ -56,7 +56,7 @@ def _fetch_weather_sync() -> str:
 
 
 def _cmus_status() -> tuple[bool, str, str]:
-    """Devolve (running, estado, faixa)."""
+    """Returns (running, status, track)."""
     try:
         result = subprocess.run(
             ["cmus-remote", "-Q"],
@@ -82,13 +82,13 @@ def _cmus_status() -> tuple[bool, str, str]:
 
 
 def _start_cmus_headless():
-    """Arranca cmus em sessão tmux ou screen detached.
+    """Starts cmus in a detached tmux or screen session.
 
-    Mata primeiro qualquer sessão "cmus" existente (mesmo órfã) e passa
-    XDG_RUNTIME_DIR/HOME explicitamente ao cmus: um servidor tmux que
-    sobreviva a um logout/troca de compositor mantém o ambiente com que
-    foi originalmente arrancado, o que faz o cmus escrever o socket de
-    controlo num sítio que o cmus-remote atual já não encontra.
+    Kills any existing "cmus" session first (even orphaned ones) and passes
+    XDG_RUNTIME_DIR/HOME explicitly to cmus: a tmux server that survives a
+    logout/compositor switch keeps the environment it was originally launched
+    with, causing cmus to write its control socket to a path that the current
+    cmus-remote can no longer find.
     """
     env_prefix = (
         f"XDG_RUNTIME_DIR={os.environ.get('XDG_RUNTIME_DIR', '')} "
@@ -143,11 +143,11 @@ def _get_net_status() -> tuple[str, str]:
 
 def _launch_nmtui():
     candidates = [
-        ("foot",      []),
-        ("kitty",     []),
-        ("alacritty", ["-e"]),
-        ("wezterm",   ["start"]),
-        ("xterm",     ["-e"]),
+        ("foot",      ["--app-id=nmtui-float"]),
+        ("kitty",     ["--class=nmtui-float"]),
+        ("alacritty", ["--class=nmtui-float", "-e"]),
+        ("wezterm",   ["start", "--class", "nmtui-float", "--"]),
+        ("xterm",     ["-class", "nmtui-float", "-e"]),
     ]
     for exe, args in candidates:
         try:
@@ -180,9 +180,9 @@ def _stat_card(icon_name: str, value_label: Label, title: str) -> Box:
 # ── Widget ────────────────────────────────────────────────────────────────────
 
 class InfoDashboard(Window):
-    """Painel de informação rápida acionado por SIGRTMIN+7."""
+    """Quick-info panel triggered by SIGRTMIN+7."""
 
-    def __init__(self, **kwargs):
+    def __init__(self, on_lock=None, **kwargs):
         super().__init__(
             layer="overlay",
             anchor="top left",
@@ -194,7 +194,7 @@ class InfoDashboard(Window):
             **kwargs,
         )
 
-        # ── Quadros de sistema ────────────────────────────────────────────────
+        # ── System stats ─────────────────────────────────────────────────────
         self._cpu_val  = Label(name="dashboard-card-value", label="—", h_align="center")
         self._ram_val  = Label(name="dashboard-card-value", label="—", h_align="center")
         self._temp_val = Label(name="dashboard-card-value", label="—", h_align="center")
@@ -271,7 +271,7 @@ class InfoDashboard(Window):
                 ),
             )
 
-        # Estado: cmus a correr — faixa + controlos
+        # State: cmus running — track + controls
         self._cmus_controls_box = Box(
             orientation="h",
             spacing=10,
@@ -298,7 +298,7 @@ class InfoDashboard(Window):
             ],
         )
 
-        # Estado: cmus parado — botão de arranque headless
+        # State: cmus stopped — headless start button
         self._cmus_start_box = Box(
             orientation="h",
             spacing=10,
@@ -386,14 +386,14 @@ class InfoDashboard(Window):
             orientation="h",
             spacing=8,
             children=[
-                _session_btn("system-lock-screen-symbolic", "Lock",      session_actions.lock),
+                _session_btn("system-lock-screen-symbolic", "Lock",      on_lock or session_actions.lock),
                 _session_btn("system-log-out-symbolic",     "Log Out",   session_actions.logout),
                 _session_btn("system-reboot-symbolic",      "Reboot",    session_actions.reboot),
                 _session_btn("system-shutdown-symbolic",    "Power Off", session_actions.poweroff),
             ],
         )
 
-        # ── Layout principal ──────────────────────────────────────────────────
+        # ── Main layout ───────────────────────────────────────────────────────
         self.add(
             Box(
                 name="info-dashboard",
@@ -428,7 +428,7 @@ class InfoDashboard(Window):
         if self.get_visible():
             self.set_visible(False)
         else:
-            self._weather_label.set_label("a carregar…")
+            self._weather_label.set_label("loading…")
             self.show_all()
             self.set_visible(True)
             threading.Thread(target=self._load_weather, daemon=True).start()

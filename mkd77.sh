@@ -134,6 +134,8 @@ include_box() {
 include_fabric() {
 	mkdir -p "$INCLUDEDIR"/etc/xdg
 	cp -r ./common/fabric-d77 "$INCLUDEDIR"/etc/xdg/
+	mkdir -p "$INCLUDEDIR"/etc/pam.d
+	cp ./common/fabric-d77/pam/fabric-d77 "$INCLUDEDIR"/etc/pam.d/
 }
 
 include_plymouth() {
@@ -410,7 +412,7 @@ build_variant() {
 		fabric)
 			COMMON=yes
 			FABRIC=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty awww cinnamon-desktop cliphist cmake fabric gcc gobject-introspection grim gtk-layer-shell libdbusmenu-gtk3 nwg-look pkg-config python3-cairo-devel python3-psutil qt5-wayland qt6-wayland swayfx swaybg swayidle swayimg swaylock SwayNotificationCenter wlsunset wmenu xorg-server-xwayland xwayland-satellite"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty awww cinnamon-desktop cliphist cmake fabric gcc gobject-introspection grim gtk-layer-shell gtk-session-lock libdbusmenu-gtk3 nwg-look pkg-config python3-cairo-devel python3-pam python3-psutil qt5-wayland qt6-wayland swayfx swaybg swayidle swayimg SwayNotificationCenter wlsunset wmenu xorg-server-xwayland xwayland-satellite"
 			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
 		;;
 		fluxbox)

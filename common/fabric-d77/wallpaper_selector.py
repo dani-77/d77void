@@ -9,21 +9,29 @@ from fabric.widgets.scrolledwindow import ScrolledWindow
 from fabric.widgets.wayland import WaylandWindow as Window
 from gi.repository import GLib
 
-# Diretório com os wallpapers. Ajusta aqui se quiseres outro caminho.
+import wallpaper_state
+
+# Wallpaper directory. Change this path if yours is different.
 WALLPAPER_DIR = os.path.expanduser("~/Wallpaper")
 
-# Extensões de imagem aceites
+# Accepted image extensions
 VALID_EXTENSIONS = (".png", ".jpg", ".jpeg", ".webp", ".bmp")
 
 THUMB_SIZE = 160
 COLUMNS = 4
 
+# Color (RRGGBB, no '#') used by awww when clearing — Tokyo Night colBg,
+# same as Backdrop (backdrop.py). awww has no concept of "no wallpaper",
+# only "image" or "solid color"; whether the decorative backdrop appears
+# on top is decided by the state file (wallpaper_state).
+CLEAR_COLOR = "1a1b26"
+
 
 class WallpaperSelector(Window):
-    """Grid de wallpapers (estilo DankMaterialShell) que aplica via swww ao clicar.
+    """Wallpaper grid (DankMaterialShell style) that applies via awww on click.
 
-    Janela layer-shell standalone, seguindo o mesmo padrão de SessionMenu:
-    overlay centrado, keyboard_mode on-demand, escape para fechar.
+    Standalone layer-shell window, following the same pattern as SessionMenu:
+    centered overlay, keyboard_mode on-demand, escape to close.
     """
 
     def __init__(self, **kwargs):
@@ -37,7 +45,7 @@ class WallpaperSelector(Window):
             **kwargs,
         )
 
-        self.current_wallpaper: str | None = None
+        self.current_wallpaper: str | None = wallpaper_state.read_current()
 
         self.grid_box = Box(
             name="wallpaper-grid",
@@ -60,13 +68,36 @@ class WallpaperSelector(Window):
             h_align="start",
         )
 
+        self.clear_button = Button(
+            name="wallpaper-clear-button",
+            child=Box(
+                orientation="h",
+                spacing=6,
+                children=[
+                    Image(icon_name="edit-clear-all-symbolic", icon_size=14),
+                    Label(label="Clear"),
+                ],
+            ),
+            on_clicked=lambda *_: self.clear_wallpaper(),
+        )
+
+        self.header_row = Box(
+            orientation="h",
+            spacing=8,
+            children=[
+                self.title_label,
+                Box(h_expand=True),
+                self.clear_button,
+            ],
+        )
+
         self.add(
             Box(
                 name="wallpaper-selector",
                 orientation="v",
                 spacing=12,
                 children=[
-                    self.title_label,
+                    self.header_row,
                     self.scrolled,
                 ],
             )
@@ -74,13 +105,13 @@ class WallpaperSelector(Window):
 
         self.add_keybinding("escape", lambda *_: self.set_visible(False))
 
-        print("[wallpaper_selector] __init__: a chamar populate()")
+        print("[wallpaper_selector] __init__: calling populate()")
         self.populate()
-        print("[wallpaper_selector] __init__: a chamar show_all()")
+        print("[wallpaper_selector] __init__: calling show_all()")
         self.show_all()
-        print("[wallpaper_selector] __init__: concluído")
+        print("[wallpaper_selector] __init__: done")
 
-    # -- listagem / grid -------------------------------------------------
+    # -- listing / grid -------------------------------------------------
 
     def list_wallpapers(self) -> list[str]:
         if not os.path.isdir(WALLPAPER_DIR):
@@ -93,22 +124,22 @@ class WallpaperSelector(Window):
         return files
 
     def populate(self):
-        print("[wallpaper_selector] populate() iniciado")
-        # limpa o grid atual antes de repopular (permite refresh())
+        print("[wallpaper_selector] populate() started")
+        # clear current grid before repopulating (allows refresh())
         for child in list(self.grid_box.children):
             self.grid_box.remove(child)
 
         wallpapers = self.list_wallpapers()
-        print(f"[wallpaper_selector] {len(wallpapers)} wallpapers encontrados")
+        print(f"[wallpaper_selector] {len(wallpapers)} wallpapers found")
 
         if not wallpapers:
             self.grid_box.add(
                 Label(
                     name="wallpaper-empty",
-                    label=f"Nenhuma imagem encontrada em {WALLPAPER_DIR}",
+                    label=f"No images found in {WALLPAPER_DIR}",
                 )
             )
-            print("[wallpaper_selector] populate() terminado (sem wallpapers)")
+            print("[wallpaper_selector] populate() done (no wallpapers)")
             return
 
         row = None
@@ -119,8 +150,8 @@ class WallpaperSelector(Window):
             try:
                 row.add(self.bake_thumbnail(path))
             except Exception as exc:
-                print(f"[wallpaper_selector] ERRO ao criar thumbnail para {path}: {exc}")
-        print("[wallpaper_selector] populate() terminado com sucesso")
+                print(f"[wallpaper_selector] ERROR creating thumbnail for {path}: {exc}")
+        print("[wallpaper_selector] populate() done")
 
     def bake_thumbnail(self, path: str) -> Button:
         try:
@@ -129,10 +160,10 @@ class WallpaperSelector(Window):
                 size=THUMB_SIZE,
             )
         except Exception as exc:
-            # Ficheiro com extensão de imagem mas formato inválido/sem loader
-            # (ex: webp sem gdk-pixbuf-webp instalado, ficheiro corrompido,
-            # symlink partido). Não deixamos isto derrubar o selector todo.
-            print(f"[wallpaper_selector] falhou a carregar '{path}': {exc}")
+            # File has an image extension but invalid format or no loader
+            # (e.g. webp without gdk-pixbuf-webp, corrupted file, broken
+            # symlink). Don't let this bring down the whole selector.
+            print(f"[wallpaper_selector] failed to load '{path}': {exc}")
             thumb = Label(label="⚠", name="wallpaper-thumb-error")
 
         is_current = path == self.current_wallpaper
@@ -154,28 +185,49 @@ class WallpaperSelector(Window):
         )
         return btn
 
-    # -- aplicar wallpaper -------------------------------------------------
+    # -- apply wallpaper -------------------------------------------------
 
     def apply_wallpaper(self, path: str):
-        """Aplica o wallpaper via swww de forma assíncrona (não bloqueia a UI)."""
+        """Applies the wallpaper via awww asynchronously (non-blocking)."""
         try:
             subprocess.Popen(
-                ["swww", "img", path],
+                ["awww", "img", path],
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
             )
         except FileNotFoundError:
-            self.title_label.set_label("Erro: swww não encontrado no PATH")
+            self.title_label.set_label("Error: awww not found in PATH")
             return
 
+        wallpaper_state.write_current(path)
         self.current_wallpaper = path
         self.title_label.set_label(f"Wallpapers — {os.path.basename(path)}")
-        # re-renderiza para destacar a thumbnail selecionada
+        # re-render to highlight the selected thumbnail
+        GLib.idle_add(self.populate)
+        self.set_visible(False)
+
+    def clear_wallpaper(self):
+        """Clears the active wallpaper: fills awww with colBg and removes the
+        saved state so Backdrop (backdrop.py) becomes visible again.
+        """
+        try:
+            subprocess.Popen(
+                ["awww", "clear", CLEAR_COLOR],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            )
+        except FileNotFoundError:
+            self.title_label.set_label("Error: awww not found in PATH")
+            return
+
+        wallpaper_state.clear_current()
+        self.current_wallpaper = None
+        self.title_label.set_label("Wallpapers")
         GLib.idle_add(self.populate)
         self.set_visible(False)
 
     def refresh(self):
-        """Repopula o grid (chamar ao reabrir, para refletir novos ficheiros)."""
+        """Repopulates the grid (call on reopen to pick up new files)."""
         self.populate()
         self.show_all()
 

@@ -39,6 +39,8 @@ from fabric.system_tray.widgets import SystemTray
 from fabric.widgets.wayland import WaylandWindow as Window
 from fabric.utils import get_relative_path
 
+from dashboard import _launch_nmtui
+
 
 def _detect_compositor() -> str:
     """Return a compositor identifier based on environment variables."""
@@ -84,14 +86,18 @@ if AUDIO_WIDGET is True:
 
 
 class VolumeWidget(Box):
-    def __init__(self, **kwargs):
+    def __init__(self, osd=None, **kwargs):
+        self.osd = osd
         self.icon = Image(icon_name="audio-speakers-symbolic", icon_size=14)
         self.label = Label(name="volume-label", label="0%")
         self.content = Box(spacing=4, orientation="h", children=[self.icon, self.label])
         self.audio = Audio(notify_speaker=self.on_speaker_changed)
         super().__init__(
             children=EventBox(
-                events="scroll", child=self.content, on_scroll_event=self.on_scroll
+                events=["scroll", "button-press"],
+                child=self.content,
+                on_scroll_event=self.on_scroll,
+                on_button_press_event=self.on_click,
             ),
             **kwargs,
         )
@@ -102,6 +108,13 @@ class VolumeWidget(Box):
                 self.audio.speaker.volume += 5
             case 1:
                 self.audio.speaker.volume -= 5
+        return
+
+    def on_click(self, *_):
+        # Toggle mute via amixer/ALSA (same backend as the XF86AudioMute key)
+        # so the OSD detects the change and shows itself.
+        if self.osd is not None:
+            self.osd.volume_mute_toggle()
         return
 
     def on_speaker_changed(self):
@@ -170,7 +183,7 @@ def get_battery_info():
                 if 0 < seconds < 1000000:
                     hours = seconds // 3600
                     minutes = (seconds % 3600) // 60
-                    # Formata o tempo como (1h 45m)
+                    # Format time as (1h 45m)
                     time_str = f" ({hours}h {minutes}m)"
 
             if charging:
@@ -186,7 +199,8 @@ def get_battery_info():
 
 
 class StatusBar(Window):
-    def __init__(self):
+    def __init__(self, osd=None):
+        self.osd = osd
         super().__init__(
             name="bar",
             layer="top",
@@ -219,7 +233,12 @@ class StatusBar(Window):
 
         wifi_icon = Image(icon_name="network-wireless-symbolic", icon_size=14)
         wifi_label = Label(name="wifi-label", label="--")
-        wifi_box = Box(spacing=4, orientation="h", children=[wifi_icon, wifi_label])
+        wifi_content = Box(spacing=4, orientation="h", children=[wifi_icon, wifi_label])
+        wifi_box = EventBox(
+            events="button-press",
+            child=wifi_content,
+            on_button_press_event=lambda *_: _launch_nmtui(),
+        )
         wifi_label.build(
             lambda lbl: Fabricator(
                 interval=4000,
@@ -230,7 +249,12 @@ class StatusBar(Window):
 
         battery_icon = Image(icon_name="battery-full-symbolic", icon_size=14)
         battery_label = Label(name="battery-label", label="--%")
-        battery_box = Box(spacing=4, orientation="h", children=[battery_icon, battery_label])
+        battery_content = Box(spacing=4, orientation="h", children=[battery_icon, battery_label])
+        battery_box = EventBox(
+            events="button-press",
+            child=battery_content,
+            on_button_press_event=lambda *_: self.osd.power_profile_cycle() if self.osd else None,
+        )
 
         def update_battery(_, info):
             icon_name, percent_text = info
@@ -264,7 +288,7 @@ class StatusBar(Window):
                 wifi_box,
                 battery_box,
             ]
-            + ([VolumeWidget()] if AUDIO_WIDGET else []),
+            + ([VolumeWidget(osd=self.osd)] if AUDIO_WIDGET else []),
         )
 
         _ws_widget = _create_workspaces_widget(name="workspaces", spacing=4)

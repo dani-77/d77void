@@ -298,9 +298,8 @@ tooltip>* {
     padding: 2px 4px
 }
 
-/* ── OSD (volume / brilho) ─────────────────────────────────────────────────
-   Overlay minimalista no canto superior direito: ícone + barra de progresso
-   + percentagem. */
+/* ── OSD (volume / brightness) ─────────────────────────────────────────────
+   Minimal overlay in the top-right corner: icon + progress bar + percentage. */
 #osd-box {
     padding: 10px 16px;
     min-width: 260px;
@@ -319,7 +318,7 @@ tooltip>* {
     color: var(--foreground);
 }
 
-/* Barra de progresso (Gtk.Scale não-interativa). */
+/* Progress bar (non-interactive Gtk.Scale). */
 #osd-scale {
     min-width: 140px;
     min-height: 8px;
@@ -337,7 +336,7 @@ tooltip>* {
     background-color: var(--color6);
 }
 
-/* Esconde o "slider"/handle — só queremos a barra de progresso. */
+/* Hide the slider/handle — we only want the progress bar. */
 #osd-scale slider {
     min-width: 0px;
     min-height: 0px;
@@ -346,14 +345,14 @@ tooltip>* {
     box-shadow: none;
 }
 
-/* Tonalidade diferente para o brilho. */
+/* Different tint for brightness. */
 #osd-box.brightness #osd-icon,
 #osd-scale.brightness highlight {
     color: var(--color4);
     background-color: var(--color4);
 }
 
-/* Estado mute: ícone/realce esbatidos. */
+/* Mute state: dimmed icon and highlight. */
 #osd-box.muted #osd-icon {
     color: var(--color8);
 }
@@ -394,6 +393,19 @@ tooltip>* {
 #wallpaper-thumb-label {
 	font-size: 11px;
 	color: #cccccc;
+}
+
+#wallpaper-clear-button {
+	padding: 4px 10px;
+	border-radius: 6px;
+	background-color: transparent;
+	color: #f7768e;
+	border: solid 1px rgba(247, 118, 142, 0.4);
+}
+
+#wallpaper-clear-button:hover {
+	background-color: rgba(247, 118, 142, 0.18);
+	border-color: #f7768e;
 }
 
 /* ── Info Dashboard (SIGRTMIN+7) ──────────────────────────────────────────── */
@@ -471,7 +483,7 @@ tooltip>* {
     background-color: var(--color1);
 }
 
-/* Botões de sessão */
+/* Session buttons */
 #dashboard-session {
     padding: 0px;
 }
@@ -497,7 +509,7 @@ tooltip>* {
     color: var(--color8);
 }
 
-/* Botão nmtui */
+/* nmtui button */
 #dashboard-net-btn {
     padding: 8px 12px;
     border-radius: 10px;
@@ -512,6 +524,40 @@ tooltip>* {
 
 #dashboard-net-btn image {
     color: var(--color4);
+}
+
+/* ── Lock screen (ext-session-lock-v1 via GtkSessionLock, SIGRTMIN+8) ─────── */
+.lock-screen {
+    background-color: var(--background);
+}
+
+#lock-clock {
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--foreground);
+}
+
+#lock-entry {
+    background-color: var(--module-bg);
+    color: var(--foreground);
+    padding: 10px 16px;
+    min-width: 220px;
+    border-radius: 100px;
+    border: solid 1px transparent;
+}
+
+#lock-entry:focus {
+    border-color: var(--ws-active);
+    outline-style: solid;
+    outline-width: 2px;
+    outline-color: var(--ws-active);
+    outline-offset: -2px;
+}
+
+#lock-status {
+    color: var(--color6);
+    font-size: 11px;
+    min-height: 14px;
 }
 
 #wallpaper-button {

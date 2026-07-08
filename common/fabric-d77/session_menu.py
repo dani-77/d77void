@@ -10,7 +10,7 @@ from fabric.widgets.wayland import WaylandWindow as Window
 class SessionMenu(Window):
     """Power / session menu rendered as a layer-shell window centered on screen."""
 
-    def __init__(self, **kwargs):
+    def __init__(self, on_lock=None, **kwargs):
         super().__init__(
             layer="overlay",
             anchor="center",
@@ -27,7 +27,7 @@ class SessionMenu(Window):
                 orientation="v",
                 spacing=4,
                 children=[
-                    self.bake_item("Lock",      "system-lock-screen-symbolic", session_actions.lock),
+                    self.bake_item("Lock",      "system-lock-screen-symbolic", on_lock or session_actions.lock),
                     self.bake_item("Log Out",   "system-log-out-symbolic",     session_actions.logout),
                     self.bake_item("Reboot",    "system-reboot-symbolic",      session_actions.reboot),
                     self.bake_item("Power Off", "system-shutdown-symbolic",    session_actions.poweroff),

@@ -1,9 +1,9 @@
 """
 terminal_launcher.py
 
-Resolve qual terminal usar (TERMINAL env -> xdg-terminal-exec -> fallback list)
-e lança comandos de DesktopApp respeitando Terminal=true no .desktop,
-em vez de depender do app.launch() padrão do Fabric.
+Resolves which terminal to use (TERMINAL env -> xdg-terminal-exec -> fallback
+list) and launches DesktopApp commands respecting Terminal=true in .desktop
+files, instead of relying on Fabric's default app.launch() behaviour.
 """
 
 import configparser
@@ -13,7 +13,7 @@ import shlex
 import shutil
 import subprocess
 
-# Diretórios XDG padrão onde os .desktop ficam
+# Standard XDG directories where .desktop files live
 XDG_APP_DIRS = [
     os.path.expanduser("~/.local/share/applications"),
     "/usr/local/share/applications",
@@ -24,7 +24,7 @@ _terminal_flag_cache: dict[str, bool] = {}
 
 FALLBACK_TERMINALS = ["kitty", "foot", "alacritty", "wezterm", "xterm"]
 
-# terminais cuja flag de execução não é "-e"
+# terminals whose exec flag is not "-e"
 TERMINAL_EXEC_FLAGS = {
     "gnome-terminal": "--",
     "wezterm": "start",  # wezterm start -- <cmd>
@@ -34,23 +34,23 @@ _cached_terminal: str | None = None
 
 
 def resolve_terminal(force_refresh: bool = False) -> str | None:
-    """Resolve o terminal a usar, com cache em memória."""
+    """Resolves the terminal to use, with an in-memory cache."""
     global _cached_terminal
     if _cached_terminal is not None and not force_refresh:
         return _cached_terminal
 
-    # 1. respeita $TERMINAL se setado e existir no PATH
+    # 1. honour $TERMINAL if set and found in PATH
     env_term = os.environ.get("TERMINAL")
     if env_term and shutil.which(env_term):
         _cached_terminal = env_term
         return _cached_terminal
 
-    # 2. xdg-terminal-exec, se disponível
+    # 2. xdg-terminal-exec, if available
     if shutil.which("xdg-terminal-exec"):
         _cached_terminal = "xdg-terminal-exec"
         return _cached_terminal
 
-    # 3. cascata de fallback
+    # 3. fallback cascade
     for term in FALLBACK_TERMINALS:
         if shutil.which(term):
             _cached_terminal = term
@@ -61,14 +61,14 @@ def resolve_terminal(force_refresh: bool = False) -> str | None:
 
 
 def build_launch_command(exec_cmd: list[str] | str) -> list[str]:
-    """Monta o comando final para rodar exec_cmd dentro do terminal escolhido."""
+    """Builds the final command to run exec_cmd inside the resolved terminal."""
     if isinstance(exec_cmd, str):
         exec_cmd = shlex.split(exec_cmd)
 
     terminal = resolve_terminal()
     if terminal is None:
         raise RuntimeError(
-            "Nenhum terminal encontrado no sistema (defina $TERMINAL ou instale "
+            "No terminal found on the system (set $TERMINAL or install "
             "xdg-terminal-exec / kitty / foot / alacritty / wezterm / xterm)"
         )
 
@@ -83,8 +83,8 @@ def build_launch_command(exec_cmd: list[str] | str) -> list[str]:
 
 
 def _find_desktop_file(app_name: str) -> str | None:
-    """Procura o .desktop cujo nome do arquivo corresponde ao app, nos diretórios XDG."""
-    # tenta o nome direto primeiro (case-insensitive), depois varre tudo
+    """Searches for the .desktop file whose filename matches the app, in XDG dirs."""
+    # try direct name first (case-insensitive), then scan everything
     candidates = [f"{app_name}.desktop", f"{app_name.lower()}.desktop"]
     for directory in XDG_APP_DIRS:
         if not os.path.isdir(directory):
@@ -93,7 +93,7 @@ def _find_desktop_file(app_name: str) -> str | None:
             path = os.path.join(directory, candidate)
             if os.path.isfile(path):
                 return path
-    # fallback: varre todos os .desktop procurando Name= correspondente
+    # fallback: scan all .desktop files looking for a matching Name=
     for directory in XDG_APP_DIRS:
         if not os.path.isdir(directory):
             continue
@@ -114,9 +114,9 @@ def _find_desktop_file(app_name: str) -> str | None:
 
 def app_needs_terminal(app) -> bool:
     """
-    Lê Terminal= diretamente do .desktop original, já que
-    fabric.utils.DesktopApp não expõe essa informação.
-    Resultado é cacheado por nome de app.
+    Reads Terminal= directly from the original .desktop file, since
+    fabric.utils.DesktopApp does not expose that attribute.
+    Result is cached per app name.
     """
     app_name = app.name or app.display_name or ""
     if app_name in _terminal_flag_cache:
@@ -150,9 +150,9 @@ def _strip_field_codes(cmd: str) -> str:
 
 def launch_app(app) -> None:
     """
-    Lança um fabric.utils.DesktopApp respeitando Terminal=true (lido manualmente
-    do .desktop original, já que o Fabric não expõe esse atributo), usando o
-    terminal resolvido em vez do comportamento default da lib.
+    Launches a fabric.utils.DesktopApp respecting Terminal=true (read manually
+    from the original .desktop file, since Fabric does not expose that
+    attribute), using the resolved terminal instead of the lib's default.
     """
     exec_cmd = _strip_field_codes(app.command_line)
 

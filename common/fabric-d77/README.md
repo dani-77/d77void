@@ -81,4 +81,45 @@ bindel = , XF86MonBrightnessDown, exec, kill -s SIGRTMIN+5 $(pgrep -f main.py)
 You can tweak the step, timeout, mixer control and poll interval at the top of
 `osd.py` (`STEP`, `TIMEOUT_MS`, `MIXER_CONTROL`, `POLL_INTERVAL_MS`).
 
+## Lock screen
+
+`lockscreen.py` implements a **native locker** for the shell — no dependency
+on swaylock/hyprlock — mirroring how the lockscreen was built in
+[quickshell-d77](https://github.com/dani-77/quickshell-d77) (there via
+Quickshell's built-in `WlSessionLock`). It's backed by the same underlying
+mechanism: the **`ext-session-lock-v1`** Wayland protocol, via the
+[GtkSessionLock](https://github.com/Cu3PO42/gtk-session-lock) library (the
+same one [gtklock](https://github.com/jovanlanik/gtklock) is built on). This
+means the **compositor** enforces the lock, not just a fullscreen window —
+it's a real session lock, same security model as swaylock/hyprlock.
+
+Unlocking is done via **PAM**, so it checks your normal system password.
+
+Trigger it from the session menu's "Lock" entry, or bind a key directly:
+
+```ini
+bindl = , SUPER, L, exec, kill -s SIGRTMIN+8 $(pgrep -f main.py)
+```
+
+### Requirements
+
+- The `gtk-session-lock` C library **and its GObject-introspection typelib**
+  installed system-wide (it's a system library, not a pip package — build it
+  from source per the upstream README, or install it via your distro/AUR).
+- `python-pam` (already in `requirements.txt`).
+- A PAM service file at **`/etc/pam.d/fabric-d77`**, e.g. on Arch:
+  ```
+  auth    include   system-auth
+  account include   system-auth
+  ```
+  On Debian/Ubuntu, use `common-auth`/`common-account` instead. Without this
+  file PAM fails closed (no default policy → deny), so the screen stays
+  locked but nothing will unlock it.
+
+If `gtk-session-lock` isn't installed, the compositor doesn't support the
+protocol, or PAM isn't available, `lockscreen.LockScreen.lock()`
+automatically falls back to `session_actions.lock()` (swaylock → hyprlock →
+`loginctl lock-session`), so the shell degrades gracefully instead of
+leaving you with a broken "Lock" button.
+
 Enjoy
