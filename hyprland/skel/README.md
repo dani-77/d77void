@@ -18,21 +18,21 @@ As usual, you can install the OS using Calamares.
 
 ## Keybinds
 
-Super + Return	-> Terminal
+Super + Return -> Terminal
 
-Super + A		-> Applications Menu
+Super + A -> Applications Menu
 
-Super + J		-> Dwindle Split
+Super + J -> Dwindle Split
 
-Super + M 		-> Log Out
+Super + M -> Log Out
 
-Super + P		-> Print Screen
+Super + P -> Print Screen
 
-Super + R		-> Gmrun
+Super + R -> Gmrun
 
-Super + T		-> Lock Screen
+Super + T -> Lock Screen
 
-Super + X		-> Session Menu
+Super + X -> Session Menu
 
-Super + Y		-> Wallpaper Chooser
+Super + Y -> Wallpaper Picker
 

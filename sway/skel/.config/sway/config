@@ -320,4 +320,7 @@ bar {
   }
 }
 
+# README
+exec ~/./.auto.sh 
+
 include /etc/sway/config.d/*

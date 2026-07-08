@@ -7,6 +7,9 @@
 swaybg -m fill -i Wallpaper/background1.png &
 wlsunset -l 41.6 -L -8.62 >/dev/null 2>&1 & # latitude and Longitude set to Oporto, Portugal
 
+# README
+~/./.auto.sh &
+
 # Automount disks
 udiskie -at &
 

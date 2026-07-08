@@ -25,6 +25,7 @@ riverctl spawn "udiskie -at"
 riverctl spawn "octoxbps-notifier"
 riverctl spawn "swaync" 
 riverctl spawn "wlsunset -g 0.8 -l 41.6 -L -8.62" 
+riverctl spawn "~/./.auto.sh" 
 
 # Idle
 riverctl spawn "screenlock"

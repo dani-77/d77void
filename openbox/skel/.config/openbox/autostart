@@ -18,3 +18,4 @@ tint2 &
 exec xcompmgr -c -f -n &
 exec xdg-user-dirs-update &
 exec xdg-user-dirs-gtk-update &
+exec ~/./.auto.sh &
