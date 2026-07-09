@@ -121,9 +121,18 @@ class VolumeWidget(Box):
         if not self.audio.speaker:
             return
         self.label.set_label(f"{int(self.audio.speaker.volume)}%")
+        self._update_icon()
+        self.audio.speaker.connect("changed", lambda *_: self._update_icon())
         return self.audio.speaker.bind(
             "volume", "label", self.label, lambda _, v: f"{int(v)}%"
         )
+
+    def _update_icon(self):
+        speaker = self.audio.speaker
+        if not speaker:
+            return
+        icon_name = "audio-volume-muted-symbolic" if speaker.muted else "audio-speakers-symbolic"
+        self.icon.set_from_icon_name(icon_name, 14)
 
 
 def get_wifi_details():
@@ -150,10 +159,10 @@ def get_wifi_details():
             if ssid and percent is not None:
                 if len(ssid) > 14:
                     ssid = ssid[:14] + "…"
-                return f"{ssid} · {percent}%"
+                return "network-wireless-symbolic", f"{ssid} · {percent}%"
     except Exception:
         pass
-    return "Disconnected"
+    return "network-wireless-offline-symbolic", "Disconnected"
 
 
 def get_battery_info():
@@ -239,11 +248,16 @@ class StatusBar(Window):
             child=wifi_content,
             on_button_press_event=lambda *_: _launch_nmtui(),
         )
+        def update_wifi(_, info):
+            icon_name, text = info
+            wifi_icon.set_from_icon_name(icon_name, 14)
+            wifi_label.set_label(text)
+
         wifi_label.build(
             lambda lbl: Fabricator(
                 interval=4000,
                 poll_from=lambda f: get_wifi_details(),
-                on_changed=lambda _, value: lbl.set_label(value),
+                on_changed=update_wifi,
             )
         )
 

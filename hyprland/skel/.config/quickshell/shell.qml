@@ -345,6 +345,7 @@ ShellRoot {
         property int    batLevel:    100
         property bool   batCharging: false
         property string wifiSSID:    "..."
+        property int    wifiSignal:  0
 
         property var lastCpuIdle:  0
         property var lastCpuTotal: 0
@@ -442,12 +443,23 @@ ShellRoot {
         Component.onCompleted: running = true
     }
 
-    // Reads the currently connected Wi-Fi SSID (shows "Offline" if none).
+    // Reads the currently connected Wi-Fi SSID and signal quality
+    // (shows "Disconnected" if none).
     Process {
         id: wifiProc
-        command: ["sh", "-c", "LANG=C nmcli -t -f active,ssid dev wifi 2>/dev/null | grep '^yes' | cut -d: -f2 | head -1"]
+        command: ["sh", "-c", "LANG=C nmcli -t -f active,ssid,signal dev wifi 2>/dev/null | grep -m1 '^yes' || echo 'no::0'"]
         stdout: SplitParser {
-            onRead: data => { g.wifiSSID = data.trim() !== "" ? data.trim() : "Offline" }
+            onRead: data => {
+                var line = data.trim()
+                var parts = line !== "" ? line.split(":") : []
+                if (parts.length >= 3 && parts[1] !== "") {
+                    g.wifiSSID   = parts[1]
+                    g.wifiSignal = parseInt(parts[2]) || 0
+                } else {
+                    g.wifiSSID   = "Disconnected"
+                    g.wifiSignal = 0
+                }
+            }
         }
         Component.onCompleted: running = true
     }
@@ -657,12 +669,12 @@ ShellRoot {
                 RowLayout {
                     spacing: 3
                     Text {
-                        text: g.wifiSSID === "Offline" ? "󰤭 " : "󰤨 "
+                        text: g.wifiSSID === "Disconnected" ? "󰤭 " : "󰤨 "
                         font { family: g.font; pixelSize: g.fsize + 1 }
-                        color: g.wifiSSID === "Offline" ? g.colRed : g.colBlue
+                        color: g.wifiSSID === "Disconnected" ? g.colRed : g.colBlue
                     }
                     Text {
-                        text: g.wifiSSID
+                        text: g.wifiSSID === "Disconnected" ? g.wifiSSID : g.wifiSSID + " " + g.wifiSignal + "%"
                         font { family: g.font; pixelSize: g.fsize }
                         color: g.colFg
                     }
