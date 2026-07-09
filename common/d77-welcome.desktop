@@ -2,8 +2,9 @@
 Type=Application
 Version=1.0
 Name=d77-welcome
-Icon=xterm-color_48x48
-Exec=d77-welcome
-Terminal=true
-Categories=System;Monitor;ConsoleOnly;
-Keywords=system;process;task
+Comment=Post-installation setup helper for d77void
+Icon=preferences-system
+Exec=d77-welcome --open
+Terminal=false
+Categories=System;Settings;
+Keywords=system;setup;welcome;install

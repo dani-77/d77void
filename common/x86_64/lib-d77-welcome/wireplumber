@@ -1,17 +1,4 @@
-clear
+#!/bin/bash
+set -e
 
-# echo "  -----------------------------[ screen $STEP of $STEPS ]----------------------------
-echo "
-
-  CONFIGURE WIREPLUMBER
-  -------------------------------
-  Would you like to configure Wireplumber now?
-  If you choose to do this, the following will be done: 
-  
-  Create symlinks in ~/.config/pipewire/pipewire.conf.d/
-  
-  Note: System wide not working, so need to be symlinked per user."
-
-if prompt "  Would you like to configure Wireplumber now?"; then
-	mkdir -p ~/.config/pipewire/pipewire.conf.d/ && ln -s /usr/share/examples/pipewire/20-pipewire-pulse.conf ~/.config/pipewire/pipewire.conf.d/ && ln -s /usr/share/examples/wireplumber/10-wireplumber.conf ~/.config/pipewire/pipewire.conf.d/
-fi
+mkdir -p ~/.config/pipewire/pipewire.conf.d/ && ln -s /usr/share/examples/pipewire/20-pipewire-pulse.conf ~/.config/pipewire/pipewire.conf.d/ && ln -s /usr/share/examples/wireplumber/10-wireplumber.conf ~/.config/pipewire/pipewire.conf.d/
