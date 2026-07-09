@@ -81,6 +81,10 @@ bindel = , XF86MonBrightnessDown, exec, kill -s SIGRTMIN+5 $(pgrep -f main.py)
 You can tweak the step, timeout, mixer control and poll interval at the top of
 `osd.py` (`STEP`, `TIMEOUT_MS`, `MIXER_CONTROL`, `POLL_INTERVAL_MS`).
 
+> If any of these signals are sent from inside an idle daemon (e.g.
+> `swayidle`), read [Idle daemons](#idle-daemons-swayidle-hypridle-) below
+> first — driving signals off a raw `pgrep -f main.py` pattern can misfire.
+
 ## Lock screen
 
 `lockscreen.py` implements a **native locker** for the shell — no dependency
@@ -100,6 +104,10 @@ Trigger it from the session menu's "Lock" entry, or bind a key directly:
 ```ini
 bindl = , SUPER, L, exec, kill -s SIGRTMIN+8 $(pgrep -f main.py)
 ```
+
+If you also auto-lock from an idle daemon (`swayidle`, `hypridle`, …), see
+[Idle daemons](#idle-daemons-swayidle-hypridle-) below — sending the lock
+signal from there needs a small adjustment to avoid a nasty footgun.
 
 ### Requirements
 
@@ -121,5 +129,42 @@ protocol, or PAM isn't available, `lockscreen.LockScreen.lock()`
 automatically falls back to `session_actions.lock()` (swaylock → hyprlock →
 `loginctl lock-session`), so the shell degrades gracefully instead of
 leaving you with a broken "Lock" button.
+
+### Idle daemons (swayidle, hypridle, …)
+
+Don't put a raw `kill -s SIGRTMIN+8 $(pgrep -f main.py)` (or
+`pkill -f "python.*main.py"`) directly inside an idle daemon's
+`timeout`/`before-sleep` command. Some idle daemons — `swayidle` in
+particular — keep the full text of their configured commands in their own
+process's command line for as long as they run, and also treat certain
+signals specially: per `man swayidle`, `SIGUSR1` means "immediately enter
+idle state" (fires all timeout commands right away). If the lock command's
+`pgrep`/`pkill -f main.py` pattern is embedded in swayidle's own argv, *any
+other keybind* that signals the shell with that same pattern (e.g. a
+launcher toggle sending `SIGUSR1`) also matches swayidle itself — forcing
+it into immediate idle and firing the lock timeout. Net effect: pressing an
+unrelated keybind locks the screen.
+
+The bundled `bin/fabric-d77-signal <SIGNAL>` script avoids this by keeping
+the `pgrep`/`pkill` pattern out of any long-lived process's command line.
+Install it system-wide (alongside the PAM service file) with:
+
+```sh
+sudo make install
+```
+
+This installs to `/usr/bin` rather than `~/.local/bin` — compositor-launched
+commands (`exec` in sway/Hyprland, swayidle) don't reliably inherit your
+login shell's `PATH`. Then wire it up instead of the raw pattern, e.g. for
+sway:
+
+```ini
+exec swayidle -w \
+         timeout 300 'fabric-d77-signal RTMIN+8' \
+         before-sleep 'fabric-d77-signal RTMIN+8'
+
+bindsym $mod+d exec fabric-d77-signal USR1
+bindsym $mod+t exec fabric-d77-signal RTMIN+8
+```
 
 Enjoy

@@ -1,0 +1,16 @@
+#!/bin/sh
+# Sends a signal to the running fabric-d77 shell process (main.py). Meant to
+# be called from compositor keybinds / swayidle instead of running
+# `pkill -f "python.*main.py"` inline there.
+#
+# Reason: swayidle treats SIGUSR1 specially ("immediately enter idle state",
+# see man swayidle), and it caches the full text of its own timeout/
+# before-sleep commands in its argv for its whole lifetime. If one of those
+# commands contains the literal pattern "python.*main.py" (e.g. to invoke
+# lockscreen.py's native locker), swayidle's own process starts matching
+# that same pattern too — so any other keybind sending pkill -f
+# "python.*main.py" (like a launcher toggle) also hits swayidle, forcing it
+# into immediate idle and firing the lock timeout. Routing every signal
+# through this script's name instead keeps that pattern out of swayidle's
+# own command line.
+exec pkill -"$1" -f "python.*main.py"

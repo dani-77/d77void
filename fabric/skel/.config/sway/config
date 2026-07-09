@@ -44,13 +44,21 @@ exec_always {
 ### Idle configuration
 
 exec swayidle -w \
-         timeout 300 'swaylock -f -c 000000' \
+         timeout 300 'fabric-d77-signal RTMIN+8' \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         before-sleep 'swaylock -f -c 000000'
+         before-sleep 'fabric-d77-signal RTMIN+8'
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
+#
+# Uses the shell's native locker (fabric-d77-signal RTMIN+8 -> lockscreen.py)
+# instead of swaylock directly. Routed through the fabric-d77-signal script
+# (not a raw pkill -f "python.*main.py" here) so swayidle's own long-lived
+# process never carries that match pattern in its argv — see the script's
+# comment for why that self-match caused SIGUSR1 (any keybind using the same
+# raw pattern) to make swayidle "immediately enter idle state" and fire this
+# very timeout, i.e. an unrelated keybind press would lock the screen.
 
 ### Input configuration
 
@@ -80,18 +88,17 @@ exec swayidle -w \
     bindsym $mod+q kill
 
     # Start your launcher
-    bindsym $mod+d exec pkill -USR1 -f "python.*main.py"
+    bindsym $mod+d exec fabric-d77-signal USR1
 
     # Start your session menu
-    bindsym $mod+x exec pkill -USR2 -f "python.*main.py"
-    # Start your session menu
-    bindsym $mod+y exec pkill -RTMIN+6 -f "python.*main.py"
+    bindsym $mod+x exec fabric-d77-signal USR2
+    # Wallpaper picker
+    bindsym $mod+y exec fabric-d77-signal RTMIN+6
     # Dashbord
-    bindsym $mod+i exec pkill -RTMIN+7 -f "python.*main.py"
-
+    bindsym $mod+i exec fabric-d77-signal RTMIN+7
 
     # Lock Screen
-    bindsym $mod+t exec pkill -RTMIN+8 -f "python.*main.py"
+    bindsym $mod+t exec fabric-d77-signal RTMIN+8
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.

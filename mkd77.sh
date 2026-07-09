@@ -136,6 +136,8 @@ include_fabric() {
 	cp -r ./common/fabric-d77 "$INCLUDEDIR"/etc/xdg/
 	mkdir -p "$INCLUDEDIR"/etc/pam.d
 	cp ./common/fabric-d77/pam/fabric-d77 "$INCLUDEDIR"/etc/pam.d/
+	mkdir -p "$INCLUDEDIR"/usr/bin
+	cp ./common/fabric-d77/bin/fabric-d77-signal "$INCLUDEDIR"/usr/bin/
 }
 
 include_plymouth() {
@@ -170,6 +172,7 @@ _include_base() {
 	cp -r "$variant"/skel "$INCLUDEDIR"/etc/
 	cp ./common/asound.conf "$INCLUDEDIR"/etc/
 	cp ./common/grub "$INCLUDEDIR"/etc/default/
+	cp ./common/.auto.sh "$INCLUDEDIR"/etc/skel/
 	cp ./common/.gtkrc-2.0 "$INCLUDEDIR"/etc/skel/
 	cp ./common/.bashrc "$INCLUDEDIR"/etc/skel/
 	cp ./common/.Xresources "$INCLUDEDIR"/etc/skel/
@@ -412,7 +415,7 @@ build_variant() {
 		fabric)
 			COMMON=yes
 			FABRIC=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty awww cinnamon-desktop cliphist cmake fabric gcc gobject-introspection grim gtk-layer-shell gtk-session-lock libdbusmenu-gtk3 mate-polkit nwg-look pkg-config python3-cairo-devel python3-pam python3-psutil qt5-wayland qt6-wayland swayfx swaybg swayidle swayimg SwayNotificationCenter wlsunset wmenu xorg-server-xwayland xwayland-satellite"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty awww cinnamon-desktop cliphist cmake fabric gcc gobject-introspection grim gtk-layer-shell gtk-session-lock libdbusmenu-gtk3 mate-polkit nwg-look pkg-config python3-cairo-devel python3-pam python3-psutil qt5-wayland qt6-wayland swayfx swaybg swayidle swayimg wlsunset wmenu xorg-server-xwayland xwayland-satellite"
 			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
 		;;
 		fluxbox)
