@@ -48,7 +48,7 @@ hl.on("hyprland.start", function ()
 	hl.exec_cmd("~/.config/quickshell/wallpaper/apply-saved-wallpaper.sh")
 	hl.exec_cmd("hyprpaper")
 	hl.exec_cmd("hyprsunset")
-	hl.exec_cmd("/usr/libexec/hyprpolkitagent")
+	hl.exec_cmd("/usr/libexec/polkit-mate-authentication-agent-1")
 	hl.exec_cmd("~/./.auto.sh")
 end)
 

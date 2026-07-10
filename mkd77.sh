@@ -441,7 +441,7 @@ build_variant() {
 		;;
 		hyprland)
 			COMMON=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty cliphist hyprland hyprland-guiutils hypridle hyprpaper hyprpolkitagent hyprsunset hyprutils network-manager-applet nwg-look nwg-launchers pavucontrol qsd77 qt5-wayland qt6-wayland quickshell SwayNotificationCenter wayland-devel wayland-protocols wireless_tools xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-hyprland xorg-server-xwayland xwayland-satellite"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty cliphist hyprland hyprland-guiutils hypridle hyprpaper hyprsunset hyprutils mate-polkit network-manager-applet nwg-look nwg-launchers pavucontrol qsd77 qt5-wayland qt6-wayland quickshell SwayNotificationCenter wayland-devel wayland-protocols wireless_tools xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-hyprland xorg-server-xwayland xwayland-satellite"
 			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
 		;;
 		hypr-dms)

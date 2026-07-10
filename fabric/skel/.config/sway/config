@@ -248,7 +248,7 @@ for_window [app_id="nmtui-float"] floating enable
 # Special key to take a screenshot with grim
 bindsym Print exec grim
 
-exec /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
+exec /usr/libexec/polkit-mate-authentication-agent-1 &
 exec wlsunset -l 41.6 -L -8.62 -T 6500 -t 4000 &
 exec udiskie -a &
 exec dunst &
