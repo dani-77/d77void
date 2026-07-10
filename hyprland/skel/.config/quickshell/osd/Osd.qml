@@ -393,7 +393,7 @@ Scope {
                     // ── Numeric value / label ───────────
                     Text {
                         Layout.alignment: Qt.AlignVCenter
-                        Layout.preferredWidth: root.mode === "power" ? 100 : 38
+                        Layout.preferredWidth: root.mode === "power" ? 100 : 46
                         horizontalAlignment: Text.AlignRight
                         font.family: root.font
                         font.pixelSize: root.fsize
