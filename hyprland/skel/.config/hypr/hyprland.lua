@@ -265,6 +265,7 @@ local closeWindowBind = hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 
 -- Quickshell d77
 hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("qsd77 launcher"))
+hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("qsd77 dashboard"))
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("qsd77 locker"))
 hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("qsd77 session"))
 hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd("qsd77 wallpaper"))
