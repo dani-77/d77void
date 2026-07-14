@@ -1,0 +1,11 @@
+# Example /etc/greetd/config.toml for the quickshell-d77 greeter.
+#
+# Adjust `vt` to whichever VT your system boots to (1 is typical), and
+# make sure the wrapper script below has been deployed and is executable.
+
+[terminal]
+vt = 1
+
+[default_session]
+user = "greeter"
+command = "/etc/greetd/quickshell-d77/greet-dwl.sh"

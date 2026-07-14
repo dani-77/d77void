@@ -140,6 +140,26 @@ include_fabric() {
 	cp ./common/fabric-d77/bin/fabric-d77-signal "$INCLUDEDIR"/usr/bin/
 }
 
+include_greetd() {
+	PKGS="$PKGS dwl greetd quickshell"
+	mkdir -p "$INCLUDEDIR"/etc/greetd/quickshell-d77/greeter
+	cp -r ./common/quickshell-d77/greeter/. "$INCLUDEDIR"/etc/greetd/quickshell-d77/greeter/
+	cp ./common/quickshell-d77/greeter/assets/greet-dwl.sh "$INCLUDEDIR"/etc/greetd/
+	cp ./common/quickshell-d77/greeter/config.toml "$INCLUDEDIR"/etc/greetd/
+	SERVICES="$SERVICES greetd"
+}
+
+include_sddm() {
+	PKGS="$PKGS sddm"
+	mkdir -p "$INCLUDEDIR"/etc/sddm.conf.d
+	mkdir -p "$INCLUDEDIR"/usr/share/sddm/faces
+	mkdir -p "$INCLUDEDIR"/usr/share/sddm/themes
+	cp ./common/sddm.conf "$INCLUDEDIR"/etc/sddm.conf.d/
+	cp ./common/anon.face.icon "$INCLUDEDIR"/usr/share/sddm/faces/
+	cp -r ./common/slice "$INCLUDEDIR"/usr/share/sddm/themes/
+	SERVICES="$SERVICES sddm"
+}
+
 include_plymouth() {
 	mkdir -p "$INCLUDEDIR"/etc/dracut.conf.d
 	mkdir -p "$INCLUDEDIR"/etc/kernel.d/post-install
@@ -190,13 +210,7 @@ _include_base() {
 
 include_common() {
 	_include_base
-	mkdir -p "$INCLUDEDIR"/etc/sddm.conf.d
-	mkdir -p "$INCLUDEDIR"/usr/share/sddm/faces
-	mkdir -p "$INCLUDEDIR"/usr/share/sddm/themes
-	cp ./common/sddm.conf "$INCLUDEDIR"/etc/sddm.conf.d/
-	cp ./common/anon.face.icon "$INCLUDEDIR"/usr/share/sddm/faces/
 	cp -r ./common/Wallpaper "$INCLUDEDIR"/etc/skel/
-	cp -r ./common/slice "$INCLUDEDIR"/usr/share/sddm/themes/
 	cp -r ./common/Wallpaper "$INCLUDEDIR"/usr/share/
 }
 
@@ -239,15 +253,10 @@ include_niri() {
 
 include_plasma() {
 	_include_base
-	mkdir -p "$INCLUDEDIR"/etc/sddm.conf.d
+	include_sddm
 	mkdir -p "$INCLUDEDIR"/usr/share/backgrounds
-	mkdir -p "$INCLUDEDIR"/usr/share/sddm/faces
-	mkdir -p "$INCLUDEDIR"/usr/share/sddm/themes
 	cp -r ./common/gnome-shell "$INCLUDEDIR"/etc/skel/.local/share/
 	cp -r ./common/dconf "$INCLUDEDIR"/etc/
-	cp ./common/anon.face.icon "$INCLUDEDIR"/usr/share/sddm/faces/
-	cp ./common/sddm.conf "$INCLUDEDIR"/etc/sddm.conf.d/
-	cp -r ./common/slice "$INCLUDEDIR"/usr/share/sddm/themes/
 	cp -r ./common/Wallpaper "$INCLUDEDIR"/usr/share/backgrounds/
 }
 
@@ -324,16 +333,18 @@ build_variant() {
 			[ -n "$NC" ] && WANT_INSTALLER=yes
 			TARGET_ARCH="$ARCH"
 			if [ -n "$MUSL" ]; then
-				D77_CORE="acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc firefox brightnessctl ca-certificates cmus cups cups-browsed curl elogind ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-hack-ttf font-iosevka geary gettext git gmrun htop inxi kvantum mousepad mpv musl-locales nano NetworkManager nerd-fonts-symbols-ttf nwg-look octoxbps papirus-icon-theme pcmanfm plymouth polkit power-profiles-daemon qt5ct qt6ct qt5-graphicaleffects ranger sddm smartmontools system-config-printer tlp tlp-rdw transmission-qt udiskie ufw uget unzip usbutils util-linux vim wget xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
+				D77_CORE="acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc firefox brightnessctl ca-certificates cmus cups cups-browsed curl elogind ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-hack-ttf font-iosevka geary gettext git gmrun htop inxi kvantum mousepad mpv musl-locales nano NetworkManager nerd-fonts-symbols-ttf nwg-look octoxbps papirus-icon-theme pcmanfm plymouth polkit power-profiles-daemon qt5ct qt6ct qt5-graphicaleffects ranger smartmontools system-config-printer tlp tlp-rdw transmission-qt udiskie ufw uget unzip usbutils util-linux vim wget xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
 				D77_GNOME="acpi apulse alsa-pipewire alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brightnessctl ca-certificates cmus cups cups-browsed curl elogind ethtool feh ffmpeg font-hack-ttf geary gettext git htop inxi kvantum musl-locales nano NetworkManager neofetch nerd-fonts-symbols-ttf octoxbps papirus-icon-theme pipewire plymouth polkit power-profiles-daemon qt5ct qt6ct ranger smartmontools tlp tlp-rdw transmission-qt udiskie ufw uget unzip usbutils util-linux vim $REPO_PKGS wget wireplumber xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
-				D77_WAYFIRE="acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc firefox brightnessctl ca-certificates cmus cups cups-browsed curl dunst elogind ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-awesome7 font-hack-ttf geary gettext git gmrun htop inxi kitty kvantum mousepad mpv musl-locales nano NetworkManager nerd-fonts-symbols-ttf nwg-look octoxbps papirus-icon-theme pcmanfm plymouth polkit power-profiles-daemon qt5ct qt6ct qt5-graphicaleffects ranger sddm smartmontools system-config-printer tlp tlp-rdw transmission-gtk udiskie ufw uget unzip usbutils util-linux vim $REPO_PKGS wget xdg-desktop-portal xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf xterm yt-dlp zathura zathura-pdf-poppler"
+				D77_WAYFIRE="acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc firefox brightnessctl ca-certificates cmus cups cups-browsed curl dunst elogind ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-awesome7 font-hack-ttf geary gettext git gmrun htop inxi kitty kvantum mousepad mpv musl-locales nano NetworkManager nerd-fonts-symbols-ttf nwg-look octoxbps papirus-icon-theme pcmanfm plymouth polkit power-profiles-daemon qt5ct qt6ct qt5-graphicaleffects ranger smartmontools system-config-printer tlp tlp-rdw transmission-gtk udiskie ufw uget unzip usbutils util-linux vim $REPO_PKGS wget xdg-desktop-portal xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf xterm yt-dlp zathura zathura-pdf-poppler"
 			else
-				D77_CORE="acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brave-bin brightnessctl ca-certificates cmus cups cups-browsed curl elogind ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-awesome7 font-hack-ttf font-iosevka geary gettext git gmrun htop inxi kvantum mousepad mpv nano NetworkManager nerd-fonts-symbols-ttf nwg-look octoxbps papirus-icon-theme pcmanfm plymouth polkit power-profiles-daemon qt5ct qt6ct qt5-graphicaleffects ranger sddm smartmontools system-config-printer tlp tlp-rdw transmission-qt udiskie ufw uget unzip usbutils util-linux vim $REPO_PKGS wget xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
+				D77_CORE="acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brave-bin brightnessctl ca-certificates cmus cups cups-browsed curl elogind ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-awesome7 font-hack-ttf font-iosevka geary gettext git gmrun htop inxi kvantum mousepad mpv nano NetworkManager nerd-fonts-symbols-ttf nwg-look octoxbps papirus-icon-theme pcmanfm plymouth polkit power-profiles-daemon qt5ct qt6ct qt5-graphicaleffects ranger smartmontools system-config-printer tlp tlp-rdw transmission-qt udiskie ufw uget unzip usbutils util-linux vim $REPO_PKGS wget xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
 				D77_GNOME="acpi apulse alsa-pipewire alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brightnessctl ca-certificates cmus cups cups-browsed curl elogind ethtool feh ffmpeg font-hack-ttf geary gettext git htop inxi kvantum nano NetworkManager neofetch nerd-fonts-symbols-ttf octoxbps papirus-icon-theme pipewire plymouth polkit power-profiles-daemon qt5ct qt6ct ranger smartmontools tlp tlp-rdw transmission-qt udiskie ufw uget unzip usbutils util-linux vim $REPO_PKGS wget wireplumber xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
-				D77_WAYFIRE="acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brave-bin brightnessctl ca-certificates cmus cups cups-browsed curl dunst elogind ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-awesome7 font-hack-ttf geary gettext git gmrun htop inxi kitty kvantum mousepad mpv nano NetworkManager nerd-fonts-symbols-ttf nwg-look octoxbps papirus-icon-theme pcmanfm plymouth polkit power-profiles-daemon qt5ct qt6ct qt5-graphicaleffects ranger sddm smartmontools system-config-printer tlp tlp-rdw transmission-gtk udiskie ufw uget unzip usbutils util-linux vim $REPO_PKGS wget xdg-desktop-portal xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf xterm yt-dlp zathura zathura-pdf-poppler"
+				D77_WAYFIRE="acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brave-bin brightnessctl ca-certificates cmus cups cups-browsed curl dunst elogind ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-awesome7 font-hack-ttf geary gettext git gmrun htop inxi kitty kvantum mousepad mpv nano NetworkManager nerd-fonts-symbols-ttf nwg-look octoxbps papirus-icon-theme pcmanfm plymouth polkit power-profiles-daemon qt5ct qt6ct qt5-graphicaleffects ranger smartmontools system-config-printer tlp tlp-rdw transmission-gtk udiskie ufw uget unzip usbutils util-linux vim $REPO_PKGS wget xdg-desktop-portal xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf xterm yt-dlp zathura zathura-pdf-poppler"
 			fi
 			D77_EXTRA="abook automake calcurse cargo epson-inkjet-printer-escpr gcc isync make ncspot nextcloud-client neomutt pass pcsc-ccid pcsc-tools pcsclite python3-pip rust"
 			COMMON=
+			GREETD=
+			SDDM=
 			FABRIC=
 			GNOME=
 			PLASMA=
@@ -386,45 +397,51 @@ build_variant() {
 		awesome)
 			COMMON=yes
 			X11=yes
+			SDDM=yes
 			ROFI=yes
 			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES awesome awesome-appmenu wireless_tools"
-			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+			SERVICES="$SERVICES dbus elogind NetworkManager polkitd power-profiles-daemon"
 		;;
 		bspwm)
 			COMMON=yes
 			X11=yes
+			SDDM=yes
 			POLY=yes
 			DMENU=yes
 			ROFI=yes
 			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES bspwm bspwmbar sxhkd"
-			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+			SERVICES="$SERVICES dbus elogind NetworkManager polkitd power-profiles-daemon"
 		;;
 		cosmic)
 			COMMON=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_GNOME $CALAMARES $BROWSER cliphist cosmic-desktop-full gnome-keyring qt5-graphicaleffects qt5-wayland qt6-wayland sddm xarchiver xdg-desktop-portal-cosmic"
-			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+			GREETD=yes
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_GNOME $CALAMARES $BROWSER cliphist cosmic-desktop-full gnome-keyring qt5-graphicaleffects qt5-wayland qt6-wayland xarchiver xdg-desktop-portal-cosmic"
+			SERVICES="$SERVICES dbus elogind NetworkManager polkitd power-profiles-daemon"
 		;;
 		dwm)
 			COMMON=yes
 			X11=yes
+			SDDM=yes
 			DMENU=yes
 			ROFI=yes
 			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES dwm slstatus sxhkd"
-			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+			SERVICES="$SERVICES dbus elogind NetworkManager polkitd power-profiles-daemon"
 		;;
 		fabric)
 			COMMON=yes
+			GREETD=yes
 			FABRIC=yes
 			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty awww cinnamon-desktop cliphist cmake fabric gcc gobject-introspection grim gtk-layer-shell gtk-session-lock libdbusmenu-gtk3 mate-polkit nwg-look pkg-config python3-cairo-devel python3-pam python3-psutil qt5-wayland qt6-wayland swayfx swaybg swayidle swayimg wlsunset wmenu xorg-server-xwayland xwayland-satellite"
-			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+			SERVICES="$SERVICES dbus elogind NetworkManager polkitd power-profiles-daemon"
 		;;
 		fluxbox)
 			COMMON=yes
 			BOX=yes
 			X11=yes
+			SDDM=yes
 			ROFI=yes
 			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES fluxbox menumaker"
-			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+			SERVICES="$SERVICES dbus elogind NetworkManager polkitd power-profiles-daemon"
 		;;
 		gnome)
 			GNOME=yes
@@ -435,162 +452,186 @@ build_variant() {
 			COMMON=yes
 			POLY=yes
 			X11=yes
+			SDDM=yes
 			ROFI=yes
 			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES herbstluftwm jgmenu"
-			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+			SERVICES="$SERVICES dbus elogind NetworkManager polkitd power-profiles-daemon"
 		;;
 		hyprland)
 			COMMON=yes
+			GREETD=yes
 			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty cliphist hyprland hyprland-guiutils hypridle hyprpaper hyprpolkitagent hyprsunset hyprutils network-manager-applet nwg-look nwg-launchers pavucontrol qsd77 qt5-wayland qt6-wayland quickshell SwayNotificationCenter wayland-devel wayland-protocols wireless_tools xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-hyprland xorg-server-xwayland xwayland-satellite"
-			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+			SERVICES="$SERVICES dbus elogind NetworkManager polkitd power-profiles-daemon"
 		;;
 		hypr-dms)
 			COMMON=yes
+			GREETD=yes
 			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist dms dgop hyprland hyprland-guiutils hyprpaper kitty mate-polkit matugen pavucontrol qt5-wayland qt6-multimedia qt6-wayland quickshell upower xwayland-satellite wayland-devel wayland-protocols wlsunset xdg-desktop-portal-hyprland xorg-server-xwayland"
-			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+			SERVICES="$SERVICES dbus elogind NetworkManager polkitd power-profiles-daemon"
 		;;
 		hypr-noctalia)
 			COMMON=yes
+			GREETD=yes
 			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist gpu-screen-recorder hyprland hyprland-guiutils hyprpaper intel-media-driver kitty libva-intel-driver mate-polkit matugen noctalia-cli noctalia-qs noctalia-shell pavucontrol qt5-wayland qt6-multimedia qt6-wayland xwayland-satellite wayland-devel wayland-protocols wlsunset xdg-desktop-portal-hyprland xorg-server-xwayland"
-			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+			SERVICES="$SERVICES dbus elogind NetworkManager polkitd power-profiles-daemon"
 		;;
 		i3wm)
 			COMMON=yes
 			X11=yes
+			SDDM=yes
 			ROFI=yes
 			DMENU=yes
 			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES i3-gaps i3lock i3status"
-			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+			SERVICES="$SERVICES dbus elogind NetworkManager polkitd power-profiles-daemon"
 		;;
 		jwm)
 			COMMON=yes
 			X11=yes
+			SDDM=yes
 			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES cbatticon conky jq jwm network-manager-applet redshift-gtk volumeicon xdgmenumaker"
-			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+			SERVICES="$SERVICES dbus elogind NetworkManager polkitd power-profiles-daemon"
 		;;
 		labwc)
 			COMMON=yes
+			GREETD=yes
 			WAY=yes
 			FUZZEL=yes
 			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES grim ImageMagick kitty labwc labwc-menu-generator labwc-tweaks-qt qt5-wayland qt6-wayland swaybg swayidle swayimg swaylock"
-			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+			SERVICES="$SERVICES dbus elogind NetworkManager polkitd power-profiles-daemon"
 		;;
 		leftwm)
 			COMMON=yes
 			X11=yes
+			SDDM=yes
 			DMENU=yes
 			ROFI=yes
 			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES eww kitty leftwm leftwm-theme polybar wmctrl"
-			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+			SERVICES="$SERVICES dbus elogind NetworkManager polkitd power-profiles-daemon"
 		;;
 		lxqt)
 			COMMON=yes
+			SDDM=yes
 			LXQT=yes
-			PKGS="$PKGS $XORG_PKGS $CALAMARES acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc $BROWSER brightnessctl ca-certificates cmus cups cups-browsed curl dunst elogind epson-inkjet-printer-escpr ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-hack-ttf geary gettext git github-cli gvfs-afc gvfs-mtp gvfs-smb htop inxi kvantum lxqt mpv nano NetworkManager network-manager-applet nerd-fonts-symbols-ttf nextcloud-client octoxbps papirus-icon-theme plymouth polkit power-profiles-daemon qt5-graphicaleffects qt5ct qt6ct ranger redshift redshift-gtk scrot sddm slock smartmontools system-config-printer tlp tlp-rdw transmission-gtk udisks2 ueberzug ufw uget unzip usbutils util-linux vim $REPO_PKGS xautolock xcompmgr wget xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
-			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+			PKGS="$PKGS $XORG_PKGS $CALAMARES acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc $BROWSER brightnessctl ca-certificates cmus cups cups-browsed curl dunst elogind epson-inkjet-printer-escpr ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-hack-ttf geary gettext git github-cli gvfs-afc gvfs-mtp gvfs-smb htop inxi kvantum lxqt mpv nano NetworkManager network-manager-applet nerd-fonts-symbols-ttf nextcloud-client octoxbps papirus-icon-theme plymouth polkit power-profiles-daemon qt5-graphicaleffects qt5ct qt6ct ranger redshift redshift-gtk scrot slock smartmontools system-config-printer tlp tlp-rdw transmission-gtk udisks2 ueberzug ufw uget unzip usbutils util-linux vim $REPO_PKGS xautolock xcompmgr wget xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
+			SERVICES="$SERVICES dbus elogind NetworkManager polkitd power-profiles-daemon"
 		;;
 		mango)
 			COMMON=yes
+			GREETD=yes
 			WAY=yes
 			FUZZEL=yes
 			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist ImageMagick kitty mangowc mate-polkit qt5-wayland qt6-wayland swaybg wayland-devel wayland-protocols xdg-desktop-portal-wlr"
-			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+			SERVICES="$SERVICES dbus elogind NetworkManager polkitd power-profiles-daemon"
 		;;
 		mango-dms)
 			COMMON=yes
+			GREETD=yes
 			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist dms dgop ImageMagick kitty mangowc mate-polkit matugen qt5-wayland qt6-wayland quickshell wayland-devel wayland-protocols xdg-desktop-portal-wlr"
-			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+			SERVICES="$SERVICES dbus elogind NetworkManager polkitd power-profiles-daemon"
 		;;
 		mango-noctalia)
 			COMMON=yes
+			GREETD=yes
 			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist ImageMagick kitty mangowc mate-polkit matugen noctalia-shell qt5-wayland qt6-wayland wayland-devel wayland-protocols xdg-desktop-portal-wlr"
-			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+			SERVICES="$SERVICES dbus elogind NetworkManager polkitd power-profiles-daemon"
 		;;
 		niri)
 			COMMON=yes
+			GREETD=yes
 			WAY=yes
 			NIRI=yes
 			FUZZEL=yes
 			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES gnome-keyring grim ImageMagick kitty niri qt5-wayland qt6-wayland swaybg swayidle swayimg swaylock swww xdg-desktop-portal-gnome xdg-desktop-portal-gtk"
-			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+			SERVICES="$SERVICES dbus elogind NetworkManager polkitd power-profiles-daemon"
 		;;
 		niri-dms)
 			COMMON=yes
+			GREETD=yes
 			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist dms dgop gnome-keyring grim ImageMagick kitty mate-polkit matugen niri pavucontrol qt5-wayland qt6-multimedia qt6-wayland quickshell swaybg swayidle swayimg SwayNotificationCenter upower wayland-devel wayland-protocols wlsunset xdg-desktop-portal-gnome xdg-desktop-portal-gtk xorg-server-xwayland xwayland-satellite"
-			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+			SERVICES="$SERVICES dbus elogind NetworkManager polkitd power-profiles-daemon"
 		;;
 		niri-noctalia)
 			COMMON=yes
+			GREETD=yes
 			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist gnome-keyring grim ImageMagick kitty mate-polkit matugen niri noctalia-shell pavucontrol qt5-wayland qt6-multimedia qt6-wayland quickshell swaybg swayidle swayimg SwayNotificationCenter upower wayland-devel wayland-protocols wlsunset xdg-desktop-portal-gnome xdg-desktop-portal-gtk xorg-server-xwayland xwayland-satellite"
-			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+			SERVICES="$SERVICES dbus elogind NetworkManager polkitd power-profiles-daemon"
 		;;
 		openbox)
 			COMMON=yes
 			BOX=yes
 			X11=yes
+			SDDM=yes
 			ROFI=yes
 			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES lxappearance-obconf obconf obmenu-generator openbox perl-File-DesktopEntry sxhkd tint2 tint2conf"
-			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+			SERVICES="$SERVICES dbus elogind NetworkManager polkitd power-profiles-daemon"
 		;;
 		plasma)
 			PLASMA=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_GNOME $CALAMARES ark kde5 kde5-baseapps kmail $PLASMA_BROWSER qt5-graphicaleffects sddm yakuake"
-			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_GNOME $CALAMARES ark kde5 kde5-baseapps kmail $PLASMA_BROWSER qt5-graphicaleffects yakuake"
+			SERVICES="$SERVICES dbus elogind NetworkManager polkitd power-profiles-daemon"
 		;;
 		pwm)
 			COMMON=yes
 			X11=yes
-			PKGS="$PKGS $XORG_PKGS $CALAMARES acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brightnessctl ca-certificates cmus conky cups cups-browsed curl dmenu elogind ethtool feh font-hack-ttf font-iosevka fresh-editor gettext git gmrun htop inxi joshuto kvantum mpv neofetch nerd-fonts-symbols-ttf NetworkManager nwg-look octoxbps papirus-icon-theme pcmanfm plymouth polkit power-profiles-daemon pwm qt5ct qt6ct qt5-graphicaleffects qutebrowser rofi sddm smartmontools sxhkd system-config-printer tlp tlp-rdw transmission-qt udiskie ufw uget unzip usbutils util-linux vim $REPO_PKGS wget xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
-			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+			SDDM=yes
+			PKGS="$PKGS $XORG_PKGS $CALAMARES acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brightnessctl ca-certificates cmus conky cups cups-browsed curl dmenu elogind ethtool feh font-hack-ttf font-iosevka fresh-editor gettext git gmrun htop inxi joshuto kvantum mpv neofetch nerd-fonts-symbols-ttf NetworkManager nwg-look octoxbps papirus-icon-theme pcmanfm plymouth polkit power-profiles-daemon pwm qt5ct qt6ct qt5-graphicaleffects qutebrowser rofi smartmontools sxhkd system-config-printer tlp tlp-rdw transmission-qt udiskie ufw uget unzip usbutils util-linux vim $REPO_PKGS wget xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
+			SERVICES="$SERVICES dbus elogind NetworkManager polkitd power-profiles-daemon"
 		;;
 		qtile)
 			COMMON=yes
 			X11=yes
+			SDDM=yes
 			FUZZEL=yes
 			ROFI=yes
 			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist grim ImageMagick jgmenu kitty nwg-launchers python3-aiohttp python3-psutil python3-qtile-extras qt5-wayland qt6-wayland qtile qtile-wayland swayidle swaylock xorg-server-xwayland xterm wlroots wlsunset xwayland-satellite"
-			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+			SERVICES="$SERVICES dbus elogind NetworkManager polkitd power-profiles-daemon"
 		;;
 		river)
 			COMMON=yes
+			GREETD=yes
 			RIVER=yes
 			WAY=yes
 			FUZZEL=yes
 			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES grim ImageMagick kitty qt5-wayland qt6-wayland river river-bedload river-shifttags swaybg swayidle swayimg swaylock"
-			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+			SERVICES="$SERVICES dbus elogind NetworkManager polkitd power-profiles-daemon"
 		;;
 		scroll)
 			COMMON=yes
+			GREETD=yes
 			FUZZEL=yes
 			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist gnome-keyring grim ImageMagick kitty nwg-look nwg-launchers pavucontrol polkit-gnome qt5-wayland qt6-wayland scroll swaybg swayidle swayimg swaylock SwayNotificationCenter wayle wlsunset wmenu xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-wlr xorg-server-xwayland xwayland-satellite"
-			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+			SERVICES="$SERVICES dbus elogind NetworkManager polkitd power-profiles-daemon"
 		;;
 		somewm)
 			COMMON=yes
+			GREETD=yes
 			NIRI=yes
 			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES alacritty awesome-appmenu dunst fuzzel nwg-look somewm swayidle swaylock xorg-server-xwayland xterm xwayland-satellite wireless_tools wlsunset"
-			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+			SERVICES="$SERVICES dbus elogind NetworkManager polkitd power-profiles-daemon"
 		;;
 		sway)
 			COMMON=yes
+			GREETD=yes
 			FUZZEL=yes
 			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist grim ImageMagick kitty nwg-look nwg-launchers pavucontrol qt5-wayland qt6-wayland swayfx swaybg swayidle swayimg swaylock SwayNotificationCenter wlsunset wmenu xorg-server-xwayland xwayland-satellite"
-			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+			SERVICES="$SERVICES dbus elogind NetworkManager polkitd power-profiles-daemon"
 		;;
 		wayfire)
 			COMMON=yes
+			GREETD=yes
 			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_WAYFIRE $CALAMARES cliphist grim ImageMagick pavucontrol qt5-wayland qt6-wayland swaybg swayidle swayimg swaylock wayfire wayfire-plugins-extra wcm wf-shell wlr-randr wlogout"
-			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+			SERVICES="$SERVICES dbus elogind NetworkManager polkitd power-profiles-daemon"
 		;;
 		wmd77)
 			COMMON=yes
 			X11=yes
-			PKGS="$PKGS $XORG_PKGS $CALAMARES acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brightnessctl ca-certificates cmus conky cups cups-browsed curl dmenu elogind ethtool feh font-hack-ttf font-iosevka fresh-editor gettext git gmrun htop inxi joshuto kvantum mpv neofetch nerd-fonts-symbols-ttf NetworkManager nwg-look octoxbps papirus-icon-theme pcmanfm plymouth polkit power-profiles-daemon qt5ct qt6ct qt5-graphicaleffects qutebrowser rofi sddm smartmontools sxhkd system-config-printer tlp tlp-rdw transmission-qt udiskie ufw uget unzip usbutils util-linux vim $REPO_PKGS wget wmd77 xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
-			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
+			SDDM=yes
+			PKGS="$PKGS $XORG_PKGS $CALAMARES acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brightnessctl ca-certificates cmus conky cups cups-browsed curl dmenu elogind ethtool feh font-hack-ttf font-iosevka fresh-editor gettext git gmrun htop inxi joshuto kvantum mpv neofetch nerd-fonts-symbols-ttf NetworkManager nwg-look octoxbps papirus-icon-theme pcmanfm plymouth polkit power-profiles-daemon qt5ct qt6ct qt5-graphicaleffects qutebrowser rofi smartmontools sxhkd system-config-printer tlp tlp-rdw transmission-qt udiskie ufw uget unzip usbutils util-linux vim $REPO_PKGS wget wmd77 xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
+			SERVICES="$SERVICES dbus elogind NetworkManager polkitd power-profiles-daemon"
 		;;
 		xfce)
 			XFCE=yes
-			PKGS="$PKGS $XORG_PKGS $CALAMARES acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc $BROWSER brightnessctl ca-certificates cmus cups cups-browsed curl dunst elogind epson-inkjet-printer-escpr ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-hack-ttf geary gettext git github-cli gvfs-afc gvfs-mtp gvfs-smb htop inxi kvantum mpv mugshot nano NetworkManager network-manager-applet nerd-fonts-symbols-ttf octoxbps papirus-icon-theme polkit power-profiles-daemon qt5-graphicaleffects qt5ct qt6ct ranger redshift redshift-gtk sddm scrot slock smartmontools system-config-printer tlp tlp-rdw transmission-gtk udisks2 ueberzug ufw uget unzip usbutils util-linux vim $REPO_PKGS wget xautolock xcompmgr xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xfce4 xfce4-pulseaudio-plugin xfce4-weather-plugin xfce4-whiskermenu-plugin xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
+			PKGS="$PKGS $XORG_PKGS $CALAMARES acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc $BROWSER brightnessctl ca-certificates cmus cups cups-browsed curl dunst elogind epson-inkjet-printer-escpr ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-hack-ttf geary gettext git github-cli gvfs-afc gvfs-mtp gvfs-smb htop inxi kvantum mpv mugshot nano NetworkManager network-manager-applet nerd-fonts-symbols-ttf octoxbps papirus-icon-theme plymouth polkit power-profiles-daemon qt5-graphicaleffects qt5ct qt6ct ranger redshift redshift-gtk sddm scrot slock smartmontools system-config-printer tlp tlp-rdw transmission-gtk udisks2 ueberzug ufw uget unzip usbutils util-linux vim $REPO_PKGS wget xautolock xcompmgr xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xfce4 xfce4-pulseaudio-plugin xfce4-weather-plugin xfce4-whiskermenu-plugin xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
 			SERVICES="$SERVICES dbus elogind sddm NetworkManager polkitd power-profiles-daemon"
 		;;
 		*)
@@ -610,6 +651,8 @@ EOF
 
 	[ "$BOX" = yes ]     && include_box
 	[ "$COMMON" = yes ]  && include_common
+	[ "$GREETD" = yes ]  && include_greetd
+	[ "$SDDM" = yes ]    && include_sddm
 	[ "$DMENU" = yes ]   && include_dmenu
 	[ "$FABRIC" = yes ]  && include_fabric
 	[ "$FUZZEL" = yes ]  && include_fuzzel
