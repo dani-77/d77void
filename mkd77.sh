@@ -406,10 +406,9 @@ build_variant() {
 			COMMON=yes
 			X11=yes
 			SDDM=yes
-			POLY=yes
 			DMENU=yes
 			ROFI=yes
-			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES bspwm bspwmbar sxhkd"
+			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES bspwm bspwmbar cbatticon network-manager-applet redshift-gtk sxhkd volumeicon"
 			SERVICES="$SERVICES dbus elogind NetworkManager polkitd power-profiles-daemon"
 		;;
 		cosmic)

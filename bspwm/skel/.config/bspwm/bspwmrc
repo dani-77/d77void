@@ -7,7 +7,8 @@ redshift-gtk &
 feh --bg-scale ~/Wallpaper/background3.png &
 xautolock -time 5 -locker slock &
 nm-applet &
-volumeicon &
+#volumeicon &
+cbatticon &
 octoxbps-notifier &
 udiskie -at &
 synclient TapButton1=1 &
