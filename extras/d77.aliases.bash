@@ -16,6 +16,7 @@ function _set_pkg_aliases() {
 		alias sigpkg='xbps-rindex --sign-pkg --privkey privkey.pem hostdir/binpkgs/*.xbps'
 		alias srcbuild='./xbps-src pkg'
 		alias muslsrcbuild='./xbps-src pkg -A x86_64-musl'
+		alias muslindex='XBPS_TARGET_ARCH=x86_64-musl xbps-rindex'
 
 		alias klist='vkpurge list'
 		alias krem='sudo vkpurge rm'
