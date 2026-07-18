@@ -1,7 +1,9 @@
 # ══════════════════════════════════════════════════════
-# Serviço de estado do wallpaper (singleton) do quickshell-d77
+# Módulo greeter do quickshell-d77
 # ══════════════════════════════════════════════════════
-module Services
+module greeter
 
-singleton WallpaperState 1.0 WallpaperState.qml
-singleton CmusControl    1.0 CmusControl.qml
+singleton GreeterState 1.0 GreeterState.qml
+GreeterBackdrop         1.0 GreeterBackdrop.qml
+GreeterSurface          1.0 GreeterSurface.qml
+Greeter                 1.0 Greeter.qml

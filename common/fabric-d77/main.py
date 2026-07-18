@@ -13,6 +13,7 @@ from session_menu import SessionMenu
 from osd import OSD
 from wallpaper_selector import WallpaperSelector
 from dashboard import InfoDashboard
+from music_picker import MusicPicker
 from backdrop import Backdrop
 from lockscreen import LockScreen
 
@@ -98,11 +99,14 @@ if __name__ == "__main__":
     # amixer/brightnessctl.
     osd = OSD()
 
-    dashboard = InfoDashboard(on_lock=lockscreen.lock)
+    music_picker = MusicPicker()
+    music_picker.set_visible(False)
+
+    dashboard = InfoDashboard(on_lock=lockscreen.lock, on_open_music_picker=music_picker.toggle)
     dashboard.set_visible(False)
 
     bar = MainStatusBar(launcher_window=launcher, session_menu=session_menu, wallpaper_selector=wallpaper_selector, osd=osd)
-    app = Application("d77-shell", bar, launcher, session_menu, osd, wallpaper_selector, dashboard, backdrop)
+    app = Application("d77-shell", bar, launcher, session_menu, osd, wallpaper_selector, dashboard, backdrop, music_picker)
 
     signal.signal(signal.SIGUSR1, lambda signum, frame: bar.toggle_launcher())
     signal.signal(signal.SIGUSR2, lambda signum, frame: bar.popup_power_menu())

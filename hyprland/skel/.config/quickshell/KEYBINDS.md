@@ -1,5 +1,9 @@
 # Keybinds (Hyprland) — quickshell-d77
 
+> This guide is **Hyprland-only**. For Sway, see the "Window Manager keybinds"
+> and "OSD keybinds" sections in the main [`README.md`](README.md) — they
+> cover the full Sway setup, there is no separate Sway keybinds doc.
+
 This document explains how to trigger the **launcher**, the **session menu** and the
 **lockscreen** of quickshell-d77 from Hyprland keybinds (tested with **Hyprland
 0.46+**), both in the native format (`hyprland.conf` / hyprlang) and in

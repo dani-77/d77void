@@ -1,7 +1,6 @@
 # ══════════════════════════════════════════════════════
-# Serviço de estado do wallpaper (singleton) do quickshell-d77
+# Módulo musicpicker do quickshell-d77
 # ══════════════════════════════════════════════════════
-module Services
+module musicpicker
 
-singleton WallpaperState 1.0 WallpaperState.qml
-singleton CmusControl    1.0 CmusControl.qml
+MusicPicker  1.0  MusicPicker.qml

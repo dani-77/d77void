@@ -1,7 +1,8 @@
 """Info Dashboard — fabric-d77.
 
 Centered overlay with system stats (CPU, RAM, temperature, disk),
-weather, cmus controls and a quick nmtui launcher.
+weather, cmus controls (incl. album skip + a music picker launcher) and a
+quick nmtui launcher.
 Triggered by SIGRTMIN+7 in main.py via dashboard.toggle().
 """
 
@@ -15,6 +16,10 @@ import psutil
 from gi.repository import GLib
 
 import session_actions
+from cmus_control import (
+    cmus_status, cmus_skip_album, cmus_prev, cmus_toggle, cmus_next,
+    start_cmus_headless,
+)
 from fabric.core.fabricator import Fabricator
 from fabric.widgets.box import Box
 from fabric.widgets.button import Button
@@ -53,57 +58,6 @@ def _fetch_weather_sync() -> str:
             return resp.read().decode("utf-8").strip()
     except Exception:
         return "weather unavailable"
-
-
-def _cmus_status() -> tuple[bool, str, str]:
-    """Returns (running, status, track)."""
-    try:
-        result = subprocess.run(
-            ["cmus-remote", "-Q"],
-            stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True,
-        )
-        if result.returncode != 0:
-            return False, "stopped", "—"
-        status = "stopped"
-        artist = title = ""
-        for line in result.stdout.splitlines():
-            if line.startswith("status "):
-                status = line.split(" ", 1)[1].strip()
-            elif line.startswith("tag artist "):
-                artist = line.split(" ", 2)[2].strip()
-            elif line.startswith("tag title "):
-                title = line.split(" ", 2)[2].strip()
-        track = f"{artist} — {title}" if artist and title else title or "—"
-        if len(track) > 42:
-            track = track[:40] + "…"
-        return True, status, track
-    except Exception:
-        return False, "stopped", "—"
-
-
-def _start_cmus_headless():
-    """Starts cmus in a detached tmux or screen session.
-
-    Kills any existing "cmus" session first (even orphaned ones) and passes
-    XDG_RUNTIME_DIR/HOME explicitly to cmus: a tmux server that survives a
-    logout/compositor switch keeps the environment it was originally launched
-    with, causing cmus to write its control socket to a path that the current
-    cmus-remote can no longer find.
-    """
-    env_prefix = (
-        f"XDG_RUNTIME_DIR={os.environ.get('XDG_RUNTIME_DIR', '')} "
-        f"HOME={os.environ.get('HOME', '')} "
-    )
-    script = (
-        "tmux kill-session -t cmus >/dev/null 2>&1; "
-        f'command -v tmux >/dev/null 2>&1 && {{ tmux new-session -d -s cmus "{env_prefix}cmus"; exit 0; }}; '
-        f'command -v screen >/dev/null 2>&1 && {{ screen -dmS cmus sh -c "{env_prefix}exec cmus"; exit 0; }}; '
-        "exit 1"
-    )
-    subprocess.Popen(
-        ["sh", "-c", script],
-        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
-    )
 
 
 def _get_net_status() -> tuple[str, str]:
@@ -182,7 +136,7 @@ def _stat_card(icon_name: str, value_label: Label, title: str) -> Box:
 class InfoDashboard(Window):
     """Quick-info panel triggered by SIGRTMIN+7."""
 
-    def __init__(self, on_lock=None, **kwargs):
+    def __init__(self, on_lock=None, on_open_music_picker=None, **kwargs):
         super().__init__(
             layer="overlay",
             anchor="top left",
@@ -261,14 +215,20 @@ class InfoDashboard(Window):
             icon_name="media-playback-start-symbolic", icon_size=32,
         )
 
-        def _cmus_btn(icon: str, cmd_args: list) -> Button:
+        def _cmus_btn(icon: str, action) -> Button:
             return Button(
                 name="dashboard-cmus-btn",
                 child=Image(icon_name=icon, icon_size=32),
-                on_clicked=lambda *_: subprocess.run(
-                    ["cmus-remote"] + cmd_args,
-                    stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
-                ),
+                on_clicked=lambda *_: action(),
+            )
+
+        def _cmus_album_btn(icon: str, direction: int) -> Button:
+            return Button(
+                name="dashboard-cmus-btn",
+                child=Image(icon_name=icon, icon_size=32),
+                on_clicked=lambda *_: threading.Thread(
+                    target=cmus_skip_album, args=(direction,), daemon=True
+                ).start(),
             )
 
         # State: cmus running — track + controls
@@ -283,16 +243,15 @@ class InfoDashboard(Window):
                     orientation="h",
                     spacing=2,
                     children=[
-                        _cmus_btn("media-skip-backward-symbolic", ["-r"]),
+                        _cmus_album_btn("media-seek-backward-symbolic", -1),
+                        _cmus_btn("media-skip-backward-symbolic", cmus_prev),
                         Button(
                             name="dashboard-cmus-btn",
                             child=self._playpause_icon,
-                            on_clicked=lambda *_: subprocess.run(
-                                ["cmus-remote", "-u"],
-                                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
-                            ),
+                            on_clicked=lambda *_: cmus_toggle(),
                         ),
-                        _cmus_btn("media-skip-forward-symbolic", ["-n"]),
+                        _cmus_btn("media-skip-forward-symbolic", cmus_next),
+                        _cmus_album_btn("media-seek-forward-symbolic", 1),
                     ],
                 ),
             ],
@@ -314,30 +273,43 @@ class InfoDashboard(Window):
                             Label(label="Start cmus", h_align="start"),
                         ],
                     ),
-                    on_clicked=lambda *_: _start_cmus_headless(),
+                    on_clicked=lambda *_: start_cmus_headless(),
                 ),
             ],
         )
 
-        _init_running, _, _ = _cmus_status()
+        _init_running, _, _ = cmus_status()
         self._cmus_controls_box.set_visible(_init_running)
         self._cmus_start_box.set_visible(not _init_running)
+
+        cmus_row_children = [
+            Image(name="dashboard-cmus-icon",
+                  icon_name="audio-x-generic-symbolic", icon_size=32),
+            self._cmus_controls_box,
+            self._cmus_start_box,
+        ]
+        if on_open_music_picker:
+            cmus_row_children.append(
+                Button(
+                    name="dashboard-cmus-btn",
+                    child=Image(icon_name="system-search-symbolic", icon_size=32),
+                    tooltip_text="Browse albums",
+                    on_clicked=lambda *_: (
+                        self.set_visible(False), on_open_music_picker(),
+                    ),
+                )
+            )
 
         cmus_row = Box(
             name="dashboard-cmus",
             orientation="h",
             spacing=10,
-            children=[
-                Image(name="dashboard-cmus-icon",
-                      icon_name="audio-x-generic-symbolic", icon_size=32),
-                self._cmus_controls_box,
-                self._cmus_start_box,
-            ],
+            children=cmus_row_children,
         )
 
         Fabricator(
             interval=2000,
-            poll_from=lambda *_: _cmus_status(),
+            poll_from=lambda *_: cmus_status(),
             on_changed=self._on_cmus_update,
         )
 

@@ -55,7 +55,7 @@ ShellRoot {
 
             Text {
                 anchors.centerIn: parent
-                text: ""
+                text: "󰕰"
                 font.family: "JetBrainsMono Nerd Font"
                 font.pixelSize: 10
                 color: "#1a1b26"

@@ -176,7 +176,7 @@ PanelWindow {
                     spacing: 8
 
                     Text {
-                        text: ""
+                        text: "󰍉"
                         font.family: launcher.font
                         font.pixelSize: launcher.fsize + 2
                         color: launcher.colPurple

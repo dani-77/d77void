@@ -18,9 +18,14 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Wayland
 import Quickshell.Io
+import "../Services" as Services
 
 PanelWindow {
     id: dash
+
+    // Emitted when the "Browse albums" button is clicked; shell.qml wires
+    // this to musicPicker.open() (same pattern as onLockRequested etc.)
+    signal musicPickerRequested()
 
     // ── Theme (Tokyo Night by default; can be overridden) ──
     property color colBg:     "#1a1b26"
@@ -55,10 +60,6 @@ PanelWindow {
     property int    diskPercent: 0
     property string weatherText: "loading…"
 
-    property bool   cmusRunning: false
-    property string cmusStatus:  "stopped"
-    property string cmusTrack:   "—"
-
     property string netIcon:  "󰤮"
     property string netLabel: "Network configuration"
 
@@ -90,7 +91,7 @@ PanelWindow {
         ramProc.running       = true
         tempProc.running      = true
         diskProc.running      = true
-        cmusProc.running      = true
+        Services.CmusControl.refresh()
         netProc.running       = true
     }
 
@@ -100,7 +101,7 @@ PanelWindow {
     visible: false
     color: "transparent"
 
-    implicitWidth:  400
+    implicitWidth:  460
     implicitHeight: mainCol.implicitHeight + 32
 
     anchors.top:  true
@@ -211,44 +212,6 @@ PanelWindow {
         }
     }
 
-    // cmus state.
-    Process {
-        id: cmusProc
-        running: false
-        command: ["cmus-remote", "-Q"]
-        stdout: StdioCollector {
-            onStreamFinished: {
-                if (text.trim() === "") {
-                    dash.cmusRunning = false
-                    dash.cmusStatus  = "stopped"
-                    dash.cmusTrack   = "—"
-                    return
-                }
-                var status = "stopped", artist = "", title = ""
-                text.split("\n").forEach(line => {
-                    if (line.startsWith("status "))
-                        status = line.slice(7).trim()
-                    else if (line.startsWith("tag artist "))
-                        artist = line.slice(11).trim()
-                    else if (line.startsWith("tag title "))
-                        title = line.slice(10).trim()
-                })
-                var track = (artist && title) ? (artist + " — " + title) : (title || "—")
-                if (track.length > 42) track = track.slice(0, 40) + "…"
-                dash.cmusRunning = true
-                dash.cmusStatus  = status
-                dash.cmusTrack   = track
-            }
-        }
-        onExited: function (code) {
-            if (code !== 0) {
-                dash.cmusRunning = false
-                dash.cmusStatus  = "stopped"
-                dash.cmusTrack   = "—"
-            }
-        }
-    }
-
     // Network state (wifi / wired / offline).
     Process {
         id: netProc
@@ -273,38 +236,6 @@ PanelWindow {
         running: dash.visible
         repeat: true
         onTriggered: dash._refreshAll()
-    }
-
-    // ── cmus: actions (one-shot) ────────────────────────────
-    Process { id: cmusPrevProc;  command: ["cmus-remote", "-r"]; running: false; onExited: cmusProc.running = true }
-    Process { id: cmusToggleProc; command: ["cmus-remote", "-u"]; running: false; onExited: cmusProc.running = true }
-    Process { id: cmusNextProc;  command: ["cmus-remote", "-n"]; running: false; onExited: cmusProc.running = true }
-
-    // Starts cmus in a detached tmux/screen session.
-    // The environment (XDG_RUNTIME_DIR/HOME) is passed explicitly to cmus,
-    // because an existing/old tmux session may have inherited different
-    // variables from the original tmux server, causing cmus to write its
-    // control socket somewhere cmus-remote cannot find.
-    Process {
-        id: cmusStartProc
-        running: false
-        command: ["sh", "-c",
-            'tmux kill-session -t cmus >/dev/null 2>&1; ' +
-            'command -v tmux >/dev/null 2>&1 && { tmux new-session -d -s cmus "XDG_RUNTIME_DIR=' + Quickshell.env("XDG_RUNTIME_DIR") + ' HOME=' + Quickshell.env("HOME") + ' cmus"; exit 0; }; ' +
-            'command -v screen >/dev/null 2>&1 && { screen -dmS cmus sh -c "XDG_RUNTIME_DIR=' + Quickshell.env("XDG_RUNTIME_DIR") + ' HOME=' + Quickshell.env("HOME") + ' exec cmus"; exit 0; }; ' +
-            'exit 1']
-        onExited: cmusRestartTimer.start()
-    }
-
-    // Small delay before re-querying cmus: right after startup
-    // (inside tmux) the process has not yet finished initialising its
-    // library or creating the control socket.
-    Timer {
-        id: cmusRestartTimer
-        interval: 1200
-        onTriggered: {
-            cmusProc.running = true
-        }
     }
 
     // Shell command that opens nmtui in a floating terminal
@@ -455,11 +386,11 @@ PanelWindow {
 
                     // State: running — track + controls.
                     RowLayout {
-                        visible: dash.cmusRunning
+                        visible: Services.CmusControl.running
                         Layout.fillWidth: true
                         spacing: 10
                         Text {
-                            text: dash.cmusTrack
+                            text: Services.CmusControl.track
                             font.family: dash.font; font.pixelSize: dash.fsize
                             color: dash.colFg
                             elide: Text.ElideRight
@@ -468,22 +399,34 @@ PanelWindow {
                         RowLayout {
                             spacing: 2
                             Text {
-                                text: ""
-                                font.family: dash.font; font.pixelSize: 18
+                                text: "󰑟"
+                                font.family: dash.font; font.pixelSize: 16
                                 color: dash.colFg
-                                MouseArea { anchors.fill: parent; onClicked: cmusPrevProc.running = true }
+                                MouseArea { anchors.fill: parent; onClicked: Services.CmusControl.skipAlbum(-1) }
                             }
                             Text {
-                                text: dash.cmusStatus === "playing" ? "" : ""
+                                text: "󰒮"
                                 font.family: dash.font; font.pixelSize: 18
                                 color: dash.colFg
-                                MouseArea { anchors.fill: parent; onClicked: cmusToggleProc.running = true }
+                                MouseArea { anchors.fill: parent; onClicked: Services.CmusControl.prev() }
                             }
                             Text {
-                                text: ""
+                                text: Services.CmusControl.status === "playing" ? "󰏤" : "󰐊"
                                 font.family: dash.font; font.pixelSize: 18
                                 color: dash.colFg
-                                MouseArea { anchors.fill: parent; onClicked: cmusNextProc.running = true }
+                                MouseArea { anchors.fill: parent; onClicked: Services.CmusControl.togglePlay() }
+                            }
+                            Text {
+                                text: "󰒭"
+                                font.family: dash.font; font.pixelSize: 18
+                                color: dash.colFg
+                                MouseArea { anchors.fill: parent; onClicked: Services.CmusControl.next() }
+                            }
+                            Text {
+                                text: "󰈑"
+                                font.family: dash.font; font.pixelSize: 16
+                                color: dash.colFg
+                                MouseArea { anchors.fill: parent; onClicked: Services.CmusControl.skipAlbum(1) }
                             }
                         }
                     }
@@ -493,7 +436,7 @@ PanelWindow {
                     // RowLayout (the Layout ignores `anchors` on its
                     // children), so it goes in a plain Item on top.
                     Item {
-                        visible: !dash.cmusRunning
+                        visible: !Services.CmusControl.running
                         Layout.fillWidth: true
                         implicitHeight: startRow.implicitHeight
                         RowLayout {
@@ -501,7 +444,7 @@ PanelWindow {
                             anchors.fill: parent
                             spacing: 8
                             Text {
-                                text: ""
+                                text: "󰐊"
                                 font.family: dash.font; font.pixelSize: 16
                                 color: dash.colFg
                             }
@@ -512,7 +455,18 @@ PanelWindow {
                             }
                             Item { Layout.fillWidth: true }
                         }
-                        MouseArea { anchors.fill: parent; onClicked: cmusStartProc.running = true }
+                        MouseArea { anchors.fill: parent; onClicked: Services.CmusControl.startHeadless() }
+                    }
+
+                    // Opens the Artist/Album picker (musicpicker/MusicPicker.qml).
+                    Text {
+                        text: "󰍉"
+                        font.family: dash.font; font.pixelSize: 16
+                        color: dash.colFg
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: { dash.close(); dash.musicPickerRequested() }
+                        }
                     }
                 }
             }

@@ -1,7 +1,6 @@
 import Quickshell
 import Quickshell.Wayland
 import Quickshell.Io
-import Quickshell.Hyprland
 import QtQuick
 import QtQuick.Layouts
 
@@ -25,12 +24,28 @@ import "dashboard"
 // Exposes Wallpaper
 import "wallpaper"
 
+// Music picker module (musicpicker dir).
+// Exposes MusicPicker (Artist/Album search popup, plays via cmus)
+import "musicpicker"
+
 // Backdrop module (backdrop dir).
 // Exposes Backdrop and WallpaperBackground (decorative background shown
 // only while no wallpaper is set).
 import "backdrop"
 
 ShellRoot {
+    // Note: i3 is deliberately not detected here. Every window in this shell
+    // (bar, launcher, dashboard, lockscreen, wallpaper picker) is a Wayland
+    // layer-shell surface (PanelWindow/WlrLayershell, WlSessionLock), which
+    // requires a Wayland compositor implementing zwlr_layer_shell_v1. i3 is
+    // an X11-only window manager, so none of these surfaces can render
+    // under it regardless of detection — there is no "i3 support" to add.
+    readonly property string compositor: {
+        if (Quickshell.env("HYPRLAND_INSTANCE_SIGNATURE") !== null) return "hyprland";
+        if (Quickshell.env("SWAYSOCK") !== null) return "sway";
+        if (Quickshell.env("NIRI_SOCKET") !== null) return "niri";
+        return "generic";
+    }
 
     // ══════════════════════════════════════════════════════
     // BACKDROP (conditional decorative background)
@@ -152,10 +167,29 @@ ShellRoot {
         marginTop:  bar.margins.top
         marginLeft: bar.margins.left
 
-        onLockRequested:     lockScreen.lock()
-        onLogoutRequested:   logoutProc.running = true
-        onRebootRequested:   rebootProc.running = true
-        onPoweroffRequested: shutdownProc.running = true
+        onLockRequested:        lockScreen.lock()
+        onLogoutRequested:      logoutProc.running = true
+        onRebootRequested:      rebootProc.running = true
+        onPoweroffRequested:    shutdownProc.running = true
+        onMusicPickerRequested: musicPicker.open()
+    }
+
+    // ══════════════════════════════════════════════════════
+    // MUSIC PICKER
+    // ══════════════════════════════════════════════════════
+    // Native Artist/Album picker. Scans musicDir for two-level Artist/Album
+    // folders and plays the pick through Services.CmusControl (cmus).
+    // Opened from Dashboard's "Browse albums" button or via IPC.
+    MusicPicker {
+        id: musicPicker
+        colBg:     g.colBg
+        colFg:     g.colFg
+        colMuted:  g.colMuted
+        colCyan:   g.colCyan
+        colBlue:   g.colBlue
+        colPurple: g.colPurple
+        font:      g.font
+        fsize:     g.fsize
     }
 
     // ══════════════════════════════════════════════════════
@@ -286,39 +320,40 @@ ShellRoot {
         function clear(): void { wallpaperPicker.clear() }
     }
 
-    // ── Global Hyprland keybinds (fallback) ───────────────
-    // As an alternative to IPC. Lets you open the launcher and
-    // session menu via the "global" dispatcher. The prefix is the appid
-    // (default "quickshell"), so the binds look like this:
-    //   bind = SUPER, D,       global, quickshell:launcher
-    //   bind = SUPER SHIFT, E, global, quickshell:session
-    // Using IPC is recommended; see KEYBINDS.md.
-    GlobalShortcut {
-        appid: "quickshell"
-        name: "launcher"
-        description: "open/close app launcher"
-        onPressed: appLauncher.toggle()
+    // Music picker IPC.
+    //   qs ipc call musicpicker toggle
+    //   qs ipc call musicpicker open
+    //   qs ipc call musicpicker close
+    //   qs ipc call musicpicker reload
+    //
+    // Example bind in hyprland.conf:
+    //   bind = SUPER, M, exec, qs ipc call musicpicker toggle
+    IpcHandler {
+        target: "musicpicker"
+
+        // Toggles the picker visibility.
+        function toggle(): void { musicPicker.toggle() }
+        // Opens the picker and rescans musicDir.
+        function open(): void { musicPicker.open() }
+        // Closes the picker.
+        function close(): void { musicPicker.close() }
+        // Rescans musicDir without opening/closing the picker.
+        function reload(): void { musicPicker.reload() }
+        // Plays an album directly by path, without opening the picker.
+        // Useful in scripts: qs ipc call musicpicker play "/home/daniel/Música/Artist/Album"
+        function play(path: string): void { musicPicker.playPath(path) }
     }
 
-    GlobalShortcut {
-        appid: "quickshell"
-        name: "session"
-        description: "open/close session menu (lock/suspend/reboot/...)"
-        onPressed: g.sessionOpen = !g.sessionOpen
-    }
-
-    GlobalShortcut {
-        appid: "quickshell"
-        name: "lock"
-        description: "Lock the screen (native lockscreen)"
-        onPressed: lockScreen.lock()
-    }
-
-    GlobalShortcut {
-        appid: "quickshell"
-        name: "dashboard"
-        description: "open/close the quick info dashboard (stats, weather, cmus, session)"
-        onPressed: dashboard.toggle()
+    // ── Global Hyprland keybinds (fallback, loaded only on Hyprland) ──
+    Loader {
+        active: compositor === "hyprland"
+        source: "HyprlandShortcuts.qml"
+        onLoaded: {
+            item.appLauncher = appLauncher;
+            item.globalState = g;
+            item.lockScreen = lockScreen;
+            item.dashboard = dashboard;
+        }
     }
 
     // ══════════════════════════════════════════════════════
@@ -351,6 +386,11 @@ ShellRoot {
         property var lastCpuTotal: 0
 
         property bool sessionOpen: false
+
+        // Set whenever a session action (suspend/reboot/poweroff/logout)
+        // fails — e.g. no login1 provider (systemd-logind/elogind) reachable
+        // on D-Bus. Cleared automatically by sessionErrorTimer.
+        property string sessionError: ""
     }
 
     // ══════════════════════════════════════════════════════
@@ -464,12 +504,6 @@ ShellRoot {
         Component.onCompleted: running = true
     }
 
-    // Workspace switch process (command set on click).
-    Process {
-        id: wsProc
-        running: false
-    }
-
     // Opens nmtui in a floating terminal (same logic as the dashboard).
     Process {
         id: nmtuiBarProc
@@ -477,11 +511,105 @@ ShellRoot {
         command: ["sh", "-c", dashboard.nmtuiLaunchCommand()]
     }
 
-    // Session processes (triggered from the session menu).
-    Process { id: suspendProc;  command: ["loginctl", "suspend"];   running: false }
-    Process { id: rebootProc;   command: ["loginctl", "reboot"];    running: false }
-    Process { id: shutdownProc; command: ["loginctl", "poweroff"];  running: false }
-    Process { id: logoutProc;   command: ["hyprctl", "dispatch", "hl.dsp.exit()"]; running: false }
+    // Session processes (triggered from the dashboard and the session menu).
+    // All go through the freedesktop login1 D-Bus interface via `loginctl`,
+    // which is implemented both by systemd-logind (e.g. Arch) and by
+    // elogind (e.g. Void with a Wayland desktop) — so the same command
+    // works unmodified on either. `systemctl` is tried as a second attempt
+    // only for the rare case where loginctl itself isn't on PATH but
+    // systemd is; if both fail, the combined stderr is surfaced via
+    // g.sessionError (see sessionErrorBanner below) instead of silently
+    // doing nothing.
+    function _sessionCmd(action) {
+        return ["sh", "-c", "loginctl " + action + " 2>&1 || systemctl " + action + " 2>&1"]
+    }
+    // Builds the error banner text from whatever the command printed (e.g.
+    // "Failed to issue method call: Caller does not belong to any known
+    // session."), falling back to a generic hint if it printed nothing.
+    function _sessionFailMsg(label, output) {
+        var out = output.trim()
+        return label + " failed" + (out !== "" ? ": " + out : " — no systemd-logind/elogind reachable?")
+    }
+
+    Process {
+        id: suspendProc
+        command: _sessionCmd("suspend")
+        running: false
+        property string _out: ""
+        stdout: SplitParser { onRead: line => suspendProc._out += line + " " }
+        onExited: function(code) {
+            if (code !== 0) g.sessionError = _sessionFailMsg("Suspend", suspendProc._out)
+            suspendProc._out = ""
+        }
+    }
+    Process {
+        id: rebootProc
+        command: _sessionCmd("reboot")
+        running: false
+        property string _out: ""
+        stdout: SplitParser { onRead: line => rebootProc._out += line + " " }
+        onExited: function(code) {
+            if (code !== 0) g.sessionError = _sessionFailMsg("Reboot", rebootProc._out)
+            rebootProc._out = ""
+        }
+    }
+    Process {
+        id: shutdownProc
+        command: _sessionCmd("poweroff")
+        running: false
+        property string _out: ""
+        stdout: SplitParser { onRead: line => shutdownProc._out += line + " " }
+        onExited: function(code) {
+            if (code !== 0) g.sessionError = _sessionFailMsg("Poweroff", shutdownProc._out)
+            shutdownProc._out = ""
+        }
+    }
+    Process {
+        id: logoutProc
+        property string _out: ""
+        command: {
+            if (compositor === "hyprland") return ["hyprctl", "dispatch", "hl.dsp.exit()"];
+            if (compositor === "sway") return ["swaymsg", "exit"];
+            // niri-session runs niri as a systemd --user service and waits
+            // on it; killing the login1 session from the outside (loginctl
+            // terminate-session) detaches the display but leaves
+            // niri.service marked active, so the *next* login's
+            // niri-session refuses to start ("niri session is already
+            // running") — a known niri issue (niri-wm/niri#2729). Quitting
+            // niri natively lets its own service wrapper notice the exit
+            // and clean up niri.service correctly, so prefer that here.
+            if (compositor === "niri") return ["niri", "msg", "action", "quit", "--skip-confirmation"];
+            // "self" resolves the caller's session by looking up its PID's
+            // cgroup, which fails with "Caller does not belong to any
+            // known session" when the compositor runs as a systemd --user
+            // service (e.g. Hyprland under UWSM) — the caller then lives
+            // under user@<uid>.service rather than the login
+            // session-N.scope, so logind can't map it back. Session
+            // managers that do this import $XDG_SESSION_ID into the
+            // environment specifically to work around it, so prefer that
+            // and only fall back to "self" if it's unset.
+            return ["sh", "-c", "loginctl terminate-session \"${XDG_SESSION_ID:-self}\" 2>&1"];
+        }
+        running: false
+        stdout: SplitParser { onRead: line => logoutProc._out += line + " " }
+        onExited: function(code) {
+            if (code !== 0) g.sessionError = _sessionFailMsg("Logout", logoutProc._out)
+            logoutProc._out = ""
+        }
+    }
+
+    Timer {
+        id: sessionErrorTimer
+        interval: 5000
+        onTriggered: g.sessionError = ""
+    }
+    Connections {
+        target: g
+        function onSessionErrorChanged() {
+            if (g.sessionError !== "")
+                sessionErrorTimer.restart()
+        }
+    }
 
     // Periodically refresh all the polled system stats.
     Timer {
@@ -550,38 +678,17 @@ ShellRoot {
 
                 Rectangle { width: 1; height: 18; color: g.colMuted }
 
-                // ── Workspaces ────────────────────────────────
-                Repeater {
-                    model: 9
-                    Rectangle {
-                        required property int index
-                        property int  wsId:     index + 1
-                        property var  ws:       Hyprland.workspaces.values.find(w => w.id === wsId)
-                        property bool isActive: Hyprland.focusedWorkspace !== null &&
-                                                Hyprland.focusedWorkspace.id === wsId
-
-                        width: 22
-                        height: 22
-                        radius: 4
-                        color: isActive
-                            ? g.colPurple
-                            : (ws ? Qt.rgba(0.48, 0.64, 0.97, 0.25) : "transparent")
-
-                        Text {
-                            anchors.centerIn: parent
-                            text: parent.wsId
-                            color: parent.isActive ? g.colBg
-                                 : (parent.ws      ? g.colBlue : g.colMuted)
-                            font { family: g.font; pixelSize: g.fsize; bold: true }
-                        }
-
-                        MouseArea {
-                            anchors.fill: parent
-                            onClicked: {
-                                wsProc.command = ["hyprctl", "dispatch", "hl.dsp.focus({workspace = " + wsId + "})"]
-                                wsProc.running = true
-                            }
-                        }
+                // ── Workspaces (Loaded Dynamically) ──────────
+                Loader {
+                    id: workspacesLoader
+                    source: {
+                        if (compositor === "hyprland") return "workspaces/WorkspacesHyprland.qml";
+                        if (compositor === "sway") return "workspaces/WorkspacesSway.qml";
+                        if (compositor === "niri") return "workspaces/WorkspacesNiri.qml";
+                        return "";
+                    }
+                    onLoaded: {
+                        item.globalState = g;
                     }
                 }
 
@@ -999,6 +1106,57 @@ ShellRoot {
                         }
                     }
                 }
+            }
+        }
+    }
+
+    // ══════════════════════════════════════════════════════
+    // SESSION ERROR BANNER
+    // Small auto-hiding toast for when a session action (suspend/
+    // reboot/poweroff/logout) fails — e.g. no systemd-logind/elogind on
+    // D-Bus. Independent of sessionPopup, which is already closed by the
+    // time a Process can fail.
+    // ══════════════════════════════════════════════════════
+    PanelWindow {
+        id: sessionErrorBanner
+        visible: g.sessionError !== ""
+        color: "transparent"
+
+        anchors.top: true
+        margins.top: 50
+
+        WlrLayershell.layer:         WlrLayer.Overlay
+        WlrLayershell.namespace:     "quickshell-session-error"
+        WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
+        exclusiveZone: 0
+
+        // Empty mask → does not block mouse events (matches Osd.qml).
+        mask: Region {}
+
+        // Real D-Bus/systemd error text can run long (e.g. "Failed to
+        // issue method call: Caller does not belong to any known
+        // session."), so cap the width and wrap instead of stretching
+        // across the screen.
+        implicitWidth:  Math.min(bannerText.implicitWidth + 40, 640)
+        implicitHeight: bannerText.implicitHeight + 24
+
+        Rectangle {
+            id: banner
+            anchors.fill: parent
+            radius: 8
+            color: Qt.darker(g.colBg, 1.2)
+            border.color: g.colRed
+            border.width: 2
+
+            Text {
+                id: bannerText
+                anchors.centerIn: parent
+                width: Math.min(implicitWidth, 600)
+                horizontalAlignment: Text.AlignHCenter
+                wrapMode: Text.WordWrap
+                text: g.sessionError
+                font { family: g.font; pixelSize: g.fsize }
+                color: g.colRed
             }
         }
     }
