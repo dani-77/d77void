@@ -1,0 +1,6 @@
+[Desktop Entry]
+Exec=~/./.auto.sh
+Name=autoREADME
+Type=Application
+Version=1.0
+X-LXQt-X11-Only=true
