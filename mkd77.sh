@@ -430,8 +430,8 @@ build_variant() {
 			COMMON=yes
 			GREETD=yes
 			FABRIC=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty awww cinnamon-desktop cliphist cmake fabric gcc gobject-introspection grim gtk-layer-shell gtk-session-lock libdbusmenu-gtk3 mate-polkit nwg-look pkg-config python3-cairo-devel python3-pam python3-psutil qt5-wayland qt6-wayland seatd swayfx swaybg swayidle swayimg wlsunset wmenu xorg-server-xwayland xwayland-satellite"
-			SERVICES="$SERVICES dbus NetworkManager polkitd power-profiles-daemon seatd cups"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty awww cinnamon-desktop cliphist cmake elogind fabric gcc gobject-introspection grim gtk-layer-shell gtk-session-lock libdbusmenu-gtk3 mate-polkit nwg-look pkg-config python3-cairo-devel python3-pam python3-psutil qt5-wayland qt6-wayland swayfx swaybg swayidle swayimg wlsunset wmenu xorg-server-xwayland xwayland-satellite"
+			SERVICES="$SERVICES dbus NetworkManager polkitd power-profiles-daemon elogind cups"
 		;;
 		fluxbox)
 			COMMON=yes
