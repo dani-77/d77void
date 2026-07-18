@@ -495,8 +495,8 @@ build_variant() {
 			GREETD=yes
 			WAY=yes
 			FUZZEL=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES grim ImageMagick kitty labwc labwc-menu-generator labwc-tweaks-qt qt5-wayland qt6-wayland swaybg swayidle swayimg swaylock"
-			SERVICES="$SERVICES dbus NetworkManager polkitd tlp elogind cups"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES grim ImageMagick kitty labwc labwc-menu-generator labwc-tweaks-qt qt5-wayland qt6-wayland seatd swaybg swayidle swayimg swaylock"
+			SERVICES="$SERVICES dbus NetworkManager polkitd tlp seatd cups"
 		;;
 		leftwm)
 			COMMON=yes
@@ -519,8 +519,8 @@ build_variant() {
 			GREETD=yes
 			WAY=yes
 			FUZZEL=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist ImageMagick kitty mangowc mate-polkit qt5-wayland qt6-wayland swaybg wayland-devel wayland-protocols xdg-desktop-portal-wlr"
-			SERVICES="$SERVICES dbus NetworkManager polkitd tlp elogind cups"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist ImageMagick kitty mangowc mate-polkit qt5-wayland qt6-wayland seatd swaybg wayland-devel wayland-protocols xdg-desktop-portal-wlr"
+			SERVICES="$SERVICES dbus NetworkManager polkitd tlp seatd cups"
 		;;
 		mango-dms)
 			COMMON=yes
@@ -540,8 +540,8 @@ build_variant() {
 			WAY=yes
 			NIRI=yes
 			FUZZEL=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES gnome-keyring grim ImageMagick kitty niri qt5-wayland qt6-wayland swaybg swayidle swayimg swaylock swww xdg-desktop-portal-gnome xdg-desktop-portal-gtk"
-			SERVICES="$SERVICES dbus NetworkManager polkitd tlp elogind cups"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES gnome-keyring grim ImageMagick kitty niri qt5-wayland qt6-wayland seatd swaybg swayidle swayimg swaylock swww xdg-desktop-portal-gnome xdg-desktop-portal-gtk"
+			SERVICES="$SERVICES dbus NetworkManager polkitd tlp seatd cups"
 		;;
 		niri-dms)
 			COMMON=yes
@@ -591,35 +591,35 @@ build_variant() {
 			RIVER=yes
 			WAY=yes
 			FUZZEL=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES grim ImageMagick kitty qt5-wayland qt6-wayland river river-bedload river-shifttags swaybg swayidle swayimg swaylock"
-			SERVICES="$SERVICES dbus NetworkManager polkitd tlp elogind cups"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES grim ImageMagick kitty qt5-wayland qt6-wayland river river-bedload river-shifttags seatd swaybg swayidle swayimg swaylock"
+			SERVICES="$SERVICES dbus NetworkManager polkitd tlp seatd cups"
 		;;
 		scroll)
 			COMMON=yes
 			GREETD=yes
 			FUZZEL=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist gnome-keyring grim ImageMagick kitty nwg-look nwg-launchers pavucontrol polkit-gnome qt5-wayland qt6-wayland scroll swaybg swayidle swayimg swaylock SwayNotificationCenter wayle wlsunset wmenu xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-wlr xorg-server-xwayland xwayland-satellite"
-			SERVICES="$SERVICES dbus NetworkManager polkitd tlp elogind cups"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist gnome-keyring grim ImageMagick kitty nwg-look nwg-launchers pavucontrol polkit-gnome qt5-wayland qt6-wayland scroll seatd swaybg swayidle swayimg swaylock SwayNotificationCenter wayle wlsunset wmenu xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-wlr xorg-server-xwayland xwayland-satellite"
+			SERVICES="$SERVICES dbus NetworkManager polkitd tlp seatd cups"
 		;;
 		somewm)
 			COMMON=yes
 			GREETD=yes
 			NIRI=yes
-			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES alacritty awesome-appmenu dunst fuzzel nwg-look somewm swayidle swaylock xorg-server-xwayland xterm xwayland-satellite wireless_tools wlsunset"
-			SERVICES="$SERVICES dbus NetworkManager polkitd tlp elogind cups"
+			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES alacritty awesome-appmenu dunst fuzzel nwg-look seatd somewm swayidle swaylock xorg-server-xwayland xterm xwayland-satellite wireless_tools wlsunset"
+			SERVICES="$SERVICES dbus NetworkManager polkitd tlp seatd cups"
 		;;
 		sway)
 			COMMON=yes
 			GREETD=yes
 			FUZZEL=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist grim ImageMagick kitty nwg-look nwg-launchers pavucontrol qt5-wayland qt6-wayland swayfx swaybg swayidle swayimg swaylock SwayNotificationCenter wlsunset wmenu xorg-server-xwayland xwayland-satellite"
-			SERVICES="$SERVICES dbus NetworkManager polkitd tlp elogind cups"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist grim ImageMagick kitty nwg-look nwg-launchers pavucontrol qt5-wayland qt6-wayland seatd swayfx swaybg swayidle swayimg swaylock SwayNotificationCenter wlsunset wmenu xorg-server-xwayland xwayland-satellite"
+			SERVICES="$SERVICES dbus NetworkManager polkitd tlp seatd cups"
 		;;
 		wayfire)
 			COMMON=yes
 			GREETD=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_WAYFIRE $CALAMARES cliphist grim ImageMagick pavucontrol qt5-wayland qt6-wayland swaybg swayidle swayimg swaylock wayfire wayfire-plugins-extra wcm wf-shell wlr-randr wlogout"
-			SERVICES="$SERVICES dbus NetworkManager polkitd tlp elogind cups"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_WAYFIRE $CALAMARES cliphist grim ImageMagick pavucontrol qt5-wayland qt6-wayland seatd swaybg swayidle swayimg swaylock wayfire wayfire-plugins-extra wcm wf-shell wlr-randr wlogout"
+			SERVICES="$SERVICES dbus NetworkManager polkitd tlp seatd cups"
 		;;
 		wmd77)
 			COMMON=yes
