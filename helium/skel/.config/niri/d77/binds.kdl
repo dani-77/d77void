@@ -5,6 +5,7 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // === Application Launchers ===
+    Mod+O hotkey-overlay-title="Gmrun" { spawn "gmrun"; }
     Mod+T hotkey-overlay-title="Open Terminal" { spawn "alacritty"; }
     Mod+Space hotkey-overlay-title="Application Launcher" {
         spawn "helium-launcher";
