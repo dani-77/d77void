@@ -435,6 +435,12 @@ build_variant() {
 			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_GNOME $CALAMARES $BROWSER extension-manager gdm gnome gnome-keyring gnome-shell-extensions qt5-wayland qt6-wayland xarchiver xdg-desktop-portal-gnome"
 			SERVICES="$SERVICES dbus gdm NetworkManager polkitd power-profiles-daemon"
 		;;
+		helium)
+			COMMON=yes
+			GREETD=yes
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty awww grim helium-d77 hypridle hyprlock mate-polkit niri qt5-wayland qt6-wayland xdg-desktop-portal-gnome xdg-desktop-portal-gtk"
+			SERVICES="$SERVICES dbus NetworkManager polkitd power-profiles-daemon"
+		;;
 		herbstluftwm)
 			COMMON=yes
 			POLY=yes
