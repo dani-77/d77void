@@ -22,7 +22,6 @@ fi
 
 xcompmgr -c -f -n &
 exec dunst &
-/usr/libexec/polkit-mate-authentication-agent-1 &
 redshift -l 41.6:-8.62 &
 xautolock -time 15 - locker slock &
 udiskie -a &

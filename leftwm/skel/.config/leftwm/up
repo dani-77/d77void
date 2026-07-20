@@ -1,2 +1,3 @@
 #!/bin/bash
 ~/./.auto.sh &
+/usr/libexec/polkit-mate-authentication-agent-1 &
