@@ -197,6 +197,7 @@ environment {
 }
 spawn-at-startup "udiskie" "-at"
 spawn-at-startup "noctalia" "run"
+spawn-at-startup "/usr/libexec/polkit-mate-authentication-agent-1"
 hotkey-overlay {
     skip-at-startup
 }

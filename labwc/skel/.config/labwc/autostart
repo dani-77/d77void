@@ -12,6 +12,7 @@ wlsunset -l 41.6 -L -8.62 >/dev/null 2>&1 & # latitude and Longitude set to Opor
 
 # Automount disks
 udiskie -at &
+/usr/libexec/polkit-mate-authentication-agent-1 &
 
 # Configure output directives such as mode, position, scale and transform.
 # Use wlr-randr to get your output names

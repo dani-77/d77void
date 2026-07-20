@@ -705,6 +705,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 -- {{{ Autostart programs
 --awful.spawn.with_shell("octoxbps-notifier")
+awful.spawn.with_shell("/usr/libexec/polkit-mate-authentication-agent-1")
 awful.spawn.with_shell("xcompmgr -c -f -n")
 awful.spawn.with_shell("synclient TapButton1=1")
 awful.spawn.with_shell("udiskie -a")

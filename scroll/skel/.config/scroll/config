@@ -689,6 +689,6 @@ bindgesture swipe:4:up scale_workspace overview
 
 exec udiskie -a
 exec /usr/libexec/xdg-desktop-portal-gtk
-exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec /usr/libexec/polkit-gnome-authentication-agent-1
 exec wayle shell
 exec ~/./.auto.sh 

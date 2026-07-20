@@ -1,4 +1,5 @@
 dunst &
+/usr/libexec/polkit-mate-authentication-agent-1 &
 cbatticon &
 volumeicon &
 nm-applet &

@@ -248,7 +248,7 @@ layout {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 // spawn-at-startup "alacritty" "-e" "fish"
-spawn-at-startup "polkit-kde-agent"
+spawn-at-startup "/usr/libexec/polkit-mate-authentication-agent-1"
 spawn-at-startup "xwayland-satellite"
 environment {
     DISPLAY ":1"

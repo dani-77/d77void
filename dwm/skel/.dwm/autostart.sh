@@ -3,6 +3,9 @@
 # notifications
 exec dunst &
 
+# polkit authentication agent
+exec /usr/libexec/polkit-mate-authentication-agent-1 &
+
 # transparency
 exec xcompmgr -c -f -n &
 

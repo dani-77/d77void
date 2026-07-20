@@ -208,6 +208,8 @@ hc rule fixedsize floating=on
 
 hc set tree_style '╾│ ├└╼─┐'
 
+/usr/libexec/polkit-mate-authentication-agent-1 &
+
 # unlock, just to be sure
 hc unlock
 

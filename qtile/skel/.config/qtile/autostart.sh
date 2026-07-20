@@ -4,6 +4,7 @@ gsettings set org.gnome.desktop.interface gtk-theme "Arc-Dark" &
 gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark' &
 dunst &
 udiskie -a &
+/usr/libexec/polkit-mate-authentication-agent-1 &
 xcompmgr -c -f -n &
 xautolock -time 5 -locker slock &
 swayidle -w \
