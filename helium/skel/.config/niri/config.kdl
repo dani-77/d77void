@@ -196,7 +196,7 @@ environment {
   TERMINAL "kitty"
 }
 spawn-at-startup "awww-daemon"
-spawn-at-startup "awww" "img" "~/Wallpaper/d77void_1376*.png"
+spawn-at-startup "sh" "-c" "awww img ~/Wallpaper/d77void_1376x768.png"
 spawn-at-startup "~/./.auto.sh"
 spawn-at-startup "hypridle"
 spawn-at-startup "/usr/libexec/polkit-mate-authentication-agent-1"
