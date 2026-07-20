@@ -1,8 +1,0 @@
-# ══════════════════════════════════════════════════════
-# Lockscreen module quickshell-d77
-# ══════════════════════════════════════════════════════
-module lockscreen
-
-Lockscreen    1.0 Lockscreen.qml
-LockContext   1.0 LockContext.qml
-LockSurface   1.0 LockSurface.qml

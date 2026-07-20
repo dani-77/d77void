@@ -1,6 +1,0 @@
-# ══════════════════════════════════════════════════════
-# Módulo musicpicker do quickshell-d77
-# ══════════════════════════════════════════════════════
-module musicpicker
-
-MusicPicker  1.0  MusicPicker.qml

@@ -252,7 +252,7 @@ exec /usr/libexec/polkit-mate-authentication-agent-1 &
 exec wlsunset -l 41.6 -L -8.62 -T 6500 -t 4000 &
 exec udiskie -a &
 exec dunst &
-exec /etc/xdg/fabric-d77/./start.sh &
+exec fabric-d77 &
 exec awww-daemon &
 exec ~/./.auto.sh &
 

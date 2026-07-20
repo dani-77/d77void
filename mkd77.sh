@@ -131,15 +131,6 @@ include_box() {
 	cp ./common/jgmenu.desktop "$INCLUDEDIR"/usr/share/applications/
 }
 
-include_fabric() {
-	mkdir -p "$INCLUDEDIR"/etc/xdg
-	cp -r ./common/fabric-d77 "$INCLUDEDIR"/etc/xdg/
-	mkdir -p "$INCLUDEDIR"/etc/pam.d
-	cp ./common/fabric-d77/pam/fabric-d77 "$INCLUDEDIR"/etc/pam.d/
-	mkdir -p "$INCLUDEDIR"/usr/bin
-	cp ./common/fabric-d77/bin/fabric-d77-signal "$INCLUDEDIR"/usr/bin/
-}
-
 include_greetd() {
 	PKGS="$PKGS dwl greetd quickshell"
 	mkdir -p "$INCLUDEDIR"/etc/greetd/quickshell-d77/greeter
@@ -344,7 +335,6 @@ build_variant() {
 			COMMON=
 			GREETD=
 			SDDM=
-			FABRIC=
 			GNOME=
 			PLASMA=
 			X11=
@@ -428,8 +418,7 @@ build_variant() {
 		fabric)
 			COMMON=yes
 			GREETD=yes
-			FABRIC=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty awww cinnamon-desktop cliphist cmake fabric gcc gobject-introspection grim gtk-layer-shell gtk-session-lock libdbusmenu-gtk3 mate-polkit nwg-look pkg-config python3-cairo-devel python3-pam python3-psutil qt5-wayland qt6-wayland swayfx swaybg swayidle swayimg wlsunset wmenu xorg-server-xwayland xwayland-satellite"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty awww cinnamon-desktop cliphist cmake fabric fabric-d77 gcc gobject-introspection grim gtk-layer-shell gtk-session-lock libdbusmenu-gtk3 mate-polkit nwg-look pkg-config python3-cairo-devel python3-pam python3-psutil qt5-wayland qt6-wayland swayfx swaybg swayidle swayimg wlsunset wmenu xorg-server-xwayland xwayland-satellite"
 			SERVICES="$SERVICES dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		fluxbox)
@@ -458,7 +447,7 @@ build_variant() {
 		hyprland)
 			COMMON=yes
 			GREETD=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty cliphist hyprland hyprland-guiutils hypridle hyprpaper hyprpolkitagent hyprsunset hyprutils network-manager-applet nwg-look nwg-launchers pavucontrol qsd77 qt5-wayland qt6-wayland quickshell SwayNotificationCenter wayland-devel wayland-protocols wireless_tools xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-hyprland xorg-server-xwayland xwayland-satellite"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty cliphist hyprland hyprland-guiutils hypridle hyprpaper hyprpolkitagent hyprsunset hyprutils network-manager-applet nwg-look nwg-launchers pavucontrol qsd77 qt5-wayland qt6-wayland quickshell quickshell-d77 wayland-devel wayland-protocols wireless_tools xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-hyprland xorg-server-xwayland xwayland-satellite"
 			SERVICES="$SERVICES dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		hypr-dms)
@@ -652,7 +641,6 @@ EOF
 	[ "$GREETD" = yes ]  && include_greetd
 	[ "$SDDM" = yes ]    && include_sddm
 	[ "$DMENU" = yes ]   && include_dmenu
-	[ "$FABRIC" = yes ]  && include_fabric
 	[ "$FUZZEL" = yes ]  && include_fuzzel
 	[ "$GNOME" = yes ]   && include_gnome
 	[ "$LXQT" = yes ]    && include_lxqt

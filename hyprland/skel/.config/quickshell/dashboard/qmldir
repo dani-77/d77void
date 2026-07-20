@@ -1,6 +1,0 @@
-# ══════════════════════════════════════════════════════
-# Módulo dashboard do quickshell-d77
-# ══════════════════════════════════════════════════════
-module dashboard
-
-Dashboard  1.0  Dashboard.qml
