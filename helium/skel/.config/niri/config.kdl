@@ -196,13 +196,14 @@ environment {
   TERMINAL "kitty"
 }
 spawn-at-startup "awww-daemon"
-spawn-at-startup "sh" "-c" "awww img ~/Wallpaper/d77void_1376x768.png"
 spawn-at-startup "~/./.auto.sh"
 spawn-at-startup "hypridle"
 spawn-at-startup "/usr/libexec/polkit-mate-authentication-agent-1"
 spawn-at-startup "udiskie" "-a"
 spawn-at-startup "helium-shell"
 spawn-at-startup "helium-osd"
+spawn-at-startup "helium-backdrop"
+spawn-at-startup "sh" "-c" "helium-wallpaper --startup"
 hotkey-overlay {
     skip-at-startup
 }
@@ -266,6 +267,7 @@ window-rule {
     open-floating false
 }
 window-rule {
+    match app-id=r#"^d77-welcome$"#
     match app-id=r#"^gmrun$"#
     match app-id=r#"^nmtui-float$"#
     match app-id=r#"^qt-sudo$"#

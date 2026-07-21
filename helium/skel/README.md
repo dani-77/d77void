@@ -20,6 +20,8 @@ Super + Space -> apps menu
 
 Super + x -> powermenu
 
+Super + y -> wallpaper picker
+
 Super + Alt + l -> lock screen
 
 Have fun!

@@ -1,4 +1,11 @@
 binds {
+    // === Helium-d77 ===
+    Mod+Space hotkey-overlay-title="Application Launcher" {
+        spawn "helium-launcher";
+    }
+    Super+X hotkey-overlay-title="Power Menu: Toggle" { spawn "helium-session"; }
+    Super+Y hotkey-overlay-title="Wallpaper Picker: Toggle" { spawn "helium-wallpaper"; }
+
     // === System & Overview ===
     Mod+D repeat=false { toggle-overview; }
     Mod+Tab repeat=false { toggle-overview; }
@@ -7,11 +14,6 @@ binds {
     // === Application Launchers ===
     Mod+O hotkey-overlay-title="Gmrun" { spawn "gmrun"; }
     Mod+T hotkey-overlay-title="Open Terminal" { spawn "alacritty"; }
-    Mod+Space hotkey-overlay-title="Application Launcher" {
-        spawn "helium-launcher";
-    }
-
-    Super+X hotkey-overlay-title="Power Menu: Toggle" { spawn "helium-session"; }
 
     // === Security ===
     Mod+Alt+L hotkey-overlay-title="Lock Screen" {
@@ -172,6 +174,7 @@ binds {
     Print { screenshot; }
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
+
     // === System Controls ===
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
     Mod+Shift+P { power-off-monitors; }
