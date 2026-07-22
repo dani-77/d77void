@@ -438,7 +438,7 @@ build_variant() {
 		helium)
 			COMMON=yes
 			GREETD=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty awww grim helium-d77 hypridle hyprlock mate-polkit niri qt5-wayland qt6-wayland xdg-desktop-portal-gnome xdg-desktop-portal-gtk"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty awww grim helium-d77 hypridle hyprlock hyprsunset mate-polkit niri qt5-wayland qt6-wayland xdg-desktop-portal-gnome xdg-desktop-portal-gtk"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		herbstluftwm)

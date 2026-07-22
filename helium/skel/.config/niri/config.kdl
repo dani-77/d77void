@@ -198,6 +198,7 @@ environment {
 spawn-at-startup "awww-daemon"
 spawn-at-startup "~/./.auto.sh"
 spawn-at-startup "hypridle"
+spawn-at-startup "hyprsunset"
 spawn-at-startup "/usr/libexec/polkit-mate-authentication-agent-1"
 spawn-at-startup "udiskie" "-a"
 spawn-at-startup "helium-shell"
