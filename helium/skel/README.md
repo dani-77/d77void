@@ -4,7 +4,7 @@ Thank you for trying d77void Helium edition.
 
 Helium ISO uses NIRI as WC and the rust custom shell Helium-d77.
 
-To install use Calamares from the menu.
+To install use Calamares. Call it with "install system" from the menu.
 
 ## Keybinds
 
