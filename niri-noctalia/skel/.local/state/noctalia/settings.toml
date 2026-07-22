@@ -58,10 +58,10 @@ wallpaper_scheme = "m3-content"
 directory = "~/Wallpaper"
 
     [wallpaper.default]
-    path = "~/Wallpaper/d77void_1376x768.png"
+    path = "~/Wallpaper/noctalia.png"
 
     [wallpaper.last]
-    path = "~/Wallpaper/d77void_1376x768.png"
+    path = "~/Wallpaper/noctalia.png"
 
     [wallpaper.monitors.eDP-1]
-    path = "~/Wallpaper/d77void_1376x768.png"
+    path = "~/Wallpaper/noctalia.png"
