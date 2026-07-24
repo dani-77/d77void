@@ -1,0 +1,6 @@
+# Prevent udisks2/udiskie from probing or auto-mounting loop devices.
+# Tools that build/manage disk images via manually-created loop devices
+# (mklive.sh, xbps-src, VM/container tooling, etc.) can otherwise race with
+# udisks2's automatic probing, causing EBUSY on unmount and leaving the
+# image's filesystem journal dirty.
+SUBSYSTEM=="block", KERNEL=="loop*", ENV{UDISKS_IGNORE}="1"

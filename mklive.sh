@@ -435,6 +435,16 @@ EOF
 generate_squashfs() {
     umount_pseudofs || exit 1
 
+    # Diagnostic trace for the ext3fs.img corruption issue: full xtrace of this
+    # function, with timestamps, to a log file that survives BUILDDIR cleanup
+    # (BUILDDIR itself gets rm -rf'd by die()/error_out on failure).
+    local squashfs_trace_log="$(dirname "$BUILDDIR")/mklive-generate_squashfs.trace.log"
+    exec {SQUASHFS_TRACE_FD}>"$squashfs_trace_log"
+    local old_bash_xtracefd=$BASH_XTRACEFD old_ps4=$PS4
+    BASH_XTRACEFD=$SQUASHFS_TRACE_FD
+    PS4='+ [$(date "+%T.%N")] '
+    set -x
+
     # Find out required size for the rootfs and create an ext3fs image off it.
     ROOTFS_SIZE=$(du --apparent-size -sm "$ROOTFS"|awk '{print $1}')
     mkdir -p "$BUILDDIR/tmp/LiveOS"
@@ -444,7 +454,22 @@ generate_squashfs() {
     mkfs.ext3 -F -m1 "$BUILDDIR/tmp/LiveOS/ext3fs.img" >/dev/null 2>&1
     mount -o loop "$BUILDDIR/tmp/LiveOS/ext3fs.img" "$BUILDDIR/tmp-rootfs"
     cp -a "$ROOTFS"/* "$BUILDDIR"/tmp-rootfs/
-    umount -f "$BUILDDIR/tmp-rootfs"
+    sync -f "$BUILDDIR/tmp-rootfs"
+    # A file indexer or similar can transiently hold a file open right after
+    # cp -a finishes, causing umount to fail with EBUSY; retry a few times
+    # before giving up instead of forcing the unmount (which would leave the
+    # journal dirty and make the read-only boot mount fail later).
+    umount_tries=0
+    until umount "$BUILDDIR/tmp-rootfs" 2>/dev/null; do
+        umount_tries=$((umount_tries+1))
+        [ "$umount_tries" -ge 10 ] && die "Failed to unmount $BUILDDIR/tmp-rootfs after ${umount_tries} tries, ext3fs.img may be corrupt"
+        sleep 1
+    done
+    # The image is only ever mounted read-only at boot, so the journal must
+    # be fully checkpointed (no pending recovery) before it gets packaged,
+    # or the live boot's read-only mount of it will be refused by the kernel.
+    e2fsck -fy "$BUILDDIR/tmp/LiveOS/ext3fs.img" >/dev/null 2>&1
+    [ $? -ge 4 ] && die "ext3fs.img failed filesystem check after copy, aborting"
     mkdir -p "$IMAGEDIR/LiveOS"
 
     "$VOIDHOSTDIR"/usr/bin/mksquashfs "$BUILDDIR/tmp" "$IMAGEDIR/LiveOS/squashfs.img" \
@@ -453,6 +478,12 @@ generate_squashfs() {
 
     # Remove rootfs and temporary dirs, we don't need them anymore.
     rm -rf "$ROOTFS" "$BUILDDIR/tmp-rootfs" "$BUILDDIR/tmp"
+
+    set +x
+    PS4=$old_ps4
+    BASH_XTRACEFD=$old_bash_xtracefd
+    exec {SQUASHFS_TRACE_FD}>&-
+    info_msg "Trace log written to $squashfs_trace_log"
 }
 
 generate_iso_image() {
