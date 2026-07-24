@@ -405,7 +405,7 @@ build_variant() {
 		cosmic)
 			COMMON=yes
 			GREETD=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_GNOME $CALAMARES $BROWSER cliphist cosmic-desktop-full gnome-keyring qt5-graphicaleffects qt5-wayland qt6-wayland xarchiver xdg-desktop-portal-cosmic"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_GNOME $CALAMARES $BROWSER cliphist cosmic-desktop-full gnome-keyring qt5-graphicaleffects qt5-wayland qt6-wayland xarchiver"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		dwm)
