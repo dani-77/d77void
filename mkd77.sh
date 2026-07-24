@@ -175,6 +175,7 @@ _include_base() {
 	mkdir -p "$INCLUDEDIR"/usr/share/pixmaps
 	mkdir -p "$INCLUDEDIR"/usr/share/polkit-1/rules.d
 	mkdir -p "$INCLUDEDIR"/usr/share/void-artwork
+	mkdir -p "$INCLUDEDIR"/etc/udev/rules.d
 	cp -r ./common/d77-grub-theme "$INCLUDEDIR"/boot/grub/themes/
 	if [ -z "$NC" ]; then
 		cp -r ./common/calamares "$INCLUDEDIR"/etc/
@@ -189,6 +190,7 @@ _include_base() {
 	cp ./common/.Xresources "$INCLUDEDIR"/etc/skel/
 	cp ./common/"$ARCH_PATH"/d77-welcome "$INCLUDEDIR"/usr/bin/
 	cp ./common/50-udisks.rules "$INCLUDEDIR"/usr/share/polkit-1/rules.d/
+	cp ./common/90-udisks-ignore-loop.rules "$INCLUDEDIR"/etc/udev/rules.d/
 	cp ./common/d77-welcome.desktop "$INCLUDEDIR"/usr/share/applications/
 	cp ./common/d77void.png "$INCLUDEDIR"/usr/share/pixmaps/
 	cp ./common/splash.png "$INCLUDEDIR"/usr/share/void-artwork/
