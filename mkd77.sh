@@ -117,9 +117,14 @@ setup_pipewire() {
 	esac
 	mkdir -p "$INCLUDEDIR"/etc/xdg/autostart
 	ln -sf /usr/share/applications/pipewire.desktop "$INCLUDEDIR"/etc/xdg/autostart/
-	mkdir -p "$INCLUDEDIR"/etc/pipewire/pipewire.conf.d
-	ln -sf /usr/share/examples/wireplumber/10-wireplumber.conf "$INCLUDEDIR"/etc/pipewire/pipewire.conf.d/
-	ln -sf /usr/share/examples/pipewire/20-pipewire-pulse.conf "$INCLUDEDIR"/etc/pipewire/pipewire.conf.d/
+	if [ "$variant" != cosmic ]; then
+		# cosmic-session already spawns its own wireplumber and pipewire-pulse;
+		# also loading these via pipewire's context.exec duplicates both and
+		# leaves the pulse socket handshake hanging.
+		mkdir -p "$INCLUDEDIR"/etc/pipewire/pipewire.conf.d
+		ln -sf /usr/share/examples/wireplumber/10-wireplumber.conf "$INCLUDEDIR"/etc/pipewire/pipewire.conf.d/
+		ln -sf /usr/share/examples/pipewire/20-pipewire-pulse.conf "$INCLUDEDIR"/etc/pipewire/pipewire.conf.d/
+	fi
 	mkdir -p "$INCLUDEDIR"/etc/alsa/conf.d
 	ln -sf /usr/share/alsa/alsa.conf.d/50-pipewire.conf "$INCLUDEDIR"/etc/alsa/conf.d
 	ln -sf /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf "$INCLUDEDIR"/etc/alsa/conf.d
