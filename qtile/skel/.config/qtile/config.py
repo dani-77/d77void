@@ -199,7 +199,7 @@ layouts = [
 
 widget_defaults = dict(
     **decoration_group,
-    font="iosevka",
+    font="hack",
     fontsize=12,
     padding=2,
 )
