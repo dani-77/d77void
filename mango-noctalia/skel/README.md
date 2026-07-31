@@ -1,10 +1,10 @@
-# Welcome
+## Hello
 
-Hello, thank you for trying d77void Mango Noctalia edition!
+Thank you for trying d77void Mango Noctalia edition.
 
-## Installer
+This ISO uses MangoWC together with the Noctalia shell.
 
-To install the system open the app menu and choose Calamares.
+To install use Calamares from the menu.
 
 ## Keybinds
 
@@ -22,6 +22,10 @@ Super + X -> session menu
 
 Super + Y -> wallpaper chooser
 
+## Mango tweaks
+
+To alter the autostart programs, add/swap keybinds and keyboard layout configure ~/.config/mango/config.conf and the files inside ~/.config/mango/noctalia/ ; the files are self explanatory and with several examples already configured.
+
 ## Stop seeing this
 
 To stop seeing this message delete .auto.sh from $HOME
@@ -30,5 +34,5 @@ To stop seeing this message delete .auto.sh from $HOME
 rm .auto.sh
 ```
 
-Happy hacking.
+Have fun!
 

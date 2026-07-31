@@ -1,4 +1,5 @@
-Hello
+## Hello
+
 Thank you for trying d77void someWM edition.
 
 To install use Calamares from the menu.
@@ -15,7 +16,7 @@ super + s -> display keybinds
 
 super + t -> lock screen
 
-super+ w -> menu (this is the main awesome menu)
+super + w -> menu (this is the main awesome menu)
 
 super + r -> run
 

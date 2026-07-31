@@ -1,6 +1,6 @@
 ## Hello
 
-Thank you for trying d77void.
+Thank you for trying d77void i3wm edition.
 
 To install use Calamares from the menu.
 

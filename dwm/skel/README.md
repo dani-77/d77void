@@ -1,6 +1,6 @@
 ## Hello
 
-Thank you for trying d77void.
+Thank you for trying d77void DWM edition.
 
 To install use Calamares from the menu.
 
@@ -48,7 +48,7 @@ super + p -> scrot
 
 super + Escape -> reload sxhkd config
 
-## Hacking
+## dwm tweaks
 
 To add/remove autostart programs edit the file ~/.dwm/autostart.sh
 

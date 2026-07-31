@@ -1,4 +1,4 @@
-Hello
+## Hello
 
 Thank you for trying d77void pwm edition.
 
@@ -57,7 +57,7 @@ super + x -> powermenu
 
 super + shift + q -> quit WM
 
-# Credits
+## Credits
 
 - Huge thanks to [sminez](https://github.com/sminez) for the fantastic Penrose Library, examples and HowTo videos in Youtube.
 

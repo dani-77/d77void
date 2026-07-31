@@ -1,6 +1,6 @@
 ## Hello
 
-Thank you for trying d77void.
+Thank you for trying d77void Openbox edition.
 
 To install use Calamares from the menu.
 
@@ -10,7 +10,7 @@ In case it won't start, open a terminal and type:
 sudo -E calamares
 ```
 
-# 1st run:
+## 1st run:
 
 ## d77-welcome
 
@@ -45,7 +45,7 @@ In case battery is not working properly, swap BAT0 to BAT1 this way; open a term
 sed -i 's|BAT0|BAT1|g' .conkyrc
 ```
 
-# Keybinds
+## Keybinds
 
 alt + shift + return -> terminal
 

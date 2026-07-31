@@ -1,6 +1,6 @@
-Hello
-Thank you for trying d77void RiverWM edition.
+## Hello
 
+Thank you for trying d77void RiverWM edition.
 
 ## Installer
 
@@ -50,7 +50,7 @@ super + x -> powermenu
 super + shift + f -> file manager
 
 
-# River Tweaks
+## River tweaks
 
 To alter the autostart programs, add/swap keybinds and keyboard layout configure ~/.config/river/init ; the file is self explanatory and with several examples already configured.
 
