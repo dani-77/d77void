@@ -1,38 +1,39 @@
-# d77void-hyprland
+## Hello
 
-Hello,
+Thank you for trying d77void Hyprland edition.
 
-Thank you for trying d77void-hyprland edition!
+This ISO uses Hyprland together with Quickshell (my quickshell approach, qsd77).
 
-## Features
-
-This ISO uses:
-
-- Hyprland 0.55.4
-
-- Quickshell 0.3.0 (my quickshell approach qsd77)
-
-## Installer
-
-As usual, you can install the OS using Calamares.
+To install use Calamares from the menu.
 
 ## Keybinds
 
-Super + Return -> Terminal
+super + return -> terminal
 
-Super + A -> Applications Menu
+super + q -> close window
 
-Super + J -> Dwindle Split
+super + a -> applications menu
 
-Super + M -> Log Out
+super + n -> menu2
 
-Super + P -> Print Screen
+super + i -> dashboard
 
-Super + R -> Gmrun
+super + j -> dwindle split
 
-Super + T -> Lock Screen
+super + p -> print screen
 
-Super + X -> Session Menu
+super + r -> gmrun
 
-Super + Y -> Wallpaper Picker
+super + t -> lock screen
 
+super + x -> session menu
+
+super + y -> wallpaper picker
+
+super + m -> logout
+
+## Hyprland tweaks
+
+To alter the autostart programs, add/swap keybinds and keyboard layout configure ~/.config/hypr/hyprland.lua ; the file is self explanatory and with several examples already configured.
+
+Have fun!

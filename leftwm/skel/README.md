@@ -1,6 +1,6 @@
 ## Hello
 
-Thank you for trying d77void.
+Thank you for trying d77void LeftWM edition.
 
 To install use Calamares from the menu.
 
@@ -36,7 +36,7 @@ super + p -> scrot
 
 super + s -> scratchpad
 
-## Tweaks
+## LeftWM tweaks
 
 My new d77 theme now uses eww (Elkowar Wacky Widgets) as system bar.
 This theme was designed to work out of the box in 1920x1080 resolution. If your screen doesn't have this resolution 

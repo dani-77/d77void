@@ -1,6 +1,6 @@
 ## Hello
 
-Thank you for trying d77void.
+Thank you for trying d77void Wayfire edition.
 
 To install use Calamares from the menu.
 
@@ -14,7 +14,7 @@ d77-welcome
 
 That way the d77void repo will be added to /etc/xbps.d and you can add easily other things like steam, flatpak, etc.
 
-# Keybinds
+## Keybinds
 
 super -> drop down wayfire shell menu
 

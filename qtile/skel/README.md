@@ -1,6 +1,6 @@
-Hello
-Thank you for trying d77void. This ISO with Qtile is hybrid (X11/Wayland).
+## Hello
 
+Thank you for trying d77void Qtile edition. This ISO with Qtile is hybrid (X11/Wayland).
 
 To install use Calamares from the menu.
 
@@ -18,9 +18,9 @@ super + d -> file manager
 
 super + w -> browser
 
-super+ m -> mail
+super + m -> mail
 
-super+ n -> menu (x11 and wayland differ this second menu) 
+super + n -> menu (x11 and wayland differ this second menu)
 
 super + i -> swap keyboard layout
 

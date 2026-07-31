@@ -1,6 +1,6 @@
 ## Hello
 
-Thank you for trying d77void.
+Thank you for trying d77void Fluxbox edition.
 
 To install use Calamares from the menu.
 
@@ -10,7 +10,7 @@ In case it won't start, open a terminal and type:
 sudo -E calamares
 ```
 
-# 1st run:
+## 1st run:
 
 ## Conky
 
@@ -40,7 +40,7 @@ sed -i 's|BAT0|BAT1|' .conkyrc
 
 To edit and customize your fluxbox variables, like menu, wallpaper and startup applications, go to ~/.fluxbox/ and edit the files in there to fit your needs.
 
-# Keybinds
+## Keybinds
 
 ctrl + alt + del -> logout
 
