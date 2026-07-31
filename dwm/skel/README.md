@@ -4,12 +4,6 @@ Thank you for trying d77void DWM edition.
 
 To install use Calamares from the menu.
 
-In case it won't start, open a terminal and type:
-
-```
-sudo -E calamares
-```
-
 ## Keybinds
 
 alt + shift + return -> terminal

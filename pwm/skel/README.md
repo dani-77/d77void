@@ -15,12 +15,6 @@ https://github.com/dani-77/pwm and play with it.
 
 To install use Calamares from the menu.
 
-In case it won't start, open a terminal and type:
-
-```
-sudo -E calamares
-```
-
 ## After Install
 
 Don't forget to run d77-welcome after install.
