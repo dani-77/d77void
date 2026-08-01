@@ -1,6 +1,6 @@
 ## Hello
 
-Thank you for trying d77void Hyprland edition.
+Thank you for trying d77void qsd77 edition.
 
 This ISO uses Hyprland together with Quickshell (my quickshell approach, qsd77).
 
@@ -32,7 +32,7 @@ super + y -> wallpaper picker
 
 super + m -> logout
 
-## Hyprland tweaks
+## qsd77 tweaks
 
 To alter the autostart programs, add/swap keybinds and keyboard layout configure ~/.config/hypr/hyprland.lua ; the file is self explanatory and with several examples already configured.
 
