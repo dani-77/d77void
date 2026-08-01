@@ -22,7 +22,7 @@ set $menu wmenu-run
 set $filemanager pcmanfm
 
 ### Windows Rules
-for_window [app_id="gmrun"] floating enable
+for_window [app_id="d77run"] floating enable
 for_window [app_id="qt-sudo"] floating enable
 
 ### Output configuration
@@ -140,7 +140,7 @@ animations {
     
     bindsym $mod+e exec $filemanager
     bindsym $mod+n exec nwggrid
-    bindsym $mod+o exec gmrun
+    bindsym $mod+o exec d77run
     bindsym $mod+space exec fuzzel
     bindsym $mod+x exec fuzzel-power-menu
 

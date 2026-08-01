@@ -41,7 +41,7 @@ super + j -> jgmenu
 
 super + p -> scrot
 
-super + r -> gmrun
+super + r -> d77run
 
 
 Have fun!

@@ -32,7 +32,7 @@ super + j -> dwindle split
 
 super + p -> print screen
 
-super + r -> gmrun
+super + r -> d77run
 
 super + t -> lock screen
 

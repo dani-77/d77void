@@ -36,14 +36,14 @@ riverctl map normal Super A spawn fuzzel
 riverctl map normal Super M spawn geary
 riverctl map normal Super N spawn nwggrid
 riverctl map normal Super P spawn grim
-riverctl map normal Super R spawn gmrun
+riverctl map normal Super R spawn d77run
 riverctl map normal Super T spawn swaylock
 riverctl map normal Super W spawn brave-browser-stable
 riverctl map normal Super X spawn fuzzel-power-menu
 riverctl map normal Super+Shift F spawn pcmanfm
 
 # d77 window rules
-riverctl rule-add -app-id 'gmrun' float
+riverctl rule-add -app-id 'd77run' float
 riverctl rule-add -app-id 'qt-sudo' float
 riverctl rule-add -app-id 'pavucontrol' float
 

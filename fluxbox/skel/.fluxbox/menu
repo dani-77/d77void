@@ -49,7 +49,7 @@
     [submenu] (Shells)
         [exec] (Dash) {xterm -e dash -i}
         [exec] (GIT) {xterm -e git}
-        [exec] (gmrun) {gmrun}
+        [exec] (d77run) {d77run}
         [exec] (PCMan File Manager) {pcmanfm}
         [exec] (ranger) {xterm -e ranger}
         [exec] (ST) {st}

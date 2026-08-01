@@ -20,7 +20,7 @@ super + f -> file manager
 
 super + l -> mail
 
-super + r -> gmrun
+super + r -> d77run
 
 super + t -> lock screen
 

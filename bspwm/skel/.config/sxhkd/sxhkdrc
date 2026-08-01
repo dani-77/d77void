@@ -2,9 +2,9 @@
 # wm independent hotkeys
 #
 
-# gmrun
+# d77run
 super + r
-	gmrun
+	d77run
 
 # rofi
 super + d

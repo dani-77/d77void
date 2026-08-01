@@ -72,7 +72,7 @@ EOF
     fi
     
 printf "Installing packages........\n"
-sudo xbps-install xorg-minimal xterm git cabal-install dunst feh ghc libX11-devel libXft-devel libXinerama-devel libXrandr-devel libXScrnSaver-devel pkg-config dmenu slock st trayer-srg ncurses-devel xmobar gmrun redshift rofi udiskie xautolock xf86-input-synaptics xcompmgr 
+sudo xbps-install xorg-minimal xterm git cabal-install dunst feh ghc libX11-devel libXft-devel libXinerama-devel libXrandr-devel libXScrnSaver-devel pkg-config dmenu slock st trayer-srg ncurses-devel xmobar d77run redshift rofi udiskie xautolock xf86-input-synaptics xcompmgr 
 
 printf "Install Cabal........\n"
 cabal update

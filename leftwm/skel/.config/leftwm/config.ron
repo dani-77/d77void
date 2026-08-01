@@ -76,7 +76,7 @@
         (command: Execute, value: "rofi -no-lazy-grab -show drun -config ~/.config/leftwm/themes/current/rofi/config.rasi", modifier: ["modkey"], key: "a"),
         (command: Execute, value: "rofi -no-lazy-grab -show power-menu  -config ~/.config/leftwm/themes/current/rofi/config.rasi -modi power-menu:rofi-power-menu", modifier: ["modkey"], key: "x"),
         (command: Execute, value: "pcmanfm", modifier: ["modkey"], key: "f"),
-        (command: Execute, value: "gmrun", modifier: ["modkey"], key: "o"),
+        (command: Execute, value: "d77run", modifier: ["modkey"], key: "o"),
         (command: Execute, value: "geary", modifier: ["modkey"], key: "m"),
         (command: Execute, value: "scrot", modifier: ["modkey"], key: "p"),
         (command: Execute, value: "st", modifier: ["modkey"], key: "Return"),

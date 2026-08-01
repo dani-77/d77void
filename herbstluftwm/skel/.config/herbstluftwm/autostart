@@ -43,7 +43,7 @@ hc keybind Mod4-f spawn pcmanfm
 hc keybind Mod4-j spawn jgmenu_run
 hc keybind $Mod-m spawn geary
 hc keybind Mod4-p spawn scrot
-hc keybind Mod4-r spawn gmrun
+hc keybind Mod4-r spawn d77run
 hc keybind $Mod-t spawn slock
 hc keybind $Mod-w spawn firefox
 hc keybind $Mod-x spawn rofi -show power-menu -modi power-menu:rofi-power-menu

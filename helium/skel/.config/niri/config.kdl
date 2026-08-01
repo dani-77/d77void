@@ -269,7 +269,7 @@ window-rule {
 }
 window-rule {
     match app-id=r#"^d77-welcome$"#
-    match app-id=r#"^gmrun$"#
+    match app-id=r#"^d77run$"#
     match app-id=r#"^nmtui-float$"#
     match app-id=r#"^qt-sudo$"#
     match app-id=r#"^gnome-calculator$"#

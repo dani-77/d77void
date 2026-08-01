@@ -12,7 +12,7 @@ super + r -> wmenu
 
 super + space -> menu
 
-super + o -> gmrun
+super + o -> d77run
 
 super + x -> powermenu
 

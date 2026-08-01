@@ -12,7 +12,7 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // === Application Launchers ===
-    Mod+O hotkey-overlay-title="Gmrun" { spawn "gmrun"; }
+    Mod+O hotkey-overlay-title="D77run" { spawn "d77run"; }
     Mod+T hotkey-overlay-title="Open Terminal" { spawn "alacritty"; }
 
     // === Security ===

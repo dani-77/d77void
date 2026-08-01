@@ -14,7 +14,7 @@ super + b -> web browser
 
 super + n -> menu2
 
-super + o -> gmrun
+super + o -> d77run
 
 super + p -> file manager
 

@@ -41,7 +41,7 @@ super + p -> scrot
 
 super + q -> kill focused window
 
-super + r -> gmrun
+super + r -> d77run
 
 super + s -> scratchpad
 

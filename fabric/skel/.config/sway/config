@@ -225,8 +225,8 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-# Gmrun
-bindsym $mod+Shift+r exec gmrun
+# D77run
+bindsym $mod+Shift+r exec d77run
 
 # Utilities:
 
@@ -240,7 +240,7 @@ bindsym $mod+Shift+r exec gmrun
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
 
 # Window Rules
-for_window [app_id="gmrun"] floating enable
+for_window [app_id="d77run"] floating enable
 for_window [app_id="qt-sudo"] floating enable
 for_window [app_id="nmtui-float"] floating enable
 

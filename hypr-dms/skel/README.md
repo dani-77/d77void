@@ -22,7 +22,7 @@ super + v -> clipboard
 
 super + m -> task manager
 
-super + o -> gmrun
+super + o -> d77run
 
 super + y -> wallpaper picker
 

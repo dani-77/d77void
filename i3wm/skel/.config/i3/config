@@ -120,7 +120,7 @@ bindsym Mod1+d exec --no-startup-id rofi -show drun
 bindsym Mod1+x exec rofi -show power-menu -modi power-menu:rofi-power-menu
 
 # start a runner
-bindsym Mod1+o exec gmrun
+bindsym Mod1+o exec d77run
 
 # change focus
 bindsym Mod1+$left focus left

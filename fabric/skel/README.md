@@ -22,7 +22,7 @@ super + d -> menu
 
 super + i -> dashboard
 
-super + shift + r -> gmrun
+super + shift + r -> d77run
 
 super + x -> powermenu
 

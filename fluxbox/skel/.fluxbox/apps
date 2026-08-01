@@ -1,7 +1,7 @@
 [app] (name=fbrun)
   [Position]	(WINCENTER)	{0 0}
   [Layer]	{2}
-[app] (name=gmrun)
+[app] (name=d77run)
   [Position]	(WINCENTER)	{0 0}
   [Layer]	{2}
 [end]

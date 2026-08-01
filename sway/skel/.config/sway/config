@@ -62,7 +62,7 @@ smart_borders on
 for_window [class="^.*"] border pixel 5
 
 ## Windows Rules
-for_window [app_id="gmrun"] floating enable
+for_window [app_id="d77run"] floating enable
 for_window [window_type="dialog"] floating enable
 for_window [window_role="dialog"] floating enable
 
@@ -149,8 +149,8 @@ exec swayidle -w \
     # Swap Wallpaper
     bindsym $mod+y exec wswap-way
 
-    # Start Gmrun
-    bindsym $mod+o exec gmrun
+    # Start D77run
+    bindsym $mod+o exec d77run
 
     # Lock screen
     bindsym $mod+t exec swaylock

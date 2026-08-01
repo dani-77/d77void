@@ -314,9 +314,9 @@ window-rule {
     open-floating true
 }
 
-// Open the Gmrun as floating by default.
+// Open the D77run as floating by default.
 window-rule {
-    match app-id="gmrun"
+    match app-id="d77run"
     open-floating true
 }
 
@@ -370,7 +370,7 @@ binds {
     Mod+B { spawn "brave-browser-stable"; }
     Mod+D { spawn "fuzzel"; }
     Mod+N { spawn "nwggrid"; }
-    Mod+O { spawn "gmrun"; }
+    Mod+O { spawn "d77run"; }
     Mod+Shift+O { toggle-overview; }
     Mod+P { spawn "pcmanfm"; }
     Mod+S { spawn "kitty" "--class" "dropdown"; }

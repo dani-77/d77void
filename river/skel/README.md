@@ -39,7 +39,7 @@ super + m -> mail
 
 super + n -> menu2
 
-super + r -> gmrun
+super + r -> d77run
 
 super + t -> lock
 
