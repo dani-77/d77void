@@ -25,7 +25,7 @@ usage() {
 	 -a <arch>     Set architecture (or platform) in the image
 	 -b <variant>  One of base, awesome, bspwm, cosmic, dwm, fluxbox, gnome,
 	               herbstluftwm, hyprland, i3wm, jwm, labwc, leftwm, mango, niri,
-	               openbox, plasma, pwm, qtile, river, scroll, somewm, sway,
+	               openbox, plasma, pwm, qsd77, qtile, river, scroll, somewm, sway,
 	               wayfire, wmd77 or xfce.
 	               May be specified multiple times to build multiple variants.
 	 -d <date>     Override the datestamp on the generated image (YYYYMMDD format)
@@ -465,6 +465,14 @@ build_variant() {
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		hyprland)
+			COMMON=yes
+			GREETD=yes
+			WAY=yes
+			FUZZEL=yes
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES azote cliphist hyprland hyprland-guiutils hyprlock hyprpaper hyprsunset hyprutils kitty mate-polkit qt5-wayland qt6-wayland swaybg wayland-devel wayland-protocols xdg-desktop-portal-hyprland"
+			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
+		;;
+		qsd77)
 			COMMON=yes
 			GREETD=yes
 			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty cliphist hyprland hyprland-guiutils hypridle hyprpaper hyprpolkitagent hyprsunset hyprutils network-manager-applet nwg-look nwg-launchers pavucontrol qsd77 qt5-wayland qt6-wayland quickshell-d77 wayland-devel wayland-protocols wireless_tools xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-hyprland xorg-server-xwayland xwayland-satellite"

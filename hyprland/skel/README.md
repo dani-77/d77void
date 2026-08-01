@@ -2,7 +2,7 @@
 
 Thank you for trying d77void Hyprland edition.
 
-This ISO uses Hyprland together with Quickshell (my quickshell approach, qsd77).
+This ISO uses Hyprland with Waybar as the status bar and fuzzel as app launcher and power menu.
 
 To install use Calamares from the menu.
 
@@ -12,25 +12,27 @@ super + return -> terminal
 
 super + q -> close window
 
-super + a -> applications menu
+super + a -> menu
 
 super + n -> menu2
 
-super + i -> dashboard
+super + f -> file manager
 
-super + j -> dwindle split
-
-super + p -> print screen
+super + l -> mail
 
 super + r -> gmrun
 
 super + t -> lock screen
 
-super + x -> session menu
+super + v -> toggle floating
 
-super + y -> wallpaper picker
+super + w -> web browser
+
+super + x -> powermenu
 
 super + m -> logout
+
+super + j -> dwindle split
 
 ## Hyprland tweaks
 
