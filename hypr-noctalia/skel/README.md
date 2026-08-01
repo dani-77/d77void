@@ -22,7 +22,7 @@ super + x -> session menu
 
 super + y -> wallpaper picker
 
-super + r -> gmrun
+super + r -> d77run
 
 super + q -> close window
 

@@ -47,7 +47,7 @@ appmenu.System = {
     { 'PCMan File Manager', 'pcmanfm' },
     { 'Print Settings', 'system-config-printer' },
     { 'd77-welcome', 'xterm -e d77-welcome' },
-    { 'gmrun', 'gmrun' },
+    { 'd77run', 'd77run' },
     { 'ranger', 'xterm -e ranger' },
 }
 

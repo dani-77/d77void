@@ -5,6 +5,6 @@ super + b
 super + p
 	scrot
 super + r
-	gmrun
+	d77run
 super + t
 	slock

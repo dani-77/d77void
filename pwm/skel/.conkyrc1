@@ -69,7 +69,7 @@ ${color grey}super + shift + j/k -> ${color}swap window position
 ${color grey}super + m -> ${color}change layout
 ${color grey}super + p -> ${color}print screen
 ${color grey}super + q -> ${color}kill focused window
-${color grey}super + r -> ${color}gmrun
+${color grey}super + r -> ${color}d77run
 ${color grey}super + s -> ${color}scratchpad
 ${color grey}super + t -> ${color}lock
 ${color grey}super + x -> ${color}powermenu

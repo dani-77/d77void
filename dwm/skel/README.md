@@ -20,7 +20,7 @@ alt + m -> focus mode
 
 alt + p -> dmenu
 
-alt + r -> gmrun
+alt + r -> d77run
 
 alt + s -> scratchpad
 

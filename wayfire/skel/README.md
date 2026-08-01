@@ -28,7 +28,7 @@ super + ctrl + shift + cursor -> move active window from desktop (up, left, down
 
 super + q -> close window
 
-super + r -> gmrun
+super + r -> d77run
 
 super + x -> powermenu
 

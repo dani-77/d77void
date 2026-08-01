@@ -37,7 +37,7 @@
       <action name="Execute" command="grim"/>
     </keybind>
     <keybind key="W-r">
-      <action name="Execute" command="gmrun"/>
+      <action name="Execute" command="d77run"/>
     </keybind>
     <keybind key="W-t">
       <action name="Execute" command="swaylock"/>

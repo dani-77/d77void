@@ -272,7 +272,7 @@ hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + A", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd(mail))
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("nwggrid"))
-hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("gmrun"))
+hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("d77run"))
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("fuzzel-power-menu"))
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(web))
@@ -370,8 +370,8 @@ hl.window_rule({
     float = true,
 })
 hl.window_rule({
-    name  = "gmrun",
-    match = { class = "gmrun" },
+    name  = "d77run",
+    match = { class = "d77run" },
 
     float = true,
 })

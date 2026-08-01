@@ -22,7 +22,7 @@ Super + t -> terminal
 
 Super + shift + e -> logout
 
-Super + o -> gmrun
+Super + o -> d77run
 
 Super + q -> close window
 

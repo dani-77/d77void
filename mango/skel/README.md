@@ -14,7 +14,7 @@ alt + space -> app launcher
 
 alt + n -> menu2
 
-alt + r -> gmrun
+alt + r -> d77run
 
 alt + q -> close window
 

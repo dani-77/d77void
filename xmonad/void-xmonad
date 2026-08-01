@@ -213,7 +213,7 @@ EOF
 # XMonad Extra
     echo
     echo "Xmonad Dependencies"
-        pkg="dbus dmenu dunst feh gmrun NetworkManager redshift rofi st slock sddm trayer-srg udiskie xautolock xcompmgr xf86-input-synaptics xmobar"
+        pkg="dbus dmenu dunst feh d77run NetworkManager redshift rofi st slock sddm trayer-srg udiskie xautolock xcompmgr xf86-input-synaptics xmobar"
         svs="sddm dbus NetworkManager"
         install_pkg "$pkg"
         enable_svs "$svs"

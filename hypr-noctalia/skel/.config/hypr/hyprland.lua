@@ -270,7 +270,7 @@ hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd("noctalia msg panel-toggle wallpaper"
 
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("nwggrid"))
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("grim"))
-hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("gmrun"))
+hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("d77run"))
 
 -- closeWindowBind:set_enabled(false)
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
@@ -368,8 +368,8 @@ hl.window_rule({
     float = true,
 })
 hl.window_rule({
-    name  = "gmrun",
-    match = { class = "gmrun" },
+    name  = "d77run",
+    match = { class = "d77run" },
 
     float = true,
 })
