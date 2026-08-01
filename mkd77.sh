@@ -472,12 +472,6 @@ build_variant() {
 			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES azote cliphist hyprland hyprland-guiutils hyprlock hyprpaper hyprsunset hyprutils kitty mate-polkit qt5-wayland qt6-wayland swaybg wayland-devel wayland-protocols xdg-desktop-portal-hyprland"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
-		qsd77)
-			COMMON=yes
-			GREETD=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty cliphist hyprland hyprland-guiutils hypridle hyprpaper hyprpolkitagent hyprsunset hyprutils network-manager-applet nwg-look nwg-launchers pavucontrol qsd77 qt5-wayland qt6-wayland quickshell-d77 wayland-devel wayland-protocols wireless_tools xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-hyprland xorg-server-xwayland xwayland-satellite"
-			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
-		;;
 		hypr-dms)
 			COMMON=yes
 			GREETD=yes
@@ -590,6 +584,12 @@ build_variant() {
 			X11=yes
 			SDDM=yes
 			PKGS="$PKGS $XORG_PKGS $CALAMARES acpi apulse alsa-plugins-pulseaudio alsa-tools alsa-utils arc-theme bash-completion bc brightnessctl ca-certificates cmus conky cups cups-browsed curl dmenu elogind ethtool feh font-hack-ttf fresh-editor gettext git gmrun htop inxi joshuto kvantum mate-polkit mpv neofetch nerd-fonts-symbols-ttf NetworkManager nwg-look octoxbps papirus-icon-theme pcmanfm plymouth polkit power-profiles-daemon pwm qt5ct qt6ct qt5-graphicaleffects qutebrowser rofi smartmontools sxhkd system-config-printer transmission-qt udiskie ufw uget unzip usbutils util-linux vim $REPO_PKGS wget xdg-desktop-portal-gtk xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
+			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
+		;;
+		qsd77)
+			COMMON=yes
+			GREETD=yes
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty cliphist hyprland hyprland-guiutils hypridle hyprpaper hyprpolkitagent hyprsunset hyprutils network-manager-applet nwg-look nwg-launchers pavucontrol qsd77 qt5-wayland qt6-wayland quickshell-d77 wayland-devel wayland-protocols wireless_tools xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-hyprland xorg-server-xwayland xwayland-satellite"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		qtile)
