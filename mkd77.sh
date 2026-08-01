@@ -6,7 +6,7 @@ set -eu
 
 PROGNAME=$(basename "$0")
 ARCH=$(uname -m)
-IMAGES="awesome base bspwm cosmic dwm fluxbox gnome herbstluftwm i3wm jwm labwc leftwm lxqt mango niri openbox plasma pwm qsd77 qtile river scroll somewm sway wayfire wmd77 xfce"
+IMAGES="awesome base bspwm cosmic dwm fluxbox gnome herbstluftwm hyprland i3wm jwm labwc leftwm lxqt mango niri openbox plasma pwm qtile river scroll somewm sway wayfire wmd77 xfce"
 TRIPLET=
 REPO=
 DATE=$(date -u +%Y%m%d)

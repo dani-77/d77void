@@ -60,7 +60,7 @@ Audit the script and adapt it to your need and desire.
 
 
 ```
-sudo ./d77nc -r https://raw.githubusercontent.com/Event-Horizon-VL/blackhole-vl/repository-x86_64 -b qsd77 -- -T d77void
+sudo ./d77nc -r https://raw.githubusercontent.com/Event-Horizon-VL/blackhole-vl/repository-x86_64 -b hyprland -- -T d77void
 ```
 As you can see, the d77nc script builds and has the same options as mkiso.sh.
 
