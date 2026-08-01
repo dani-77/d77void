@@ -6,7 +6,7 @@ set -eu
 
 PROGNAME=$(basename "$0")
 ARCH=$(uname -m)
-IMAGES="awesome base bspwm cosmic dwm fluxbox gnome herbstluftwm hyprland i3wm jwm labwc leftwm lxqt mango niri openbox plasma pwm qtile river scroll somewm sway wayfire wmd77 xfce"
+IMAGES="awesome base bspwm cosmic dwm fluxbox gnome herbstluftwm i3wm jwm labwc leftwm lxqt mango niri openbox plasma pwm qsd77 qtile river scroll somewm sway wayfire wmd77 xfce"
 TRIPLET=
 REPO=
 DATE=$(date -u +%Y%m%d)
@@ -24,8 +24,8 @@ usage() {
 	OPTIONS
 	 -a <arch>     Set architecture (or platform) in the image
 	 -b <variant>  One of base, awesome, bspwm, cosmic, dwm, fluxbox, gnome,
-	               herbstluftwm, hyprland, i3wm, jwm, labwc, leftwm, mango, niri,
-	               openbox, plasma, pwm, qtile, river, scroll, somewm, sway,
+	               herbstluftwm, i3wm, jwm, labwc, leftwm, mango, niri,
+	               openbox, plasma, pwm, qsd77, qtile, river, scroll, somewm, sway,
 	               wayfire, wmd77 or xfce.
 	               May be specified multiple times to build multiple variants.
 	 -d <date>     Override the datestamp on the generated image (YYYYMMDD format)
@@ -464,7 +464,7 @@ build_variant() {
 			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES herbstluftwm jgmenu mate-polkit xdg-desktop-portal-gtk"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
-		hyprland)
+		qsd77)
 			COMMON=yes
 			GREETD=yes
 			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty cliphist hyprland hyprland-guiutils hypridle hyprpaper hyprpolkitagent hyprsunset hyprutils network-manager-applet nwg-look nwg-launchers pavucontrol qsd77 qt5-wayland qt6-wayland quickshell-d77 wayland-devel wayland-protocols wireless_tools xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-hyprland xorg-server-xwayland xwayland-satellite"
