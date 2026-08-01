@@ -24,7 +24,7 @@ usage() {
 	OPTIONS
 	 -a <arch>     Set architecture (or platform) in the image
 	 -b <variant>  One of base, awesome, bspwm, cosmic, dwm, fluxbox, gnome,
-	               herbstluftwm, i3wm, jwm, labwc, leftwm, mango, niri,
+	               herbstluftwm, hyprland, i3wm, jwm, labwc, leftwm, mango, niri,
 	               openbox, plasma, pwm, qsd77, qtile, river, scroll, somewm, sway,
 	               wayfire, wmd77 or xfce.
 	               May be specified multiple times to build multiple variants.
@@ -462,6 +462,14 @@ build_variant() {
 			SDDM=yes
 			ROFI=yes
 			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES herbstluftwm jgmenu mate-polkit xdg-desktop-portal-gtk"
+			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
+		;;
+		hyprland)
+			COMMON=yes
+			GREETD=yes
+			WAY=yes
+			FUZZEL=yes
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES azote cliphist hyprland hyprland-guiutils hyprlock hyprpaper hyprsunset hyprutils kitty mate-polkit qt5-wayland qt6-wayland swaybg wayland-devel wayland-protocols xdg-desktop-portal-hyprland"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		qsd77)
