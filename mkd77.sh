@@ -432,7 +432,7 @@ build_variant() {
 		fabric)
 			COMMON=yes
 			GREETD=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty awww cinnamon-desktop cliphist cmake fabric fabric-d77 gcc gobject-introspection grim gtk-layer-shell gtk-session-lock libdbusmenu-gtk3 mate-polkit nwg-look ollama pkg-config python3-cairo-devel python3-pam python3-psutil qt5-wayland qt6-wayland swayfx swaybg swayidle swayimg wlsunset wmenu xdg-desktop-portal-gtk xdg-desktop-portal-wlr xorg-server-xwayland xwayland-satellite"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty awww cinnamon-desktop cliphist cmake fabric fabric-d77 gcc gobject-introspection grim gtk-layer-shell gtk-session-lock libdbusmenu-gtk3 mate-polkit nwg-look ollama pkg-config python3-cairo-devel python3-pam python3-psutil qt5-wayland qt6-wayland sway swaybg swayidle swayimg wlsunset wmenu xdg-desktop-portal-gtk xdg-desktop-portal-wlr xorg-server-xwayland xwayland-satellite"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager ollama polkitd power-profiles-daemon"
 		;;
 		fluxbox)
@@ -628,7 +628,7 @@ build_variant() {
 			COMMON=yes
 			GREETD=yes
 			FUZZEL=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist grim ImageMagick kitty mate-polkit nwg-look nwg-launchers pavucontrol qt5-wayland qt6-wayland swayfx swaybg swayidle swayimg swaylock SwayNotificationCenter wlsunset wmenu xdg-desktop-portal-gtk xdg-desktop-portal-wlr xorg-server-xwayland xwayland-satellite"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist grim ImageMagick kitty mate-polkit nwg-look nwg-launchers pavucontrol qt5-wayland qt6-wayland sway swaybg swayidle swayimg swaylock SwayNotificationCenter wlsunset wmenu xdg-desktop-portal-gtk xdg-desktop-portal-wlr xorg-server-xwayland xwayland-satellite"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		wayfire)
