@@ -39,3 +39,4 @@ bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 bspc rule -a scratchpad state=floating sticky=on layer=above center=true
+bspc rule -a d77run state=floating center=true

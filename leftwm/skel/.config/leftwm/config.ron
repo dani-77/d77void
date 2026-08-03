@@ -58,7 +58,9 @@
     scratchpad: [
         (name: "kitty", args: None, value: "kitty", x: 50, y: 50, height: 400, width: 1180),
     ],
-    window_rules: [],
+    window_rules: [
+        (window_class: "d77run", spawn_floating: true),
+    ],
     disable_current_tag_swap: false,
     disable_tile_drag: false,
     disable_window_snap: true,
