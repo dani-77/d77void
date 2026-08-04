@@ -209,6 +209,21 @@ _include_base() {
 	cp -r ./common/themes "$INCLUDEDIR"/etc/skel/.local/share/
 	cp -r ./common/.icons "$INCLUDEDIR"/etc/skel/
 	cp -r ./common/"$ARCH_PATH"/lib-d77-welcome "$INCLUDEDIR"/usr/lib/
+
+	# acpi-gpe-guard: guards against a runaway ACPI GPE (firmware
+	# interrupt-storm bug seen on some laptops — masks whichever GPE is
+	# actually storming, no hardcoded machine-specific GPE number, so
+	# it's safe on hardware we don't control). Not an xbps package, so
+	# it can't go through enable_services (that requires the service to
+	# already exist under $ROOTFS/etc/sv, which only packages installed
+	# via install_packages provide) — enabled directly here instead by
+	# placing both the service dir and its runsvdir symlink ourselves.
+	install -Dm755 ./common/acpi-gpe-guard/acpi-gpe-guard.sh \
+		"$INCLUDEDIR"/usr/lib/acpi-gpe-guard/acpi-gpe-guard.sh
+	install -Dm755 ./common/acpi-gpe-guard/run \
+		"$INCLUDEDIR"/etc/sv/acpi-gpe-guard/run
+	mkdir -p "$INCLUDEDIR"/etc/runit/runsvdir/default
+	ln -sf /etc/sv/acpi-gpe-guard "$INCLUDEDIR"/etc/runit/runsvdir/default/acpi-gpe-guard
 }
 
 include_common() {

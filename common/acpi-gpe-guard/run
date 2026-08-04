@@ -1,0 +1,18 @@
+#!/bin/sh
+# runit service: periodically checks for a runaway ACPI GPE (see
+# acpi-gpe-guard.sh, installed alongside this by the same package/skel
+# step) and masks it if found. Runs forever at a low duty cycle rather
+# than once at boot, since a storm can also start later at runtime —
+# e.g. triggered by a suspend/resume cycle, docking, or a hotplug
+# event, not just at cold boot.
+exec 2>&1
+
+# Let boot-time hardware enumeration settle before the first check, so
+# a one-off burst from device probing during boot isn't mistaken for a
+# storm and masked by accident.
+sleep 20
+
+while true; do
+    /usr/lib/acpi-gpe-guard/acpi-gpe-guard.sh
+    sleep 300
+done
