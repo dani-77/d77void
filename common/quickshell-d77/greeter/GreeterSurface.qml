@@ -28,7 +28,7 @@ Rectangle {
     property color colBlue:   "#7aa2f7"
     property color colPurple: "#bb9af7"
     property color colRed:    "#f7768e"
-    property string font:     "JetBrainsMono Nerd Font"
+    property string font:     "JetBrains Mono"
     property int    fsize:    13
 
     signal loginRequested
@@ -148,7 +148,7 @@ Rectangle {
 
                     Text {
                         text: "󰀄"
-                        font.family: root.font
+                        font.family: "Symbols Nerd Font"
                         font.pixelSize: root.fsize + 4
                         color: root.colPurple
                     }
@@ -198,7 +198,7 @@ Rectangle {
 
                     Text {
                         text: "󰌾"
-                        font.family: root.font
+                        font.family: "Symbols Nerd Font"
                         font.pixelSize: root.fsize + 4
                         color: root.colPurple
                     }
@@ -334,13 +334,24 @@ Rectangle {
             }
 
             // Feedback
-            Text {
+            Row {
                 Layout.alignment: Qt.AlignHCenter
                 visible: GreeterState.pamState !== ""
-                text: GreeterState.pamState === "fail" ? "󰀦  Incorrect username or password" : "󰀦  Login failed, try again"
-                font.family: root.font
-                font.pixelSize: root.fsize
-                color: root.colRed
+                spacing: 6
+
+                Text {
+                    text: "󰀦"
+                    font.family: "Symbols Nerd Font"
+                    font.pixelSize: root.fsize
+                    color: root.colRed
+                }
+
+                Text {
+                    text: GreeterState.pamState === "fail" ? "Incorrect username or password" : "Login failed, try again"
+                    font.family: root.font
+                    font.pixelSize: root.fsize
+                    color: root.colRed
+                }
             }
         }
     }
@@ -433,7 +444,7 @@ Rectangle {
             Text {
                 anchors.centerIn: parent
                 text: "󰐥"
-                font.family: root.font
+                font.family: "Symbols Nerd Font"
                 font.pixelSize: root.fsize
                 color: root.colRed
             }
@@ -457,7 +468,7 @@ Rectangle {
             Text {
                 anchors.centerIn: parent
                 text: "󰜉"
-                font.family: root.font
+                font.family: "Symbols Nerd Font"
                 font.pixelSize: root.fsize
                 color: root.colBlue
             }
