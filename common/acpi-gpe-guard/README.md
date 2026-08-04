@@ -22,6 +22,12 @@ and masks a GPE actively storming.
 - `run` — a runit service wrapping the script in a boot-settle delay
   (20s) plus a 5-minute recheck loop, so it catches a storm that starts
   later too (e.g. after suspend/resume), not just one present at boot.
+- `log/run` — standard `vlogger -t acpi-gpe-guard -p daemon` companion,
+  same pattern every other service here uses (ollama, NetworkManager,
+  dbus, cupsd, ...). Without it there's nowhere for this service's
+  `logger` calls to durably land; with it, whatever the image's syslog
+  setup already does with "daemon"-facility messages just picks this up
+  too, no extra plumbing.
 
 ## Wired into the build
 
@@ -40,17 +46,21 @@ install -Dm755 ./common/acpi-gpe-guard/acpi-gpe-guard.sh \
 	"$INCLUDEDIR"/usr/lib/acpi-gpe-guard/acpi-gpe-guard.sh
 install -Dm755 ./common/acpi-gpe-guard/run \
 	"$INCLUDEDIR"/etc/sv/acpi-gpe-guard/run
+install -Dm755 ./common/acpi-gpe-guard/log/run \
+	"$INCLUDEDIR"/etc/sv/acpi-gpe-guard/log/run
 ln -sf /etc/sv/acpi-gpe-guard "$INCLUDEDIR"/etc/runit/runsvdir/default/acpi-gpe-guard
 ```
 
 ## If it ever fires
 
 The mask only lasts until reboot — it's a safety net, not a permanent
-fix. Check what got masked and how bad it was:
-
-```sh
-journalctl -t acpi-gpe-guard    # or wherever this image routes syslog
-```
+fix. Check what got masked and how bad it was via whatever consumes
+this image's "daemon"-facility syslog messages (`journalctl -t
+acpi-gpe-guard` on a systemd image; on a runit-void image with
+socklog-void installed and enabled, `/var/log/socklog/daemon/current`;
+if neither is set up, `vlogger`'s messages have nowhere to land — this
+matches every other service here (ollama, NetworkManager, ...), not a
+gap specific to this one).
 
 From there, decide whether to mask that GPE permanently (kernel
 parameter `acpi_mask_gpe=0xNN`, machine-specific — do **not** default

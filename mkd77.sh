@@ -222,6 +222,12 @@ _include_base() {
 		"$INCLUDEDIR"/usr/lib/acpi-gpe-guard/acpi-gpe-guard.sh
 	install -Dm755 ./common/acpi-gpe-guard/run \
 		"$INCLUDEDIR"/etc/sv/acpi-gpe-guard/run
+	# log/run: same vlogger -p daemon pattern every other service here
+	# uses (ollama, NetworkManager, dbus, cupsd, ...), so this logs
+	# wherever the image's syslog setup already routes "daemon" facility
+	# messages, with no service-specific plumbing to add later.
+	install -Dm755 ./common/acpi-gpe-guard/log/run \
+		"$INCLUDEDIR"/etc/sv/acpi-gpe-guard/log/run
 	mkdir -p "$INCLUDEDIR"/etc/runit/runsvdir/default
 	ln -sf /etc/sv/acpi-gpe-guard "$INCLUDEDIR"/etc/runit/runsvdir/default/acpi-gpe-guard
 }
