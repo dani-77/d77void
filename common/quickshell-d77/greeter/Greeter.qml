@@ -32,7 +32,7 @@ Scope {
     property color colBlue:   "#7aa2f7"
     property color colPurple: "#bb9af7"
     property color colRed:    "#f7768e"
-    property string font:     "JetBrainsMono Nerd Font"
+    property string font:     "JetBrains Mono"
     property int    fsize:    13
 
     // ══════════════════════════════════════════════════════
