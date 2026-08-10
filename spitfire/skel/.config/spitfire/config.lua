@@ -70,7 +70,7 @@ spitfire.bind("Mod4+Shift", "k", function() spitfire.window.swap_prev() end)
 
 -- Window rules — floating windows are left out of the tiling arrangement
 -- entirely (their geometry is never touched).
-spitfire.rule({ app_id = "pavucontrol", floating = true })
+spitfire.rule({ app_id = "d77-welcome", floating = true, centered = true })
 spitfire.rule({ app_id = "qt-sudo", floating = true, centered = true })
 spitfire.rule({ app_id = "dev.d77.gmrun-rejuvenated", floating = true, centered = true })
 
@@ -112,4 +112,5 @@ spitfire.autostart({
 "qsd77 run -c utumno",
 "pipewire",
 "/usr/libexec/polkit-mate-authentication-agent-1",
+"~/./.auto.sh",
 })
