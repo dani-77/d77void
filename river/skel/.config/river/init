@@ -19,7 +19,8 @@ riverctl focus-follows-cursor normal
 riverctl spawn "swaybg -i ~/Wallpaper/background1.png"
 
 # Autostart
-riverctl spawn "waybar -c ~/.config/waybar/config_river.jsonc" 
+riverctl spawn "pipewire"
+riverctl spawn "waybar -c ~/.config/waybar/config_river.jsonc"
 riverctl spawn "nm-applet"
 riverctl spawn "udiskie -at"
 riverctl spawn "/usr/libexec/polkit-mate-authentication-agent-1"

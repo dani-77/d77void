@@ -2,6 +2,7 @@
 export QT_QPA_PLATFORM=wayland
 gsettings set org.gnome.desktop.interface gtk-theme "Arc-Dark" &
 gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark' &
+pipewire &
 dunst &
 udiskie -a &
 /usr/libexec/polkit-mate-authentication-agent-1 &

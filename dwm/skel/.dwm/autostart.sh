@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# audio
+exec pipewire &
+
 # notifications
 exec dunst &
 

@@ -1,5 +1,6 @@
 #! /bin/sh
 
+pipewire &
 dunst &
 /usr/libexec/polkit-mate-authentication-agent-1 &
 xcompmgr -c -f -n &

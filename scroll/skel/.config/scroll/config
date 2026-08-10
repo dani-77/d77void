@@ -687,6 +687,7 @@ bindgesture swipe:4:up scale_workspace overview
 # Opens a terminal when creating workspace 6
 # workspace 6 exec kitty
 
+exec pipewire
 exec udiskie -a
 exec /usr/libexec/xdg-desktop-portal-gtk
 exec /usr/libexec/polkit-gnome-authentication-agent-1

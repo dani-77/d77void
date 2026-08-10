@@ -11,6 +11,7 @@ hc emit_hook reload
 #xsetroot -solid '#5A8E3A'
 TERMINAL=st
 feh --bg-scale ~/Wallpaper/wall_macos3.jpg &
+pipewire &
 dunst &
 polybar &
 xcompmgr -c -f -n &

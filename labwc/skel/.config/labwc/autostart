@@ -10,6 +10,9 @@ wlsunset -l 41.6 -L -8.62 >/dev/null 2>&1 & # latitude and Longitude set to Opor
 # README
 ~/./.auto.sh &
 
+# Audio
+pipewire &
+
 # Automount disks
 udiskie -at &
 /usr/libexec/polkit-mate-authentication-agent-1 &

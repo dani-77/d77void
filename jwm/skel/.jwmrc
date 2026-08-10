@@ -2,6 +2,7 @@
 <JWM>
 <StartupCommand>
 feh --bg-fill ~/Wallpaper/background7.png &
+pipewire &
 /usr/libexec/polkit-mate-authentication-agent-1 &
 xcompmgr -c -f -n &
 conky &

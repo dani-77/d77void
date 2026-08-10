@@ -66,6 +66,9 @@ for_window [app_id="d77run"] floating enable
 for_window [window_type="dialog"] floating enable
 for_window [window_role="dialog"] floating enable
 
+### Audio
+exec pipewire &
+
 ### Nighshift (the location set here is for Oporto, Portugal; gather your latitude and longitude at openstreetmap)
 exec wlsunset -g 0.8 -l 41.6 -L -8.62 &
 
