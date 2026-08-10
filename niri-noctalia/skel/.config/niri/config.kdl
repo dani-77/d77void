@@ -195,6 +195,7 @@ environment {
   QT_QPA_PLATFORMTHEME_QT6 "gtk3"
   TERMINAL "kitty"
 }
+spawn-at-startup "pipewire"
 spawn-at-startup "udiskie" "-at"
 spawn-at-startup "noctalia" "run"
 spawn-at-startup "/usr/libexec/polkit-mate-authentication-agent-1"
