@@ -25,8 +25,8 @@ usage() {
 	 -a <arch>     Set architecture (or platform) in the image
 	 -b <variant>  One of base, awesome, bspwm, cosmic, dwm, fluxbox, gnome,
 	               herbstluftwm, hyprland, i3wm, jwm, labwc, leftwm, mango, niri,
-	               openbox, plasma, pwm, qsd77, qtile, river, scroll, somewm, sway,
-	               wayfire, wmd77 or xfce.
+	               openbox, plasma, pwm, qsd77, qtile, river, scroll, somewm,
+	               spitfire, sway, wayfire, wmd77 or xfce.
 	               May be specified multiple times to build multiple variants.
 	 -d <date>     Override the datestamp on the generated image (YYYYMMDD format)
 	 -t <arch-date-variant>
@@ -638,6 +638,20 @@ build_variant() {
 			NIRI=yes
 			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty awesome-appmenu dunst fuzzel mate-polkit nwg-look somewm swayidle swaylock xdg-desktop-portal-gtk xdg-desktop-portal-wlr xorg-server-xwayland xterm xwayland-satellite wireless_tools wlsunset"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
+		;;
+		spitfire)
+			COMMON=yes
+			GREETD=yes
+			# spitfire itself (Cargo feature "xwayland") owns XWayland, no
+			# xwayland-satellite needed; utumno is pure Qt6/QML, and its
+			# Network.qml talks to NetworkManager directly (no applet) and
+			# shells out to nmtui for management, so no
+			# network-manager-applet either. spitfire-portals.conf (shipped
+			# by the spitfire package) routes the Secret portal to
+			# gnome-keyring explicitly, so that's a hard requirement, not
+			# just a nice-to-have.
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty awww dunst gnome-keyring mate-polkit nwg-look ollama pavucontrol qsd77 qt5-wayland qt6-shadertools qt6-wayland spitfire upower utumno wayland-devel wayland-protocols wireless_tools xdg-desktop-portal xdg-desktop-portal-gtk xorg-server-xwayland"
+			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager ollama polkitd power-profiles-daemon"
 		;;
 		sway)
 			COMMON=yes
