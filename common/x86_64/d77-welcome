@@ -306,19 +306,6 @@ STEPS = [
         ],
     },
     {
-        "id": "wireplumber",
-        "title": "Configure Wireplumber",
-        "icon": "audio-card-symbolic",
-        "kind": "action",
-        "summary": (
-            "Wireplumber isn't picked up system-wide, so it needs to be "
-            "symlinked per user."
-        ),
-        "command_preview": "symlink pipewire/wireplumber config into ~/.config/pipewire/pipewire.conf.d/",
-        "script": "wireplumber",
-        "requires_root": False,
-    },
-    {
         "id": "remove-calamares",
         "title": "Remove Calamares Installer",
         "icon": "user-trash-symbolic",

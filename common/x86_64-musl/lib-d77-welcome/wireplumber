@@ -1,4 +1,0 @@
-#!/bin/bash
-set -e
-
-mkdir -p ~/.config/pipewire/pipewire.conf.d/ && ln -s /usr/share/examples/pipewire/20-pipewire-pulse.conf ~/.config/pipewire/pipewire.conf.d/ && ln -s /usr/share/examples/wireplumber/10-wireplumber.conf ~/.config/pipewire/pipewire.conf.d/
