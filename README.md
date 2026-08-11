@@ -1,4 +1,14 @@
-# d77void - iso creator d77void
+<p align="center">
+  <img src="assets/logo.png" width="128" alt="d77void logo">
+</p>
+
+<h1 align="center">d77void</h1>
+
+<p align="center">
+  ISO creator for d77void.
+</p>
+
+---
 
 ## Overview
 
