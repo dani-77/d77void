@@ -70,20 +70,24 @@ spitfire.bind("Mod4+Shift", "k", function() spitfire.window.swap_prev() end)
 
 -- Window rules — floating windows are left out of the tiling arrangement
 -- entirely (their geometry is never touched).
-spitfire.rule({ app_id = "d77-welcome", floating = true, centered = true })
+spitfire.rule({ app_id = "nmtui-float", floating = true, centered = true })
 spitfire.rule({ app_id = "qt-sudo", floating = true, centered = true })
 spitfire.rule({ app_id = "dev.d77.gmrun-rejuvenated", floating = true, centered = true })
 
 spitfire.border = { width = 4, active = "#7aa2f7", inactive = "#414868", radius = 12 }
-spitfire.gaps = { inner = 20, outer = 10 }
-spitfire.anim = { enabled = true, duration = 200 }
+spitfire.gaps = { inner = 20, outer = 5 }
 spitfire.output = { scale = 1.25 }
+spitfire.anim = { enabled = true, duration = 200 }
 
 -- Keyboard layout — empty string means "let xkbcommon pick its own
 -- default" (in practice, "us"). Same fields/meaning as setxkbmap's flags
 -- of the same names. Applied at startup and again on every
 -- spitfire.reload() (no restart needed to try a different layout).
-spitfire.keyboard = { layout = "us", variant = "intl", model = "", options = "" }
+spitfire.keyboard = { layout = "us", variant = "intl", model = "", options = "", repeat_delay = 600, repeat_rate = 25 }
+
+-- Optional spitfire.focus_follows_mouse = true if you want your 
+-- focus to follow the mouse pointer.
+spitfire.focus_follows_mouse = true
 
 -- Optional built-in bar — on by default so there's something visibly
 -- alive on screen out of the box. Not a client, not a protocol: drawn by
