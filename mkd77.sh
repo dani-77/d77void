@@ -26,7 +26,7 @@ usage() {
 	 -b <variant>  One of base, awesome, bspwm, cosmic, dwm, fluxbox, gnome,
 	               herbstluftwm, hyprland, i3wm, jwm, labwc, leftwm, mango, niri,
 	               openbox, plasma, pwm, qsd77, qtile, river, scroll, somewm,
-	               spitfire, sway, wayfire, wmd77 or xfce.
+	               spitfire, sway, wasp, wayfire, wmd77 or xfce.
 	               May be specified multiple times to build multiple variants.
 	 -d <date>     Override the datestamp on the generated image (YYYYMMDD format)
 	 -t <arch-date-variant>
@@ -659,6 +659,22 @@ build_variant() {
 			FUZZEL=yes
 			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist grim ImageMagick kitty mate-polkit nwg-look nwg-launchers pavucontrol qt5-wayland qt6-wayland sway swaybg swayidle swayimg swaylock SwayNotificationCenter wlsunset wmenu xdg-desktop-portal-gtk xdg-desktop-portal-wlr xorg-server-xwayland xwayland-satellite"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
+		;;
+		wasp)
+			COMMON=yes
+			GREETD=yes
+			# wasp (like spitfire) creates XWayland itself via wlroots --
+			# xorg-server-xwayland is a hard package dependency of wasp
+			# itself, listed here too just for readability alongside the
+			# rest of this line; no xwayland-satellite needed. utumno is
+			# pure Qt6/QML and talks to NetworkManager directly (no
+			# applet needed), same as spitfire. wasp-portals.conf (shipped
+			# by the wasp package) routes Secret to gnome-keyring and
+			# ScreenCast/Screenshot to wlr explicitly, hence
+			# xdg-desktop-portal-wlr below. wmenu provides wmenu-run,
+			# wasp.menu's default in config.lua.
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty awww dunst gnome-keyring mate-polkit nwg-look ollama pavucontrol qsd77 qt5-wayland qt6-shadertools qt6-wayland upower utumno wasp wayland-devel wayland-protocols wireless_tools wmenu xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-wlr xorg-server-xwayland"
+			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager ollama polkitd power-profiles-daemon"
 		;;
 		wayfire)
 			COMMON=yes
