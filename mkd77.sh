@@ -650,7 +650,7 @@ build_variant() {
 			# by the spitfire package) routes the Secret portal to
 			# gnome-keyring explicitly, so that's a hard requirement, not
 			# just a nice-to-have.
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty awww dunst gnome-keyring mate-polkit nwg-look ollama pavucontrol qsd77 qt5-wayland qt6-shadertools qt6-wayland spitfire upower utumno wayland-devel wayland-protocols wireless_tools xdg-desktop-portal xdg-desktop-portal-gtk xorg-server-xwayland"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty awww dunst gnome-keyring mate-polkit noto-fonts-emoji nwg-look ollama pavucontrol qsd77 qt5-wayland qt6-shadertools qt6-wayland spitfire upower utumno wayland-devel wayland-protocols wireless_tools xdg-desktop-portal xdg-desktop-portal-gtk xorg-server-xwayland"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager ollama polkitd power-profiles-daemon"
 		;;
 		sway)
@@ -673,7 +673,7 @@ build_variant() {
 			# ScreenCast/Screenshot to wlr explicitly, hence
 			# xdg-desktop-portal-wlr below. wmenu provides wmenu-run,
 			# wasp.menu's default in config.lua.
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty awww dunst gnome-keyring mate-polkit nwg-look ollama pavucontrol qsd77 qt5-wayland qt6-shadertools qt6-wayland upower utumno wasp wayland-devel wayland-protocols wireless_tools wmenu xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-wlr xorg-server-xwayland"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES alacritty awww dunst gnome-keyring mate-polkit noto-fonts-emoji nwg-look ollama pavucontrol qsd77 qt5-wayland qt6-shadertools qt6-wayland upower utumno wasp wayland-devel wayland-protocols wireless_tools wmenu xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-wlr xorg-server-xwayland"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager ollama polkitd power-profiles-daemon"
 		;;
 		wayfire)
