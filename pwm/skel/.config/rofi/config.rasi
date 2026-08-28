@@ -1,6 +1,6 @@
 configuration{
     modi: "run,drun,window";
-    icon-theme: "Arc-Dark";
+    icon-theme: "Papirus-Dark";
     show-icons: true;
     drun-display-format: "{icon} {name}";
     location: 0;
@@ -13,5 +13,5 @@ configuration{
     sidebar-mode: true;
 }
 
-@theme "catppuccin-macchiato"
+@theme "rounded-gray-dark"
 

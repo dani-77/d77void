@@ -6,7 +6,10 @@ GRUB_DEFAULT=0
 #GRUB_HIDDEN_TIMEOUT_QUIET=false
 GRUB_TIMEOUT=5
 GRUB_DISTRIBUTOR='d77void'
-GRUB_CMDLINE_LINUX_DEFAULT='quiet splash resume=UUID=c02130cc-70c3-4b7a-90b4-1999561d3f77 loglevel=4'
+# No hardcoded resume=UUID here: it must match the target's swap or the
+# kernel stalls at boot waiting for a device that does not exist. Suspend
+# resume is set per-install (Calamares luksopenswaphookcfg / dracut).
+GRUB_CMDLINE_LINUX_DEFAULT='quiet splash loglevel=4'
 # Uncomment to use basic console
 #GRUB_TERMINAL_INPUT="console"
 # Uncomment to disable graphical terminal

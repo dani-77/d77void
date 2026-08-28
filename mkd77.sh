@@ -188,6 +188,8 @@ _include_base() {
 	cp -r ./common/.bash_it "$INCLUDEDIR"/etc/skel/
 	cp -r "$variant"/skel "$INCLUDEDIR"/etc/
 	cp ./common/grub "$INCLUDEDIR"/etc/default/
+	mkdir -p "$INCLUDEDIR"/etc/dracut.conf.d
+	cp ./common/90-d77.conf "$INCLUDEDIR"/etc/dracut.conf.d/
 	cp ./common/.auto.sh "$INCLUDEDIR"/etc/skel/
 	cp ./common/.gtkrc-2.0 "$INCLUDEDIR"/etc/skel/
 	cp ./common/.bashrc "$INCLUDEDIR"/etc/skel/

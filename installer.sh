@@ -1384,7 +1384,9 @@ Root partition not empty! Aborting..." ${MSGBOXSIZE}
         echo "Rebuilding initramfs for target ..." >$LOG
         # mount required fs
         mount_filesystems
-        chroot $TARGETDIR dracut --no-hostonly --add-drivers "ahci" --force >>$LOG 2>&1
+        # Host-only + zstd (see /etc/dracut.conf.d/90-d77.conf): a full generic
+        # image is too large for the GRUB payload to load on coreboot/SeaBIOS.
+        chroot $TARGETDIR dracut --hostonly --no-hostonly-cmdline --add-drivers "nvme nvme_core ahci" --force >>$LOG 2>&1
         INFOBOX "Removing temporary packages from target ..." 4 60
         echo "Removing temporary packages from target ..." >$LOG
         TO_REMOVE="dialog xtools-minimal xmirror"
