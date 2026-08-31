@@ -353,15 +353,15 @@ build_variant() {
 			[ -n "$NC" ] && WANT_INSTALLER=yes
 			TARGET_ARCH="$ARCH"
 			if [ -n "$MUSL" ]; then
-				D77_CORE="acpi alsa-pipewire alsa-tools alsa-utils arc-theme bash-completion bc firefox brightnessctl ca-certificates cmus cups cups-browsed curl elogind ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-hack-ttf font-JetBrainsMono geary gettext git d77run htop inxi kvantum mousepad mpv musl-locales nano NetworkManager nerd-fonts-symbols-ttf nwg-look octoxbps papirus-icon-theme pcmanfm pipewire plymouth polkit power-profiles-daemon pulseaudio-utils qt5ct qt6ct qt5-graphicaleffects ranger smartmontools system-config-printer transmission-qt udiskie ufw uget unzip usbutils util-linux vim wget wireplumber xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
+				D77_CORE="acpi alsa-pipewire alsa-tools alsa-utils arc-theme bash-completion bc firefox brightnessctl ca-certificates cmus cups cups-browsed curl elogind ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-hack-ttf font-JetBrainsMono geary gettext git d77run htop inxi kvantum mousepad mpv musl-locales nano NetworkManager nerd-fonts-symbols-ttf nwg-look octoxbps papirus-icon-theme pcmanfm pipewire plymouth polkit power-profiles-daemon pulseaudio-utils qt5ct qt6ct ranger smartmontools system-config-printer transmission-qt udiskie ufw uget unzip usbutils util-linux vim wget wireplumber xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
 				D77_COSMIC="acpi alsa-pipewire alsa-tools alsa-utils arc-theme bash-completion bc brightnessctl ca-certificates cmus cups cups-browsed curl elogind ethtool feh ffmpeg font-hack-ttf font-JetBrainsMono geary gettext git htop inxi kvantum musl-locales nano NetworkManager neofetch nerd-fonts-symbols-ttf octoxbps papirus-icon-theme pipewire plymouth polkit power-profiles-daemon pulseaudio-utils qt5ct qt6ct ranger smartmontools transmission-qt udiskie ufw uget unzip usbutils util-linux vim $REPO_PKGS wget wireplumber xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
 				D77_GNOME="acpi alsa-pipewire alsa-tools alsa-utils arc-theme bash-completion bc brightnessctl ca-certificates cmus cups cups-browsed curl elogind ethtool feh ffmpeg font-hack-ttf font-JetBrainsMono geary gettext git htop inxi kvantum musl-locales nano NetworkManager neofetch nerd-fonts-symbols-ttf octoxbps papirus-icon-theme pipewire plymouth polkit power-profiles-daemon pulseaudio-utils qt5ct qt6ct ranger smartmontools transmission-qt udiskie ufw uget unzip usbutils util-linux vim $REPO_PKGS wget wireplumber xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
-				D77_WAYFIRE="acpi alsa-pipewire alsa-tools alsa-utils arc-theme bash-completion bc firefox brightnessctl ca-certificates cmus cups cups-browsed curl dunst elogind ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-awesome7 font-hack-ttf font-JetBrainsMono geary gettext git d77run htop inxi kitty kvantum mousepad mpv musl-locales nano NetworkManager nerd-fonts-symbols-ttf nwg-look octoxbps papirus-icon-theme pcmanfm pipewire plymouth polkit power-profiles-daemon pulseaudio-utils qt5ct qt6ct qt5-graphicaleffects ranger smartmontools system-config-printer transmission-gtk udiskie ufw uget unzip usbutils util-linux vim $REPO_PKGS wget wireplumber xdg-desktop-portal xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf xterm yt-dlp zathura zathura-pdf-poppler"
+				D77_WAYFIRE="acpi alsa-pipewire alsa-tools alsa-utils arc-theme bash-completion bc firefox brightnessctl ca-certificates cmus cups cups-browsed curl dunst elogind ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-awesome7 font-hack-ttf font-JetBrainsMono geary gettext git d77run htop inxi kitty kvantum mousepad mpv musl-locales nano NetworkManager nerd-fonts-symbols-ttf nwg-look octoxbps papirus-icon-theme pcmanfm pipewire plymouth polkit power-profiles-daemon pulseaudio-utils qt5ct qt6ct ranger smartmontools system-config-printer transmission-gtk udiskie ufw uget unzip usbutils util-linux vim $REPO_PKGS wget wireplumber xdg-desktop-portal xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf xterm yt-dlp zathura zathura-pdf-poppler"
 			else
-				D77_CORE="acpi alsa-pipewire alsa-tools alsa-utils arc-theme bash-completion bc brave-bin brightnessctl ca-certificates cmus cups cups-browsed curl elogind ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-awesome7 font-hack-ttf font-JetBrainsMono geary gettext git d77run htop inxi kvantum mousepad mpv nano NetworkManager nerd-fonts-symbols-ttf nwg-look octoxbps papirus-icon-theme pcmanfm pipewire plymouth polkit power-profiles-daemon pulseaudio-utils qt5ct qt6ct qt5-graphicaleffects ranger smartmontools system-config-printer transmission-qt udiskie ufw uget unzip usbutils util-linux vim $REPO_PKGS wget wireplumber xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
+				D77_CORE="acpi alsa-pipewire alsa-tools alsa-utils arc-theme bash-completion bc brave-bin brightnessctl ca-certificates cmus cups cups-browsed curl elogind ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-awesome7 font-hack-ttf font-JetBrainsMono geary gettext git d77run htop inxi kvantum mousepad mpv nano NetworkManager nerd-fonts-symbols-ttf nwg-look octoxbps papirus-icon-theme pcmanfm pipewire plymouth polkit power-profiles-daemon pulseaudio-utils qt5ct qt6ct ranger smartmontools system-config-printer transmission-qt udiskie ufw uget unzip usbutils util-linux vim $REPO_PKGS wget wireplumber xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
 				D77_COSMIC="acpi alsa-pipewire alsa-tools alsa-utils arc-theme bash-completion bc brightnessctl ca-certificates cmus cups cups-browsed curl elogind ethtool feh ffmpeg font-hack-ttf font-JetBrainsMono geary gettext git htop inxi kvantum nano NetworkManager neofetch nerd-fonts-symbols-ttf octoxbps papirus-icon-theme pipewire plymouth polkit power-profiles-daemon pulseaudio-utils qt5ct qt6ct ranger smartmontools transmission-qt udiskie ufw uget unzip usbutils util-linux vim $REPO_PKGS wget wireplumber xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
 				D77_GNOME="acpi alsa-pipewire alsa-tools alsa-utils arc-theme bash-completion bc brightnessctl ca-certificates cmus cups cups-browsed curl elogind ethtool feh ffmpeg font-hack-ttf font-JetBrainsMono geary gettext git htop inxi kvantum nano NetworkManager neofetch nerd-fonts-symbols-ttf octoxbps papirus-icon-theme pipewire plymouth polkit power-profiles-daemon pulseaudio-utils qt5ct qt6ct ranger smartmontools transmission-qt udiskie ufw uget unzip usbutils util-linux vim $REPO_PKGS wget wireplumber xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xinit xorg xorg-server xpdf yt-dlp zathura zathura-pdf-poppler"
-				D77_WAYFIRE="acpi alsa-pipewire alsa-tools alsa-utils arc-theme bash-completion bc brave-bin brightnessctl ca-certificates cmus cups cups-browsed curl dunst elogind ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-awesome7 font-hack-ttf font-JetBrainsMono geary gettext git d77run htop inxi kitty kvantum mousepad mpv nano NetworkManager nerd-fonts-symbols-ttf nwg-look octoxbps papirus-icon-theme pcmanfm pipewire plymouth polkit power-profiles-daemon pulseaudio-utils qt5ct qt6ct qt5-graphicaleffects ranger smartmontools system-config-printer transmission-gtk udiskie ufw uget unzip usbutils util-linux vim $REPO_PKGS wget wireplumber xdg-desktop-portal xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf xterm yt-dlp zathura zathura-pdf-poppler"
+				D77_WAYFIRE="acpi alsa-pipewire alsa-tools alsa-utils arc-theme bash-completion bc brave-bin brightnessctl ca-certificates cmus cups cups-browsed curl dunst elogind ethtool fastfetch feh font-awesome font-awesome5 font-awesome6 font-awesome7 font-hack-ttf font-JetBrainsMono geary gettext git d77run htop inxi kitty kvantum mousepad mpv nano NetworkManager nerd-fonts-symbols-ttf nwg-look octoxbps papirus-icon-theme pcmanfm pipewire plymouth polkit power-profiles-daemon pulseaudio-utils qt5ct qt6ct ranger smartmontools system-config-printer transmission-gtk udiskie ufw uget unzip usbutils util-linux vim $REPO_PKGS wget wireplumber xdg-desktop-portal xdg-user-dirs xdg-user-dirs-gtk xdg-utils xf86-input-synaptics xarchiver xcalc xinit xorg xorg-server xpdf xterm yt-dlp zathura zathura-pdf-poppler"
 			fi
 			COMMON=
 			GREETD=
@@ -419,7 +419,7 @@ build_variant() {
 			X11=yes
 			SDDM=yes
 			ROFI=yes
-			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES awesome awesome-appmenu mate-polkit wireless_tools xdg-desktop-portal-gtk"
+			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES awesome awesome-appmenu mate-polkit qt5-graphicaleffects wireless_tools xdg-desktop-portal-gtk"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		bspwm)
@@ -428,13 +428,13 @@ build_variant() {
 			SDDM=yes
 			DMENU=yes
 			ROFI=yes
-			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES bspwm bspwmbar cbatticon mate-polkit network-manager-applet redshift-gtk sxhkd volumeicon xdg-desktop-portal-gtk"
+			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES bspwm bspwmbar cbatticon mate-polkit network-manager-applet qt5-graphicaleffects redshift-gtk sxhkd volumeicon xdg-desktop-portal-gtk"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		cosmic)
 			COMMON=yes
 			GREETD=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_COSMIC $CALAMARES $BROWSER cliphist cosmic-desktop-full cosmic-greeter cosmic-tweaks gnome-keyring qt5-graphicaleffects qt5-wayland qt6-wayland xarchiver"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_COSMIC $CALAMARES $BROWSER cliphist cosmic-desktop-full cosmic-greeter cosmic-tweaks gnome-keyring qt5-wayland qt6-wayland xarchiver"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		dwm)
@@ -443,7 +443,7 @@ build_variant() {
 			SDDM=yes
 			DMENU=yes
 			ROFI=yes
-			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES dwm mate-polkit slstatus sxhkd xdg-desktop-portal-gtk"
+			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES dwm mate-polkit qt5-graphicaleffects slstatus sxhkd xdg-desktop-portal-gtk"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		fabric)
@@ -458,7 +458,7 @@ build_variant() {
 			X11=yes
 			SDDM=yes
 			ROFI=yes
-			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES fluxbox mate-polkit menumaker xdg-desktop-portal-gtk"
+			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES fluxbox mate-polkit menumaker qt5-graphicaleffects xdg-desktop-portal-gtk"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		gnome)
@@ -478,7 +478,7 @@ build_variant() {
 			X11=yes
 			SDDM=yes
 			ROFI=yes
-			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES herbstluftwm jgmenu mate-polkit xdg-desktop-portal-gtk"
+			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES herbstluftwm jgmenu mate-polkit qt5-graphicaleffects xdg-desktop-portal-gtk"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		hyprland)
@@ -507,14 +507,14 @@ build_variant() {
 			SDDM=yes
 			ROFI=yes
 			DMENU=yes
-			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES dex i3-gaps i3lock i3status mate-polkit xdg-desktop-portal-gtk"
+			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES dex i3-gaps i3lock i3status mate-polkit qt5-graphicaleffects xdg-desktop-portal-gtk"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		jwm)
 			COMMON=yes
 			X11=yes
 			SDDM=yes
-			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES cbatticon conky jq jwm mate-polkit network-manager-applet redshift-gtk volumeicon xdg-desktop-portal-gtk xdgmenumaker"
+			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES cbatticon conky jq jwm mate-polkit network-manager-applet qt5-graphicaleffects redshift-gtk volumeicon xdg-desktop-portal-gtk xdgmenumaker"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		labwc)
@@ -531,7 +531,7 @@ build_variant() {
 			SDDM=yes
 			DMENU=yes
 			ROFI=yes
-			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES eww kitty leftwm leftwm-theme mate-polkit polybar wmctrl xdg-desktop-portal-gtk"
+			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES eww kitty leftwm leftwm-theme mate-polkit polybar qt5-graphicaleffects wmctrl xdg-desktop-portal-gtk"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		lxqt)
@@ -588,7 +588,7 @@ build_variant() {
 			X11=yes
 			SDDM=yes
 			ROFI=yes
-			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES lxappearance-obconf mate-polkit obconf obmenu-generator openbox perl-File-DesktopEntry sxhkd tint2 tint2conf xdg-desktop-portal-gtk"
+			PKGS="$PKGS $XORG_PKGS $D77_CORE $CALAMARES lxappearance-obconf mate-polkit obconf obmenu-generator openbox perl-File-DesktopEntry qt5-graphicaleffects sxhkd tint2 tint2conf xdg-desktop-portal-gtk"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		plasma)
@@ -615,7 +615,7 @@ build_variant() {
 			SDDM=yes
 			FUZZEL=yes
 			ROFI=yes
-			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist grim ImageMagick jgmenu kitty mate-polkit nwg-launchers python3-aiohttp python3-psutil python3-qtile-extras qt5-wayland qt6-wayland qtile qtile-wayland swayidle swaylock xdg-desktop-portal-gtk xdg-desktop-portal-wlr xorg-server-xwayland xterm wlroots wlsunset xwayland-satellite"
+			PKGS="$PKGS $XORG_PKGS $WAYLAND_PKGS $D77_CORE $CALAMARES cliphist grim ImageMagick jgmenu kitty mate-polkit nwg-launchers python3-aiohttp python3-psutil python3-qtile-extras qt5-graphicaleffects qt5-wayland qt6-wayland qtile qtile-wayland swayidle swaylock xdg-desktop-portal-gtk xdg-desktop-portal-wlr xorg-server-xwayland xterm wlroots wlsunset xwayland-satellite"
 			SERVICES="$SERVICES cupsd cups-browsed dbus NetworkManager polkitd power-profiles-daemon"
 		;;
 		river)
