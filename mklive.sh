@@ -435,7 +435,7 @@ EOF
 generate_squashfs() {
     umount_pseudofs || exit 1
 
-    # Diagnostic trace for the ext3fs.img corruption issue: full xtrace of this
+    # Diagnostic trace for the rootfs.img (nested live image) corruption issue: full xtrace of this
     # function, with timestamps, to a log file that survives BUILDDIR cleanup
     # (BUILDDIR itself gets rm -rf'd by die()/error_out on failure).
     local squashfs_trace_log="$(dirname "$BUILDDIR")/mklive-generate_squashfs.trace.log"
@@ -445,14 +445,14 @@ generate_squashfs() {
     PS4='+ [$(date "+%T.%N")] '
     set -x
 
-    # Find out required size for the rootfs and create an ext3fs image off it.
+    # Find out required size for the rootfs and create a nested rootfs.img (ext3) image off it.
     ROOTFS_SIZE=$(du --apparent-size -sm "$ROOTFS"|awk '{print $1}')
     mkdir -p "$BUILDDIR/tmp/LiveOS"
     truncate -s "$((ROOTFS_SIZE+ROOTFS_SIZE))M" \
-	    "$BUILDDIR"/tmp/LiveOS/ext3fs.img >/dev/null 2>&1
+	    "$BUILDDIR"/tmp/LiveOS/rootfs.img >/dev/null 2>&1
     mkdir -p "$BUILDDIR/tmp-rootfs"
-    mkfs.ext3 -F -m1 "$BUILDDIR/tmp/LiveOS/ext3fs.img" >/dev/null 2>&1
-    mount -o loop "$BUILDDIR/tmp/LiveOS/ext3fs.img" "$BUILDDIR/tmp-rootfs"
+    mkfs.ext3 -F -m1 "$BUILDDIR/tmp/LiveOS/rootfs.img" >/dev/null 2>&1
+    mount -o loop "$BUILDDIR/tmp/LiveOS/rootfs.img" "$BUILDDIR/tmp-rootfs"
     cp -a "$ROOTFS"/* "$BUILDDIR"/tmp-rootfs/
     sync -f "$BUILDDIR/tmp-rootfs"
     # A file indexer or similar can transiently hold a file open right after
@@ -462,14 +462,14 @@ generate_squashfs() {
     umount_tries=0
     until umount "$BUILDDIR/tmp-rootfs" 2>/dev/null; do
         umount_tries=$((umount_tries+1))
-        [ "$umount_tries" -ge 10 ] && die "Failed to unmount $BUILDDIR/tmp-rootfs after ${umount_tries} tries, ext3fs.img may be corrupt"
+        [ "$umount_tries" -ge 10 ] && die "Failed to unmount $BUILDDIR/tmp-rootfs after ${umount_tries} tries, rootfs.img may be corrupt"
         sleep 1
     done
     # The image is only ever mounted read-only at boot, so the journal must
     # be fully checkpointed (no pending recovery) before it gets packaged,
     # or the live boot's read-only mount of it will be refused by the kernel.
-    e2fsck -fy "$BUILDDIR/tmp/LiveOS/ext3fs.img" >/dev/null 2>&1
-    [ $? -ge 4 ] && die "ext3fs.img failed filesystem check after copy, aborting"
+    e2fsck -fy "$BUILDDIR/tmp/LiveOS/rootfs.img" >/dev/null 2>&1
+    [ $? -ge 4 ] && die "rootfs.img failed filesystem check after copy, aborting"
     mkdir -p "$IMAGEDIR/LiveOS"
 
     "$VOIDHOSTDIR"/usr/bin/mksquashfs "$BUILDDIR/tmp" "$IMAGEDIR/LiveOS/squashfs.img" \
