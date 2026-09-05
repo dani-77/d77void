@@ -243,19 +243,6 @@ STEPS = [
         "requires_root": True,
     },
     {
-        "id": "d77void-repo",
-        "title": "d77void Repository",
-        "icon": "software-properties-symbolic",
-        "kind": "action",
-        "summary": "Install and update the d77void package repository.",
-        "command_preview": (
-            "cp d77void.conf /etc/xbps.d/d77void-repo.conf\n"
-            "sudo xbps-install -Syu"
-        ),
-        "script": "d77void-repo",
-        "requires_root": True,
-    },
-    {
         "id": "boot-animation",
         "title": "Boot Animation",
         "icon": "image-x-generic-symbolic",
@@ -278,16 +265,6 @@ STEPS = [
                 "requires_root": True,
             },
         ],
-    },
-    {
-        "id": "remove-calamares",
-        "title": "Remove Calamares Installer",
-        "icon": "user-trash-symbolic",
-        "kind": "action",
-        "summary": "Remove the Calamares installer now that d77void is installed.",
-        "packages": ["calamares (removed)"],
-        "script": "remove-calamares",
-        "requires_root": True,
     },
 ]
 

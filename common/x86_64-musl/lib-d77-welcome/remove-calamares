@@ -1,4 +1,0 @@
-#!/bin/bash
-set -e
-
-sudo -A rm -rf /etc/calamares && sudo -A rm -rf /usr/bin/d77void-installer && sudo -A xbps-remove -R -y calamares

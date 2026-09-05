@@ -1,4 +1,0 @@
-#!/bin/bash
-set -e
-
-sudo -A cp /usr/lib/lib-d77-welcome/d77void.conf /etc/xbps.d/d77void-repo.conf && sudo -A xbps-install -Syu -y
