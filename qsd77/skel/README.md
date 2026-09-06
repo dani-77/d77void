@@ -6,16 +6,6 @@ This ISO uses Hyprland together with Quickshell (my quickshell approach, qsd77).
 
 To install use Calamares from the menu.
 
-## AI in qsd77
-
-qsd77 has AI features built in, powered by Ollama, which is included and enabled by default in this ISO. To use it you need to pull a model first. A small, fast Qwen model is recommended to get started:
-
-```
-ollama pull qwen2.5:0.5b
-```
-
-Larger Qwen models (qwen2.5:1.5b, qwen2.5:3b, qwen2.5:7b, ...) will give better answers if your hardware can handle them. Once a model is pulled, the AI features in qsd77 will be able to use it.
-
 ## Keybinds
 
 super + return -> terminal
