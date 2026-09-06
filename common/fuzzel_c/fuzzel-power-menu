@@ -1,40 +1,43 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
-SELECTION=$(echo -e "󰒲 Suspend\n Logout\n Reboot\n Shutdown" | fuzzel -d -p " " -w 15 -l 4)
+SELECTION=$(echo -e "󰒲 Suspend\n Logout\n Reboot\n Shutdown" | fuzzel -d -p " " -w 15 -l 4)
 
 reboot_confirm() {
-	SELECTION=$(echo -e "confirm reboot\ncancel reboot" | fuzzel -d -p " " -w 15 -l 2)
-	case $SELCTION in
+	CONFIRM=$(echo -e "confirm reboot\ncancel reboot" | fuzzel -d -p " " -w 15 -l 2)
+	case $CONFIRM in
 		"confirm reboot")
-			reboot
+			loginctl reboot
 			;;
 		*)
 			;;
 	esac
 }
 shutdown_confirm() {
-		SELECTION=$(echo -e "confirm shutdown\ncancel shutdown" | fuzzel -d -p " " -w 15 -l 2)
-		case $SELCTION in
-			"confirm shutdown")
-				shutdown
-				;;
-			*)
-				;;
-		esac
+	CONFIRM=$(echo -e "confirm shutdown\ncancel shutdown" | fuzzel -d -p " " -w 15 -l 2)
+	case $CONFIRM in
+		"confirm shutdown")
+			loginctl poweroff
+			;;
+		*)
+			;;
+	esac
 }
 
 case $SELECTION in
 	"󰒲 Suspend")
 		loginctl suspend
 		;;
-	" Logout")
-		kill -9 -1
+	" Logout")
+		# WM-agnostic: end this login session via elogind (SIGTERM -> SIGKILL),
+		# whatever the compositor. Falls back to the whole user if the session
+		# id isn't in the env.
+		loginctl terminate-session "${XDG_SESSION_ID:-}" 2>/dev/null || loginctl terminate-user "$USER"
 		;;
-	" Reboot")
-		loginctl reboot
+	" Reboot")
+		reboot_confirm
 		;;
-	" Shutdown")
-		loginctl poweroff
+	" Shutdown")
+		shutdown_confirm
 		;;
 	*)
 		;;

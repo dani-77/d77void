@@ -33,7 +33,11 @@ icons[cancel]="󱫀"
 
 declare -A actions
 actions[suspend]="loginctl suspend"
-actions[logout]="kill -9 -1"
+# WM-agnostic logout via elogind. ${actions[...]} is run word-split (no
+# shell), so this stays a single command; terminate-user covers every
+# compositor. XDG_SESSION_ID-scoped terminate-session would be more
+# surgical but can't carry a `||` fallback here.
+actions[logout]="loginctl terminate-user $USER"
 actions[reboot]="loginctl reboot"
 actions[shutdown]="loginctl poweroff"
 

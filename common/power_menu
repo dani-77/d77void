@@ -4,9 +4,10 @@
 
 DMENU="dmenu -p   "
 
-SESSON_ID=$(loginctl session-status | awk 'NR==1{print $1}')
+SESSION_ID=$(loginctl session-status | awk 'NR==1{print $1}')
 Lock_command="slock"
-Exit_command="kill -9 -1"
+# WM-agnostic logout: end this login session via elogind, whichever WM.
+Exit_command="loginctl terminate-session ${XDG_SESSION_ID:-$SESSION_ID}"
 Reboot_command="loginctl reboot"
 Shutdown_command="loginctl poweroff"
 
