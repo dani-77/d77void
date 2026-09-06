@@ -308,14 +308,6 @@ include_way() {
 	cp -r ./common/waybar "$INCLUDEDIR"/etc/skel/.config/
 }
 
-include_wofi() {
-	PKGS="$PKGS wofi"
-	mkdir -p "$INCLUDEDIR"/etc/skel/.config
-	mkdir -p "$INCLUDEDIR"/usr/bin
-	cp -r ./common/wofi_c/wofi "$INCLUDEDIR"/etc/skel/.config
-	cp ./common/wofi_c/wofi-power-menu "$INCLUDEDIR"/usr/bin/
-}
-
 include_x11() {
 	PKGS="$PKGS dunst redshift scrot slock st transset xautolock xcompmgr xterm"
 	cp ./common/wswap-X "$INCLUDEDIR"/usr/bin/
@@ -380,7 +372,6 @@ build_variant() {
 			FUZZEL=
 			RIVER=
 			ROFI=
-			WOFI=
 			;;
 		aarch64*)
 			GRUB_PKGS="grub-arm64-efi"
@@ -726,7 +717,6 @@ EOF
 	[ "$RIVER" = yes ]   && include_river
 	[ "$ROFI" = yes ]    && include_rofi
 	[ "$WAY" = yes ]     && include_way
-	[ "$WOFI" = yes ]    && include_wofi
 	[ "$XFCE" = yes ]    && include_xfce
 	[ "$X11" = yes ]     && include_x11
 
