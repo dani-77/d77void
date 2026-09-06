@@ -257,7 +257,7 @@
 		"menu-actions": {
 			"shutdown": "loginctl poweroff",
 			"reboot": "loginctl reboot",
-			"logout": "kill -9 -1",
+			"logout": "loginctl terminate-session $XDG_SESSION_ID 2>/dev/null || loginctl terminate-user $USER",
 			"hibernate": "loginctl suspend"
 		}
     	},
